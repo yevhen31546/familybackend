@@ -148,8 +148,8 @@
                             <ul class="dropdown-menu">
                                 <li class="active">
                                     <a href="<?php echo BASE_URL;?>/members/activity-me.php"><span>My Album</span></a></li>
-                                <li><a href="<?php echo BASE_URL;?>/members/activity-fam.html"><span>My Family</span></a></li>
-                                <li><a href="<?php echo BASE_URL;?>/members/activity-frd.html"><span>My Friends</span></a></li>
+                                <li><a href="<?php echo BASE_URL;?>/members/activity-fam.php"><span>My Family</span></a></li>
+                                <li><a href="<?php echo BASE_URL;?>/members/activity-frd.php"><span>My Friends</span></a></li>
 
                             </ul>
                         </li>
