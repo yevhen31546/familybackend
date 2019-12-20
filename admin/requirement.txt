@@ -1,0 +1,43 @@
+1) Layout
+- Use Blue/dark skin
+- Use "Fixed" layout 
+
+2) User mangement
+- List af users (support ticket  GUI)
+- Create user
+- Edit user
+- Delete user
+
+---------------------------
+DB access
+
+MySQL oplysninger
+Sammen med dit webhotel er der automatisk oprettet en MySQL database.
+
+Følgende oplysninger bruges for at tilgå MySQL databasen.
+
+Hostnavn	mysql90.unoeuro.com
+Brugernavn	zenplan_dk
+Adgangskode	bgtcnh5k
+Databasenavn	zenplan_dk_db
+Administration	https://mysql.unoeuro.com
+
+Host Name mysql90.unoeuro.com
+Username zenplan_dk
+password bgtcnh5k
+Database Name zenplan_dk_db
+
+-----------------------------
+
+Task 1:
+User management:
+User table fields
+
+- First name*
+- Last name*
+- Email*
+- Phone no
+- Note
+- Created by (hidden)
+- Created date (hidden)
+-
