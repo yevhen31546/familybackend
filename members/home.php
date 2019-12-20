@@ -37,7 +37,7 @@ $rows = $db->get('tbl_users');
                 <div class="col-md-4 col-xs-6 col-xxs-12 pb--60">
                 <!-- Image Block Start -->
                 <div class="img--block style--2">
-                    <a href="activity-fam.html" class="btn-link text-darkest text-center" target="">
+                    <a href="activity-fam.php" class="btn-link text-darkest text-center" target="">
                         <span><h2>My Family Album</h2></span>
                         <img src="father480x480.png" alt="">
 
@@ -51,7 +51,7 @@ $rows = $db->get('tbl_users');
             <div class="col-md-4 col-xs-6 col-xxs-12 pb--60">
                 <!-- Image Block Start -->
                 <div class="img--block style--2">
-                    <a href="activity-frd.html" class="btn-link text-darkest text-center" target="">
+                    <a href="activity-frd.php" class="btn-link text-darkest text-center" target="">
                         <span><h2>My Friends Album</h2></span>
                         <img src="boys480x480.png" alt="">
 

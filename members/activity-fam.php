@@ -16,7 +16,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
         </div>
 
         <ul class="breadcrumb text-gray ff--primary">
-            <li><a href="../members/home.html" class="btn-link">Home</a></li>
+            <li><a href="../members/home.php" class="btn-link">Home</a></li>
             <li class="active"><span class="text-primary">My Family</span></li>
         </ul>
     </div>

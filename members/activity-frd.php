@@ -16,7 +16,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
         </div>
 
         <ul class="breadcrumb text-gray ff--primary">
-            <li><a href="../members/home.html" class="btn-link">Home</a></li>
+            <li><a href="../members/home.php" class="btn-link">Home</a></li>
             <li class="active"><span class="text-primary">My Friends</span></li>
         </ul>
     </div>
@@ -35,115 +35,81 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                         <div class="filter--link float--left">
                             <h2>Our Friends Collection of Notes</h2>
                         </div>
-
-                        <!-- <div class="filter--options float--right">
-                            <label>
-                                <span class="fs--14 ff--primary fw--500 text-darker">Show By :</span>
-
-                                <select name="activityfilter" class="form-control form-sm"
-                                    data-trigger="selectmenu">
-                                    <option value="everything" selected>— Everything —</option>
-                                    <option value="new-members">New Members</option>
-                                    <option value="profile-updates">Profile Updates</option>
-                                    <option value="updates">Updates</option>
-                                    <option value="friendships">Friendships</option>
-                                    <option value="new-groups">New Groups</option>
-                                    <option value="group-memberships">Group Memberships</option>
-                                    <option value="group-updates">Group Updates</option>
-                                    <option value="topics">Topics</option>
-                                    <option value="replies">Replies</option>
-                                </select>
-                            </label>
-                        </div>-->
                     </div>
                     <!-- Filter Nav End -->
-                    <h4>**Hari, this info will need to be auto-populated by the note activity and the activity
-                        in the various groups, etc. The activity items below are directly from the template to
-                        show some examples. One of us will need to remove this content before production.**</h4>
                     <!-- Activity List Start -->
                     <div class="activity--list">
                         <!-- Activity Items Start -->
                         <ul class="activity--items nav">
+                            <!-- Activity Item Start -->
+                            <div class="activity--item">
+                                <div class="activity">
+                                    <a href="member-activity-personal.php">
 
-                            
-                                <!-- Activity Item Start -->
-                                <div class="activity--item">
-                                    <div class="activity">
-                                        <a href="member-activity-personal.html">
-
-                                        </a>
-                                    </div>
-
-
+                                    </a>
                                 </div>
-                                <!-- Activity Item End -->
-                            
-                            
-                                <!-- Activity Item Start -->
-                                <div class="activity--item">
-                                    <div class="activity">
-                                        <a href="member-activity-personal.html">
-                                            
-                                        </a>
-                                    </div>
-
-                                    <div class="activity--info fs--14">
+                            </div>
+                            <!-- Activity Item End -->
+                        
+                        
+                            <!-- Activity Item Start -->
+                            <div class="activity--item">
+                                <div class="activity">
+                                    <a href="member-activity-personal.php">
                                         
-
-
-                                        
-
-                                        <div class="activity--comments fs--12">
-                                            <ul class="acomment--items nav">
-                                                <li>
-                                                    
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    </a>
                                 </div>
-                                <!-- Activity Item End -->
-                            
-                            
-                                <!-- Activity Item Start -->
-                                <div class="activity--item">
-                                    <div class="activity">
-                                        <a href="member-activity-personal.html">
-                                    </div>
-                                        
-                                        <div class="activity--content">
-                                            <div class="link--embed">
+
+                                <div class="activity--info fs--14">
+                                    <div class="activity--comments fs--12">
+                                        <ul class="acomment--items nav">
+                                            <li>
                                                 
-                                            </div>
-                                        </div>
-                                    
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <!-- Activity Item End -->
+                            </div>
+                            <!-- Activity Item End -->
+                        
+                        
+                            <!-- Activity Item Start -->
+                            <div class="activity--item">
+                                <div class="activity">
+                                    <a href="member-activity-personal.php">
+                                </div>
+                                    
+                                    <div class="activity--content">
+                                        <div class="link--embed">
+                                            
+                                        </div>
+                                    </div>
+                                
+                            </div>
+                            <!-- Activity Item End -->
                             
                             <li>
                                 <!-- Activity Item Start -->
                                 <div class="activity--item">
 
-
-                                    
-                                    
                                 </div>
                                 <!-- Activity Item End -->
                             </li>
+
                             <li>
                                 <!-- Activity Item Start -->
                                 <div class="activity--item">
                                     <div class="activity--avatar">
-                                        <a href="member-activity-personal.html">
+                                        <a href="member-activity-personal.php">
                                             <img src="img/activity-img/avatar-07.jpg" alt="">
                                         </a>
                                     </div>
 
                                     <div class="activity--info fs--14">
                                         <div class="activity--header">
-                                            <p><a href="member-activity-personal.html">Anita J. Lilley</a>
+                                            <p><a href="member-activity-personal.php">Anita J. Lilley</a>
                                                 posted an update in the group <a
-                                                    href="group-home.html">Lens-bians Photography</a></p>
+                                                    href="group-home.php">Lens-bians Photography</a></p>
                                         </div>
 
                                         <div class="activity--meta fs--12">
@@ -162,24 +128,17 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                                 </div>
                                 <!-- Activity Item End -->
                             </li>
+
                             <li>
                                 <!-- Activity Item Start -->
                                 <div class="activity--item">
-                                    
-
                                     <div class="activity--info fs--14">
-                                    
-
-                                        
-
-                                        
+                                       
                                     </div>
                                 </div>
                                 <!-- Activity Item End -->
                             </li>
-                            <li>
 
-                            </li>
                         </ul>
                         <!-- Activity Items End -->
                     </div>
@@ -199,7 +158,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
             <!-- Main Sidebar Start -->
             <div class="main--sidebar col-md-4 pb--60" data-trigger="stickyScroll">
                 <div class="filter--link float--left">
-                    <h5>Add a Friend (+)</h5>
+                    <h5><a href="#add-friend-modal" data-toggle="modal">Add a Friend (+)</a></h5>
                 </div>
                 <br>
                 <br>
@@ -448,6 +407,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
     </div>
 </div>
 </section>
+<?php include BASE_PATH . '/members/forms/add_friend_modal.php';?>
 <!-- Page Wrapper End -->
-    
+
 <?php include BASE_PATH.'/members/includes/footer.php'?>
