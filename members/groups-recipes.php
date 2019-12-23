@@ -13,9 +13,9 @@ $rows = $db->get('tbl_users');
 // print_r($str_arr);
 // exit;
 
-if(isset($_GET) && (isset($_GET['recipefilter']) || isset($_GET['letter']))) {
-    if(isset($_GET['recipefilter'])){
-        $filter_val = $_GET['recipefilter'];
+if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
+    if(isset($_GET['groupfilter'])){
+        $filter_val = $_GET['groupfilter'];
         if($filter_val == 'last-active') {
             $db = getDbInstance();
             $db->join('tbl_recipes', 'tbl_users.id = tbl_recipes.rec_submit_by');
@@ -77,19 +77,18 @@ if(isset($_GET) && (isset($_GET['recipefilter']) || isset($_GET['letter']))) {
                         </div>
 
                         <div class="filter--options float--right">
-                            <label>
-                                <span class="h4 fs--14 ff--primary fw--500 text-darker">Find a Recipe :</span>
-                                <form action="" method="GET">
-
-                                    <select name="recipefilter" id="recipefilter" class="input-medium" onchange="this.form.submit();">
+                            <label style="display: flex;">
+                                <span class="h4 fs--14 ff--primary fw--500 text-darker">Find a Group :</span>
+                                <form action="" method="GET" id="groupfilterform">
+                                    <select name="groupfilter" id="groupfilter" class="form-control form-sm" onchange="this.form.submit();" data-trigger="selectmenu">
                                         <option value="last-active" selected>Most Current Added</option>
-                                        <option value="Breakfast" <?php if(isset($_GET['recipefilter']) && $_GET['recipefilter'] == 'Breakfast') echo 'selected'; ?> >Breakfast</option>
-                                        <option value="Lunch" <?php if(isset($_GET['recipefilter']) && $_GET['recipefilter'] == 'Lunch') echo 'selected'; ?> >Lunch</option>
-                                        <option value="Dinner" <?php if(isset($_GET['recipefilter']) && $_GET['recipefilter'] == 'Dinner') echo 'selected'; ?> >Dinner</option>
-                                        <option value="Dessert" <?php if(isset($_GET['recipefilter']) && $_GET['recipefilter'] == 'Dessert') echo 'selected'; ?> >Dessert</option>
-                                        <option value="Family Favorite" <?php if(isset($_GET['recipefilter']) && $_GET['recipefilter'] == 'Family Favorite') echo 'selected'; ?> >Family Favorite</option>
-                                        <option value="Gluten Free" <?php if(isset($_GET['recipefilter']) && $_GET['recipefilter'] == 'Gluten Free') echo 'selected'; ?> >Gluten Free</option>
-                                        <option value="Vegetarian" <?php if(isset($_GET['recipefilter']) && $_GET['recipefilter'] == 'Vegetarian') echo 'selected'; ?> >Vegetarian</option>
+                                        <option value="Breakfast" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Breakfast') echo 'selected'; ?> >Breakfast</option>
+                                        <option value="Lunch" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Lunch') echo 'selected'; ?> >Lunch</option>
+                                        <option value="Dinner" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Dinner') echo 'selected'; ?> >Dinner</option>
+                                        <option value="Dessert" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Dessert') echo 'selected'; ?> >Dessert</option>
+                                        <option value="Family Favorite" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Family Favorite') echo 'selected'; ?> >Family Favorite</option>
+                                        <option value="Gluten Free" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Gluten Free') echo 'selected'; ?> >Gluten Free</option>
+                                        <option value="Vegetarian" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Vegetarian') echo 'selected'; ?> >Vegetarian</option>
                                     </select>
 
                                 </form>

@@ -59,11 +59,11 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                         </div>
 
                         <div class="filter--options float--right">
-                            <label>
+                            <label style="display: flex;">
                                 <span class="fs--14 ff--primary fw--500 text-darker">Find an Event :</span>
-                                <form action="" method="GET">
+                                <form action="" method="GET" id="groupfilterform">
 
-                                    <select name="groupfilter" id="groupfilter" class="input-medium"  onchange="this.form.submit();">
+                                    <select name="groupfilter" id="groupfilter" class="form-control form-sm"  onchange="this.form.submit();" data-trigger="selectmenu">
                                         <option value="Anniversaries" selected>Anniversaries</option>
                                         <option value="Baby Showers" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Baby Showers') echo 'selected'; ?> >Baby Showers</option>
                                         <option value="Bachelor Parties" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Bachelor Parties') echo 'selected'; ?> >Bachelor Parties</option>

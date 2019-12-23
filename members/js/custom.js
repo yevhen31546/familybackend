@@ -270,8 +270,33 @@
         readAvatarURL(this);
     });
 
+    /**
+     * Filter
+     */
+    $(document).ready(function(){
+        MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
+        var trackChange = function(element) {
+        var observer = new MutationObserver(function(mutations, observer) {
+            if(mutations[0].attributeName == "value") {
+                $(element).trigger("change");
+            }
+            console.log($("#groupfilterform")[0]);
+            $("#groupfilterform")[0].submit();
+        });
+        observer.observe(element, {
+            attributes: true
+        });
+        }
+
+        // Just pass an element to the function to start tracking
+        trackChange($('input[name="groupfilter"]').get(0));
+    });
+
+    
 
 })(jQuery);
+
+
 
 

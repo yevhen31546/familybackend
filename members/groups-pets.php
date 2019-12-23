@@ -12,7 +12,7 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
         $filter_val = $_GET['groupfilter'];        
         $db = getDbInstance();
         $db->join('tbl_pet', 'tbl_users.id = tbl_pet.petsubmitby');
-        $db->where('petname', '%'.$filter_val.'%', 'LIKE');
+        $db->where('petgroup', '%'.$filter_val.'%', 'LIKE');
         $db->orderBy('petdate');
         $rows = $db->get('tbl_users');
     }
@@ -59,11 +59,10 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                         </div>
 
                         <div class="filter--options float--right">
-                            <label>
+                            <label style="display: flex;">
                                 <span class="h4 fs--14 ff--primary fw--500 text-darker">Find a Group :</span>
-                                <form action="" method="GET">
-
-                                    <select name="groupfilter" id="groupfilter" class="input-medium" onchange="this.form.submit();">
+                                <form action="" method="GET" id="groupfilterform">
+                                    <select name="groupfilter" id="groupfilter" class="form-control form-sm" onchange="this.form.submit();" data-trigger="selectmenu">
                                         <option value="Birds" selected>Birds</option>
                                         <option value="Cats" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Cats') echo 'selected'; ?> >Cats</option>
                                         <option value="Dogs" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Dogs') echo 'selected'; ?> >Dogs</option>

@@ -30,5 +30,14 @@
 <!-- ==== Main Script ==== -->
 <script src="<?php echo BASE_URL;?>/js/main.js"></script>
 
+<!-- <script src="custom-select-menu-min.jquery.js"></script> -->
+<!-- <script>
+      $(document).ready(function() {
+        $('select').customSelect(<a href="https://www.jqueryscript.net/menu/">Menu</a>)();
+      });
+
+</script> -->
+
+
 </body>
 </html>
