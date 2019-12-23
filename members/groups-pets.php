@@ -8,8 +8,8 @@ $db->orderBy('petdate');
 $rows = $db->get('tbl_users');
 
 if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
-    if(isset($_GET['groupfilter'])){
-        $filter_val = $_GET['groupfilter'];        
+    if(isset($_GET['groupfilter'])){        
+        $filter_val = $_GET['groupfilter'];
         $db = getDbInstance();
         $db->join('tbl_pet', 'tbl_users.id = tbl_pet.petsubmitby');
         $db->where('petgroup', '%'.$filter_val.'%', 'LIKE');
@@ -44,7 +44,7 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
     </div>
 </div>
 <!-- Page Header End -->
-
+<?php include BASE_PATH . '/includes/flash_messages.php'; ?>
 <!-- Page Wrapper Start -->
 <section class="page--wrapper pt--80 pb--20">
     <div class="container">
@@ -78,7 +78,7 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                                 <form action="" method="post" name="search" onclick="submit">
                                 <?php
                                     foreach (range('A', 'Z') as $char) {
-                                        echo '<a href='.BASE_URL.'/members/groups-pet.php?letter='.$char.'> '.$char.'</a> |';
+                                        echo '<a href='.BASE_URL.'/members/groups-pets.php?letter='.$char.'> '.$char.'</a> |';
                                     }
                                 ?>
                                 </form>
@@ -111,7 +111,7 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                                     </div>
 
                                     <div class="title">
-                                        <h4 class="color">Remodel &amp; Repair Group : <?php echo $row['petgroup'] ?></h4>
+                                        <h4 class="color">Pet Group : <?php echo $row['petgroup'] ?></h4>
                                         <p><h6>Pet Name: <?php echo $row['petname'] ?></h6></p>
                                     </div>
 

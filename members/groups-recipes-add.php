@@ -158,7 +158,7 @@ if(isset($_POST) && isset($_POST['rec_date']) && $_POST['rec_date'] != '') {
                                                 </div>
                                             </div>
                                         </div>
-                                                
+                                        <?php include BASE_PATH . '/includes/flash_messages.php'; ?>        
                                                 
 
                                         <div class="box--item text-left textareaw">

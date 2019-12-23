@@ -10,6 +10,8 @@ $submitted_by_user = $db->getOne('tbl_users')['first_name'] . ' ' . $db->getOne(
 
 if(isset($_POST) && isset($_POST['petdate']) && $_POST['petdate'] != '') {
     $data_to_db = $_POST;
+    if ($data_to_db['petgroup']=='')
+        $data_to_db['petgroup'] = 'Birds';
     // // Multi image upload
     if(isset($_POST) && isset($_FILES["file"]["name"])) {
         $j = 0;     // Variable for indexing uploaded image.
@@ -55,6 +57,7 @@ if(isset($_POST) && isset($_POST['petdate']) && $_POST['petdate'] != '') {
         $allowedExts = array("jpg", "jpeg", "gif", "png", "mp3", "mp4", "wma");
         $extension = pathinfo($_FILES['videourl']['name'], PATHINFO_EXTENSION);
         $target_path = $target_path . md5(uniqid()).".".$extension;
+        // echo $_FILES["videourl"]["type"];exit;
 
         if ((($_FILES["videourl"]["type"] == "video/mp4")
         || ($_FILES["videourl"]["type"] == "audio/mp3")
@@ -67,6 +70,7 @@ if(isset($_POST) && isset($_POST['petdate']) && $_POST['petdate'] != '') {
         && ($_FILES["videourl"]["size"] < 2000000)
         && in_array($extension, $allowedExts))
         {
+            // echo "valid";exit;
             if ($_FILES["videourl"]["error"] > 0)
             {
                 echo "Return Code: " . $_FILES["videourl"]["error"] . "<br />";
@@ -80,30 +84,37 @@ if(isset($_POST) && isset($_POST['petdate']) && $_POST['petdate'] != '') {
 
                 if (move_uploaded_file($_FILES['videourl']['tmp_name'], $target_path)) {
                     $data_to_db['videourl'] = $target_path;
-                    $_SESSION['success'] = "Image uploaded successfully!.";
+                    // $_SESSION['success'] = "Image uploaded successfully!.";
+
+                    $db = getDbInstance();
+
+                    $last_id = $db->insert('tbl_pet', $data_to_db);
+
+                    if ($last_id)
+                    {
+                        $_SESSION['success'] = 'Pet added successfully!';
+                        // Redirect to the Members page
+                        header('Location: '. BASE_URL .'/members/groups-pets.php');
+                        // Important! Don't execute the rest put the exit/die.
+                    }
+                }
+
+                
+                else
+                {
+                    $_SESSION['failure'] = 'Inert DB error'.$db->getLastError();
                 }
             }
         }
         else
         {
-            echo "Invalid file";
+            // echo "Invalid";exit;
+            $_SESSION['failure'] = "Invalid file!.";
+            // header('Location: '. BASE_URL .'/members/groups-pets-add.php');
         }
     }
 
-    $db = getDbInstance();
-    $last_id = $db->insert('tbl_pet', $data_to_db);
-
-    if ($last_id)
-    {
-        $_SESSION['success'] = 'pet added successfully!';
-        // Redirect to the Members page
-        header('Location: '. BASE_URL .'/members/groups-pets.php');
-        // Important! Don't execute the rest put the exit/die.
-    }
-    else
-    {
-        $_SESSION['failure'] = 'Inert DB error'.$db->getLastError();
-    }
+    
 }
 ?>
 
@@ -129,6 +140,7 @@ if(isset($_POST) && isset($_POST['petdate']) && $_POST['petdate'] != '') {
 </div>
 <!-- Page Header End -->
 
+
 <!-- Page Wrapper Start -->
 <section class="page--wrapper pt--80 pb--20">
     <div class="container">
@@ -149,7 +161,7 @@ if(isset($_POST) && isset($_POST['petdate']) && $_POST['petdate'] != '') {
                                             <label>
                                                 <span class="h4 fs--14 ff--primary fw--500 text-darker">Select a Group :</span>
 
-                                                <select name="petgroup" id="petgroup" class="input-medium" data-trigger="selectmenu">
+                                                <select name="petgroup" id="petgroup" class="input-medium" data-trigger="selectmenu" required>
                                                     <option value="Birds">Birds</option>
                                                     <option value="Cats">Cats</option>
                                                     <option value="Dogs">Dogs</option>
@@ -165,6 +177,16 @@ if(isset($_POST) && isset($_POST['petdate']) && $_POST['petdate'] != '') {
                                                     <h6>Don't see your Pet Group, enter a Pet Group of your choice:&nbsp;&nbsp;&nbsp;
                                                         <input type="text" name="petgroup">
                                                         &nbsp;&nbsp;&nbsp;
+                                                    </h6>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="box--item text-left">
+                                            <div>
+                                                <label>
+                                                    <h6>Enter the name of your pet:&nbsp;&nbsp;&nbsp;
+                                                        <input type="text" name="petname" required>&nbsp;&nbsp;&nbsp;
                                                     </h6>
                                                 </label>
                                             </div>
@@ -217,6 +239,7 @@ if(isset($_POST) && isset($_POST['petdate']) && $_POST['petdate'] != '') {
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
 
                                         <div class="box--item text-left textareaw">
                                             <div>

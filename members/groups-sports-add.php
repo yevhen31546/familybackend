@@ -10,6 +10,10 @@ $submitted_by_user = $db->getOne('tbl_users')['first_name'] . ' ' . $db->getOne(
 
 if(isset($_POST) && isset($_POST['sportdate']) && $_POST['sportdate'] != '') {
     $data_to_db = $_POST;
+    if ($data_to_db['sportgroup']=='')
+        $data_to_db['sportgroup'] = 'Girl';
+    if ($data_to_db['sportname']=='')
+        $data_to_db['sportname'] = 'Aerobics';
     // // Multi image upload
     if(isset($_POST) && isset($_FILES["file"]["name"])) {
         $j = 0;     // Variable for indexing uploaded image.
@@ -80,30 +84,31 @@ if(isset($_POST) && isset($_POST['sportdate']) && $_POST['sportdate'] != '') {
 
                 if (move_uploaded_file($_FILES['videourl']['tmp_name'], $target_path)) {
                     $data_to_db['videourl'] = $target_path;
-                    $_SESSION['success'] = "Image uploaded successfully!.";
+                    // $_SESSION['success'] = "Image uploaded successfully!.";
+                    $db = getDbInstance();
+                    $last_id = $db->insert('tbl_sport', $data_to_db);
+
+                    if ($last_id)
+                    {
+                        $_SESSION['success'] = 'sport added successfully!';
+                        // Redirect to the Members page
+                        header('Location: '. BASE_URL .'/members/groups-sports.php');
+                        // Important! Don't execute the rest put the exit/die.
+                    }
+                    else
+                    {
+                        $_SESSION['failure'] = 'Inert DB error'.$db->getLastError();
+                    }
                 }
             }
         }
         else
         {
-            echo "Invalid file";
+            $_SESSION['failure'] = "Invalid file!.";
         }
     }
 
-    $db = getDbInstance();
-    $last_id = $db->insert('tbl_sport', $data_to_db);
-
-    if ($last_id)
-    {
-        $_SESSION['success'] = 'sport added successfully!';
-        // Redirect to the Members page
-        header('Location: '. BASE_URL .'/members/groups-sports.php');
-        // Important! Don't execute the rest put the exit/die.
-    }
-    else
-    {
-        $_SESSION['failure'] = 'Inert DB error'.$db->getLastError();
-    }
+    
 }
 ?>
 
@@ -150,7 +155,6 @@ if(isset($_POST) && isset($_POST['sportdate']) && $_POST['sportdate'] != '') {
                                                 <span class="h4 fs--14 ff--primary fw--500 text-darker">Select a Group :</span>
 
                                                 <select name="sportgroup" id="sportgroup" class="input-medium" data-trigger="selectmenu">
-                                                    <option value="Most Current Added">Most Current Added</option>
                                                     <option value="Girl">Girl</option>
                                                     <option value="Boy">Boy</option>
                                                     <option value="Women">Women</option>
@@ -248,6 +252,7 @@ if(isset($_POST) && isset($_POST['sportdate']) && $_POST['sportdate'] != '') {
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
 
                                         <div class="box--item text-left textareaw">
                                             <div>

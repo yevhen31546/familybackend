@@ -10,6 +10,8 @@ $submitted_by_user = $db->getOne('tbl_users')['first_name'] . ' ' . $db->getOne(
 
 if(isset($_POST) && isset($_POST['homerepairdate']) && $_POST['homerepairdate'] != '') {
     $data_to_db = $_POST;
+    if ($data_to_db['homerepairgroup']=='')
+        $data_to_db['homerepairgroup'] = 'Bathroom';
     // // Multi image upload
     if(isset($_POST) && isset($_FILES["file"]["name"])) {
         $j = 0;     // Variable for indexing uploaded image.
@@ -81,29 +83,30 @@ if(isset($_POST) && isset($_POST['homerepairdate']) && $_POST['homerepairdate'] 
                 if (move_uploaded_file($_FILES['videourl']['tmp_name'], $target_path)) {
                     $data_to_db['videourl'] = $target_path;
                     $_SESSION['success'] = "Image uploaded successfully!.";
+                    $db = getDbInstance();
+                    $last_id = $db->insert('tbl_homerepair', $data_to_db);
+
+                    if ($last_id)
+                    {
+                        $_SESSION['success'] = 'homerepair added successfully!';
+                        // Redirect to the Members page
+                        header('Location: '. BASE_URL .'/members/groups-homerepair.php');
+                        // Important! Don't execute the rest put the exit/die.
+                    }
+                    else
+                    {
+                        $_SESSION['failure'] = 'Inert DB error'.$db->getLastError();
+                    }
                 }
             }
         }
         else
         {
-            echo "Invalid file";
+            $_SESSION['failure'] = "Invalid file!.";
         }
     }
 
-    $db = getDbInstance();
-    $last_id = $db->insert('tbl_homerepair', $data_to_db);
-
-    if ($last_id)
-    {
-        $_SESSION['success'] = 'homerepair added successfully!';
-        // Redirect to the Members page
-        header('Location: '. BASE_URL .'/members/groups-homerepair.php');
-        // Important! Don't execute the rest put the exit/die.
-    }
-    else
-    {
-        $_SESSION['failure'] = 'Inert DB error'.$db->getLastError();
-    }
+    
 }
 ?>
 
@@ -198,6 +201,7 @@ if(isset($_POST) && isset($_POST['homerepairdate']) && $_POST['homerepairdate'] 
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
 
                                         <div class="box--item text-left textareaw">
                                             <div>
