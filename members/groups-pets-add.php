@@ -127,7 +127,7 @@ if(isset($_POST) && isset($_POST['petdate']) && $_POST['petdate'] != '') {
 
 
 <?php include BASE_PATH.'/members/includes/header.php'?>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="./js/multiimage.js"></script>
 <!------- Including CSS File ------>
 <link rel="stylesheet" type="text/css" href="./css/multiimage.css">
