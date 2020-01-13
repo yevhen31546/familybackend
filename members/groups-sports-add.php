@@ -15,7 +15,7 @@ if(isset($_POST) && isset($_POST['sportdate']) && $_POST['sportdate'] != '') {
     if ($data_to_db['sportname']=='')
         $data_to_db['sportname'] = 'Aerobics';
     // // Multi image upload
-    if(isset($_POST) && isset($_FILES["file"]["name"])) {
+    if(isset($_POST) && $_FILES["file"]["name"] != '') {
         $j = 0;     // Variable for indexing uploaded image.
         $target_path = "./uploads/".$_SESSION['user_id']."/sport/image/";
         if (!file_exists($target_path)) {
@@ -45,12 +45,13 @@ if(isset($_POST) && isset($_POST['sportdate']) && $_POST['sportdate'] != '') {
             }
         }
         // echo $insertValuesSQL;exit;
+        $data_to_db['sportphoto'] = rtrim($insertValuesSQL, ",");
     }
-    $data_to_db['sportphoto'] = rtrim($insertValuesSQL, ",");
+
     
     // Video Upload
     
-    if(isset($_POST) && isset($_FILES["videourl"]["name"])) {
+    if(isset($_POST) && $_FILES["videourl"]["name"] != '') {
         $target_path = "./uploads/".$_SESSION['user_id']."/sport/video/";
         if (!file_exists($target_path)) {
             mkdir($target_path, 0777, true);  //create directory if not exist
@@ -85,20 +86,7 @@ if(isset($_POST) && isset($_POST['sportdate']) && $_POST['sportdate'] != '') {
                 if (move_uploaded_file($_FILES['videourl']['tmp_name'], $target_path)) {
                     $data_to_db['videourl'] = $target_path;
                     // $_SESSION['success'] = "Image uploaded successfully!.";
-                    $db = getDbInstance();
-                    $last_id = $db->insert('tbl_sport', $data_to_db);
 
-                    if ($last_id)
-                    {
-                        $_SESSION['success'] = 'sport added successfully!';
-                        // Redirect to the Members page
-                        header('Location: '. BASE_URL .'/members/groups-sports.php');
-                        // Important! Don't execute the rest put the exit/die.
-                    }
-                    else
-                    {
-                        $_SESSION['failure'] = 'Inert DB error'.$db->getLastError();
-                    }
                 }
             }
         }
@@ -106,6 +94,21 @@ if(isset($_POST) && isset($_POST['sportdate']) && $_POST['sportdate'] != '') {
         {
             $_SESSION['failure'] = "Invalid file!.";
         }
+    }
+
+    $db = getDbInstance();
+    $last_id = $db->insert('tbl_sport', $data_to_db);
+
+    if ($last_id)
+    {
+        $_SESSION['success'] = 'sport added successfully!';
+        // Redirect to the Members page
+        header('Location: '. BASE_URL .'/members/groups-sports.php');
+        // Important! Don't execute the rest put the exit/die.
+    }
+    else
+    {
+        $_SESSION['failure'] = 'Inert DB error'.$db->getLastError();
     }
 
     

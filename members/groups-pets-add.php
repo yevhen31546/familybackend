@@ -13,7 +13,7 @@ if(isset($_POST) && isset($_POST['petdate']) && $_POST['petdate'] != '') {
     if ($data_to_db['petgroup']=='')
         $data_to_db['petgroup'] = 'Birds';
     // // Multi image upload
-    if(isset($_POST) && isset($_FILES["file"]["name"])) {
+    if(isset($_POST) && $_FILES["file"]["name"][0] != '') {
         $j = 0;     // Variable for indexing uploaded image.
         $target_path = "./uploads/".$_SESSION['user_id']."/pet/image/";
         if (!file_exists($target_path)) {
@@ -43,12 +43,13 @@ if(isset($_POST) && isset($_POST['petdate']) && $_POST['petdate'] != '') {
             }
         }
         // echo $insertValuesSQL;exit;
+        $data_to_db['petphoto'] = rtrim($insertValuesSQL, ",");
     }
-    $data_to_db['petphoto'] = rtrim($insertValuesSQL, ",");
+
     
     // Video Upload
     
-    if(isset($_POST) && isset($_FILES["videourl"]["name"])) {
+    if(isset($_POST) && $_FILES["videourl"]["name"] != '') {
         $target_path = "./uploads/".$_SESSION['user_id']."/pet/video/";
         if (!file_exists($target_path)) {
             mkdir($target_path, 0777, true);  //create directory if not exist
@@ -86,17 +87,7 @@ if(isset($_POST) && isset($_POST['petdate']) && $_POST['petdate'] != '') {
                     $data_to_db['videourl'] = $target_path;
                     // $_SESSION['success'] = "Image uploaded successfully!.";
 
-                    $db = getDbInstance();
 
-                    $last_id = $db->insert('tbl_pet', $data_to_db);
-
-                    if ($last_id)
-                    {
-                        $_SESSION['success'] = 'Pet added successfully!';
-                        // Redirect to the Members page
-                        header('Location: '. BASE_URL .'/members/groups-pets.php');
-                        // Important! Don't execute the rest put the exit/die.
-                    }
                 }
 
                 
@@ -112,6 +103,22 @@ if(isset($_POST) && isset($_POST['petdate']) && $_POST['petdate'] != '') {
             $_SESSION['failure'] = "Invalid file!.";
             // header('Location: '. BASE_URL .'/members/groups-pets-add.php');
         }
+    }
+
+    $db = getDbInstance();
+
+    $last_id = $db->insert('tbl_pet', $data_to_db);
+
+    if ($last_id)
+    {
+        $_SESSION['success'] = 'Pet added successfully!';
+        // Redirect to the Members page
+        header('Location: '. BASE_URL .'/members/groups-pets.php');
+        // Important! Don't execute the rest put the exit/die.
+    }
+    else
+    {
+        $_SESSION['failure'] = 'Inert DB error'.$db->getLastError();
     }
 
     

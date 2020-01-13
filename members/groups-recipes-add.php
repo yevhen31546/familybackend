@@ -29,7 +29,7 @@ if(isset($_POST) && isset($_POST['rec_date']) && $_POST['rec_date'] != '') {
             }
         }
     }
-    if(isset($_POST) && isset($_FILES["file"]["name"])) {
+    if(isset($_POST) && $_FILES["file"]["name"][0] !='') {
         $j = 0;     // Variable for indexing uploaded image.
         $target_path = "./uploads/".$_SESSION['user_id']."/"."recipes/";
         if (!file_exists($target_path)) {
@@ -63,8 +63,9 @@ if(isset($_POST) && isset($_POST['rec_date']) && $_POST['rec_date'] != '') {
             }
         }
         // echo $insertValuesSQL;exit;
+        $data_to_db['rec_photo'] = rtrim($insertValuesSQL, ",");
     }
-    $data_to_db['rec_photo'] = rtrim($insertValuesSQL, ",");
+
 
     $db = getDbInstance();
     $last_id = $db->insert('tbl_recipes', $data_to_db);
