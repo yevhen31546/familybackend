@@ -117,7 +117,7 @@
 
                     <!-- Header Navbar Logo Start -->
                     <div class="header--navbar-logo navbar-brand">
-                        <a href="<?php echo BASE_URL;?>/index.html">
+                        <a href="<?php echo BASE_URL;?>/index.php">
                             <img src="<?php echo BASE_URL;?>/img/blacklogosm.png" class="normal" alt="">
                             <img src="<?php echo BASE_URL;?>/img/whitelogosm.png" class="sticky" alt="">
                         </a>
@@ -148,16 +148,13 @@
                         </li>
 
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span>Join Today</span>
+                            <a href="/cart.html" class="dropdown-toggle" data-toggle="dropdown">
+                                <span>Subscribe Today</span>
                                 <i class="fa fa-caret-down"></i>
                             </a>
 
                             <ul class="dropdown-menu">
-                                <!-- <li><a href="products2.html">Products</a></li>
-                                <li><a href="product-details2.html">Product Details</a></li> -->
-                                <li><a href="<?php echo BASE_URL;?>/coming-soon.html">Cart</a></li>
-                                <li><a href="<?php echo BASE_URL;?>/coming-soon.html">Checkout</a></li>
+                                <li><a href="<?php echo BASE_URL;?>/cart.html">Cart</a></li>
                             </ul>
                         </li>
 
