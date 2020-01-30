@@ -86,7 +86,8 @@ if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === TRUE)
                     </div>
                     <?php endif; ?>
                     <button type="submit" class="btn btn-success loginField">Login</button>
-                    <a href="register.php" class="btn btn-success loginField pull-right">Register</a>
+                    <a href="cart.php" class="btn btn-success loginField pull-right">Register</a>
+<!--                    <a href="register.php" class="btn btn-success loginField pull-right">Register</a>-->
                 </div>
             </div>
         </form>

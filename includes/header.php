@@ -148,13 +148,13 @@
                         </li>
 
                         <li class="dropdown">
-                            <a href="/cart.html" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="/cart.php" class="dropdown-toggle" data-toggle="dropdown">
                                 <span>Subscribe Today</span>
                                 <i class="fa fa-caret-down"></i>
                             </a>
 
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo BASE_URL;?>/cart.html">Cart</a></li>
+                                <li><a href="<?php echo BASE_URL;?>/cart.php">Cart</a></li>
                             </ul>
                         </li>
 
