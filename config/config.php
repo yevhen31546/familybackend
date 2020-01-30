@@ -8,17 +8,17 @@ define('BASE_PATH', dirname(dirname(__FILE__)));
 define('APP_FOLDER', 'simpleadmin');
 define('CURRENT_PAGE', basename($_SERVER['REQUEST_URI']));
 
-define('BASE_URL', 'http://familyback1219.com');
-define('DB_HOST', "localhost");
-define('DB_USER', "root");
-define('DB_PASSWORD', "");
-define('DB_NAME', "familymember");
+//define('BASE_URL', 'http://familyback1219.com');
+//define('DB_HOST', "localhost");
+//define('DB_USER', "root");
+//define('DB_PASSWORD', "");
+//define('DB_NAME', "familymember");
 
-// define('BASE_URL', 'https://mynotes4u.com');
-// define('DB_HOST', "mysql.gip.superb.net");
-// define('DB_USER', "u_family_db");
-// define('DB_PASSWORD', "Norman@12345");
-// define('DB_NAME', "family_db");
+ define('BASE_URL', 'https://mynotes4u.com');
+ define('DB_HOST', "mysql.gip.superb.net");
+ define('DB_USER', "u_family_db");
+ define('DB_PASSWORD', "Norman@12345");
+ define('DB_NAME', "family_db");
 
 require_once BASE_PATH . '/lib/MysqliDb/MysqliDb.php';
 require_once BASE_PATH . '/helpers/helpers.php';
