@@ -150,11 +150,11 @@ if(isset($_POST) && isset($_POST['churchname']) && $_POST['churchname'] != '') {
                     <form name="recipe-add-form" action="" method="post" enctype="multipart/form-data">
                         <div class="box--items-h">
                             <div class="row gutter--15 AdjustRow">
-                                <div class="box--item text-center">
-                                    <div class="col-md-9 col-xs-12">
+                                <div class="box--item text-center w-100" id="image-add">
+                                    <div class="col-md-9 col-xs-12 left-right-auto">
                                         <div class="box--item text-left">
                                             <label>
-                                                <span class="h4 fs--14 ff--primary fw--500 text-darker">Select a Group :</span>
+                                                <span class="h4 fs--14 ff--primary fw--500 text-darker"><strong>Select a Group :</strong></span>
 
                                                 <select name="churchgroup" id="churchgroup" class="input-medium" data-trigger="selectmenu">
                                                     <option value="Adults/Family" selected>Adults/Family</option>
@@ -207,7 +207,7 @@ if(isset($_POST) && isset($_POST['churchname']) && $_POST['churchname'] != '') {
                                             </div>
                                         </div>
 
-                                        <div class="box--item text-left">
+                                        <div class="box--item text-left row">
                                             <div id="maindiv">
                                                 <div id="formdiv">
                                                     First Field is Compulsory. Only JPEG,PNG,JPG Type Image Uploaded. Image Size Should Be Less Than 100KB.
@@ -225,7 +225,7 @@ if(isset($_POST) && isset($_POST['churchname']) && $_POST['churchname'] != '') {
                                                 <label>
                                                     <h6>Add a Comment.&nbsp;&nbsp;&nbsp;</h6>
                                                 </label>
-                                                <textarea rows="4" cols="100%" name="churchcomment" placeholder="Enter text here..."></textarea>
+                                                <textarea class="w-100" rows="4" cols="100%" name="churchcomment" placeholder="Enter text here..."></textarea>
                                             </div>
                                         </div>
 
@@ -241,9 +241,9 @@ if(isset($_POST) && isset($_POST['churchname']) && $_POST['churchname'] != '') {
 
                                         <div class="box--item text-left textareaw">
                                             <div><label>
-                                                    <h6>Add a link to UTube.&nbsp;&nbsp;&nbsp;</h6>
+                                                    <h6>Add a link to YouTube.&nbsp;&nbsp;&nbsp;</h6>
                                                 </label>
-                                                <input type="text" class="form-control" name="utubelink" placeholder="Enter the UTube link">
+                                                <input type="text" class="form-control" name="utubelink" placeholder="Enter the YouTube link">
                                             </div>
                                         </div>
                                     </div>

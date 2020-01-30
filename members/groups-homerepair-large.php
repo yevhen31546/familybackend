@@ -55,7 +55,7 @@ $user = $db->get('tbl_users');
                                         
                                         <!-- Box Item Start -->
                                         <div class="box--item text-center">
-                                            <a href="group-home.php" class="img" data-overlay="0.1">
+                                            <a href="groups-homerepair.php" class="img" data-overlay="0.1">
                                                 <?php if ($photo=='') { ?>
                                                     <img src="img/group-img/01.jpg" width="800px" height="418px" alt="" class="imgslider">
                                                 <?php } else { ?>

@@ -132,6 +132,9 @@
                             <ul class="nav">
                                 <li><a href="#">My Account</a></li>
                                 <li><a href="#">Join a Group</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms and Conditions</a></li>
                                 <li><a href="<?php echo BASE_URL;?>/members/contact.php">Contact</a></li>
                             </ul>
                         </div>
@@ -202,5 +205,10 @@
 <!-- ==== Main Script ==== -->
 <script src="<?php echo BASE_URL;?>/members/js/main.js"></script>
 <script src="<?php echo BASE_URL;?>/members/js/custom.js"></script>
+<script>
+    $('.header--nav-links li').click(function () {
+       console.log("clicked");
+    });
+</script>
 </body>
 </html>

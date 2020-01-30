@@ -149,11 +149,11 @@ if(isset($_POST) && isset($_POST['homerepairdate']) && $_POST['homerepairdate'] 
                     <form name="recipe-add-form" action="" method="post" enctype="multipart/form-data">
                         <div class="box--items-h">
                             <div class="row gutter--15 AdjustRow">
-                                <div class="box--item text-center">
+                                <div class="box--item text-center w-100">
                                     <div class="col-md-9 col-xs-12">
                                         <div class="box--item text-left">
                                             <label>
-                                                <span class="h4 fs--14 ff--primary fw--500 text-darker">Select a Group :</span>
+                                                <span class="h4 fs--14 ff--primary fw--500 text-darker"><strong>Select a Group :</strong></span>
 
                                                 <select name="homerepairgroup" id="homerepairgroup" class="input-medium" data-trigger="selectmenu">
                                                     <option value="Bathroom">Bathroom</option>
@@ -193,7 +193,7 @@ if(isset($_POST) && isset($_POST['homerepairdate']) && $_POST['homerepairdate'] 
                                             </div>
                                         </div>
 
-                                        <div class="box--item text-left">
+                                        <div class="box--item text-left row">
                                             <div id="maindiv">
                                                 <div id="formdiv">
                                                     First Field is Compulsory. Only JPEG,PNG,JPG Type Image Uploaded. Image Size Should Be Less Than 100KB.
@@ -227,9 +227,9 @@ if(isset($_POST) && isset($_POST['homerepairdate']) && $_POST['homerepairdate'] 
 
                                         <div class="box--item text-left textareaw">
                                             <div><label>
-                                                    <h6>Add a link to UTube.&nbsp;&nbsp;&nbsp;</h6>
+                                                    <h6>Add a link to YouTube.&nbsp;&nbsp;&nbsp;</h6>
                                                 </label>
-                                                <input type="text" class="form-control" name="utubelink" placeholder="Enter the UTube link">
+                                                <input type="text" class="form-control" name="utubelink" placeholder="Enter the YouTube link">
                                             </div>
                                         </div>
                                     </div>

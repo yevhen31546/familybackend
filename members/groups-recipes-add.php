@@ -19,16 +19,16 @@ $db = getDbInstance();
 //Array ( [rec_title] => [rec_date] => 2019-10-21 [rec_submit_by] => 1 [rec_create_by] => [rec_type] => Array ( [0] => Breakfast [1] => Lunch [2] => Dinner ) [rec_ingredient] => [rec_instruction] => )
 if(isset($_POST) && isset($_POST['rec_date']) && $_POST['rec_date'] != '') {
     $data_to_db = $_POST;
-    $data_to_db['rec_type'] = '';
-    if(isset($_POST['rec_type'])) {
-        foreach ($_POST['rec_type'] as $key => $item) {
-            if($key == 0) {
-                $data_to_db['rec_type'] .= $item;
-            } else {
-                $data_to_db['rec_type'] .= ','.$item;
-            }
-        }
-    }
+//    $data_to_db['rec_type'] = '';
+//    if(isset($_POST['rec_type'])) {
+//        foreach ($_POST['rec_type'] as $key => $item) {
+//            if($key == 0) {
+//                $data_to_db['rec_type'] .= $item;
+//            } else {
+//                $data_to_db['rec_type'] .= ','.$item;
+//            }
+//        }
+//    }
     if(isset($_POST) && $_FILES["file"]["name"][0] !='') {
         $j = 0;     // Variable for indexing uploaded image.
         $target_path = "./uploads/".$_SESSION['user_id']."/"."recipes/";
@@ -117,7 +117,7 @@ if(isset($_POST) && isset($_POST['rec_date']) && $_POST['rec_date'] != '') {
                     <form name="recipe-add-form" action="" method="post" enctype="multipart/form-data">
                         <div class="box--items-h">
                             <div class="row gutter--15 AdjustRow">
-                                <div class="box--item text-center">
+                                <div class="box--item text-center w-100">
                                     <div class="col-md-12 col-xs-12">
                                         <div class="box--item text-left">
                                             <div><label><h3>Recipe Title:&nbsp;&nbsp;&nbsp;<input type="text" name="rec_title" required></h3></label></div></div>
@@ -135,20 +135,28 @@ if(isset($_POST) && isset($_POST['rec_date']) && $_POST['rec_date'] != '') {
                                             <div><label><h6>Created by:&nbsp;&nbsp;&nbsp;<input type="text" name="rec_create_by" >&nbsp;&nbsp;&nbsp;</h6></label></div></div>
 
                                         <div class="box--item text-left">
-                                            <p><label><h6>Select the applicable checkbox(es) for the type of recipe you are adding.</h6></label></p>
+                                            <p><label><h6>Select the applicable the type of recipe you are adding.</h6></label></p>
 
                                             <label>
-                                                <input type="checkbox" name="rec_type[]" value="Breakfast" id="RecipeType_0" >Breakfast
-                                                <input type="checkbox" name="rec_type[]" value="Lunch" id="RecipeType_1" >Lunch
-                                                <input type="checkbox" name="rec_type[]" value="Dinner" id="RecipeType_2" >Dinner
-                                                <input type="checkbox" name="rec_type[]" value="Dessert" id="RecipeType_3" >Dessert
-                                                <input type="checkbox" name="rec_type[]" value="Family Favorite" id="RecipeType_4" >Family Favorite
-                                                <input type="checkbox" name="rec_type[]" value="Gluten Free" id="RecipeType_5" >Gluten Free
-                                                <input type="checkbox" name="rec_type[]" value="Vegetarian" id="RecipeType_6" >Vegetarian
+                                                <select class="input-large" name="rec_type">
+                                                    <option value="Breakfast">Breakfast</option>
+                                                    <option value="Lunch">Lunch</option>
+                                                    <option value="Dinner">Dinner</option>
+                                                    <option value="Family Favorite">Family Favorite</option>
+                                                    <option value="Gluten Free">Gluten Free</option>
+                                                    <option value="Vegetarian">Vegetarian</option>
+                                                </select>
+<!--                                                <input type="checkbox" name="rec_type[]" value="Breakfast" id="RecipeType_0" >Breakfast-->
+<!--                                                <input type="checkbox" name="rec_type[]" value="Lunch" id="RecipeType_1" >Lunch-->
+<!--                                                <input type="checkbox" name="rec_type[]" value="Dinner" id="RecipeType_2" >Dinner-->
+<!--                                                <input type="checkbox" name="rec_type[]" value="Dessert" id="RecipeType_3" >Dessert-->
+<!--                                                <input type="checkbox" name="rec_type[]" value="Family Favorite" id="RecipeType_4" >Family Favorite-->
+<!--                                                <input type="checkbox" name="rec_type[]" value="Gluten Free" id="RecipeType_5" >Gluten Free-->
+<!--                                                <input type="checkbox" name="rec_type[]" value="Vegetarian" id="RecipeType_6" >Vegetarian-->
                                                 <br>
                                             </label></div>
 
-                                        <div class="box--item text-left">
+                                        <div class="box--item text-left row">
                                             <div id="maindiv">
                                                 <div id="formdiv">
                                                     First Field is Compulsory. Only JPEG,PNG,JPG Type Image Uploaded. Image Size Should Be Less Than 100KB.

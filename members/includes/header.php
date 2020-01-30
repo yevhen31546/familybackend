@@ -136,18 +136,31 @@
 
                     <!-- Header Nav Links Start -->
                     <ul class="header--nav-links style--1 nav ff--primary">
+                        <?php if($_SERVER['REQUEST_URI'] == '/members/home.php') { ?>
+                            <li class="active">
+                        <?php }
+                        else { ?>
+                            <li>
+                        <?php }?>
+                            <a href="<?php echo BASE_URL?>/members/home.php"><span>Home</span></a>
+                        </li>
 
-                        <li><a href="<?php echo BASE_URL?>/members/home.php"><span>Home</span></a></li>
-
+                        <?php if($_SERVER['REQUEST_URI'] == '/members/activity-me.php' ||
+                                $_SERVER['REQUEST_URI'] == '/members/activity-fam.php' ||
+                                $_SERVER['REQUEST_URI'] == '/members/activity-frd.php') { ?>
                         <li class="dropdown active">
+                            <?php }
+                            else { ?>
+                        <li class="dropdown">
+                            <?php }?>
+
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <span>Albums</span>
                                 <i class="fa fa-caret-down"></i>
                             </a>
 
                             <ul class="dropdown-menu">
-                                <li class="active">
-                                    <a href="<?php echo BASE_URL;?>/members/activity-me.php"><span>My Album</span></a></li>
+                                <li><a href="<?php echo BASE_URL;?>/members/activity-me.php"><span>My Album</span></a></li>
                                 <li><a href="<?php echo BASE_URL;?>/members/activity-fam.php"><span>My Family</span></a></li>
                                 <li><a href="<?php echo BASE_URL;?>/members/activity-frd.php"><span>My Friends</span></a></li>
 
@@ -155,26 +168,32 @@
                         </li>
 
 
+                        <?php if($_SERVER['REQUEST_URI'] == '/members/members.php') { ?>
+                        <li class="active">
+                            <?php }
+                            else { ?>
+                        <li>
+                            <?php }?>
+                            <a href="<?php echo BASE_URL;?>/members/members.php"/><span>Members</span></a>
+                        </li>
 
-
-                        <!-- <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                  <span>Members</span>
-                                  <i class="fa fa-caret-down"></i>
-                              </a>
-
-                              <ul class="dropdown-menu"><li>
-                                  <a href="members.html"><span>Members</span></a></li>-->
-
-                        <li><a href="<?php echo BASE_URL;?>/members/members.php"/><span>Members</span></a></li>
-
-                        <!-- </ul>-->
                         </li>
 
 
 
 
+                        <?php if($_SERVER['REQUEST_URI'] == '/members/groups-church.php' ||
+                        $_SERVER['REQUEST_URI'] == '/members/groups-events.php' ||
+                        $_SERVER['REQUEST_URI'] == '/members/groups-homerepair.php' ||
+                        $_SERVER['REQUEST_URI'] == '/members/groups-pets.php' ||
+                        $_SERVER['REQUEST_URI'] == '/members/groups-recipes.php' ||
+                        $_SERVER['REQUEST_URI'] == '/members/groups-sports.php' ||
+                        $_SERVER['REQUEST_URI'] == '/members/groups-travel.php') { ?>
+                        <li class="dropdown active">
+                            <?php }
+                            else { ?>
                         <li class="dropdown">
+                            <?php }?>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <span>Groups</span>
                                 <i class="fa fa-caret-down"></i>
@@ -193,7 +212,15 @@
                         </li>
 
                         </li>
-                        <li><a href="<?php echo BASE_URL;?>/members/contact.php"><span>Contact</span></a></li>
+
+                        <?php if($_SERVER['REQUEST_URI'] == '/members/contact.php') { ?>
+                        <li class="active">
+                            <?php }
+                            else { ?>
+                        <li>
+                            <?php }?>
+                            <a href="<?php echo BASE_URL;?>/members/contact.php"><span>Contact</span></a>
+                        </li>
                     </ul>
                     <!-- Header Nav Links End -->
                 </div>

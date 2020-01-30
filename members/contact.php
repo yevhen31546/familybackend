@@ -47,7 +47,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                         <!-- Contact Info Item Start -->
                         <div class="contact-info--Item">
                             <div class="title">
-                                <h3 class="h4"><i class="mr--10 fa fa-envelope-o"></i>E-mail :</h3>
+                                <h3 class="h4"><i class="mr--10 fa fa-envelope-o"></i>Email :</h3>
                             </div>
 
                             <div class="content fs--14 text-darker mt--4">
@@ -79,7 +79,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                         </div>
 
                         <div class="contact--subtitle pt--15">
-                            <h4 class="h6 fw--400 text-darkest">Don’t worry ! your e-mail address will not be shared or publishe.</h4>
+                            <h4 class="h6 fw--400 text-darkest">Don’t worry! Your email address will not be shared or published.</h4>
                         </div>
 
                         <div class="contact--notes ff--primary mt--2">
@@ -96,7 +96,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
 
                                 <div class="col-xs-6 col-xxs-12">
                                     <div class="form-group">
-                                        <input type="email" name="email" placeholder="E-mail *" class="form-control" required>
+                                        <input type="email" name="email" placeholder="Email" class="form-control" required>
                                     </div>
                                 </div>
 

@@ -149,7 +149,7 @@ if(isset($_POST) && isset($_POST['traveldate']) && $_POST['traveldate'] != '') {
                     <form name="recipe-add-form" action="" method="post" enctype="multipart/form-data">
                         <div class="box--items-h">
                             <div class="row gutter--15 AdjustRow">
-                                <div class="box--item text-center">
+                                <div class="box--item text-center w-100">
                                     <div class="col-md-9 col-xs-12">
                                         <div class="box--item text-left">
                                             <label>
@@ -188,7 +188,7 @@ if(isset($_POST) && isset($_POST['traveldate']) && $_POST['traveldate'] != '') {
                                             </div>
                                         </div>
 
-                                        <div class="box--item text-left">
+                                        <div class="box--item text-left row">
                                             <div id="maindiv">
                                                 <div id="formdiv">
                                                     First Field is Compulsory. Only JPEG,PNG,JPG Type Image Uploaded. Image Size Should Be Less Than 100KB.

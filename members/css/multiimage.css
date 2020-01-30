@@ -4,16 +4,38 @@ form {
 }
 
 #maindiv {
-    width: 960px;
+    /*width: 960px;*/
+    width: 100%;
     margin: 10px auto;
     padding: 10px;
     font-family: 'Droid Sans', sans-serif
 }
 
 #formdiv {
-    width: 500px;
+    width: 100%;
     float: left;
     /* text-align: center */
+}
+
+#image-add {
+    width: 100%;
+}
+
+.left-right-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.box--item.text-left .input-large{
+    padding: 5px;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.box--item.text-left.textareaw textarea {
+    width: 100%;
 }
 
 form {
@@ -27,8 +49,8 @@ h2 {
 }
 
 .upload {
-    background-color: red;
-    border: 1px solid red;
+    background-color: #7398aa;
+    border: 1px solid #7398aa;
     color: #fff;
     border-radius: 5px;
     padding: 10px;
@@ -38,8 +60,8 @@ h2 {
 
 .upload:hover {
     cursor: pointer;
-    background: #c20b0b;
-    border: 1px solid #c20b0b;
+    background: #7398aa;
+    border: 1px solid #7398aa;
     box-shadow: 0 0 5px rgba(0, 0, 0, .75)
 }
 
@@ -83,8 +105,18 @@ h2 {
     border: 1px solid #e8debd
 }
 
-#filediv, #maindiv {
+#add_more {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#filediv {
     display: flex;
+    flex-wrap: wrap;
+}
+
+#filediv input {
+    margin: 5px;
 }
 
 #add_more {
