@@ -2,35 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0dcfc1bc-f385-4583-b2ea-764e7c8ae5c4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config/config.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/assets/vendor_components/jquery-validation-1.17.0/demo/requirejs/index.html" afterPath="$PROJECT_DIR$/admin/assets/vendor_components/jquery-validation-1.17.0/demo/requirejs/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact.html" afterPath="$PROJECT_DIR$/contact.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/learnmore.html" afterPath="$PROJECT_DIR$/learnmore.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/contact.html" afterPath="$PROJECT_DIR$/members/contact.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/contact.php" afterPath="$PROJECT_DIR$/members/contact.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/css/multiimage.css" afterPath="$PROJECT_DIR$/members/css/multiimage.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-church-add.php" afterPath="$PROJECT_DIR$/members/groups-church-add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-church-large.php" afterPath="$PROJECT_DIR$/members/groups-church-large.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-church.php" afterPath="$PROJECT_DIR$/members/groups-church.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-events-add.php" afterPath="$PROJECT_DIR$/members/groups-events-add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-events-large.php" afterPath="$PROJECT_DIR$/members/groups-events-large.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-events.php" afterPath="$PROJECT_DIR$/members/groups-events.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-homerepair-add.php" afterPath="$PROJECT_DIR$/members/groups-homerepair-add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-homerepair-large.php" afterPath="$PROJECT_DIR$/members/groups-homerepair-large.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-homerepair.php" afterPath="$PROJECT_DIR$/members/groups-homerepair.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-pets-add.php" afterPath="$PROJECT_DIR$/members/groups-pets-add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-pets-large.php" afterPath="$PROJECT_DIR$/members/groups-pets-large.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-pets.php" afterPath="$PROJECT_DIR$/members/groups-pets.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-recipes-add.php" afterPath="$PROJECT_DIR$/members/groups-recipes-add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-recipes-large.php" afterPath="$PROJECT_DIR$/members/groups-recipes-large.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-sports-add.php" afterPath="$PROJECT_DIR$/members/groups-sports-add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-sports-large.php" afterPath="$PROJECT_DIR$/members/groups-sports-large.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-sports.php" afterPath="$PROJECT_DIR$/members/groups-sports.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-travel-add.php" afterPath="$PROJECT_DIR$/members/groups-travel-add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-travel-large.php" afterPath="$PROJECT_DIR$/members/groups-travel-large.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/includes/footer.php" afterPath="$PROJECT_DIR$/members/includes/footer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/includes/header.php" afterPath="$PROJECT_DIR$/members/includes/header.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -57,8 +30,28 @@
       <file leaf-file-name="groups-sports.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/members/groups-sports.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
+            <state relative-caret-position="731">
               <caret line="124" column="110" lean-forward="false" selection-start-line="124" selection-start-column="110" selection-end-line="124" selection-end-column="110" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -104,11 +97,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="multiimage.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="multiimage.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/members/css/multiimage.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
+            <state relative-caret-position="430">
+              <caret line="29" column="17" lean-forward="true" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -134,7 +127,6 @@
       <find>rec_type</find>
       <find>select</find>
       <find>home</find>
-      <find>utube</find>
       <find>select</find>
       <find>E-mail</find>
       <find>Get a PO Box</find>
@@ -148,6 +140,7 @@
       <find>input-large</find>
       <find>Don’t worry</find>
       <find>box--item text-left</find>
+      <find>utube</find>
     </findStrings>
     <replaceStrings>
       <replace>index.php</replace>
@@ -169,7 +162,6 @@
         <option value="$PROJECT_DIR$/includes/header.php" />
         <option value="$PROJECT_DIR$/login.php" />
         <option value="$PROJECT_DIR$/config/config.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/members/activity-fam.php" />
         <option value="$PROJECT_DIR$/members/activity-me.php" />
         <option value="$PROJECT_DIR$/members/includes/footer.php" />
@@ -194,6 +186,7 @@
         <option value="$PROJECT_DIR$/members/groups-events-add.php" />
         <option value="$PROJECT_DIR$/members/groups-homerepair-add.php" />
         <option value="$PROJECT_DIR$/members/css/multiimage.css" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -230,6 +223,11 @@
             <path>
               <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
               <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
@@ -286,12 +284,12 @@
       <workItem from="1578893083184" duration="1185000" />
       <workItem from="1580334116838" duration="3000" />
       <workItem from="1580334364900" duration="5630000" />
-      <workItem from="1580381395074" duration="13131000" />
+      <workItem from="1580381395074" duration="14064000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25446000" />
+    <option name="totallyTimeSpent" value="26379000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -476,21 +474,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1">
           <caret line="49" column="4" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="1" lean-forward="false" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -721,25 +704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/members/members.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="49" lean-forward="false" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="49" />
-          <folding>
-            <element signature="e#272#829#0#HTML" expanded="false" />
-            <element signature="e#908#17511#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/members/groups-sports.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="124" column="110" lean-forward="false" selection-start-line="124" selection-start-column="110" selection-end-line="124" selection-end-column="110" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/members/groups-sports-add.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="401">
@@ -813,8 +777,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/members/css/multiimage.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
+        <state relative-caret-position="430">
+          <caret line="29" column="17" lean-forward="true" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/members/members.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="49" lean-forward="false" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="49" />
+          <folding>
+            <element signature="e#272#829#0#HTML" expanded="false" />
+            <element signature="e#908#17511#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/members/groups-sports.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="124" column="110" lean-forward="false" selection-start-line="124" selection-start-column="110" selection-end-line="124" selection-end-column="110" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
           <folding />
         </state>
       </provider>
