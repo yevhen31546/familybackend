@@ -384,8 +384,8 @@ if(isset($_POST) && isset($_POST['cat_id']) && $_POST['cat_id'] && $_POST['mode'
 <?php include BASE_PATH.'/members/includes/header.php'?>
 
 <!-- Page Header Start -->
-<div class="page--header pt--60 pb--60 text-center" data-bg-img="img/page-header-img/bg.jpg"
-    data-overlay="0.85">
+<div class="page--header pt--60 pb--60 text-center" data-bg-img="img/myalbum6.png"
+    data-overlay="0.35">
     <div class="container">
         <div class="title">
             <h2 class="h1 text-white">My Album</h2>

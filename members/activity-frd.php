@@ -8,8 +8,8 @@ require_once BASE_PATH.'/includes/auth_validate.php';
 <?php include BASE_PATH.'/members/includes/header.php'?>
 
 <!-- Page Header Start -->
-<div class="page--header pt--60 pb--60 text-center" data-bg-img="img/page-header-img/bg.jpg"
-    data-overlay="0.85">
+<div class="page--header pt--60 pb--60 text-center" data-bg-img="img/frebanner.png"
+     data-overlay="0.35">
     <div class="container">
         <div class="title">
             <h2 class="h1 text-white">My Friends</h2>
