@@ -1,13 +1,127 @@
 <?php
 session_start();
 require_once '../config/config.php';
-
+require_once '../vendor/autoload.php';
 require_once BASE_PATH.'/includes/auth_validate.php';
 $logged_id = $_SESSION['user_id'];
 $db = getDbInstance();
 $db->where('id', $logged_id);
 $row = $db->getOne('tbl_users');
 
+function sendInviteEmail($to, $body) {
+
+    // Create the Transport
+    $transport = (new Swift_SmtpTransport(SMTP_HOST, SMTP_PORT, SMTP_ENC))
+        ->setUsername(SMTP_FROM)
+        ->setPassword(SMTP_PASS)
+    ;
+
+// Create the Mailer using your created Transport
+    $mailer = new Swift_Mailer($transport);
+
+// Create a message
+    $message = (new Swift_Message('Invitation from MyNotes4U!'))
+        ->setFrom([SMTP_FROM => 'MyNotes4U'])
+        ->setTo([$to => $to])
+        ->setContentType("text/html")
+        ->setBody($body)
+    ;
+
+// Send the message
+    $result = $mailer->send($message);
+    return $result;
+}
+
+// Generate family message body
+function generateFamMessageBody($user, $content) {
+    $message = "";
+    $message .="<html><head><title>HTML email</title></head><body><p>Hello ".$content['firstname']." ".$content['lastname']."!</p><p>Invite family member request with ".$content['family_member']." is arrived from ".$user['first_name']." ".$user['last_name']."</p></body></html>";
+    return $message;
+}
+
+// Generate friend message body
+function generateFriMessageBody($user, $content) {
+    $message = "";
+    $message .="<html><head><title>HTML email</title></head><body><p>Hello ".$content['fri_firstname']." ".$content['fri_lastname']."!</p><p>Invite friend request is arrived from ".$user['first_name']." ".$user['last_name']."</p></body></html>";
+    return $message;
+}
+
+// Update about me
+if(isset($_POST) && isset($_POST['first_name'])) {
+    $db = getDbInstance();
+    $db->where('id', $logged_id);
+    $stat = $db->update('tbl_users', $_POST);
+    if ($stat)
+    {
+        $_SESSION['success'] = 'Profile has been updated successfully';
+        $db = getDbInstance();
+        $db->where('id', $logged_id);
+        $row = $db->getOne('tbl_users');
+    } else {
+        $_SESSION['profile_update_failure'] = 'Failed to update profile: ' . $db->getLastError();
+    }
+}
+// Update credentials
+if(isset($_POST) && isset($_POST['user_name'])) {
+    $db = getDbInstance();
+    $db->where('id', $logged_id);
+    $updated_arr = array(
+        "user_name" => $_POST['user_name'],
+        "password" => password_hash($_POST['password'], PASSWORD_DEFAULT)
+    );
+    $stat = $db->update('tbl_users', $updated_arr);
+    if ($stat)
+    {
+        $_SESSION['success'] = 'Credentials has been updated successfully';
+        $db = getDbInstance();
+        $db->where('id', $logged_id);
+        $row = $db->getOne('tbl_users');
+    } else {
+        $_SESSION['profile_update_failure'] = 'Failed to update credentials: ' . $db->getLastError();
+    }
+}
+
+// Biography credentials
+if(isset($_POST) && isset($_POST['biography'])) {
+    $db = getDbInstance();
+    $db->where('id', $logged_id);
+    $stat = $db->update('tbl_users', $_POST);
+    if ($stat)
+    {
+        $_SESSION['success'] = 'Biography has been updated successfully';
+        $db = getDbInstance();
+        $db->where('id', $logged_id);
+        $row = $db->getOne('tbl_users');
+    } else {
+        $_SESSION['profile_update_failure'] = 'Failed to update biography: ' . $db->getLastError();
+    }
+}
+
+// Invite family member
+if(isset($_POST) && isset($_POST['family_email'])) {
+    $to = $_POST['family_email'];
+    $body = generateFamMessageBody($row, $_POST);
+
+    $stat = sendInviteEmail($to, $body);
+    if ($stat) {
+        $_SESSION['success'] = 'Invitation email is sent successfully!';
+    } else {
+        $_SESSION['failure'] = 'Sending invitation email is failed!';
+    }
+}
+
+// Invite friend
+if(isset($_POST) && isset($_POST['friend_email'])) {
+    $to = $_POST['friend_email'];
+    $body = generateFriMessageBody($row, $_POST);
+
+    $stat = sendInviteEmail($to, $body);
+    if ($stat) {
+        $_SESSION['success'] = 'Invitation email is sent successfully!';
+    } else {
+        $_SESSION['failure'] = 'Sending invitation email is failed!';
+    }
+}
 
 if(isset($_POST) && isset($_POST['cover_photo_fg']) && isset($_FILES["cover_photo"]["name"])) {
     $db = getDbInstance();
@@ -223,29 +337,29 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                                     <i class="ml--10 text-primary fa fa-caret-right"></i>
                                 </h3>
                             </div>
-
-                            <div class="profile--info">
-                                <table class="table">
-                                    <tr>
-                                        <th class="fw--700 text-darkest">First Name</th>
-                                        <td><input type="text" name="first_name" class="form-control" value="<?php echo $row['first_name']?>"></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw--700 text-darkest">Last Name</th>
-                                        <td><input type="text" name="last_name" class="form-control" value="<?php echo $row['last_name']?>"></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw--700 text-darkest">Date of Birth</th>
-                                        <td><input type="text"></td>
-                                    </tr>
-                                </table>
-                            </div>
+                            <form action="#" method="post">
+                                <div class="profile--info">
+                                    <table class="table">
+                                        <tr>
+                                            <th class="fw--700 text-darkest">First Name</th>
+                                            <td><input type="text" name="first_name" class="form-control" value="<?php echo $row['first_name']?>" required></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="fw--700 text-darkest">Last Name</th>
+                                            <td><input type="text" name="last_name" class="form-control" value="<?php echo $row['last_name']?>" required></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="fw--700 text-darkest">Date of Birth</th>
+                                            <td><input type="date" name="birthday" value="<?php echo $row['birthday']?>" required>&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary">Update</button> </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </form>
                         </div>
                         <!-- Profile Item End -->
                         
-                            <!-- Password Item Start -->
-                        
-                            <div class="profile--item">
+                        <!-- Password Item Start -->
+                        <div class="profile--item">
                             <div class="profile--heading">
                                 <h3 class="h4 fw--700">
                                     <span class="mr--4">Create Credentials</span>
@@ -253,24 +367,26 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                                 </h3>
                             </div>
 
-                            <div class="profile--info">
-                                <table class="table">
-                                    <tr>
-                                        <th class="fw--700 text-darkest">User ID</th>
-                                        <td><input type="text" name="user_name" class="form-control" required="required" value="<?php echo $row['user_name']?>"></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw--700 text-darkest">Password</th>
-                                        <td><input type="text"></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw--700 text-darkest">Confirm Password</th>
-                                        <td><input type="text"></td>
-                                    </tr>
-                                </table>
-                            </div>
+                            <form action="#" method="post" onsubmit="return checkForm(this);">
+                                <div class="profile--info">
+                                    <table class="table">
+                                        <tr>
+                                            <th class="fw--700 text-darkest">User ID</th>
+                                            <td><input type="text" name="user_name" class="form-control" required="required" value="<?php echo $row['user_name']?>"></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="fw--700 text-darkest">Password</th>
+                                            <td><input type="password" name="password" required></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="fw--700 text-darkest">Confirm Password</th>
+                                            <td><input type="password" name="rpassword" required>&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary">Update</button></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </form>
                         </div>
-                            <!-- Password Item End -->
+                        <!-- Password Item End -->
                         
                         <!-- Profile Item Start -->
                         <div class="profile--item">
@@ -282,12 +398,18 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                             </div>
 
                             <div class="profile--info">
-                                <p>Optional - Add a brief personal description, such as hobbies, likes or dislikes, etc. It can be anything about yourself that you want to share with family and friends.</p>
-                                
-                                <p><textarea class="col-xs-12"></textarea></p></class>
+                                <form action="#" method="post">
+                                    <p>Optional - Add a brief personal description, such as hobbies, likes or dislikes, etc. It can be anything about yourself that you want to share with family and friends.</p>
+
+                                    <p>
+                                        <textarea class="col-xs-12" name="biography" required><?php echo $row['biography']; ?></textarea>
+                                    </p>
+
+                                    <button type="submit" class="btn btn-primary" style="float: right; margin: 5px;">Update</button>
+
+                                </form>
                             </div><div>&nbsp;</div><div>&nbsp;</div>
                         </div>
-                    
                         <!-- Profile Item End -->
                         
 
@@ -305,35 +427,35 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                                 <table class="table">
                                     <tr>
                                         <th class="fw--700 text-darkest">Relationship</th>
-                                        <td><div class="col-xs-6">
-                                    <div class="form-group">
-                                        <label>
-
-                                            <select name="family-member" class="form-control form-sm"
-                                                data-trigger="selectmenu">
-                                                <option value="family-member">*Select Family Relationship</option>
-                                                <option value="spouse">Husband</option>
-                                                <option value="spouse">Wife</option>
-                                                <option value="spouse">Significant Other</option>
-                                                <option value="mother">Mother</option>
-                                                <option value="father">Father</option>
-                                                <option value="sister">Sister</option>
-                                                <option value="brother">Brother</option>
-                                                <option value="brother">Aunt</option>
-                                                <option value="brother">Uncle</option>
-                                                <option value="brother">Niece</option>
-                                                <option value="brother">Nephew</option>
-                                                <option value="brother">Cousin</option>
-                                                <option value="maternal-grandmother">Grandmother
-                                                </option>
-                                                <option value="maternal-grandfather">Grandfather
-                                                </option>
-                                                <option value="more">Other</option>
-
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div></td>
+                                        <td>
+                                            <div class="col-xs-6">
+                                                <div class="form-group">
+                                                    <label>
+                                                        <select name="family-member" class="form-control form-sm"
+                                                            data-trigger="selectmenu">
+                                                            <option value="family-member">*Select Family Relationship</option>
+                                                            <option value="spouse">Husband</option>
+                                                            <option value="spouse">Wife</option>
+                                                            <option value="spouse">Significant Other</option>
+                                                            <option value="mother">Mother</option>
+                                                            <option value="father">Father</option>
+                                                            <option value="sister">Sister</option>
+                                                            <option value="brother">Brother</option>
+                                                            <option value="brother">Aunt</option>
+                                                            <option value="brother">Uncle</option>
+                                                            <option value="brother">Niece</option>
+                                                            <option value="brother">Nephew</option>
+                                                            <option value="brother">Cousin</option>
+                                                            <option value="maternal-grandmother">Grandmother
+                                                            </option>
+                                                            <option value="maternal-grandfather">Grandfather
+                                                            </option>
+                                                            <option value="more">Other</option>
+                                                        </select>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th class="fw--700 text-darkest">First Name</th>
@@ -347,7 +469,8 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                             </div>
                         </div>
                         <!-- Profile Item End -->
-                    
+
+                        <!-- Profile Item Start -->
                         <div class="profile--item">
                             <div class="profile--heading">
                                 <h3 class="h4 fw--700">
@@ -357,38 +480,39 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                             </div>
 
                             <div class="profile--info">
+                                <p>Optional - Add up to three family members now, or add family members to your Family Album later.</p>
                                 <table class="table">
                                     <tr>
                                         <th class="fw--700 text-darkest">Relationship</th>
-                                        <td><div class="col-xs-6">
-                                    <div class="form-group">
-                                        <label>
-
-                                            <select name="family-member" class="form-control form-sm"
-                                                data-trigger="selectmenu">
-                                                <option value="family-member">*Select Family Relationship</option>
-                                                <option value="spouse1">Husband</option>
-                                                <option value="spouse2">Wife</option>
-                                                <option value="spouse3">Significant Other</option>
-                                                <option value="mother">Mother</option>
-                                                <option value="father">Father</option>
-                                                <option value="sister">Sister</option>
-                                                <option value="brother">Brother</option>
-                                                <option value="aunt">Aunt</option>
-                                                <option value="uncle">Uncle</option>
-                                                <option value="niece">Niece</option>
-                                                <option value="nephew">Nephew</option>
-                                                <option value="cousin">Cousin</option>
-                                                <option value="maternal-grandmother">Grandmother
-                                                </option>
-                                                <option value="maternal-grandfather">Grandfather
-                                                </option>
-                                                <option value="more">Other</option>
-
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div></td>
+                                        <td>
+                                            <div class="col-xs-6">
+                                                <div class="form-group">
+                                                    <label>
+                                                        <select name="family-member" class="form-control form-sm"
+                                                                data-trigger="selectmenu">
+                                                            <option value="family-member">*Select Family Relationship</option>
+                                                            <option value="spouse">Husband</option>
+                                                            <option value="spouse">Wife</option>
+                                                            <option value="spouse">Significant Other</option>
+                                                            <option value="mother">Mother</option>
+                                                            <option value="father">Father</option>
+                                                            <option value="sister">Sister</option>
+                                                            <option value="brother">Brother</option>
+                                                            <option value="brother">Aunt</option>
+                                                            <option value="brother">Uncle</option>
+                                                            <option value="brother">Niece</option>
+                                                            <option value="brother">Nephew</option>
+                                                            <option value="brother">Cousin</option>
+                                                            <option value="maternal-grandmother">Grandmother
+                                                            </option>
+                                                            <option value="maternal-grandfather">Grandfather
+                                                            </option>
+                                                            <option value="more">Other</option>
+                                                        </select>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th class="fw--700 text-darkest">First Name</th>
@@ -398,11 +522,13 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                                         <th class="fw--700 text-darkest">Last Name</th>
                                         <td><input type="text"></td>
                                     </tr>
-                                    </table>
+                                </table>
                             </div>
                         </div>
-                    
-                    <div class="profile--item">
+                        <!-- Profile Item End -->
+
+                        <!-- Profile Item Start -->
+                        <div class="profile--item">
                             <div class="profile--heading">
                                 <h3 class="h4 fw--700">
                                     <span class="mr--4">Add a Family Relationship</span>
@@ -411,37 +537,39 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                             </div>
 
                             <div class="profile--info">
+                                <p>Optional - Add up to three family members now, or add family members to your Family Album later.</p>
                                 <table class="table">
                                     <tr>
                                         <th class="fw--700 text-darkest">Relationship</th>
-                                        <td><div class="col-xs-6">
-                                    <div class="form-group">
-                                        <label>
-
-                                            <select name="family-member" class="form-control form-sm"
-                                                data-trigger="selectmenu">
-                                                <option value="family-member">*Select Family Relationship</option>
-                                                <option value="spouse1">Husband</option>
-                                                <option value="spouse2">Wife</option>
-                                                <option value="spouse3">Significant Other</option>
-                                                <option value="mother">Mother</option>
-                                                <option value="father">Father</option>
-                                                <option value="sister">Sister</option>
-                                                <option value="brother">Brother</option>
-                                                <option value="aunt">Aunt</option>
-                                                <option value="uncle">Uncle</option>
-                                                <option value="niece">Niece</option>
-                                                <option value="nephew">Nephew</option>
-                                                <option value="cousin">Cousin</option>
-                                                <option value="maternal-grandmother">Grandmother
-                                                </option>
-                                                <option value="maternal-grandfather">Grandfather
-                                                </option>
-                                                <option value="more">Other</option>
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div></td>
+                                        <td>
+                                            <div class="col-xs-6">
+                                                <div class="form-group">
+                                                    <label>
+                                                        <select name="family-member" class="form-control form-sm"
+                                                                data-trigger="selectmenu">
+                                                            <option value="family-member">*Select Family Relationship</option>
+                                                            <option value="spouse">Husband</option>
+                                                            <option value="spouse">Wife</option>
+                                                            <option value="spouse">Significant Other</option>
+                                                            <option value="mother">Mother</option>
+                                                            <option value="father">Father</option>
+                                                            <option value="sister">Sister</option>
+                                                            <option value="brother">Brother</option>
+                                                            <option value="brother">Aunt</option>
+                                                            <option value="brother">Uncle</option>
+                                                            <option value="brother">Niece</option>
+                                                            <option value="brother">Nephew</option>
+                                                            <option value="brother">Cousin</option>
+                                                            <option value="maternal-grandmother">Grandmother
+                                                            </option>
+                                                            <option value="maternal-grandfather">Grandfather
+                                                            </option>
+                                                            <option value="more">Other</option>
+                                                        </select>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th class="fw--700 text-darkest">First Name</th>
@@ -451,9 +579,11 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                                         <th class="fw--700 text-darkest">Last Name</th>
                                         <td><input type="text"></td>
                                     </tr>
-                                    </table>
+                                </table>
                             </div>
                         </div>
+                        <!-- Profile Item End -->
+
                     </div>
                     <!-- Profile Details End -->
                 </div>
@@ -466,59 +596,136 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                 <!-- Widget Start -->
                 <div class="widget">
                     <h2 class="h4 fw--700 widget--title">Invite a Family Member</h2>
-                        <p>First Name: <input type="text"></p>
-                        <p>Last Name: <input type="text"></p>
-                        <p>Email Address: <input type="email"></p>
-                                    <div class="form-group">
-                                        <label>
-
-                                            <select name="family-member" class="form-control form-sm"
-                                                data-trigger="selectmenu">
-                                                <option value="family-member">*Select Family Relationship</option>
-                                                <option value="spouse1">Husband</option>
-                                                <option value="spouse2">Wife</option>
-                                                <option value="spouse3">Significant Other</option>
-                                                <option value="mother">Mother</option>
-                                                <option value="father">Father</option>
-                                                <option value="sister">Sister</option>
-                                                <option value="brother">Brother</option>
-                                                <option value="aunt">Aunt</option>
-                                                <option value="uncle">Uncle</option>
-                                                <option value="niece">Niece</option>
-                                                <option value="nephew">Nephew</option>
-                                                <option value="cousin">Cousin</option>
-                                                <option value="maternal-grandmother">Grandmother
-                                                </option>
-                                                <option value="maternal-grandfather">Grandfather
-                                                </option>
-                                                <option value="more">Other</option>
-
-                                            </select>
-                                        </label>
-                                    </div>
-                        <a href="#" class="btn btn-sm btn-google btn btn-primary"><i class="fa mr--8 fa-play"></i>Send</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(+) Invite another family member. 
-                    
+                    <form action="#" method="post" onsubmit="return checkFamilyForm(this);">
+                        <p>First Name: <input type="text" name="firstname" required></p>
+                        <p>Last Name: <input type="text" name="lastname" required></p>
+                        <p>Email Address: <input type="email" name="family_email" required></p>
+                        <div class="form-group">
+                            <select name="family_member" class="form-control form-sm">
+                                <option value="family_member">*Select Family Relationship</option>
+                                <option value="Husband">Husband</option>
+                                <option value="Wife">Wife</option>
+                                <option value="Significant Other">Significant Other</option>
+                                <option value="Mother">Mother</option>
+                                <option value="Father">Father</option>
+                                <option value="Sister">Sister</option>
+                                <option value="Brother">Brother</option>
+                                <option value="Aunt">Aunt</option>
+                                <option value="Uncle">Uncle</option>
+                                <option value="Niece">Niece</option>
+                                <option value="Nephew">Nephew</option>
+                                <option value="Cousin">Cousin</option>
+                                <option value="Grandmother">Grandmother</option>
+                                <option value="Grandfather">Grandfather</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-google btn btn-primary"><i class="fa mr--8 fa-play"></i>Send</button>
+                        <!--                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(+) Invite another family member. -->
+                    </form>
                 </div>
-                    <div class="widget">
-                <h2 class="h4 fw--700 widget--title">Invite a Family Member</h2>
-                        <p>First Name: <input type="text"></p>
-                        <p>Last Name: <input type="text"></p>
-                        <p>Email Address: <input type="email"></p>
-                        <a href="#" class="btn btn-sm btn-google btn btn-primary"><i class="fa mr--8 fa-play"></i>Send</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(+) Invite another friend. 
-            </div>
-        </div>
-        
-            
+
+
+                <div class="widget">
+                    <form action="#" method="post" onsubmit="return checkFriendForm(this);">
+                        <h2 class="h4 fw--700 widget--title">Invite a Friend</h2>
+                        <p>First Name: <input type="text" name="fri_firstname" required></p>
+                        <p>Last Name: <input type="text" name="fri_lastname" required></p>
+                        <p>Email Address: <input type="email" name="friend_email" required></p>
+                        <button type="submit" class="btn btn-sm btn-google btn btn-primary"><i class="fa mr--8 fa-play"></i>Send</button>
+                            <!--                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(+) Invite another friend. -->
+                    </form>
+                </div>
+
                 <!-- Widget End -->
-        
-    
-        
-        
-            
+            </div>
+
             <!-- Main Sidebar End -->
         </div>
     </div>
 </section>
 <!-- Page Wrapper End -->
+
+<script>
+    function checkForm(form)
+    {
+        if(form.user_name.value == "") {
+            alert("Error: UserID cannot be blank!");
+            form.user_name.focus();
+            return false;
+        }
+//        re = /^\w+$/;
+//        if(!re.test(form.user_name.value)) {
+//            alert("Error: Username must contain only letters, numbers and underscores!");
+//            form.username.focus();
+//            return false;
+//        }
+        if(form.password.value != "" && form.password.value == form.rpassword.value) {
+            if(!checkPassword(form.password.value)) {
+                alert("The password you have entered is not valid!");
+                form.password.focus();
+                return false;
+            }
+        } else {
+            alert("Error: Please check that you've entered and confirmed your password!");
+            form.password.focus();
+            return false;
+        }
+        return true;
+    }
+
+    function checkFamilyForm(form)
+    {
+        if(form.firstname.value == "") {
+            alert("Error: first name cannot be blank!");
+            form.firstname.focus();
+            return false;
+        }
+
+        if(form.lastname.value == "") {
+            alert("Error: last name cannot be blank!");
+            form.lastname.focus();
+            return false;
+        }
+
+        if(form.family_member.value == "family_member") {
+            alert("Error: Please select family relationship!");
+            form.family_member.focus();
+            return false;
+        }
+
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(!re.test(form.family_email.value)) {
+            alert("Error: Email is not valid!");
+            form.family_email.focus();
+            return false;
+        }
+        return true;
+    }
+
+    function checkFriendForm(form)
+    {
+        if(form.fri_firstname.value == "") {
+            alert("Error: first name cannot be blank!");
+            form.firstname.focus();
+            return false;
+        }
+
+        if(form.fri_lastname.value == "") {
+            alert("Error: last name cannot be blank!");
+            form.lastname.focus();
+            return false;
+        }
+
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(!re.test(form.friend_email.value)) {
+            alert("Error: Email is not valid!");
+            form.friend_email.focus();
+            return false;
+        }
+        return true;
+    }
+
+</script>
 
 <?php include BASE_PATH.'/members/includes/footer.php'?>
