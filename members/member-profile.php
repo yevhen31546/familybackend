@@ -357,7 +357,6 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                             </div>
 
                             <div class="profile--info">
-                                <p>Optional - Add a brief personal description, such as hobbies, likes or dislikes, etc. It can be anything you want to share with family and friends.</p>
                                 <table class="table">
                                     <tr>
                                         <th class="fw--700 text-darkest">Relationship</th>
@@ -412,7 +411,6 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                             </div>
 
                             <div class="profile--info">
-                                <p>Optional - Add a brief personal description, such as hobbies, likes or dislikes, etc. It can be anything you want to share with family and friends.</p>
                                 <table class="table">
                                     <tr>
                                         <th class="fw--700 text-darkest">Relationship</th>
