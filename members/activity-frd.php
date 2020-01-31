@@ -172,18 +172,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <label>
-                                            <select name="date" class="form-control form-sm"
-                                                data-trigger="selectmenu">
-                                                
-                                                <input type="date" name="birtdate" placeholder="select Birth date" >
-                                                
-                                                
-                                                <!--<option value="date">*Select a Date</option>
-                                                <option value="today">Today</option>
-                                                <option value="datecode">Another Date</option>-->
-                                            </select>
-                                        </label>
+                                        <input type="date" name="birtdate" placeholder="select Birth date" >
                                     </div>
                                 </div>
 
@@ -266,14 +255,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <label>
-                                            <select name="date" class="form-control form-sm"
-                                                data-trigger="selectmenu">
-                                                <option value="date">Select a Date</option>
-                                                <option value="today">Today</option>
-                                                <option value="datecode">Another Date</option>
-                                            </select>
-                                        </label>
+                                        <input type="date" name="note_view_date">
                                     </div>
                                 </div>
 
@@ -343,14 +325,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <label>
-                                            <select name="date" class="form-control form-sm"
-                                                data-trigger="selectmenu">
-                                                <option value="date">Select a Date</option>
-                                                <option value="today">Today</option>
-                                                <option value="datecode">Another Date</option>
-                                            </select>
-                                        </label>
+                                        <input type="date" name="note_update_date">
                                     </div>
                                 </div>
 

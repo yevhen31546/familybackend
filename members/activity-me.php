@@ -529,8 +529,15 @@ if(isset($_POST) && isset($_POST['cat_id']) && $_POST['cat_id'] && $_POST['mode'
                                 <div class="col-xs-12">
                                     <div class="form-group">
                                         <label>
+<!--                                            <select name="multimedia" class="form-control form-sm multimedia"-->
+<!--                                                data-trigger="selectmenu">-->
+<!--                                                <option value="addmedia">Add Comment, Photo or Video</option>-->
+<!--                                                <option value="text">Add Text</option>-->
+<!--                                                <option value="photo">Add a Photo</option>-->
+<!--                                                <option value="video">Add a Video Link</option>-->
+<!--                                            </select>-->
                                             <select name="multimedia" class="form-control form-sm multimedia"
-                                                data-trigger="selectmenu">
+                                                    data-trigger="selectmenu">
                                                 <option value="addmedia">Add Comment, Photo or Video</option>
                                                 <option value="text">Add Text</option>
                                                 <option value="photo">Add a Photo</option>
@@ -561,15 +568,7 @@ if(isset($_POST) && isset($_POST['cat_id']) && $_POST['cat_id'] && $_POST['mode'
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <label>
-                                            <select name="view_date" class="form-control form-sm"
-                                                data-trigger="selectmenu">
-                                                <option value="date">Select a Date</option>
-                                                <option value="today">Today</option>
-                                                <option value="anotherdate">Another Date</option>
-                                            </select>
-
-                                        </label>
+                                        <input type="date" name="note_view_date">
                                     </div>
                                 </div>
 
@@ -619,14 +618,15 @@ if(isset($_POST) && isset($_POST['cat_id']) && $_POST['cat_id'] && $_POST['mode'
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <label>
-                                            <select name="update_date" class="form-control form-sm"
-                                                data-trigger="selectmenu">
-                                                <option value="date">Select a Date</option>
-                                                <option value="today">Today</option>
-                                                <option value="anotherdate">Another Date</option>
-                                            </select>
-                                        </label>
+                                        <input type="date" name="note_update_date">
+                                        <!--                                        <label>-->
+<!--                                            <select name="update_date" class="form-control form-sm"-->
+<!--                                                data-trigger="selectmenu">-->
+<!--                                                <option value="date">Select a Date</option>-->
+<!--                                                <option value="today">Today</option>-->
+<!--                                                <option value="anotherdate">Another Date</option>-->
+<!--                                            </select>-->
+<!--                                        </label>-->
                                     </div>
                                 </div>
 
