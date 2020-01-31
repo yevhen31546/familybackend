@@ -177,7 +177,7 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
         </div>
 
         <div class="cover--user-name">
-            <h2 class="h3 fw--600">This should default to the person's name once they become a member.</h2>
+            <h2 class="h3 fw--600"><?php echo $row['first_name'];?> <?php echo $row['last_name'] ?></h2>
         </div>
 
         <div class="cover--user-activity">
