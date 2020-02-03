@@ -3300,6 +3300,7 @@ body.isScrolling #backToTop {
 
 .box--item .img:before {
     z-index: 1;
+    background: rgba(0,0,0,0.3) !important;
 }
 
 .box--item:hover .img:before {

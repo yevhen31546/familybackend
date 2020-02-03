@@ -46,6 +46,12 @@ if(isset($_POST['user_name']) && $_POST['user_name'] != '') {
 }
 ?>
 <?php include BASE_PATH.'/includes/header.php'; ?>
+
+<style>
+    .panel-default{
+        margin-bottom: 136px;
+    }
+</style>
     <section id="demos" class="pt--70">
         <div id="page-" class="col-md-4 col-md-offset-4">
             <form class="form loginform" method="POST" action="">
@@ -79,6 +85,10 @@ if(isset($_POST['user_name']) && $_POST['user_name'] != '') {
                         <div class="form-group">
                             <label class="control-label">Phone number</label>
                             <input type="text" name="phone_no" class="form-control">
+                        </div>
+                        <div class="form-group" style="display: flex">
+                            <input type="checkbox" class="form-control" style="width: 1.25rem; height: 1.25rem" required>
+                            &nbsp;&nbsp;I agree to the terms and conditions
                         </div>
                         <?php if (isset($_SESSION['register_failure'])): ?>
                             <div class="alert alert-danger alert-dismissable fade in">
