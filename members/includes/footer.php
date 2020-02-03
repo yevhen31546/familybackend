@@ -8,7 +8,7 @@
     <div class="footer--widgets pt--70 pb--20 bg-lightdark" data-bg-img="img/footer-img/footer-widgets-bg.png">
         <div class="container">
             <div class="row AdjustRow">
-                <div class="col-md-3 col-xs-6 col-xxs-12 pb--60">
+                <div class="col-md-4 col-xs-6 col-xxs-12 pb--60">
                     <!-- Widget Start -->
                     <div class="widget">
                         <h2 class="h4 fw--700 widget--title">About Us</h2>
@@ -24,48 +24,7 @@
                     <!-- Widget End -->
                 </div>
 
-                <div class="col-md-3 col-xs-6 col-xxs-12 pb--60">
-                    <!-- Widget Start -->
-                    <div class="widget">
-                        <h2 class="h4 fw--700 widget--title">Recent Post</h2>
-
-                        <!-- Recent Posts Widget Start -->
-                        <div class="recent-posts--widget">
-                            <ul class="nav">
-                                <li>
-                                    <p class="date fw--300">
-                                        <a href="#"><i class="fa mr--8 fa-file-text-o"></i>Hari-Should be date posted</a>
-                                    </p>
-                                    <p class="title fw--700">
-                                        <a href="blog-details.html">Hari this should autopopulate from recent additions.</a>
-                                    </p>
-                                </li>
-                                <li>
-                                    <p class="date fw--300">
-                                        <a href="#"><i class="fa mr--8 fa-file-text-o"></i>Hari-Should be date posted</a>
-                                    </p>
-                                    <p class="title fw--700">
-                                        <a href="blog-details.html">Hari this should autopopulate from recent additions.</a>
-                                    </p>
-                                </li>
-                                <li>
-                                    <p class="date fw--300">
-                                        <a href="#"><i class="fa mr--8 fa-file-text-o"></i>Hari-Should be date posted</a>
-                                    </p>
-                                    <p class="title fw--700">
-                                        <a href="blog-details.html">Hari this should autopopulate from recent additions. </a>
-                                    </p>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- Recent Posts Widget End -->
-                    </div>
-                    <!-- Widget End -->
-
-
-                </div>
-
-                <div class="col-md-3 col-xs-6 col-xxs-12 pb--60">
+                <div class="col-md-4 col-xs-6 col-xxs-12 pb--60">
                     <!-- Widget Start -->
                     <div class="widget">
                         <h2 class="h4 fw--700 widget--title">Favorite Groups</h2>
@@ -121,7 +80,7 @@
 
                 </div>
 
-                <div class="col-md-3 col-xs-6 col-xxs-12 pb--60">
+                <div class="col-md-4 col-xs-6 col-xxs-12 pb--60">
 
                     <!-- Widget Start -->
                     <div class="widget">
@@ -135,6 +94,7 @@
                                 <li><a href="#">FAQ</a></li>
                                 <li><a href="pp.pdf" target="_blank">Privacy Policy</a></li>
                                 <li><a href="tc.pdf" target="_blank">Terms and Conditions</a></li>
+                                <li><a href="cr.pdf" target="_blank">Community Rules</a></li>
                                 <li><a href="<?php echo BASE_URL;?>/members/contact.php">Contact</a></li>
                             </ul>
                         </div>
