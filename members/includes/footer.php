@@ -133,8 +133,8 @@
                                 <li><a href="#">My Account</a></li>
                                 <li><a href="#">Join a Group</a></li>
                                 <li><a href="#">FAQ</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Terms and Conditions</a></li>
+                                <li><a href="pp.pdf" target="_blank">Privacy Policy</a></li>
+                                <li><a href="tc.pdf" target="_blank">Terms and Conditions</a></li>
                                 <li><a href="<?php echo BASE_URL;?>/members/contact.php">Contact</a></li>
                             </ul>
                         </div>

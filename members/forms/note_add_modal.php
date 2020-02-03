@@ -10,6 +10,7 @@
                     <input type="hidden" name="cat_id" value="cat_id">
                     <input type="hidden" name="note_date" value="note_date">
                     <input type="hidden" name="note_media" value="note_media">
+                    <input type="hidden" name="note_to">
                     <input type="hidden" name="mode" value="add">
                     <input type="hidden" name="note_id" value="">
                     <div class="box-body">
@@ -24,7 +25,7 @@
                     <!-- /.box-body -->
                     <div class="box-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-success pull-right add-note-content">Submit</button>
+                        <button type="submit" class="btn btn-success pull-right add-note-content">Send</button>
                     </div>
                 </form>
             </div>

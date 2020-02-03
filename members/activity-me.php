@@ -1,387 +1,39 @@
 <?php
 session_start();
 require_once '../config/config.php';
+require_once '../vendor/autoload.php';
 require_once BASE_PATH.'/includes/auth_validate.php';
-if(isset($_POST) && isset($_POST['cat_id']) && $_POST['cat_id'] && $_POST['mode'] == 'add') {
-    $db = getDbInstance();
-    $log_user_id = $_SESSION['user_id'];
-    $data_to_db = array();
-    $data_to_db['cat_id'] = $_POST['cat_id'];
-    $data_to_db['note_date'] = $_POST['note_date'];
-    $media_type = $_POST['note_media'];
-    if($media_type == 'text' && isset($_POST['note_value'])){
-        $data_to_db['note_value'] = $_POST['note_value'];
-        $data_to_db['note_media'] = $_POST['note_media'];
-        $data_to_db['user_id'] = $log_user_id;
-        $last_id = $db->insert('tbl_notes', $data_to_db);
 
-        if ($last_id)
-        {
-            $db = getDbInstance();
-            $query = 'SELECT *
-    FROM tbl_notes
-    LEFT JOIN (
-      SELECT 
-           tbl_categories.id AS categoryId,
-           tbl_categories.cat_name AS cat_name
-	FROM tbl_categories
-       ) categories ON tbl_notes.cat_id = categories.categoryId
-    LEFT JOIN (
-       SELECT 
-           tbl_users.id AS userid,
-           tbl_users.first_name AS first_name,
-           tbl_users.last_name AS last_name
-      FROM tbl_users
-     ) users ON tbl_notes.user_id = users.userid;';
-            $rows = $db->rawQuery($query);
-        }
-        else
-        {
-            $_SESSION['failure'] = 'Insert failed!';
-        }
-    } else if($media_type == 'photo' && isset($_FILES["note_photo"]["name"])) {
-        $target_dir = "./uploads/".$_SESSION['user_id']."/notes/";
-        if (!file_exists($target_dir)) {
-            mkdir($target_dir, 0777, true);  //create directory if not exist
-        }
-        $target_file = $target_dir . basename($_FILES["note_photo"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        // Check if image file is a actual image or fake image
-        $check = getimagesize($_FILES["note_photo"]["tmp_name"]);
-        if($check !== false) {
-//                echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-//                echo "File is not an image.";
-            $uploadOk = 0;
-        }
-        // Check if file already exists
-        if (file_exists($target_file)) {
-//            echo "Sorry, file already exists.";
-            $_SESSION['failure'] = "Sorry, file already exists.";
-            $uploadOk = 0;
-        }
-        // Check file size
-        if ($_FILES["note_photo"]["size"] > 500000) {
-//            echo "Sorry, your file is too large.";
-            $_SESSION['failure'] = "Sorry, your file is too large.";
-            $uploadOk = 0;
-        }
-//         Allow certain file formats
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-            && $imageFileType != "gif" ) {
-//            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            $_SESSION['failure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            $uploadOk = 0;
-        }
-        // Check if $uploadOk is set to 0 by an failure
-        if ($uploadOk == 0) {
-//            echo "Sorry, your file was not uploaded.";
-//            $_SESSION['failure'] = "Sorry, your file was not uploaded.";
-        // if everything is ok, try to upload file
-        } else {
-            if (move_uploaded_file($_FILES["note_photo"]["tmp_name"], $target_file)) {
-//                echo "The file ". basename( $_FILES["note_photo"]["name"]). " has been uploaded.";
-                $data_to_db['note_value'] = $target_file;
-                $data_to_db['note_media'] = $_POST['note_media'];
-                $data_to_db['user_id'] = $log_user_id;
-                $last_id = $db->insert('tbl_notes', $data_to_db);
+// Get current user
+$logged_id = $_SESSION['user_id'];
+$db = getDbInstance();
+$db->where('id', $logged_id);
+$user = $db->getOne('tbl_users');
 
-                if ($last_id)
-                {
-                    $_SESSION['success'] = 'Successfully uploaded';
-                }
-                else
-                {
-                    $_SESSION['failure'] = 'Insert failed!';
-                }
-            } else {
-//                echo "Sorry, there was an failure uploading your file.";
-                $_SESSION['failure'] = "Sorry, your file was not uploaded.";
-            }
-        }
-        $db = getDbInstance();
-        $query = 'SELECT *
-    FROM tbl_notes
-    LEFT JOIN (
-      SELECT 
-           tbl_categories.id AS categoryId,
-           tbl_categories.cat_name AS cat_name
-	FROM tbl_categories
-       ) categories ON tbl_notes.cat_id = categories.categoryId
-    LEFT JOIN (
-       SELECT 
-           tbl_users.id AS userid,
-           tbl_users.first_name AS first_name,
-           tbl_users.last_name AS last_name
-      FROM tbl_users
-     ) users ON tbl_notes.user_id = users.userid;';
-        $rows = $db->rawQuery($query);
-    } else if($media_type == 'video' && isset($_POST['note_video'])) {
-        $data_to_db['note_value'] = $_POST['note_video'];
-        $data_to_db['note_media'] = $_POST['note_media'];
-        $data_to_db['user_id'] = $log_user_id;
-        $last_id = $db->insert('tbl_notes', $data_to_db);
+//Get user list
+$db = getDbInstance();
+$query = 'SELECT users.id, users.user_name, tmp.who, tmp.with_who
+FROM
+(SELECT users.id, users.user_name, family.with_who, family.who
+FROM tbl_users AS users
+JOIN tbl_family AS family
+ON users.id = family.who
+UNION
+SELECT users.id, users.user_name, friend.with_who, friend.who
+FROM tbl_users AS users
+JOIN tbl_friend AS friend
+ON users.id = friend.who) tmp, tbl_users AS users
+WHERE tmp.with_who = users.id AND tmp.who = '.$logged_id;
+$friend_and_family_list = $db->rawQuery($query);
 
-        if ($last_id)
-        {
-            $db = getDbInstance();
-            $query = 'SELECT *
-    FROM tbl_notes
-    LEFT JOIN (
-      SELECT 
-           tbl_categories.id AS categoryId,
-           tbl_categories.cat_name AS cat_name
-	FROM tbl_categories
-       ) categories ON tbl_notes.cat_id = categories.categoryId
-    LEFT JOIN (
-       SELECT 
-           tbl_users.id AS userid,
-           tbl_users.first_name AS first_name,
-           tbl_users.last_name AS last_name
-      FROM tbl_users
-     ) users ON tbl_notes.user_id = users.userid;';
-            $rows = $db->rawQuery($query);
-        }
-        else
-        {
-            $_SESSION['failure'] = 'Insert failed!';
-        }
-    }
+require_once 'note_email_endpoint.php';
+require_once 'my_album_endpoint.php';
 
-} else if(isset($_POST) && isset($_POST['view_date']) && $_POST['view_date']) {
-    $db = getDbInstance();
-    $view_date = $_POST['view_date'];
+// Get saved note lists for current user
+$rows = get_note_lists();
 
-    $view_cat = $_POST['view_category'];
-
-    $query = 'SELECT *
-    FROM tbl_notes
-    LEFT JOIN (
-      SELECT 
-           tbl_categories.id AS categoryId,
-           tbl_categories.cat_name AS cat_name
-	FROM tbl_categories
-       ) categories ON tbl_notes.cat_id = categories.categoryId
-    LEFT JOIN (
-       SELECT 
-           tbl_users.id AS userid,
-           tbl_users.first_name AS first_name,
-           tbl_users.last_name AS last_name
-      FROM tbl_users
-     ) users ON tbl_notes.user_id = users.userid';
-
-    if($view_date == 'today') {
-        $view_date = date('Y-m-d');
-        $query .= ' WHERE cat_id = '.$view_cat.' AND note_date = '.$view_date;
-    } else {
-        $view_date = date('Y-m-d');
-        $query .= ' WHERE cat_id = '.$view_cat.' AND note_date != '.$view_date;
-    }
-
-    $rows = $db->rawQuery($query);
-
-} else if(isset($_POST) && isset($_POST['update_date']) && $_POST['update_date']) {
-    $db = getDbInstance();
-    $update_date = $_POST['update_date'];
-
-    $update_cat = $_POST['update_category'];
-
-    $query = 'SELECT *
-    FROM tbl_notes
-    LEFT JOIN (
-      SELECT 
-           tbl_categories.id AS categoryId,
-           tbl_categories.cat_name AS cat_name
-	FROM tbl_categories
-       ) categories ON tbl_notes.cat_id = categories.categoryId
-    LEFT JOIN (
-       SELECT 
-           tbl_users.id AS userid,
-           tbl_users.first_name AS first_name,
-           tbl_users.last_name AS last_name
-      FROM tbl_users
-     ) users ON tbl_notes.user_id = users.userid';
-
-    if($update_date == 'today') {
-        $update_date = date('Y-m-d');
-        $query .= ' WHERE cat_id = '.$update_cat.' AND note_date = '.$update_date;
-    } else {
-        $update_date = date('Y-m-d');
-        $query .= ' WHERE cat_id = '.$update_cat.' AND note_date != '.$update_date;
-    }
-
-    $rows = $db->rawQuery($query);
-
-} else if(isset($_POST) && isset($_POST['mode']) && isset($_POST['note_id']) && $_POST['note_id'] != '' && $_POST['mode'] == 'edit') {
-    $media_type = $_POST['note_media'];
-    if($media_type == 'text' && isset($_POST['note_value'])){
-        $data_to_db = array();
-        $data_to_db['note_value'] = $_POST['note_value'];
-        $db = getDbInstance();
-        $db->where('id', $_POST['note_id']);
-        $last_id = $db->update('tbl_notes', $data_to_db);
-
-        if ($last_id)
-        {
-            $db = getDbInstance();
-            $query = 'SELECT *
-    FROM tbl_notes
-    LEFT JOIN (
-      SELECT 
-           tbl_categories.id AS categoryId,
-           tbl_categories.cat_name AS cat_name
-	FROM tbl_categories
-       ) categories ON tbl_notes.cat_id = categories.categoryId
-    LEFT JOIN (
-       SELECT 
-           tbl_users.id AS userid,
-           tbl_users.first_name AS first_name,
-           tbl_users.last_name AS last_name
-      FROM tbl_users
-     ) users ON tbl_notes.user_id = users.userid;';
-            $rows = $db->rawQuery($query);
-        }
-        else
-        {
-            $_SESSION['failure'] = 'Update failed!';
-        }
-    } else if($media_type == 'photo' && isset($_FILES["note_photo"]["name"])) {
-        $target_dir = "./uploads/".$_SESSION['user_id']."/notes/";
-        if (!file_exists($target_dir)) {
-            mkdir($target_dir, 0777, true);  //create directory if not exist
-        }
-        $target_file = $target_dir . basename($_FILES["note_photo"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        // Check if image file is a actual image or fake image
-        $check = getimagesize($_FILES["note_photo"]["tmp_name"]);
-        if($check !== false) {
-//                echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-//                echo "File is not an image.";
-            $uploadOk = 0;
-        }
-        // Check if file already exists
-        if (file_exists($target_file)) {
-//            echo "Sorry, file already exists.";
-            $_SESSION['failure'] = "Sorry, file already exists.";
-            $uploadOk = 0;
-        }
-        // Check file size
-        if ($_FILES["note_photo"]["size"] > 500000) {
-//            echo "Sorry, your file is too large.";
-            $_SESSION['failure'] = "Sorry, your file is too large.";
-            $uploadOk = 0;
-        }
-//         Allow certain file formats
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-            && $imageFileType != "gif" ) {
-//            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            $_SESSION['failure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            $uploadOk = 0;
-        }
-        // Check if $uploadOk is set to 0 by an failure
-        if ($uploadOk == 0) {
-//            echo "Sorry, your file was not uploaded.";
-//            $_SESSION['failure'] = "Sorry, your file was not uploaded.";
-            // if everything is ok, try to upload file
-        } else {
-            if (move_uploaded_file($_FILES["note_photo"]["tmp_name"], $target_file)) {
-//                echo "The file ". basename( $_FILES["note_photo"]["name"]). " has been uploaded.";
-                $data_to_db = array();
-                $data_to_db['note_value'] = $target_file;
-                $db = getDbInstance();
-                $db->where('id', $_POST['note_id']);
-                $last_id = $db->update('tbl_notes', $data_to_db);
-
-                if ($last_id)
-                {
-                    $_SESSION['success'] = 'Successfully uploaded';
-                }
-                else
-                {
-                    $_SESSION['failure'] = 'Insert failed!';
-                }
-            } else {
-//                echo "Sorry, there was an failure uploading your file.";
-                $_SESSION['failure'] = "Sorry, your file was not uploaded.";
-            }
-        }
-        $db = getDbInstance();
-        $query = 'SELECT *
-    FROM tbl_notes
-    LEFT JOIN (
-      SELECT 
-           tbl_categories.id AS categoryId,
-           tbl_categories.cat_name AS cat_name
-	FROM tbl_categories
-       ) categories ON tbl_notes.cat_id = categories.categoryId
-    LEFT JOIN (
-       SELECT 
-           tbl_users.id AS userid,
-           tbl_users.first_name AS first_name,
-           tbl_users.last_name AS last_name
-      FROM tbl_users
-     ) users ON tbl_notes.user_id = users.userid;';
-        $rows = $db->rawQuery($query);
-    } else if($media_type == 'video' && isset($_POST['note_video'])) {
-        $db = getDbInstance();
-        $data_to_db = array();
-        $data_to_db['note_value'] = $_POST['note_video'];
-        $db->where('id', $_POST['note_id']);
-        $last_id = $db->update('tbl_notes', $data_to_db);
-
-        if ($last_id)
-        {
-            $db = getDbInstance();
-            $query = 'SELECT *
-    FROM tbl_notes
-    LEFT JOIN (
-      SELECT 
-           tbl_categories.id AS categoryId,
-           tbl_categories.cat_name AS cat_name
-	FROM tbl_categories
-       ) categories ON tbl_notes.cat_id = categories.categoryId
-    LEFT JOIN (
-       SELECT 
-           tbl_users.id AS userid,
-           tbl_users.first_name AS first_name,
-           tbl_users.last_name AS last_name
-      FROM tbl_users
-     ) users ON tbl_notes.user_id = users.userid;';
-            $rows = $db->rawQuery($query);
-        }
-        else
-        {
-            $_SESSION['failure'] = 'Insert failed!';
-        }
-    }
-
-} else {
-    $db = getDbInstance();
-    $query = 'SELECT *
-    FROM tbl_notes
-    LEFT JOIN (
-      SELECT 
-           tbl_categories.id AS categoryId,
-           tbl_categories.cat_name AS cat_name
-	FROM tbl_categories
-       ) categories ON tbl_notes.cat_id = categories.categoryId
-    LEFT JOIN (
-       SELECT 
-           tbl_users.id AS userid,
-           tbl_users.first_name AS first_name,
-           tbl_users.last_name AS last_name
-      FROM tbl_users
-     ) users ON tbl_notes.user_id = users.userid;';
-    $rows = $db->rawQuery($query);
-}
-
+include BASE_PATH.'/members/includes/header.php'
 ?>
-<?php include BASE_PATH.'/members/includes/header.php'?>
 
 <!-- Page Header Start -->
 <div class="page--header pt--60 pb--60 text-center" data-bg-img="img/myalbum6.png"
@@ -493,7 +145,7 @@ if(isset($_POST) && isset($_POST['cat_id']) && $_POST['cat_id'] && $_POST['mode'
 
             <!-- Main Sidebar Start -->
             <div class="main--sidebar col-md-4 pb--60" data-trigger="stickyScroll">
-                <!-- Widget Start -->
+                <!-- Widget Add a Note Start -->
                 <div class="widget">
                     <h2 class="h6 fw--700 widget--title">Add a Note</h2>
                     <!-- Buddy Finder Widget Start -->
@@ -544,6 +196,25 @@ if(isset($_POST) && isset($_POST['cat_id']) && $_POST['cat_id'] && $_POST['mode'
                                                 <option value="video">Add a Video Link</option>
                                             </select>
                                         </label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="sel_profile">
+                                            Choose a profile
+                                        </label>
+                                           <select name="sel_profile" id="add_note_profile" class="form-control form-sm sel_profile">
+                                               <option value="<?php echo $logged_id; ?>">Myself</option>
+                                               <?php
+                                               foreach ($friend_and_family_list as $item):
+                                               ?>
+                                               <option value="<?php echo $item['id']; ?>">
+                                                   <?php echo $item['user_name']; ?>
+                                               </option>
+                                               <?php
+                                               endforeach;
+                                               ?>
+                                            </select>
                                         <br/>
                                     </div>
                                 </div>
@@ -558,7 +229,7 @@ if(isset($_POST) && isset($_POST['cat_id']) && $_POST['cat_id'] && $_POST['mode'
                 </div>
                 <!-- Widget End -->
 
-                <!-- Widget Start -->
+                <!-- Widget View Notes Start -->
                 <div class="widget">
                     <h2 class="h6 fw--700 widget--title">View Notes</h2>
 
@@ -609,7 +280,7 @@ if(isset($_POST) && isset($_POST['cat_id']) && $_POST['cat_id'] && $_POST['mode'
                 </div>
                 <!-- Widget End -->
 
-                <!-- Widget Start -->
+                <!-- Widget Update a Note Start -->
                 <div class="widget">
                     <h2 class="h6 fw--700 widget--title">Update a Note</h2>
                     <!-- Text Widget Start -->

@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 	$db->where('user_name', $username);
 	$row = $db->getOne('tbl_users');
 
+
 	if ($db->count >= 1)
     {
 		$db_password = $row['password'];

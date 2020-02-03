@@ -24,6 +24,10 @@
         }
     }
 
+    /**
+     * My Album (activity-me.php) add note function
+     */
+
     $('.activity-note-add').click(function (e) {
 
         $('#myLargeModalLabel').html('Add New Note');
@@ -42,6 +46,8 @@
         console.log(category);
         var media = $('ul[data-select-name="multimedia"] li.selected').attr('data-option-value');
         console.log(media);
+        var to = $("#add_note_profile option:selected").val(); // Get Profile Id
+        console.log("profile id: ", to);
         var note_add_date = $('#add_note_form input[name="note_add_date"]').val();
         console.log(note_add_date);
         //validation part
@@ -71,6 +77,7 @@
                     $('.note-add-modal input[name="cat_id"]').val(category);
                     $('.note-add-modal input[name="note_date"]').val(note_add_date);
                     $('.note-add-modal input[name="note_media"]').val(media);
+                    $('.note-add-modal input[name="note_to"]').val(to);     // Profile id
                     $('.note-add-modal input[name="note_value"]').show();
                     $('.note-add-modal input[name="note_photo"]').hide();
                     $('.note-add-modal input[name="note_video"]').hide();
@@ -87,6 +94,7 @@
                     $('.note-add-modal input[name="cat_id"]').val(category);
                     $('.note-add-modal input[name="note_date"]').val(note_add_date);
                     $('.note-add-modal input[name="note_media"]').val(media);
+                    $('.note-add-modal input[name="note_to"]').val(to);     // Profile id
                     $('.note-add-modal input[name="note_value"]').hide();
                     $('.note-add-modal input[name="note_photo"]').show();
                     $('.note-add-modal input[name="note_video"]').hide();
@@ -102,6 +110,7 @@
                     $('.note-add-modal input[name="cat_id"]').val(category);
                     $('.note-add-modal input[name="note_date"]').val(note_add_date);
                     $('.note-add-modal input[name="note_media"]').val(media);
+                    $('.note-add-modal input[name="note_to"]').val(to);     // Profile id
                     $('.note-add-modal input[name="note_value"]').hide();
                     $('.note-add-modal input[name="note_photo"]').hide();
                     $('.note-add-modal input[name="note_video"]').show();
