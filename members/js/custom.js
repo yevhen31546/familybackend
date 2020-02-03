@@ -46,16 +46,25 @@
         console.log(category);
         var media = $('ul[data-select-name="multimedia"] li.selected').attr('data-option-value');
         console.log(media);
-        var to = $("#add_note_profile option:selected").val(); // Get Profile Id
+        // var to = $("#add_note_profile option:selected").val(); // Get Profile Id
+        var to = $("#friendAndfamily").val(); // Get Profile Id
         console.log("profile id: ", to);
         var note_add_date = $('#add_note_form input[name="note_add_date"]').val();
         console.log(note_add_date);
         //validation part
-        if(note_add_date == '') {
+        if(note_add_date === '') {
             $('#add_note_form input[name="note_add_date"]').css("border", "1px solid red");
             add_date_val = false;
         } else {
             $('#add_note_form input[name="note_add_date"]').css("border", "1px solid white");
+            add_date_val = true;
+        }
+        if(typeof to === 'undefined' || to === '') {
+            console.log("error");
+            $('#friendAndfamily').css("border", "1px solid red");
+            add_date_val = false;
+        } else {
+            $('#friendAndfamily').css("border", "1px solid #e5e5e5");
             add_date_val = true;
         }
         if(category == "category") {

@@ -42,28 +42,47 @@ function save_note_lists($data) {
 
 
 /**
- * After user approve send request, update notes function
+ * After user approve your notes, update notes function
  */
 
-//    Update status tbl_notes
+//    If friend/family approve your request, then update status tbl_notes
 if(isset($_GET) && isset($_GET['stat'])){
     $note_id = $_GET['note_id']; // note id
+    $from = $_GET['from'];
+    $note_to = $_GET['note_to'];
+
+//    Get sender data
+    $db = getDbInstance();
+    $db->where('id', $from);
+    $sender = $db->getOne('tbl_users');
+
+//    Get receiver data
+    $db = getDbInstance();
+    $db->where('id', $note_to);
+    $receiver = $db->getOne('tbl_users');
+
+    $to = $sender['user_email']; // sender's email
     if($_GET['stat'] == 'approved') {
         $data_to_db['status'] = 1; // update status
 
         $db = getDbInstance();
         $db->where('id', $note_id);
         $last_id = $db->update('tbl_notes', $data_to_db);  // Update tbl_notes's status
-
-//        if ($last_id) {
+        if ($last_id) {
 //            echo "successfully added";
-//        } else {
+
+            $body = generateApprovedNoteMessageBody($sender, $receiver);
+            $stat = sendNoteEmail($to, $body);
+
+        } else {
 //            echo "error: save to notes";
-//        }
+        }
     } else if($_GET['stat'] == 'delete') {
-        $db = getDbInstance();
-        $db->where('id', $note_id);
-        $db->delete('tbl_notes');  // Delete posted note
+        $body = generateDeleteNoteMessageBody($sender, $receiver);
+        $stat = sendNoteEmail($to, $body);
+//        $db = getDbInstance();
+//        $db->where('id', $note_id);
+//        $db->delete('tbl_notes');  // Delete posted note
     }
 }
 
@@ -74,10 +93,15 @@ if(isset($_POST) && isset($_POST['cat_id']) && $_POST['cat_id'] && $_POST['mode'
     $db = getDbInstance();
     $log_user_id = $_SESSION['user_id'];
     $media_type = $_POST['note_media'];
+
+//    get receiver's id
+    $db = getDbInstance();
+    $db->where('user_name', $_POST['note_to']);
+    $to = $db->getValue('tbl_users', 'id');
 // data to save to db
     $data = array(
         'who' => $log_user_id,
-        'to_who' => $_POST['note_to'],
+        'to_who' => $to,
         'media_type' => $media_type,
         'cat_id' => $_POST['cat_id'],
         'note_value' => '',
@@ -86,7 +110,7 @@ if(isset($_POST) && isset($_POST['cat_id']) && $_POST['cat_id'] && $_POST['mode'
 // data to email
     $email_param = array(
         'who' => $log_user_id,
-        'to_who' => $_POST['note_to'],
+        'to_who' => $to,
         'note_id' => ''
     );
 
