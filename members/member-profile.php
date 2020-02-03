@@ -13,16 +13,39 @@ $row = $db->getOne('tbl_users');
 //Get User list
 $db = getDbInstance();
 $user_list = $db->get('tbl_users');
-
-// Get family member lists
+/**
+ * Family
+ */
+// Get all family member lists
 $db = getDbInstance();
-$get_family_query = 'SELECT * FROM tbl_users us JOIN (SELECT with_who, relation FROM tbl_family WHERE who='.$logged_id.') fa ON us.id=fa.with_who';
+$get_family_query = 'SELECT us.user_name, us.first_name, us.last_name, fa.relation FROM tbl_users us JOIN (SELECT with_who, who, relation  FROM tbl_family WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa ON us.id=fa.with_who OR us.id=fa.who WHERE us.id!='.$logged_id;
 $family_lists = $db->rawQuery($get_family_query);
 
-// Get friend lists
+// Get family members for auto fill box
 $db = getDbInstance();
-$get_friend_query = 'SELECT * FROM tbl_users us JOIN (SELECT with_who FROM tbl_friend WHERE who='.$logged_id.') fa ON us.id=fa.with_who';
+$get_family_query = 'SELECT DISTINCT us.user_name,us.id FROM tbl_users us JOIN (SELECT DISTINCT with_who, who  FROM tbl_family WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa ON us.id=fa.with_who OR us.id=fa.who WHERE us.id != '.$logged_id;
+$family_members = $db->rawQuery($get_family_query);
+$families = [];
+foreach($family_members as $family_member):
+    array_push($families, $family_member['user_name']);
+endforeach;
+
+/**
+ * Friend
+ */
+// Get all friend lists
+$db = getDbInstance();
+$get_friend_query = 'SELECT us.user_name, us.first_name, us.last_name FROM tbl_users us JOIN (SELECT with_who, who  FROM tbl_friend WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa ON us.id=fa.with_who OR us.id=fa.who WHERE us.id!='.$logged_id;
 $friend_lists = $db->rawQuery($get_friend_query);
+
+// Get friends for auto fill box
+$db = getDbInstance();
+$get_friend_query = 'SELECT DISTINCT us.user_name,us.id FROM tbl_users us JOIN (SELECT DISTINCT with_who, who  FROM tbl_friend WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa ON us.id=fa.with_who OR us.id=fa.who WHERE us.id !='.$logged_id;
+$friends_ = $db->rawQuery($get_family_query);
+$friends = [];
+foreach($friends_ as $friend):
+    array_push($friends, $friend['user_name']);
+endforeach;
 
 // Update about me
 if(isset($_POST) && isset($_POST['first_name'])) {
@@ -83,21 +106,25 @@ if(isset($_POST) && isset($_POST['biography'])) {
 }
 
 // Invite family member
-if(isset($_POST) && isset($_POST['family_user_list'])) {
-    $family_user_id = $_POST['family_user_list']; // family user id
-    $family_user = array();
+if(isset($_POST) && isset($_POST['family_member'])) {
+    $myfamily = $_POST['myfamily']; // family user id
+    $db = getDbInstance();
+    $db->where('user_name', $myfamily);
+    $family_user = $db->getOne('tbl_users');
+
     $relation = $_POST['family_member'];
-    $to = '';
-    foreach ($user_list as $user):
-        if($user['id'] == $family_user_id) {
-            $to = $user['user_email'];
-            $family_user = $user;
-            continue;
-        }
-    endforeach;
-//    echo $to; exit;
-//    print_r($family_user); exit;
-    $body = generateFamMessageBody($row, $family_user, $relation); // $row: from, $family_user: to, $relation: family relationship
+    $to = $family_user['user_email'];
+
+//    Request Save to tbl_family
+    $data_to_db = array(
+        'who' => $logged_id,
+        'with_who' => $family_user['id'],
+        'relation' => $relation
+    );
+    $db = getDbInstance();
+    $family_id = $db->insert('tbl_family', $data_to_db);
+
+    $body = generateFamMessageBody($row, $family_user, $relation, $family_id); // $row: from, $family_user: to, $relation: family relationship
 
     $stat = sendEmail($to, $body);
     if ($stat) {
@@ -110,21 +137,22 @@ if(isset($_POST) && isset($_POST['family_user_list'])) {
 }
 
 // Invite friend
-if(isset($_POST) && isset($_POST['friend_user_list'])) {
-    $friend_id = $_POST['friend_user_list']; // friend id
-    $friend = array();
-    $to = '';
-    foreach ($user_list as $user):
-        if($user['id'] == $friend_id) {
-            $to = $user['user_email'];
-            $friend = $user;
-            continue;
-        }
-    endforeach;
-//    print_r($friend); exit;
+if(isset($_POST) && isset($_POST['myfriend'])) {
+    $myfriend = $_POST['myfriend']; // friend id
+    $db = getDbInstance();
+    $db->where('user_name', $myfriend);
+    $friend_user = $db->getOne('tbl_users');
+    $to = $friend_user['user_email'];
 
-    $body = generateFriMessageBody($row, $friend);
+    //    Request Save to tbl_family
+    $data_to_db = array(
+        'who' => $logged_id,
+        'with_who' => $friend_user['id']
+    );
+    $db = getDbInstance();
+    $friend_id = $db->insert('tbl_friend', $data_to_db);
 
+    $body = generateFriMessageBody($row, $friend_user, $friend_id);
     $stat = sendEmail($to, $body);
     if ($stat) {
         $_SESSION['success'] = 'Invitation email is sent successfully!';
@@ -282,6 +310,43 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
 ?>
 
 <?php include BASE_PATH.'/members/includes/header.php'?>
+    <style>
+        /*the container must be positioned relative:*/
+        .autocomplete {
+            position: relative;
+            display: inline-block;
+        }
+
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            /*position the autocomplete items to be the same width as the container:*/
+            top: 100%;
+            left: 0;
+            right: 0;
+        }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+        /*when hovering an item:*/
+        .autocomplete-items div:hover {
+            background-color: #e9e9e9;
+        }
+
+        /*when navigating through the items using the arrow keys:*/
+        .autocomplete-active {
+            background-color: DodgerBlue !important;
+            color: #ffffff;
+        }
+    </style>
 
 <!-- Cover Header Start -->
 <?php if(isset($row['cover_photo'])) { ?>
@@ -335,12 +400,7 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                     <!-- Content Nav Start -->
                     <div class="content--nav pb--30">
                         <ul class="nav ff--primary fs--14 fw--500 bg-lighter">
-                            <!--<li><a href="member-activity-personal.php">Activity</a></li>-->
                             <li class="active"><a href="member-profile.php">Profile</a></li>
-                            <!-- <li><a href="member-friends.html">Friends</a></li>
-                            <li><a href="member-groups.html">Groups</a></li>
-                            <li><a href="member-forum-topics.html">Forum</a></li>
-                            <li><a href="member-media-all.html">Media</a></li>-->
                         </ul>
                     </div>
                     <!-- Content Nav End -->
@@ -355,7 +415,7 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                                     <i class="ml--10 text-primary fa fa-caret-right"></i>
                                 </h3>
                             </div>
-                            <form action="#" method="post">
+                            <form action="" method="post">
                                 <div class="profile--info">
                                     <table class="table">
                                         <tr>
@@ -385,7 +445,7 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                                 </h3>
                             </div>
 
-                            <form action="#" method="post" onsubmit="return checkForm(this);">
+                            <form action="" method="post" onsubmit="return checkForm(this);">
                                 <div class="profile--info">
                                     <table class="table">
                                         <tr>
@@ -416,19 +476,21 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                             </div>
 
                             <div class="profile--info">
-                                <form action="#" method="post">
-                                    <p>Optional - Add a brief personal description, such as hobbies, likes or dislikes, etc. It can be anything about yourself that you want to share with family and friends.</p>
+                                <form action="" method="post">
+                                        <p>Optional - Add a brief personal description, such as hobbies, likes or dislikes, etc. It can be anything about yourself that you want to share with family and friends.</p>
 
-                                    <p>
+                                    <div class="row">
                                         <textarea class="col-xs-12" name="biography" required><?php echo $row['biography']; ?></textarea>
-                                    </p>
-
-                                    <button type="submit" class="btn btn-primary" style="float: right; margin: 5px;">Update</button>
+                                    </div>
+                                    <div class="row">
+                                        <button type="submit" class="btn btn-primary" style="float: right; margin: 5px;">Update</button>
+                                    </div>
 
                                 </form>
-                            </div><div>&nbsp;</div><div>&nbsp;</div>
+                            </div>
                         </div>
                         <!-- Profile Item End -->
+
                         
 
                         <!-- Profile Item Start -->
@@ -537,18 +599,12 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                                     <p>Optional - Add up to three friend now, or add friend to your friend Album later.</p>
                                     <table class="table">
                                         <tr>
-                                            <th class="fw--700 text-darkest">Relationship</th>
-                                            <td>
-                                                <?php echo $family['relation']; ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
                                             <th class="fw--700 text-darkest">First Name</th>
-                                            <td><?php echo $family['first_name']; ?></td>
+                                            <td><?php echo $friend['first_name']; ?></td>
                                         </tr>
                                         <tr>
                                             <th class="fw--700 text-darkest">Last Name</th>
-                                            <td><?php echo $family['last_name']; ?></td>
+                                            <td><?php echo $friend['last_name']; ?></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -570,27 +626,11 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                 <!-- Widget Start -->
                 <div class="widget">
                     <h2 class="h4 fw--700 widget--title">Invite a Family Member</h2>
-                    <form action="#" method="post" onsubmit="return checkFamilyForm(this);">
-                        <input type="hidden" value="<?php echo count($family_lists); ?>" name="family_count">
-<!--                        <p>First Name: <input type="text" name="firstname" required></p>-->
-<!--                        <p>Last Name: <input type="text" name="lastname" required></p>-->
-<!--                        <p>Email Address: <input type="email" name="family_email" required></p>-->
-                        <div class="form-group">
-                            <select name="family_user_list" class="form-control form-sm">
-                                <option value="select_member">*Select User</option>
-                                <?php
-                                foreach ($user_list as $item):
-                                    ?>
-                                    <option value="<?php echo $item['id']; ?>">
-                                        <?php echo $item['user_name']; ?>
-                                    </option>
-                                    <?php
-                                endforeach;
-                                ?>
-                                ?>
-                            </select>
+                    <form action="" autocomplete="off" method="post" onsubmit="return checkFamilyForm(this);">
+                        <div class="autocomplete" style="width: 100%;">
+                            <input id="myfamily" type="text" class="form-control" name="myfamily" placeholder="Family member's Name">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="margin-top: 10px;">
                             <select name="family_member" class="form-control form-sm">
                                 <option value="family_member">*Select Family Relationship</option>
                                 <option value="Husband">Husband</option>
@@ -611,35 +651,17 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
                             </select>
                         </div>
                         <button type="submit" class="btn btn-sm btn-google btn btn-primary"><i class="fa mr--8 fa-play"></i>Send</button>
-                        <!--                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(+) Invite another family member. -->
                     </form>
                 </div>
 
 
                 <div class="widget">
-                    <form action="#" method="post" onsubmit="return checkFriendForm(this);">
+                    <form action="" method="post" onsubmit="return checkFriendForm(this);">
                         <h2 class="h4 fw--700 widget--title">Invite a Friend</h2>
-<!--                        <p>First Name: <input type="text" name="fri_firstname" required></p>-->
-<!--                        <p>Last Name: <input type="text" name="fri_lastname" required></p>-->
-<!--                        <p>Email Address: <input type="email" name="friend_email" required></p>-->
-                        <input type="hidden" value="<?php echo count($friend_lists); ?>" name="friend_count">
-                        <div class="form-group">
-                            <select name="friend_user_list" class="form-control form-sm">
-                                <option value="select_member">*Select User</option>
-                                <?php
-                                foreach ($user_list as $item):
-                                    ?>
-                                    <option value="<?php echo $item['id']; ?>">
-                                        <?php echo $item['user_name']; ?>
-                                    </option>
-                                    <?php
-                                endforeach;
-                                ?>
-                                ?>
-                            </select>
+                        <div class="autocomplete" style="width: 100%;">
+                            <input id="myfriend" type="text" class="form-control" name="myfriend" placeholder="Friend's Name">
                         </div>
-                        <button type="submit" class="btn btn-sm btn-google btn btn-primary"><i class="fa mr--8 fa-play"></i>Send</button>
-                            <!--                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(+) Invite another friend. -->
+                        <button type="submit" class="btn btn-sm btn-google btn btn-primary" style="margin-top: 20px;"><i class="fa mr--8 fa-play"></i>Send</button>
                     </form>
                 </div>
 
@@ -660,12 +682,7 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
             form.user_name.focus();
             return false;
         }
-//        re = /^\w+$/;
-//        if(!re.test(form.user_name.value)) {
-//            alert("Error: Username must contain only letters, numbers and underscores!");
-//            form.username.focus();
-//            return false;
-//        }
+
         if(form.password.value != "" && form.password.value == form.rpassword.value) {
             if(!checkPassword(form.password.value)) {
                 alert("The password you have entered is not valid!");
@@ -682,26 +699,10 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
 
     function checkFamilyForm(form)
     {
-//        if(form.firstname.value == "") {
-//            alert("Error: first name cannot be blank!");
-//            form.firstname.focus();
-//            return false;
-//        }
-//
-//        if(form.lastname.value == "") {
-//            alert("Error: last name cannot be blank!");
-//            form.lastname.focus();
-//            return false;
-//        }
-//
-        if(form.family_count.value > 3) {
-            alert("Error: Add up to three family member now, or add family to your family Album later.");
-            return false;
-        }
 
-        if(form.family_user_list.value === "select_member") {
-            alert("Error: Please select user!");
-            form.family_user_list.focus();
+        if(form.myfamily.value === '') {
+            alert("Error: Please type family member's name :(");
+            form.myfamily.focus();
             return false;
         }
 
@@ -711,51 +712,127 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
             return false;
         }
 
-
-//        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-//        if(!re.test(form.family_email.value)) {
-//            alert("Error: Email is not valid!");
-//            form.family_email.focus();
-//            return false;
-//        }
         return true;
     }
 
     function checkFriendForm(form)
     {
-//        if(form.fri_firstname.value === "") {
-//            alert("Error: first name cannot be blank!");
-//            form.firstname.focus();
-//            return false;
-//        }
-//
-//        if(form.fri_lastname.value === "") {
-//            alert("Error: last name cannot be blank!");
-//            form.lastname.focus();
-//            return false;
-//        }
-//
-//        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-//        if(!re.test(form.friend_email.value)) {
-//            alert("Error: Email is not valid!");
-//            form.friend_email.focus();
-//            return false;
-//        }
-
-        if(form.friend_count.value > 3) {
-            alert("Error: Add up to three friend now, or add friend to your friend Album later.");
-            return false;
-        }
-
-        if(form.friend_user_list.value === "select_member") {
-            alert("Error: Please select user!");
-            form.friend_user_list.focus();
+        if(form.myfriend.value === "") {
+            alert("Error: Please type friend's name :(");
+            form.myfriend.focus();
             return false;
         }
 
         return true;
     }
 
+</script>
+
+<script>
+    function autocomplete(inp, arr) {
+        /*the autocomplete function takes two arguments,
+        the text field element and an array of possible autocompleted values:*/
+        var currentFocus;
+        /*execute a function when someone writes in the text field:*/
+        inp.addEventListener("input", function(e) {
+            var a, b, i, val = this.value;
+            /*close any already open lists of autocompleted values*/
+            closeAllLists();
+            if (!val) { return false;}
+            currentFocus = -1;
+            /*create a DIV element that will contain the items (values):*/
+            a = document.createElement("DIV");
+            a.setAttribute("id", this.id + "autocomplete-list");
+            a.setAttribute("class", "autocomplete-items");
+            /*append the DIV element as a child of the autocomplete container:*/
+            this.parentNode.appendChild(a);
+            /*for each item in the array...*/
+            for (i = 0; i < arr.length; i++) {
+                /*check if the item starts with the same letters as the text field value:*/
+                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                    /*create a DIV element for each matching element:*/
+                    b = document.createElement("DIV");
+                    /*make the matching letters bold:*/
+                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                    b.innerHTML += arr[i].substr(val.length);
+                    /*insert a input field that will hold the current array item's value:*/
+                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                    /*execute a function when someone clicks on the item value (DIV element):*/
+                    b.addEventListener("click", function(e) {
+                        /*insert the value for the autocomplete text field:*/
+                        inp.value = this.getElementsByTagName("input")[0].value;
+                        /*close the list of autocompleted values,
+                        (or any other open lists of autocompleted values:*/
+                        closeAllLists();
+                    });
+                    a.appendChild(b);
+                }
+            }
+        });
+        /*execute a function presses a key on the keyboard:*/
+        inp.addEventListener("keydown", function(e) {
+            var x = document.getElementById(this.id + "autocomplete-list");
+            if (x) x = x.getElementsByTagName("div");
+            if (e.keyCode == 40) {
+                /*If the arrow DOWN key is pressed,
+                increase the currentFocus variable:*/
+                currentFocus++;
+                /*and and make the current item more visible:*/
+                addActive(x);
+            } else if (e.keyCode == 38) { //up
+                /*If the arrow UP key is pressed,
+                decrease the currentFocus variable:*/
+                currentFocus--;
+                /*and and make the current item more visible:*/
+                addActive(x);
+            } else if (e.keyCode == 13) {
+                /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                e.preventDefault();
+                if (currentFocus > -1) {
+                    /*and simulate a click on the "active" item:*/
+                    if (x) x[currentFocus].click();
+                }
+            }
+        });
+        function addActive(x) {
+            /*a function to classify an item as "active":*/
+            if (!x) return false;
+            /*start by removing the "active" class on all items:*/
+            removeActive(x);
+            if (currentFocus >= x.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = (x.length - 1);
+            /*add class "autocomplete-active":*/
+            x[currentFocus].classList.add("autocomplete-active");
+        }
+        function removeActive(x) {
+            /*a function to remove the "active" class from all autocomplete items:*/
+            for (var i = 0; i < x.length; i++) {
+                x[i].classList.remove("autocomplete-active");
+            }
+        }
+        function closeAllLists(elmnt) {
+            /*close all autocomplete lists in the document,
+            except the one passed as an argument:*/
+            var x = document.getElementsByClassName("autocomplete-items");
+            for (var i = 0; i < x.length; i++) {
+                if (elmnt != x[i] && elmnt != inp) {
+                    x[i].parentNode.removeChild(x[i]);
+                }
+            }
+        }
+        /*execute a function when someone clicks in the document:*/
+        document.addEventListener("click", function (e) {
+            closeAllLists(e.target);
+        });
+    }
+
+    var families = <?php print_r(json_encode($families)); ?>;
+    var friends = <?php print_r(json_encode($friends)); ?>;
+    console.log("families: ", families);
+    console.log("friends: ", friends);
+
+    autocomplete(document.getElementById("myfamily"), families);
+    autocomplete(document.getElementById("myfriend"), friends);
 </script>
 
 <?php include BASE_PATH.'/members/includes/footer.php'?>

@@ -22,19 +22,23 @@ define('CURRENT_PAGE', basename($_SERVER['REQUEST_URI']));
  define('DB_NAME', "family_db");
 
 // SMTP config
-define('SMTP_HOST', 'smtp.gmail.com');
-define('SMTP_PORT', 465);
-define('SMTP_ENC', 'ssl');
-
+//define('SMTP_HOST', 'smtp.gmail.com');
+//define('SMTP_PORT', 465);
+//define('SMTP_ENC', 'ssl');
+//
 //define('SMTP_FROM', 'pandamoney425@gmail.com'); // Should be updated in production mode
 //define('SMTP_PASS', 'self1971'); // Should be updated in production mode
 //define('SMTP_ENDPOINT', 'http://familyback1219.com/members/member-profile.php' );
 //define('SMTP_APPROVED_URL', 'http://familyback1219.com/members/member-profile.php' );
 
+define('SMTP_HOST', 'smtp.gmail.com');
+define('SMTP_PORT', 465);
+define('SMTP_ENC', 'ssl');
+
 define('SMTP_FROM', 'test4@mynotes4u.com'); // Should be updated in production mode
 define('SMTP_PASS', 'Pineturtle1971!'); // Should be updated in production mode
-define('SMTP_ENDPOINT', 'https://mynotes4u.com' );
-define('SMTP_APPROVED_URL', 'http://familyback1219.com/member-profile.php' );
+define('SMTP_ENDPOINT', 'http://familyback1219.com/members/member-profile.php' );
+define('SMTP_APPROVED_URL', 'http://familyback1219.com/members/member-profile.php' );
 
 
 
