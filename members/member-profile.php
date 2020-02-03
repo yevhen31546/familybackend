@@ -23,7 +23,8 @@ $family_lists = $db->rawQuery($get_family_query);
 
 // Get family members for auto fill box
 $db = getDbInstance();
-$get_family_query = 'SELECT DISTINCT us.user_name,us.id FROM tbl_users us JOIN (SELECT DISTINCT with_who, who  FROM tbl_family WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa ON us.id=fa.with_who OR us.id=fa.who WHERE us.id != '.$logged_id;
+//$get_family_query = 'SELECT DISTINCT us.user_name,us.id FROM tbl_users us JOIN (SELECT DISTINCT with_who, who  FROM tbl_family WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa ON us.id=fa.with_who OR us.id=fa.who WHERE us.id != '.$logged_id;
+$get_family_query = 'SELECT user_name from tbl_users';
 $family_members = $db->rawQuery($get_family_query);
 $families = [];
 foreach($family_members as $family_member):
@@ -40,7 +41,8 @@ $friend_lists = $db->rawQuery($get_friend_query);
 
 // Get friends for auto fill box
 $db = getDbInstance();
-$get_friend_query = 'SELECT DISTINCT us.user_name,us.id FROM tbl_users us JOIN (SELECT DISTINCT with_who, who  FROM tbl_friend WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa ON us.id=fa.with_who OR us.id=fa.who WHERE us.id !='.$logged_id;
+//$get_friend_query = 'SELECT DISTINCT us.user_name,us.id FROM tbl_users us JOIN (SELECT DISTINCT with_who, who  FROM tbl_friend WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa ON us.id=fa.with_who OR us.id=fa.who WHERE us.id !='.$logged_id;
+$get_friend_query = 'SELECT user_name FROM tbl_users';
 $friends_ = $db->rawQuery($get_family_query);
 $friends = [];
 foreach($friends_ as $friend):
