@@ -23,6 +23,22 @@ endforeach;
 
 require_once 'note_email_endpoint.php';
 require_once 'my_album_endpoint.php';
+require_once 'notification.php';
+
+// Check posted note exist
+checkNoteRequest($logged_id);
+
+if($_SESSION['note_request']) {
+    $db = getDbInstance();
+    $query = 'SELECT users.*, notes.id AS note_id, notes.user_id, notes.note_to, notes.status
+              FROM tbl_users AS users JOIN
+              (SELECT * FROM tbl_notes WHERE note_to = '.$logged_id.' AND STATUS = 0) AS notes
+              ON users.id = notes.user_id';
+    $note_requests = $db->rawQuery($query);
+
+    $notification_msg = genNotePostNotMsg($note_requests);
+    $_SESSION['note_request_msg'] = $notification_msg;
+}
 
 // Get saved note lists for current user
 $rows = get_note_lists();

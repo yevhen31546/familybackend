@@ -1,5 +1,6 @@
 <?php
 require_once 'config/config.php';
+require_once 'members/notification.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
@@ -48,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 				);
 				$db->update('tbl_users', $update_remember);
 			}
+
 			// Authentication successfull redirect user
 			header('Location: members/home.php');
 		}

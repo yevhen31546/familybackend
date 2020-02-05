@@ -42,7 +42,7 @@ function save_note_lists($data) {
 
 
 /**
- * After user approve your notes, update notes function
+ * After user approve or delete your notes, update notes
  */
 
 //    If friend/family approve your request, then update status tbl_notes
@@ -73,6 +73,9 @@ if(isset($_GET) && isset($_GET['stat'])){
 
             $body = generateApprovedNoteMessageBody($sender, $receiver);
             $stat = sendNoteEmail($to, $body);
+            if ($stat) {
+                $_SESSION['success'] = $sender['user_name'].' has posted something on your profile successfully';
+            }
 
         } else {
 //            echo "error: save to notes";

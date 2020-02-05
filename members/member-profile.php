@@ -4,7 +4,9 @@ require_once '../config/config.php';
 require_once '../vendor/autoload.php';
 require_once BASE_PATH.'/includes/auth_validate.php';
 require_once 'smtp_endpoint.php';
+require_once 'notification.php';
 
+// Get current user
 $logged_id = $_SESSION['user_id'];
 $db = getDbInstance();
 $db->where('id', $logged_id);
@@ -13,12 +15,49 @@ $row = $db->getOne('tbl_users');
 //Get User list
 $db = getDbInstance();
 $user_list = $db->get('tbl_users');
+
+/**
+ * Notification for friend/family request
+ */
+// Check friend/family request exist
+checkFamilyRequest($logged_id);
+checkFriendRequest($logged_id);
+
+if($_SESSION['friend_request']) {
+    $db = getDbInstance();
+    $query = 'SELECT users.*, friend.id AS friend_id, friend.who, friend.with_who, friend.stat
+              FROM tbl_users AS users JOIN
+              (SELECT * FROM tbl_friend WHERE with_who = '.$logged_id.' AND stat = 0) AS friend
+              ON users.id = friend.who';
+    $friend_requests = $db->rawQuery($query);
+
+    $notification_msg = genFriReqNotMsg($friend_requests);
+    $_SESSION['friend_request_msg'] = $notification_msg;
+}
+
+if($_SESSION['family_request']) {
+    $db = getDbInstance();
+    $query = 'SELECT users.*, family.id AS family_id, family.who, family.with_who, family.relation, family.stat
+              FROM tbl_users AS users JOIN
+              (SELECT * FROM tbl_family WHERE with_who = '.$logged_id.' AND stat = 0) AS family
+              ON users.id = family.who';
+    $family_requests = $db->rawQuery($query);
+
+    $notification_msg = genFamReqNotMsg($family_requests);
+    $_SESSION['family_request_msg'] = $notification_msg;
+}
+
+
 /**
  * Family
  */
 // Get all family member lists
 $db = getDbInstance();
-$get_family_query = 'SELECT us.user_name, us.first_name, us.last_name, fa.relation FROM tbl_users us JOIN (SELECT with_who, who, relation  FROM tbl_family WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa ON us.id=fa.with_who OR us.id=fa.who WHERE us.id!='.$logged_id;
+$get_family_query = 'SELECT us.user_name, us.first_name, us.last_name, fa.relation 
+                     FROM tbl_users us JOIN 
+                     (SELECT with_who, who, relation  
+                         FROM tbl_family WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa
+                     ON us.id=fa.with_who OR us.id=fa.who WHERE us.id!='.$logged_id;
 $family_lists = $db->rawQuery($get_family_query);
 
 // Get family members for auto fill box
@@ -36,7 +75,11 @@ endforeach;
  */
 // Get all friend lists
 $db = getDbInstance();
-$get_friend_query = 'SELECT us.user_name, us.first_name, us.last_name FROM tbl_users us JOIN (SELECT with_who, who  FROM tbl_friend WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa ON us.id=fa.with_who OR us.id=fa.who WHERE us.id!='.$logged_id;
+$get_friend_query = 'SELECT us.user_name, us.first_name, us.last_name
+                     FROM tbl_users us JOIN
+                     (SELECT with_who, who  
+                         FROM tbl_friend WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa
+                     ON us.id=fa.with_who OR us.id=fa.who WHERE us.id!='.$logged_id;
 $friend_lists = $db->rawQuery($get_friend_query);
 
 // Get friends for auto fill box
@@ -383,10 +426,6 @@ if(isset($_POST) && isset($_POST['avatar_fg']) && isset($_FILES["avatar_photo"][
             <p><i class="fa mr--8 fa-clock-o"></i>Active 1 year 9 monts ago</p>
         </div>
         <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
-
-        <!--<div class="cover--user-desc fw--400 fs--18 fstyle--i text-darkest">
-            <p>Hello everyone ! There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-        </div>-->
     </div>
 </div>
 <!-- Cover Header End -->
