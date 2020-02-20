@@ -59,10 +59,6 @@ require_once BASE_PATH.'/includes/auth_validate.php';
 
                     <!-- Filter Nav End -->
 
-                    <h4>**Hari, this info will need to be auto-populated by the note activity and the activity
-                        in the various groups, etc. The activity items below are directly from the template to
-                        show some examples. These will need to removed before production.**</h4>
-
                     <!-- Activity List Start -->
                     <div class="activity--list">
                         
@@ -215,7 +211,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <input type="date" name="note_add_date">
+                                        <input type="date" name="note_add_date" value="<?php echo date("Y-m-d") ?>">
                                     </div>
                                 </div>
 
@@ -244,35 +240,35 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                                     </div>
                                 </div>
 
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label>
-
-                                            <select name="family-member" class="form-control form-sm"
-                                                data-trigger="selectmenu">
-                                                <option value="family-member">*Pick Family Member</option>
-                                                <option value="spouse1">Husband</option>
-                                                <option value="spouse2">Wife</option>
-                                                <option value="spouse3">Significant Other</option>
-                                                <option value="mother">Mother</option>
-                                                <option value="father">Father</option>
-                                                <option value="sister">Sister</option>
-                                                <option value="brother">Brother</option>
-                                                <option value="aunt">Aunt</option>
-                                                <option value="uncle">Uncle</option>
-                                                <option value="niece">Niece</option>
-                                                <option value="nephew">Nephew</option>
-                                                <option value="cousin">Cousin</option>
-                                                <option value="maternal-grandmother">Grandmother
-                                                </option>
-                                                <option value="maternal-grandfather">Grandfather
-                                                </option>
-                                                <option value="more">Other</option>
-
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
+<!--                                <div class="col-xs-12">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label>-->
+<!---->
+<!--                                            <select name="family-member" class="form-control form-sm"-->
+<!--                                                data-trigger="selectmenu">-->
+<!--                                                <option value="family-member">*Pick Family Member</option>-->
+<!--                                                <option value="spouse1">Husband</option>-->
+<!--                                                <option value="spouse2">Wife</option>-->
+<!--                                                <option value="spouse3">Significant Other</option>-->
+<!--                                                <option value="mother">Mother</option>-->
+<!--                                                <option value="father">Father</option>-->
+<!--                                                <option value="sister">Sister</option>-->
+<!--                                                <option value="brother">Brother</option>-->
+<!--                                                <option value="aunt">Aunt</option>-->
+<!--                                                <option value="uncle">Uncle</option>-->
+<!--                                                <option value="niece">Niece</option>-->
+<!--                                                <option value="nephew">Nephew</option>-->
+<!--                                                <option value="cousin">Cousin</option>-->
+<!--                                                <option value="maternal-grandmother">Grandmother-->
+<!--                                                </option>-->
+<!--                                                <option value="maternal-grandfather">Grandfather-->
+<!--                                                </option>-->
+<!--                                                <option value="more">Other</option>-->
+<!---->
+<!--                                            </select>-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
 
                                 <div class="col-xs-12">
@@ -294,7 +290,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                                 </div>
                                 <div class="col-xs-12">
                                     &NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;<button
-                                        type="post" class="btn btn-primary">Save</button>
+                                        type="post" class="btn btn-primary">Add</button>
                                     &NonBreakingSpace;&NonBreakingSpace;<button type="cancel"
                                         class="btn btn-primary">Cancel</button>
                                 </div>
@@ -315,37 +311,37 @@ require_once BASE_PATH.'/includes/auth_validate.php';
 
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <input type="date" name="note_view_date">
+                                        <input type="date" name="note_view_date" value="<?php echo date("Y-m-d") ?>">
                                     </div>
                                 </div>
 
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label>
-                                            <select name="family-member" class="form-control form-sm"
-                                                data-trigger="selectmenu">
-                                                <option value="family-member">*Pick Family Member</option>
-                                                <option value="spouse1">Husband</option>
-                                                <option value="spouse2">Wife</option>
-                                                <option value="spouse3">Significant Other</option>
-                                                <option value="mother">Mother</option>
-                                                <option value="father">Father</option>
-                                                <option value="sister">Sister</option>
-                                                <option value="brother">Brother</option>
-                                                <option value="aunt">Aunt</option>
-                                                <option value="uncle">Uncle</option>
-                                                <option value="niece">Niece</option>
-                                                <option value="nephew">Nephew</option>
-                                                <option value="cousin">Cousin</option>
-                                                <option value="maternal-grandmother">Grandmother
-                                                </option>
-                                                <option value="maternal-grandfather">Grandfather
-                                                </option>
-                                                <option value="more">Other</option>
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
+<!--                                <div class="col-xs-12">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label>-->
+<!--                                            <select name="family-member" class="form-control form-sm"-->
+<!--                                                data-trigger="selectmenu">-->
+<!--                                                <option value="family-member">*Pick Family Member</option>-->
+<!--                                                <option value="spouse1">Husband</option>-->
+<!--                                                <option value="spouse2">Wife</option>-->
+<!--                                                <option value="spouse3">Significant Other</option>-->
+<!--                                                <option value="mother">Mother</option>-->
+<!--                                                <option value="father">Father</option>-->
+<!--                                                <option value="sister">Sister</option>-->
+<!--                                                <option value="brother">Brother</option>-->
+<!--                                                <option value="aunt">Aunt</option>-->
+<!--                                                <option value="uncle">Uncle</option>-->
+<!--                                                <option value="niece">Niece</option>-->
+<!--                                                <option value="nephew">Nephew</option>-->
+<!--                                                <option value="cousin">Cousin</option>-->
+<!--                                                <option value="maternal-grandmother">Grandmother-->
+<!--                                                </option>-->
+<!--                                                <option value="maternal-grandfather">Grandfather-->
+<!--                                                </option>-->
+<!--                                                <option value="more">Other</option>-->
+<!--                                            </select>-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
                                 <div class="col-xs-12">
                                     <div class="form-group">
@@ -398,7 +394,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
 
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <input type="date" name="note_update_date">
+                                        <input type="date" name="note_update_date" value="<?php echo date("Y-m-d") ?>">
                                     </div>
                                 </div>
 

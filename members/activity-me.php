@@ -114,9 +114,7 @@ include BASE_PATH.'/members/includes/header.php'
 
                     </div>
                     <!-- Filter Nav End -->
-                    <h4>**Hari, this info will need to be auto-populated by the note activity and the activity
-                        in the various groups, etc. The activity items below are directly from the template to
-                        show some examples. One of us will need to remove this content before production.**</h4>
+
                     <!-- Activity List Start -->
                     <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
                     <div class="activity--list">
@@ -202,7 +200,7 @@ include BASE_PATH.'/members/includes/header.php'
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                            <input type="date" name="note_add_date">
+                                            <input type="date" name="note_add_date" value="<?php echo date("Y-m-d") ?>">
                                     </div>
                                 </div>
 
@@ -239,18 +237,18 @@ include BASE_PATH.'/members/includes/header.php'
                                         </label>
                                     </div>
                                 </div>
+<!--                                <div class="col-xs-12">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="sel_profile">-->
+<!--                                            Choose a profile-->
+<!--                                        </label>-->
+<!--                                        <div class="autocomplete" style="width: 100%;">-->
+<!--                                            <input id="friendAndfamily" type="text" class="form-control" name="friendAndfamily" placeholder="Family or friend's name">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                                 <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label for="sel_profile">
-                                            Choose a profile
-                                        </label>
-                                        <div class="autocomplete" style="width: 100%;">
-                                            <input id="friendAndfamily" type="text" class="form-control" name="friendAndfamily" placeholder="Family or friend's name">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12">
-                                    <button type="submit" class="btn btn-primary activity-note-add">Save</button>
+                                    <button type="submit" class="btn btn-primary activity-note-add">Add</button>
                                     <button type="button" class="btn btn-primary add_cancel_button">Cancel</button>
                                 </div>
                         </form>
@@ -270,7 +268,7 @@ include BASE_PATH.'/members/includes/header.php'
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <input type="date" name="note_view_date">
+                                        <input type="date" name="note_view_date" value="<?php echo date("Y-m-d") ?>">
                                     </div>
                                 </div>
 
@@ -320,7 +318,7 @@ include BASE_PATH.'/members/includes/header.php'
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <input type="date" name="note_update_date">
+                                        <input type="date" name="note_update_date" value="<?php echo date("Y-m-d") ?>">
                                         <!--                                        <label>-->
 <!--                                            <select name="update_date" class="form-control form-sm"-->
 <!--                                                data-trigger="selectmenu">-->

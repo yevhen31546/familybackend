@@ -172,7 +172,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <input type="date" name="birtdate" placeholder="select Birth date" >
+                                        <input type="date" name="birtdate" value="<?php echo date("Y-m-d") ?>" placeholder="select Birth date" >
                                     </div>
                                 </div>
 
@@ -235,7 +235,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
 
                                 <div class="col-xs-12">
                                     &NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;<button
-                                        type="post" class="btn btn-primary">Save</button>
+                                        type="post" class="btn btn-primary">Add</button>
                                     &NonBreakingSpace;&NonBreakingSpace;<button type="cancel"
                                         class="btn btn-primary">Cancel</button>
                                 </div>
@@ -255,7 +255,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <input type="date" name="note_view_date">
+                                        <input type="date" name="note_view_date" value="<?php echo date("Y-m-d") ?>">
                                     </div>
                                 </div>
 
@@ -325,7 +325,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <input type="date" name="note_update_date">
+                                        <input type="date" name="note_update_date" value="<?php echo date("Y-m-d") ?>">
                                     </div>
                                 </div>
 

@@ -32,7 +32,7 @@ function save_note_lists($data) {
     $data_to_db['note_media'] = $data['media_type']; // video, text, photo
     $data_to_db['cat_id'] = $data['cat_id'];   // category id => 1: My Story, 2: ...
     $data_to_db['note_date'] = $data['note_date']; // note post date
-    $data_to_db['note_to'] = $data['to_who']; // receiver profile id
+//    $data_to_db['note_to'] = $data['to_who']; // receiver profile id
     $data_to_db['user_id'] = $data['who']; // sender id
 
     $db = getDbInstance();
