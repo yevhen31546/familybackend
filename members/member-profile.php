@@ -169,7 +169,8 @@ if(isset($_POST) && isset($_POST['family_member'])) {
     $db = getDbInstance();
     $family_id = $db->insert('tbl_family', $data_to_db);
 
-    $body = generateFamMessageBody($row, $family_user, $relation, $family_id); // $row: from, $family_user: to, $relation: family relationship
+    $body = generateFamMessageBody($row, $family_user, $relation, $family_id); // $row: from, $family_user: to,
+    // $relation: family relationship
 
     $stat = sendEmail($to, $body);
     if ($stat) {

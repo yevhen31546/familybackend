@@ -2,6 +2,62 @@
 session_start();
 require_once '../config/config.php';
 require_once BASE_PATH.'/includes/auth_validate.php';
+require_once 'notification.php';
+
+$logged_id = $_SESSION['user_id'];
+
+/**
+ * Approve or not
+ */
+
+if(isset($_GET) && isset($_GET['group_id'])) {
+    $stat = $_GET['stat'];
+    $group_id = $_GET['group_id'];
+    $member_id = $_GET['member_id'];
+
+    if($stat == 'approved') {
+        $data_to_db = array(
+            'stat'=> 1
+        );
+        $db = getDbInstance();
+        $db->where('id', $member_id);
+        $db->update('tbl_fam_groups_members', $data_to_db);
+    }
+
+    else if($stat == 'delete') {
+        $db = getDbInstance();
+        $db->where('id', $member_id);
+        $db->delete('tbl_fam_groups_members');
+    }
+}
+
+/**
+ * Notification for friend/family request
+ */
+// Check family group invitation exist
+checkFamGroupInvitation($logged_id);
+//checkGroupExists
+
+$db = getDbInstance();
+$db->where('by_who', $logged_id);
+$checkGroup = $db->get('tbl_fam_groups');
+//print_r($checkGroup);exit;
+
+if($_SESSION['family_group_request']) {
+    $db = getDbInstance();
+    $query = 'SELECT us.`first_name`, us.`last_name`, gg.`group_name`, gg.`id` AS member_id, gg.`group_id`
+            FROM tbl_users us, (
+            SELECT g.`by_who`, g.`group_name`, m.`id`, m.`group_id`
+            FROM tbl_fam_groups g, (SELECT group_id, id
+            FROM tbl_fam_groups_members
+            WHERE who='.$logged_id.' AND stat=0) m
+            WHERE g.`id`=m.group_id) gg
+            WHERE gg.by_who = us.`id`';
+    $fam_group_requests = $db->rawQuery($query);
+
+    $notification_msg = genFamGroupNotMsg($fam_group_requests);
+    $_SESSION['fam_group_requests_msg'] = $notification_msg;
+}
 
 ?>
 
@@ -27,6 +83,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
 <section class="page--wrapper pt--80 pb--20">
     <div class="container">
         <div class="row">
+            <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
             <!-- Main Content Start -->
             <div class="main--content col-md-8 pb--60" data-trigger="stickyScroll">
                 <div class="main--content-inner drop--shadow">
@@ -196,9 +253,18 @@ require_once BASE_PATH.'/includes/auth_validate.php';
 
             <!-- Main Sidebar Start -->
             <div class="main--sidebar col-md-4 pb--60" data-trigger="stickyScroll">
-                <div class="filter--link float--left">
-                    <h5>Invite a Family Member (+)</h5>
-                </div>
+                <?php
+                if (count($checkGroup) > 0) { ?>
+                    <div class="filter--link float--left">
+                        <a href="forms/edit_family_group.php?group_id=<?php echo $checkGroup[0]['id']; ?>"><h5>Edit <?php echo $checkGroup[0]['group_name']; ?></h5></a>
+                    </div>
+                <?php }
+                else { ?>
+                    <div class="filter--link float--left">
+                        <a href="forms/create_family_group.php"><h5>Create a new family group (+)</h5></a>
+                    </div>
+                <?php }
+                ?>
                 <br>
                 <br>
 

@@ -58,3 +58,19 @@ if(isset($_SESSION['note_request_msg']))
     echo $_SESSION['note_request_msg'];
     unset($_SESSION['note_request_msg']);
 }
+
+
+// Family group request message
+if(isset($_SESSION['fam_group_requests_msg']))
+{
+    echo $_SESSION['fam_group_requests_msg'];
+    unset($_SESSION['fam_group_requests_msg']);
+}
+
+
+// Friend group request message
+if(isset($_SESSION['fri_group_requests_msg']))
+{
+    echo $_SESSION['fri_group_requests_msg'];
+    unset($_SESSION['fri_group_requests_msg']);
+}

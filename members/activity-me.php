@@ -237,16 +237,16 @@ include BASE_PATH.'/members/includes/header.php'
                                         </label>
                                     </div>
                                 </div>
-<!--                                <div class="col-xs-12">-->
-<!--                                    <div class="form-group">-->
-<!--                                        <label for="sel_profile">-->
-<!--                                            Choose a profile-->
-<!--                                        </label>-->
-<!--                                        <div class="autocomplete" style="width: 100%;">-->
-<!--                                            <input id="friendAndfamily" type="text" class="form-control" name="friendAndfamily" placeholder="Family or friend's name">-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="sel_profile">
+                                            Choose a profile
+                                        </label>
+                                        <div class="autocomplete" style="width: 100%;">
+                                            <input id="friendAndfamily" type="text" class="form-control" name="friendAndfamily" placeholder="Family or friend's name">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-xs-12">
                                     <button type="submit" class="btn btn-primary activity-note-add">Add</button>
                                     <button type="button" class="btn btn-primary add_cancel_button">Cancel</button>

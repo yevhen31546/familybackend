@@ -109,3 +109,82 @@ function genNotePostNotMsg($params) {
 
     return $message;
 }
+
+// Check family group invitation exist
+function checkFamGroupInvitation($user_id) {
+    $db = getDbInstance();
+    $query = 'SELECT * FROM tbl_fam_groups_members WHERE who = '.$user_id.' AND stat = 0';
+    $family_group_requests = $db->rawQuery($query);
+    if(count($family_group_requests) > 0) {
+        $_SESSION['family_group_request'] = 1;
+    } else {
+        $_SESSION['family_group_request'] = 0;
+    }
+}
+
+// Generate family group invitation notification message
+function genFamGroupNotMsg($params) {
+
+    $message = "";
+
+    foreach ($params as $param):
+        $who = $param['first_name']." ".$param['last_name'];
+        $group_name = $param['group_name'];
+        $group_id = $param['group_id'];
+        $member_id = $param['member_id'];
+
+        $approve_url = BASE_URL."/members/activity-fam.php?group_id=".$group_id."&&member_id=".$member_id."&&stat=approved";
+        $delete_url = BASE_URL."/members/activity-fam.php?group_id=".$group_id."&&member_id=".$member_id."&&stat=delete";
+
+        $approve = '<a href="'.$approve_url.'">Approve</a>';
+        $disapprove = '<a href="'.$delete_url.'">Disapprove</a>';
+
+        $message .='<div class="alert alert-info alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            Invitation is arrived from '.$group_name.' that created by '.$who.'.     
+                             '.$approve.' or '.$disapprove.'
+                      </div>';
+    endforeach;
+
+    return $message;
+}
+
+// Check family group invitation exist
+function checkFriGroupInvitation($user_id) {
+    $db = getDbInstance();
+    $query = 'SELECT * FROM tbl_fri_groups_members WHERE who = '.$user_id.' AND stat = 0';
+    $family_group_requests = $db->rawQuery($query);
+    if(count($family_group_requests) > 0) {
+        $_SESSION['friend_group_request'] = 1;
+    } else {
+        $_SESSION['friend_group_request'] = 0;
+    }
+}
+
+// Generate family group invitation notification message
+function genFriGroupNotMsg($params) {
+
+    $message = "";
+
+    foreach ($params as $param):
+        $who = $param['first_name']." ".$param['last_name'];
+        $group_name = $param['group_name'];
+        $group_id = $param['group_id'];
+        $member_id = $param['member_id'];
+
+        $approve_url = BASE_URL."/members/activity-frd.php?group_id=".$group_id."&&member_id=".$member_id."&&stat=approved";
+        $delete_url = BASE_URL."/members/activity-frd.php?group_id=".$group_id."&&member_id=".$member_id."&&stat=delete";
+
+        $approve = '<a href="'.$approve_url.'">Approve</a>';
+        $disapprove = '<a href="'.$delete_url.'">Disapprove</a>';
+
+        $message .='<div class="alert alert-info alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            Invitation is arrived from '.$group_name.' that created by '.$who.'.     
+                             '.$approve.' or '.$disapprove.'
+                      </div>';
+    endforeach;
+
+    return $message;
+}
+
