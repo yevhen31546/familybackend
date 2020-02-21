@@ -216,4 +216,4 @@ if(isset($_POST) && isset($_POST['group_name'])) {
     <script src="../plugins/multi-select/multi-input.js"></script>
     <script src="../plugins/multi-select/script.js"></script>
 
-<?php include BASE_PATH.'../includes/footer.php'?>
+<?php include BASE_PATH.'/members/includes/footer.php'?>
