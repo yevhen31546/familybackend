@@ -5,7 +5,7 @@
 <!-- Footer Section Start -->
 <footer class="footer--section">
     <!-- Footer Widgets Start -->
-    <div class="footer--widgets pt--70 pb--20 bg-lightdark" data-bg-img="img/footer-img/footer-widgets-bg.png">
+    <div class="footer--widgets pt--70 pb--20 bg-lightdark" data-bg-img="<?php echo BASE_URL; ?>/members/img/footer-img/footer-widgets-bg.png">
         <div class="container">
             <div class="row AdjustRow">
                 <div class="col-md-4 col-xs-6 col-xxs-12 pb--60">
