@@ -87,14 +87,14 @@
         <entry file="file://$PROJECT_DIR$/members/includes/footer.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="209">
-              <caret line="126" column="77" lean-forward="false" selection-start-line="126" selection-start-column="77" selection-end-line="126" selection-end-column="77" />
+              <caret line="126" column="131" lean-forward="false" selection-start-line="126" selection-start-column="131" selection-end-line="126" selection-end-column="131" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#footer#0;n#!!top" expanded="true" />
-                <marker date="1582315978418" expanded="true" signature="7138:7358" ph="..." />
-                <marker date="1582315978418" expanded="true" signature="7170:7347" ph="..." />
-                <marker date="1582315978418" expanded="true" signature="7228:7332" ph="..." />
-                <marker date="1582315978418" expanded="true" signature="7514:7584" ph="..." />
-                <marker date="1582315978418" expanded="true" signature="7899:7907" ph="..." />
+                <marker date="1582316076915" expanded="true" signature="7139:7359" ph="..." />
+                <marker date="1582316076915" expanded="true" signature="7171:7348" ph="..." />
+                <marker date="1582316076915" expanded="true" signature="7229:7333" ph="..." />
+                <marker date="1582316076915" expanded="true" signature="7515:7585" ph="..." />
+                <marker date="1582316076915" expanded="true" signature="7900:7908" ph="..." />
               </folding>
             </state>
           </provider>
@@ -370,12 +370,12 @@
       <workItem from="1581104765769" duration="21000" />
       <workItem from="1582197663097" duration="863000" />
       <workItem from="1582206271768" duration="4267000" />
-      <workItem from="1582248862736" duration="44364000" />
+      <workItem from="1582248862736" duration="44463000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="210771000" />
+    <option name="totallyTimeSpent" value="210870000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -952,14 +952,14 @@
     <entry file="file://$PROJECT_DIR$/members/includes/footer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
-          <caret line="126" column="77" lean-forward="false" selection-start-line="126" selection-start-column="77" selection-end-line="126" selection-end-column="77" />
+          <caret line="126" column="131" lean-forward="false" selection-start-line="126" selection-start-column="131" selection-end-line="126" selection-end-column="131" />
           <folding>
             <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#footer#0;n#!!top" expanded="true" />
-            <marker date="1582315978418" expanded="true" signature="7138:7358" ph="..." />
-            <marker date="1582315978418" expanded="true" signature="7170:7347" ph="..." />
-            <marker date="1582315978418" expanded="true" signature="7228:7332" ph="..." />
-            <marker date="1582315978418" expanded="true" signature="7514:7584" ph="..." />
-            <marker date="1582315978418" expanded="true" signature="7899:7907" ph="..." />
+            <marker date="1582316076915" expanded="true" signature="7139:7359" ph="..." />
+            <marker date="1582316076915" expanded="true" signature="7171:7348" ph="..." />
+            <marker date="1582316076915" expanded="true" signature="7229:7333" ph="..." />
+            <marker date="1582316076915" expanded="true" signature="7515:7585" ph="..." />
+            <marker date="1582316076915" expanded="true" signature="7900:7908" ph="..." />
           </folding>
         </state>
       </provider>
