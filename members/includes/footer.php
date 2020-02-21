@@ -124,7 +124,7 @@
                                         <?php if(isset($row['avatar'])) { ?>
                                             <img src="<?php echo BASE_URL.'/members/'.substr($row['avatar'], 2) ?>" alt="" style="width: 30px; height: 30px;">
                                         <?php } else { ?>
-                                            <img src="img/widgets-img/recent-active-members/01.jpg" alt="">
+                                            <img src="<?php echo BASE_URL; ?>/members/img/widgets-img/recent-active-members/01.jpg alt="">
                                         <?php } ?>
                                     </a>
                             </div>

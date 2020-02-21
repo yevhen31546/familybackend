@@ -14,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="config.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="config.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="40" column="9" lean-forward="true" selection-start-line="33" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+            <state relative-caret-position="506">
+              <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -83,18 +83,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footer.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="footer.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/members/includes/footer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="124" column="84" lean-forward="false" selection-start-line="124" selection-start-column="84" selection-end-line="124" selection-end-column="84" />
+            <state relative-caret-position="209">
+              <caret line="126" column="77" lean-forward="false" selection-start-line="126" selection-start-column="77" selection-end-line="126" selection-end-column="77" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#footer#0;n#!!top" expanded="true" />
-                <marker date="1582315772259" expanded="true" signature="7107:7327" ph="..." />
-                <marker date="1582315772259" expanded="true" signature="7139:7316" ph="..." />
-                <marker date="1582315772259" expanded="true" signature="7197:7301" ph="..." />
-                <marker date="1582315772259" expanded="true" signature="7483:7553" ph="..." />
-                <marker date="1582315772259" expanded="true" signature="7868:7876" ph="..." />
+                <marker date="1582315978418" expanded="true" signature="7138:7358" ph="..." />
+                <marker date="1582315978418" expanded="true" signature="7170:7347" ph="..." />
+                <marker date="1582315978418" expanded="true" signature="7228:7332" ph="..." />
+                <marker date="1582315978418" expanded="true" signature="7514:7584" ph="..." />
+                <marker date="1582315978418" expanded="true" signature="7899:7907" ph="..." />
               </folding>
             </state>
           </provider>
@@ -263,8 +263,8 @@
         <option value="$PROJECT_DIR$/members/forms/create_friend_group.php" />
         <option value="$PROJECT_DIR$/members/forms/edit_friend_group.php" />
         <option value="$PROJECT_DIR$/members/forms/edit_family_group.php" />
-        <option value="$PROJECT_DIR$/members/includes/footer.php" />
         <option value="$PROJECT_DIR$/config/config.php" />
+        <option value="$PROJECT_DIR$/members/includes/footer.php" />
       </list>
     </option>
   </component>
@@ -311,49 +311,6 @@
               <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
               <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="uploads" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="uploads" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="1" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="uploads" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="7" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="uploads" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="7" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="notes" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="uploads" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="8" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="uploads" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="8" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="avatars" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -413,12 +370,12 @@
       <workItem from="1581104765769" duration="21000" />
       <workItem from="1582197663097" duration="863000" />
       <workItem from="1582206271768" duration="4267000" />
-      <workItem from="1582248862736" duration="44200000" />
+      <workItem from="1582248862736" duration="44364000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="210607000" />
+    <option name="totallyTimeSpent" value="210771000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -984,26 +941,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/members/includes/footer.php">
+    <entry file="file://$PROJECT_DIR$/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="124" column="84" lean-forward="false" selection-start-line="124" selection-start-column="84" selection-end-line="124" selection-end-column="84" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#footer#0;n#!!top" expanded="true" />
-            <marker date="1582315772259" expanded="true" signature="7107:7327" ph="..." />
-            <marker date="1582315772259" expanded="true" signature="7139:7316" ph="..." />
-            <marker date="1582315772259" expanded="true" signature="7197:7301" ph="..." />
-            <marker date="1582315772259" expanded="true" signature="7483:7553" ph="..." />
-            <marker date="1582315772259" expanded="true" signature="7868:7876" ph="..." />
-          </folding>
+        <state relative-caret-position="506">
+          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.php">
+    <entry file="file://$PROJECT_DIR$/members/includes/footer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="40" column="9" lean-forward="true" selection-start-line="33" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
-          <folding />
+        <state relative-caret-position="209">
+          <caret line="126" column="77" lean-forward="false" selection-start-line="126" selection-start-column="77" selection-end-line="126" selection-end-column="77" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#footer#0;n#!!top" expanded="true" />
+            <marker date="1582315978418" expanded="true" signature="7138:7358" ph="..." />
+            <marker date="1582315978418" expanded="true" signature="7170:7347" ph="..." />
+            <marker date="1582315978418" expanded="true" signature="7228:7332" ph="..." />
+            <marker date="1582315978418" expanded="true" signature="7514:7584" ph="..." />
+            <marker date="1582315978418" expanded="true" signature="7899:7907" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
