@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0dcfc1bc-f385-4583-b2ea-764e7c8ae5c4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.php" afterPath="$PROJECT_DIR$/config/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/includes/footer.php" afterPath="$PROJECT_DIR$/members/includes/footer.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="config.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="config.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="37" lean-forward="true" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
+            <state relative-caret-position="484">
+              <caret line="40" column="9" lean-forward="true" selection-start-line="33" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -27,36 +27,13 @@
       <file leaf-file-name="activity-frd.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/members/activity-frd.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="56" />
+            <state relative-caret-position="560">
+              <caret line="453" column="0" lean-forward="false" selection-start-line="453" selection-start-column="0" selection-end-line="453" selection-end-column="56" />
               <folding>
                 <element signature="e#2547#8614#0#HTML" expanded="false" />
                 <marker date="1582312632340" expanded="true" signature="1100:1518" ph="SELECT us.`f... tbl_users" />
                 <marker date="1582312632340" expanded="true" signature="1238:1476" ph="SELECT g.`by... tbl_fri_groups" />
                 <marker date="1582312632340" expanded="true" signature="1330:1437" ph="SELECT group... tbl_fri_groups_members" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="notification.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/members/notification.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="962">
-              <caret line="178" column="41" lean-forward="false" selection-start-line="178" selection-start-column="41" selection-end-line="178" selection-end-column="41" />
-              <folding>
-                <marker date="1582311877922" expanded="true" signature="116:183" ph="SELECT * FRO... tbl_family" />
-                <marker date="1582311877922" expanded="true" signature="483:550" ph="SELECT * FRO... tbl_friend" />
-                <marker date="1582311877922" expanded="true" signature="852:919" ph="SELECT * FRO... tbl_notes" />
-                <marker date="1582311877922" expanded="true" signature="1803:2032" ph="..." />
-                <marker date="1582311877922" expanded="true" signature="2840:3069" ph="..." />
-                <marker date="1582311877922" expanded="true" signature="3824:4063" ph="..." />
-                <marker date="1582311877922" expanded="true" signature="4233:4307" ph="SELECT * FRO... tbl_fam_groups_members" />
-                <marker date="1582311877922" expanded="true" signature="5302:5487" ph="..." />
-                <marker date="1582311877922" expanded="true" signature="5302:5541" ph="..." />
-                <marker date="1582311877922" expanded="true" signature="5302:5590" ph="..." />
-                <marker date="1582311877922" expanded="true" signature="5760:5834" ph="SELECT * FRO... tbl_fri_groups_members" />
-                <marker date="1582311877922" expanded="true" signature="6829:7117" ph="..." />
               </folding>
             </state>
           </provider>
@@ -86,21 +63,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create_family_group.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="create_family_group.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/members/forms/create_family_group.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="182" column="29" lean-forward="false" selection-start-line="182" selection-start-column="4" selection-end-line="182" selection-end-column="29" />
+            <state relative-caret-position="531">
+              <caret line="187" column="46" lean-forward="false" selection-start-line="187" selection-start-column="46" selection-end-line="187" selection-end-column="46" />
               <folding>
-                <marker date="1582313398419" expanded="true" signature="437:803" ph="SELECT us.id... tbl_users" />
-                <marker date="1582313398419" expanded="true" signature="589:727" ph="SELECT with_... tbl_family" />
-                <marker date="1582313398419" expanded="true" signature="1394:1643" ph="..." />
-                <marker date="1582313398419" expanded="true" signature="1428:1636" ph="..." />
-                <marker date="1582313398419" expanded="true" signature="1431:1502" ph="..." />
-                <marker date="1582313398419" expanded="true" signature="1555:1561" ph=" " />
-                <marker date="1582313398419" expanded="true" signature="1561:1567" ph=" " />
-                <marker date="1582313398419" expanded="true" signature="1567:1573" ph=" " />
-                <marker date="1582313398419" expanded="true" signature="1573:1579" ph=" " />
+                <marker date="1582315029012" expanded="true" signature="437:803" ph="SELECT us.id... tbl_users" />
+                <marker date="1582315029012" expanded="true" signature="589:727" ph="SELECT with_... tbl_family" />
+                <marker date="1582315029012" expanded="true" signature="1394:1643" ph="..." />
+                <marker date="1582315029012" expanded="true" signature="1428:1636" ph="..." />
+                <marker date="1582315029012" expanded="true" signature="1431:1502" ph="..." />
+                <marker date="1582315029012" expanded="true" signature="1555:1561" ph=" " />
+                <marker date="1582315029012" expanded="true" signature="1561:1567" ph=" " />
+                <marker date="1582315029012" expanded="true" signature="1567:1573" ph=" " />
+                <marker date="1582315029012" expanded="true" signature="1573:1579" ph=" " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="footer.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/members/includes/footer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="124" column="84" lean-forward="false" selection-start-line="124" selection-start-column="84" selection-end-line="124" selection-end-column="84" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#footer#0;n#!!top" expanded="true" />
+                <marker date="1582315772259" expanded="true" signature="7107:7327" ph="..." />
+                <marker date="1582315772259" expanded="true" signature="7139:7316" ph="..." />
+                <marker date="1582315772259" expanded="true" signature="7197:7301" ph="..." />
+                <marker date="1582315772259" expanded="true" signature="7483:7553" ph="..." />
+                <marker date="1582315772259" expanded="true" signature="7868:7876" ph="..." />
               </folding>
             </state>
           </provider>
@@ -109,32 +103,22 @@
       <file leaf-file-name="create_friend_group.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/members/forms/create_friend_group.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="4" column="41" lean-forward="true" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+            <state relative-caret-position="531">
+              <caret line="185" column="45" lean-forward="false" selection-start-line="185" selection-start-column="45" selection-end-line="185" selection-end-column="45" />
               <folding>
                 <element signature="e#3688#4215#0#HTML" expanded="false" />
                 <element signature="e#5553#5559#0#HTML" expanded="true" />
                 <element signature="e#5559#5565#0#HTML" expanded="true" />
                 <element signature="e#5565#5571#0#HTML" expanded="true" />
                 <element signature="e#7770#7798#0#HTML" expanded="true" />
-                <marker date="1582313398564" expanded="true" signature="429:770" ph="SELECT us.id... tbl_users" />
-                <marker date="1582313398564" expanded="true" signature="629:694" ph="SELECT with_... tbl_family" />
-                <marker date="1582313398564" expanded="true" signature="629:770" ph="SELECT us.id... tbl_users" />
-                <marker date="1582313398564" expanded="true" signature="1515:1521" ph=" " />
-                <marker date="1582313398564" expanded="true" signature="1521:1527" ph=" " />
-                <marker date="1582313398564" expanded="true" signature="1527:1533" ph=" " />
-                <marker date="1582313398564" expanded="true" signature="1533:1539" ph=" " />
+                <marker date="1582315029072" expanded="true" signature="429:770" ph="SELECT us.id... tbl_users" />
+                <marker date="1582315029072" expanded="true" signature="629:694" ph="SELECT with_... tbl_family" />
+                <marker date="1582315029072" expanded="true" signature="629:770" ph="SELECT us.id... tbl_users" />
+                <marker date="1582315029072" expanded="true" signature="1515:1521" ph=" " />
+                <marker date="1582315029072" expanded="true" signature="1521:1527" ph=" " />
+                <marker date="1582315029072" expanded="true" signature="1527:1533" ph=" " />
+                <marker date="1582315029072" expanded="true" signature="1533:1539" ph=" " />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/members/plugins/multi-select/script.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="29" column="45" lean-forward="false" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="45" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -142,20 +126,20 @@
       <file leaf-file-name="edit_friend_group.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/members/forms/edit_friend_group.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="517">
+              <caret line="218" column="47" lean-forward="true" selection-start-line="218" selection-start-column="47" selection-end-line="218" selection-end-column="47" />
               <folding>
                 <element signature="e#4327#4854#0#HTML" expanded="false" />
                 <element signature="e#6374#6380#0#HTML" expanded="true" />
                 <element signature="e#6380#6386#0#HTML" expanded="true" />
                 <element signature="e#6386#6392#0#HTML" expanded="true" />
                 <element signature="e#8737#8765#0#HTML" expanded="true" />
-                <marker date="1582313398448" expanded="true" signature="755:1074" ph="SELECT us.us... tbl_users" />
-                <marker date="1582313398448" expanded="true" signature="870:998" ph="SELECT with_... tbl_friend" />
-                <marker date="1582313398448" expanded="true" signature="1819:1825" ph=" " />
-                <marker date="1582313398448" expanded="true" signature="1825:1831" ph=" " />
-                <marker date="1582313398448" expanded="true" signature="1831:1837" ph=" " />
-                <marker date="1582313398448" expanded="true" signature="1837:1843" ph=" " />
+                <marker date="1582315029041" expanded="true" signature="755:1074" ph="SELECT us.us... tbl_users" />
+                <marker date="1582315029041" expanded="true" signature="870:998" ph="SELECT with_... tbl_friend" />
+                <marker date="1582315029041" expanded="true" signature="1819:1825" ph=" " />
+                <marker date="1582315029041" expanded="true" signature="1825:1831" ph=" " />
+                <marker date="1582315029041" expanded="true" signature="1831:1837" ph=" " />
+                <marker date="1582315029041" expanded="true" signature="1837:1843" ph=" " />
               </folding>
             </state>
           </provider>
@@ -164,21 +148,21 @@
       <file leaf-file-name="edit_family_group.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/members/forms/edit_family_group.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="18" column="34" lean-forward="true" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+            <state relative-caret-position="546">
+              <caret line="217" column="47" lean-forward="false" selection-start-line="217" selection-start-column="47" selection-end-line="217" selection-end-column="47" />
               <folding>
                 <element signature="e#6417#6423#0#HTML" expanded="true" />
                 <element signature="e#6423#6429#0#HTML" expanded="true" />
                 <element signature="e#6429#6435#0#HTML" expanded="true" />
                 <element signature="e#8787#8815#0#HTML" expanded="true" />
-                <marker date="1582313398535" expanded="true" signature="778:1144" ph="SELECT us.id... tbl_users" />
-                <marker date="1582313398535" expanded="true" signature="930:1068" ph="SELECT with_... tbl_family" />
-                <marker date="1582313398535" expanded="true" signature="1896:1902" ph=" " />
-                <marker date="1582313398535" expanded="true" signature="1902:1908" ph=" " />
-                <marker date="1582313398535" expanded="true" signature="1908:1914" ph=" " />
-                <marker date="1582313398535" expanded="true" signature="1914:1920" ph=" " />
-                <marker date="1582313398535" expanded="true" signature="6749:7043" ph="..." />
-                <marker date="1582313398535" expanded="true" signature="7693:7758" ph="..." />
+                <marker date="1582315029054" expanded="true" signature="778:1144" ph="SELECT us.id... tbl_users" />
+                <marker date="1582315029054" expanded="true" signature="930:1068" ph="SELECT with_... tbl_family" />
+                <marker date="1582315029054" expanded="true" signature="1896:1902" ph=" " />
+                <marker date="1582315029054" expanded="true" signature="1902:1908" ph=" " />
+                <marker date="1582315029054" expanded="true" signature="1908:1914" ph=" " />
+                <marker date="1582315029054" expanded="true" signature="1914:1920" ph=" " />
+                <marker date="1582315029054" expanded="true" signature="6749:7043" ph="..." />
+                <marker date="1582315029054" expanded="true" signature="7693:7758" ph="..." />
               </folding>
             </state>
           </provider>
@@ -188,8 +172,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>get to know us</find>
-      <find>href</find>
       <find>$family_lists</find>
       <find>group_name</find>
       <find>textareaw</find>
@@ -217,7 +199,9 @@
       <find>_GET</find>
       <find>$families</find>
       <find>$friends</find>
+      <find>&lt;!-- Page Wrapper End --&gt;</find>
       <find>genFriGroupMsgBody</find>
+      <find>activity</find>
     </findStrings>
     <replaceStrings>
       <replace>index.php</replace>
@@ -254,7 +238,6 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="C:/xampp/htdocs/work/1.php" />
         <option value="$PROJECT_DIR$/smtp_endpoint.php" />
-        <option value="$PROJECT_DIR$/members/includes/footer.php" />
         <option value="$PROJECT_DIR$/members/members.php" />
         <option value="$PROJECT_DIR$/register.php" />
         <option value="$PROJECT_DIR$/style.css" />
@@ -276,11 +259,12 @@
         <option value="$PROJECT_DIR$/members/notification.php" />
         <option value="$PROJECT_DIR$/members/activity-fam.php" />
         <option value="$PROJECT_DIR$/members/activity-frd.php" />
+        <option value="$PROJECT_DIR$/members/forms/create_family_group.php" />
+        <option value="$PROJECT_DIR$/members/forms/create_friend_group.php" />
         <option value="$PROJECT_DIR$/members/forms/edit_friend_group.php" />
         <option value="$PROJECT_DIR$/members/forms/edit_family_group.php" />
-        <option value="$PROJECT_DIR$/members/forms/create_friend_group.php" />
+        <option value="$PROJECT_DIR$/members/includes/footer.php" />
         <option value="$PROJECT_DIR$/config/config.php" />
-        <option value="$PROJECT_DIR$/members/forms/create_family_group.php" />
       </list>
     </option>
   </component>
@@ -326,37 +310,50 @@
             <path>
               <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
               <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="includes" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
               <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="forms" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="uploads" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
               <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="includes" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="uploads" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="1" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
               <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="plugins" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="uploads" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="7" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
               <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="plugins" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="multi-select" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="uploads" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="7" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="notes" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="uploads" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="8" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="uploads" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="8" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="avatars" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -416,12 +413,12 @@
       <workItem from="1581104765769" duration="21000" />
       <workItem from="1582197663097" duration="863000" />
       <workItem from="1582206271768" duration="4267000" />
-      <workItem from="1582248862736" duration="43297000" />
+      <workItem from="1582248862736" duration="44200000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="209704000" />
+    <option name="totallyTimeSpent" value="210607000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -485,13 +482,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/admin/apps/users/app-users.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/xampp/htdocs/work/1.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -571,13 +561,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="10" column="22731" lean-forward="false" selection-start-line="10" selection-start-column="22731" selection-end-line="10" selection-end-column="22731" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/members/includes/footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="107" column="10" lean-forward="true" selection-start-line="107" selection-start-column="10" selection-end-line="107" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -880,76 +863,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/members/forms/create_friend_group.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="41" lean-forward="true" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
-          <folding>
-            <element signature="e#3688#4215#0#HTML" expanded="false" />
-            <element signature="e#5553#5559#0#HTML" expanded="true" />
-            <element signature="e#5559#5565#0#HTML" expanded="true" />
-            <element signature="e#5565#5571#0#HTML" expanded="true" />
-            <element signature="e#7770#7798#0#HTML" expanded="true" />
-            <marker date="1582313398564" expanded="true" signature="429:770" ph="SELECT us.id... tbl_users" />
-            <marker date="1582313398564" expanded="true" signature="629:694" ph="SELECT with_... tbl_family" />
-            <marker date="1582313398564" expanded="true" signature="629:770" ph="SELECT us.id... tbl_users" />
-            <marker date="1582313398564" expanded="true" signature="1515:1521" ph=" " />
-            <marker date="1582313398564" expanded="true" signature="1521:1527" ph=" " />
-            <marker date="1582313398564" expanded="true" signature="1527:1533" ph=" " />
-            <marker date="1582313398564" expanded="true" signature="1533:1539" ph=" " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/members/forms/edit_friend_group.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="e#4327#4854#0#HTML" expanded="false" />
-            <element signature="e#6374#6380#0#HTML" expanded="true" />
-            <element signature="e#6380#6386#0#HTML" expanded="true" />
-            <element signature="e#6386#6392#0#HTML" expanded="true" />
-            <element signature="e#8737#8765#0#HTML" expanded="true" />
-            <marker date="1582313398448" expanded="true" signature="755:1074" ph="SELECT us.us... tbl_users" />
-            <marker date="1582313398448" expanded="true" signature="870:998" ph="SELECT with_... tbl_friend" />
-            <marker date="1582313398448" expanded="true" signature="1819:1825" ph=" " />
-            <marker date="1582313398448" expanded="true" signature="1825:1831" ph=" " />
-            <marker date="1582313398448" expanded="true" signature="1831:1837" ph=" " />
-            <marker date="1582313398448" expanded="true" signature="1837:1843" ph=" " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/members/forms/edit_family_group.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="34" lean-forward="true" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
-          <folding>
-            <element signature="e#6417#6423#0#HTML" expanded="true" />
-            <element signature="e#6423#6429#0#HTML" expanded="true" />
-            <element signature="e#6429#6435#0#HTML" expanded="true" />
-            <element signature="e#8787#8815#0#HTML" expanded="true" />
-            <marker date="1582313398535" expanded="true" signature="778:1144" ph="SELECT us.id... tbl_users" />
-            <marker date="1582313398535" expanded="true" signature="930:1068" ph="SELECT with_... tbl_family" />
-            <marker date="1582313398535" expanded="true" signature="1896:1902" ph=" " />
-            <marker date="1582313398535" expanded="true" signature="1902:1908" ph=" " />
-            <marker date="1582313398535" expanded="true" signature="1908:1914" ph=" " />
-            <marker date="1582313398535" expanded="true" signature="1914:1920" ph=" " />
-            <marker date="1582313398535" expanded="true" signature="6749:7043" ph="..." />
-            <marker date="1582313398535" expanded="true" signature="7693:7758" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="37" lean-forward="true" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/members/activity-fam.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="638">
@@ -962,18 +875,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/members/includes/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="160" column="0" lean-forward="true" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/members/activity-frd.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="56" />
+        <state relative-caret-position="560">
+          <caret line="453" column="0" lean-forward="false" selection-start-line="453" selection-start-column="0" selection-end-line="453" selection-end-column="56" />
           <folding>
             <element signature="e#2547#8614#0#HTML" expanded="false" />
             <marker date="1582312632340" expanded="true" signature="1100:1518" ph="SELECT us.`f... tbl_users" />
@@ -983,21 +888,122 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/includes/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-66">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/members/includes/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="160" column="0" lean-forward="true" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/members/forms/create_family_group.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="182" column="29" lean-forward="false" selection-start-line="182" selection-start-column="4" selection-end-line="182" selection-end-column="29" />
+        <state relative-caret-position="531">
+          <caret line="187" column="46" lean-forward="false" selection-start-line="187" selection-start-column="46" selection-end-line="187" selection-end-column="46" />
           <folding>
-            <marker date="1582313398419" expanded="true" signature="437:803" ph="SELECT us.id... tbl_users" />
-            <marker date="1582313398419" expanded="true" signature="589:727" ph="SELECT with_... tbl_family" />
-            <marker date="1582313398419" expanded="true" signature="1394:1643" ph="..." />
-            <marker date="1582313398419" expanded="true" signature="1428:1636" ph="..." />
-            <marker date="1582313398419" expanded="true" signature="1431:1502" ph="..." />
-            <marker date="1582313398419" expanded="true" signature="1555:1561" ph=" " />
-            <marker date="1582313398419" expanded="true" signature="1561:1567" ph=" " />
-            <marker date="1582313398419" expanded="true" signature="1567:1573" ph=" " />
-            <marker date="1582313398419" expanded="true" signature="1573:1579" ph=" " />
+            <marker date="1582315029012" expanded="true" signature="437:803" ph="SELECT us.id... tbl_users" />
+            <marker date="1582315029012" expanded="true" signature="589:727" ph="SELECT with_... tbl_family" />
+            <marker date="1582315029012" expanded="true" signature="1394:1643" ph="..." />
+            <marker date="1582315029012" expanded="true" signature="1428:1636" ph="..." />
+            <marker date="1582315029012" expanded="true" signature="1431:1502" ph="..." />
+            <marker date="1582315029012" expanded="true" signature="1555:1561" ph=" " />
+            <marker date="1582315029012" expanded="true" signature="1561:1567" ph=" " />
+            <marker date="1582315029012" expanded="true" signature="1567:1573" ph=" " />
+            <marker date="1582315029012" expanded="true" signature="1573:1579" ph=" " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/members/forms/create_friend_group.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="185" column="45" lean-forward="false" selection-start-line="185" selection-start-column="45" selection-end-line="185" selection-end-column="45" />
+          <folding>
+            <element signature="e#3688#4215#0#HTML" expanded="false" />
+            <element signature="e#5553#5559#0#HTML" expanded="true" />
+            <element signature="e#5559#5565#0#HTML" expanded="true" />
+            <element signature="e#5565#5571#0#HTML" expanded="true" />
+            <element signature="e#7770#7798#0#HTML" expanded="true" />
+            <marker date="1582315029072" expanded="true" signature="429:770" ph="SELECT us.id... tbl_users" />
+            <marker date="1582315029072" expanded="true" signature="629:694" ph="SELECT with_... tbl_family" />
+            <marker date="1582315029072" expanded="true" signature="629:770" ph="SELECT us.id... tbl_users" />
+            <marker date="1582315029072" expanded="true" signature="1515:1521" ph=" " />
+            <marker date="1582315029072" expanded="true" signature="1521:1527" ph=" " />
+            <marker date="1582315029072" expanded="true" signature="1527:1533" ph=" " />
+            <marker date="1582315029072" expanded="true" signature="1533:1539" ph=" " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/members/forms/edit_friend_group.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="218" column="47" lean-forward="true" selection-start-line="218" selection-start-column="47" selection-end-line="218" selection-end-column="47" />
+          <folding>
+            <element signature="e#4327#4854#0#HTML" expanded="false" />
+            <element signature="e#6374#6380#0#HTML" expanded="true" />
+            <element signature="e#6380#6386#0#HTML" expanded="true" />
+            <element signature="e#6386#6392#0#HTML" expanded="true" />
+            <element signature="e#8737#8765#0#HTML" expanded="true" />
+            <marker date="1582315029041" expanded="true" signature="755:1074" ph="SELECT us.us... tbl_users" />
+            <marker date="1582315029041" expanded="true" signature="870:998" ph="SELECT with_... tbl_friend" />
+            <marker date="1582315029041" expanded="true" signature="1819:1825" ph=" " />
+            <marker date="1582315029041" expanded="true" signature="1825:1831" ph=" " />
+            <marker date="1582315029041" expanded="true" signature="1831:1837" ph=" " />
+            <marker date="1582315029041" expanded="true" signature="1837:1843" ph=" " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/members/forms/edit_family_group.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="217" column="47" lean-forward="false" selection-start-line="217" selection-start-column="47" selection-end-line="217" selection-end-column="47" />
+          <folding>
+            <element signature="e#6417#6423#0#HTML" expanded="true" />
+            <element signature="e#6423#6429#0#HTML" expanded="true" />
+            <element signature="e#6429#6435#0#HTML" expanded="true" />
+            <element signature="e#8787#8815#0#HTML" expanded="true" />
+            <marker date="1582315029054" expanded="true" signature="778:1144" ph="SELECT us.id... tbl_users" />
+            <marker date="1582315029054" expanded="true" signature="930:1068" ph="SELECT with_... tbl_family" />
+            <marker date="1582315029054" expanded="true" signature="1896:1902" ph=" " />
+            <marker date="1582315029054" expanded="true" signature="1902:1908" ph=" " />
+            <marker date="1582315029054" expanded="true" signature="1908:1914" ph=" " />
+            <marker date="1582315029054" expanded="true" signature="1914:1920" ph=" " />
+            <marker date="1582315029054" expanded="true" signature="6749:7043" ph="..." />
+            <marker date="1582315029054" expanded="true" signature="7693:7758" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/members/includes/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="124" column="84" lean-forward="false" selection-start-line="124" selection-start-column="84" selection-end-line="124" selection-end-column="84" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#footer#0;n#!!top" expanded="true" />
+            <marker date="1582315772259" expanded="true" signature="7107:7327" ph="..." />
+            <marker date="1582315772259" expanded="true" signature="7139:7316" ph="..." />
+            <marker date="1582315772259" expanded="true" signature="7197:7301" ph="..." />
+            <marker date="1582315772259" expanded="true" signature="7483:7553" ph="..." />
+            <marker date="1582315772259" expanded="true" signature="7868:7876" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="40" column="9" lean-forward="true" selection-start-line="33" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
