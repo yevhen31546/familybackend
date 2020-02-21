@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../../config/config.php';
-require_once BASE_PATH . '../includes/auth_validate.php';
+require_once BASE_PATH . '/includes/auth_validate.php';
 require_once '../../vendor/autoload.php';
 require_once '../smtp_endpoint.php';
 
