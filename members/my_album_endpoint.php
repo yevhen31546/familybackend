@@ -30,21 +30,23 @@ if(isset($_GET) && isset($_GET['stat'])){
         if ($last_id) {
 //            echo "successfully added";
 
-            $body = generateApprovedNoteMessageBody($sender, $receiver);
-            $stat = sendNoteEmail($to, $body);
-            if ($stat) {
-                $_SESSION['success'] = $sender['user_name'].' has posted something on your profile successfully';
-            }
+//            $body = generateApprovedNoteMessageBody($sender, $receiver);
+//            $stat = sendNoteEmail($to, $body);
+//            if ($stat) {
+//                $_SESSION['success'] = $sender['user_name'].' has posted something on your profile successfully';
+//            }
+            $_SESSION['success'] = $sender['user_name'].' has posted something on your profile successfully';
 
         } else {
+            $_SESSION['failure'] = 'error: approve to notes';
 //            echo "error: save to notes";
         }
     } else if($_GET['stat'] == 'delete') {
-        $body = generateDeleteNoteMessageBody($sender, $receiver);
-        $stat = sendNoteEmail($to, $body);
-//        $db = getDbInstance();
-//        $db->where('id', $note_id);
-//        $db->delete('tbl_notes');  // Delete posted note
+//        $body = generateDeleteNoteMessageBody($sender, $receiver);
+//        $stat = sendNoteEmail($to, $body);
+        $db = getDbInstance();
+        $db->where('id', $note_id);
+        $db->delete('tbl_notes');  // Delete posted note
     }
 }
 
