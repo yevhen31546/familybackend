@@ -25,6 +25,105 @@
     }
 
     /**
+     * Group note function in activity-fam.php & activity-frd.php
+     */
+    $('.activity-group-note-add').click(function (e) {
+
+        $('#group_note_add_modal').html('Add New Note');
+
+        $('.note-add-modal input[name="mode"]').val('add');
+
+
+        e.preventDefault();
+
+        var add_date_val = true;
+        var add_note_cat_val = true;
+        var add_note_media_val = true;
+
+        console.log("here note");
+        var category = $('ul[data-select-name="group_category"] li.selected').attr('data-option-value');
+        console.log(category);
+        var media = $('ul[data-select-name="multimedia"] li.selected').attr('data-option-value');
+        console.log(media);
+        var note_add_date = $('#group_note_add_form input[name="group_note_add_date"]').val();
+        console.log(note_add_date);
+        var group_id = $('#add_note_group_id').val();
+        console.log(group_id);
+        //validation part
+        if(note_add_date === '') {
+            $('#group_note_add_form input[name="group_note_add_date"]').css("border", "1px solid red");
+            add_date_val = false;
+        } else {
+            $('#group_note_add_form input[name="group_note_add_date"]').css("border", "1px solid white");
+            add_date_val = true;
+        }
+        if(category == "category") {
+            $('#group_note_add_form input[name="group_category"]').parent().parent().css("border","1px solid red");//more efficient
+            add_note_cat_val = false;
+        } else {
+            $('#group_note_add_form input[name="group_category"]').parent().parent().css("border","1px solid white");//more efficient
+            add_note_cat_val = true;
+        }
+        if(media == "addmedia") {
+            $('#group_note_add_form input[name="multimedia"]').parent().parent().css("border", "1px solid red");
+            add_note_media_val = false;
+        } else {
+            $('#group_note_add_form input[name="multimedia"]').parent().parent().css("border","1px solid white");//more efficient
+            add_note_media_val = true;
+            if(media == 'text') {
+                if(add_date_val && add_note_media_val && add_note_cat_val) {
+                    $('.note-add-modal').modal('toggle');
+                    $('.note-add-modal input[name="cat_id"]').val(category);
+                    $('.note-add-modal input[name="note_date"]').val(note_add_date);
+                    $('.note-add-modal input[name="note_media"]').val(media);
+                    $('.note-add-modal input[name="note_to"]').val(group_id);     // Group id
+                    $('.note-add-modal input[name="note_value"]').show();
+                    $('.note-add-modal input[name="note_photo"]').hide();
+                    $('.note-add-modal input[name="note_video"]').hide();
+                    $('.note-add-modal #note_photo_id').hide();
+                    // $('.note-add-modal input[name="note_photo"]').show();
+                    // $('.note-add-modal input[name="note_video"]').show();
+                    $('.note-add-modal input[name="note_photo"]').removeAttr("required");
+                    $('.note-add-modal input[name="note_video"]').removeAttr("required");
+                    // $('.note-add-modal input[name="note_video"]').hide();
+                }
+            } else if(media == 'photo') {
+                if(add_date_val && add_note_media_val && add_note_cat_val) {
+                    $('.note-add-modal').modal('toggle');
+                    $('.note-add-modal input[name="cat_id"]').val(category);
+                    $('.note-add-modal input[name="note_date"]').val(note_add_date);
+                    $('.note-add-modal input[name="note_media"]').val(media);
+                    $('.note-add-modal input[name="note_to"]').val(group_id);     // Profile id
+                    $('.note-add-modal input[name="note_value"]').hide();
+                    $('.note-add-modal input[name="note_photo"]').show();
+                    $('.note-add-modal input[name="note_video"]').hide();
+
+                    $('.note-add-modal #note_photo_id').show();
+
+                    $('.note-add-modal input[name="note_value"]').removeAttr("required");
+                    $('.note-add-modal input[name="note_video"]').removeAttr("required");
+                }
+            } else if(media == 'video') {
+                if(add_date_val && add_note_media_val && add_note_cat_val) {
+                    $('.note-add-modal').modal('toggle');
+                    $('.note-add-modal input[name="cat_id"]').val(category);
+                    $('.note-add-modal input[name="note_date"]').val(note_add_date);
+                    $('.note-add-modal input[name="note_media"]').val(media);
+                    $('.note-add-modal input[name="note_to"]').val(group_id);     // Profile id
+                    $('.note-add-modal input[name="note_value"]').hide();
+                    $('.note-add-modal input[name="note_photo"]').hide();
+                    $('.note-add-modal input[name="note_video"]').show();
+
+                    $('.note-add-modal #note_photo_id').hide();
+
+                    $('.note-add-modal input[name="note_value"]').removeAttr("required");
+                    $('.note-add-modal input[name="note_photo"]').removeAttr("required");
+                }
+            }
+        }
+    });
+
+    /**
      * My Album (activity-me.php) add note function
      */
 

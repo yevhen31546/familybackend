@@ -1,47 +1,16 @@
 <?php
 session_start();
 require_once '../config/config.php';
+require_once '../vendor/autoload.php';
 require_once BASE_PATH.'/includes/auth_validate.php';
+require_once 'fri_group_note_endpoint.php';
 require_once 'notification.php';
 
-$logged_id = $_SESSION['user_id'];
-
 /**
- * Approve or not
+ * Check notification
  */
-if(isset($_GET) && isset($_GET['group_id'])) {
-    $stat = $_GET['stat'];
-    $group_id = $_GET['group_id'];
-    $member_id = $_GET['member_id'];
-
-    if($stat == 'approved') {
-        $data_to_db = array(
-            'stat'=> 1
-        );
-        $db = getDbInstance();
-        $db->where('id', $member_id);
-        $db->update('tbl_fri_groups_members', $data_to_db);
-    }
-
-    else if($stat == 'delete') {
-        $db = getDbInstance();
-        $db->where('id', $member_id);
-        $db->delete('tbl_fri_groups_members');
-    }
-}
-
-/**
- * Notification for friend/family request
- */
-// Check family group invitation exist
+// Check friend group invitation exist
 checkFriGroupInvitation($logged_id);
-//checkGroupExists
-
-$db = getDbInstance();
-$db->where('by_who', $logged_id);
-$checkGroup = $db->get('tbl_fri_groups');
-//print_r($checkGroup);exit;
-
 if($_SESSION['friend_group_request']) {
     $db = getDbInstance();
     $query = 'SELECT us.`first_name`, us.`last_name`, gg.`group_name`, gg.`id` AS member_id, gg.`group_id`
@@ -58,9 +27,25 @@ if($_SESSION['friend_group_request']) {
     $_SESSION['fri_group_requests_msg'] = $notification_msg;
 }
 
-?>
+// Check friend group invitation exist
+checkFriNoteRequest($logged_id);
+if($_SESSION['friend_note_request']) {
+    $db = getDbInstance();
+    $query = 'SELECT tbl_fri_group_notes.*, tbl_fri_groups.`group_name`
+              FROM tbl_fri_group_notes, tbl_fri_groups
+              WHERE note_to = '.$logged_id.' AND status = 0';
+    $note_requests = $db->rawQuery($query);
 
-<?php include BASE_PATH.'/members/includes/header.php'?>
+    $notification_msg = genFriNoteNotMsg($note_requests);
+    $_SESSION['fri_note_request_msg'] = $notification_msg;
+}
+
+// Get saved note lists for current user
+$rows = get_fri_group_note_lists();
+
+include BASE_PATH.'/members/includes/header.php'
+
+?>
 
 <!-- Page Header Start -->
 <div class="page--header pt--60 pb--60 text-center" data-bg-img="img/frebanner.png"
@@ -95,108 +80,77 @@ if($_SESSION['friend_group_request']) {
                     <!-- Filter Nav End -->
                     <!-- Activity List Start -->
                     <div class="activity--list">
-                        <!-- Activity Items Start -->
                         <ul class="activity--items nav">
-                            <!-- Activity Item Start -->
-                            <div class="activity--item">
-                                <div class="activity">
-                                    <a href="member-activity-personal.php">
-
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Activity Item End -->
-                        
-                        
-                            <!-- Activity Item Start -->
-                            <div class="activity--item">
-                                <div class="activity">
-                                    <a href="member-activity-personal.php">
-                                        
-                                    </a>
-                                </div>
-
-                                <div class="activity--info fs--14">
-                                    <div class="activity--comments fs--12">
-                                        <ul class="acomment--items nav">
-                                            <li>
-                                                
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Activity Item End -->
-                        
-                        
-                            <!-- Activity Item Start -->
-                            <div class="activity--item">
-                                <div class="activity">
-                                    <a href="member-activity-personal.php">
-                                </div>
-                                    
-                                    <div class="activity--content">
-                                        <div class="link--embed">
-                                            
-                                        </div>
-                                    </div>
-                                
-                            </div>
-                            <!-- Activity Item End -->
-                            
                             <li>
                                 <!-- Activity Item Start -->
                                 <div class="activity--item">
 
+                                    <div class="activity--info fs--14">
+
+                                        <div class="activity--content">
+
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- Activity Item End -->
                             </li>
 
-                            <li>
-                                <!-- Activity Item Start -->
-                                <div class="activity--item">
-                                    <div class="activity--avatar">
-                                        <a href="member-activity-personal.php">
-                                            <img src="img/activity-img/avatar-07.jpg" alt="">
-                                        </a>
-                                    </div>
-
-                                    <div class="activity--info fs--14">
-                                        <div class="activity--header">
-                                            <p><a href="member-activity-personal.php">Anita J. Lilley</a>
-                                                posted an update in the group <a
-                                                    href="group-home.php">Lens-bians Photography</a></p>
+                            <?php foreach ($rows as $row):?>
+                                <li>
+                                    <!-- Activity Item Start -->
+                                    <div class="activity--item">
+                                        <div class="activity--avatar">
+                                            <a href="<?php echo BASE_URL.'/members/member-activity-personal.php?user='.$row['user_id']; ?>" >
+                                                <?php if(isset($row['avatar'])) { ?>
+                                                    <img src="<?php echo substr($row['avatar'],2) ?>" alt="">
+                                                <?php } else { ?>
+                                                    <img src="img/activity-img/avatar-05.jpg" alt="">
+                                                <?php } ?>
+                                            </a>
                                         </div>
 
-                                        <div class="activity--meta fs--12">
-                                            <p><i class="fa mr--8 fa-clock-o"></i>yesterday at 08:20 am</p>
-                                        </div>
+                                        <div class="activity--info fs--14">
+                                            <div class="activity--header">
+                                                <p><a href="<?php echo BASE_URL.'/members/member-activity-personal.php?user='.$row['user_id']; ?>" >
+                                                        <?php echo $row['first_name']; ?>&nbsp;<?php echo $row['last_name'];
+                                                        ?>
+                                                    </a>
+                                                    Shared a link
+                                                </p>
+                                            </div>
 
-                                        <div class="activity--content">
-                                            <div class="gallery--embed" data-trigger="gallery_popup">
-                                                <ul class="nav AdjustRow">
-                                                
-                                                        
-                                                </ul>
+                                            <div class="activity--meta fs--12">
+                                                <p>
+                                                    <i class="fa mr--8 fa-clock-o"></i>
+                                                    <?php echo $row['note_date']; ?>
+                                                </p>
+                                            </div>
+
+                                            <div class="activity--content">
+                                                <?php if ($row['note_media'] == 'text'):?>
+                                                    <p id="note_text_edit"><?php echo $row['note_value']?></p>
+                                                <?php elseif ($row['note_media'] == 'photo'):?>
+                                                    <img id="note_photo_edit" src="<?php echo $row['note_value']; ?>"
+                                                         style="padding-bottom: 10px;">
+                                                    <input type="button" id="<?php echo $row['id'];?>_note_<?php echo $row['note_media'];?>"
+                                                           style="display: none;" class="btn btn-primary note_edit pull-right"
+                                                           value="Edit">
+                                                <?php elseif ($row['note_media'] == 'video'):?>
+                                                    <a class="link--url"
+                                                       href="<?php echo $row['note_value']; ?>"
+                                                       data-trigger="video_popup"></a>
+
+                                                    <div class="link--video">
+                                                        <img src="img/activity-img/link-video-poster.jpg" alt="">
+                                                    </div>
+                                                <?php endif;?>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- Activity Item End -->
-                            </li>
-
-                            <li>
-                                <!-- Activity Item Start -->
-                                <div class="activity--item">
-                                    <div class="activity--info fs--14">
-                                       
-                                    </div>
-                                </div>
-                                <!-- Activity Item End -->
-                            </li>
-
+                                    <!-- Activity Item End -->
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
-                        <!-- Activity Items End -->
                     </div>
                     <!-- Activity List End -->
                 </div>
@@ -234,76 +188,54 @@ if($_SESSION['friend_group_request']) {
                     <h2 class="h6 fw--700 widget--title">Add a Note</h2>
                     <!-- Buddy Finder Widget Start -->
                     <div class="buddy-finder--widget">
-                        <form action="#">
+                        <form id="group_note_add_form" action="" method="post">
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <input type="date" name="birtdate" value="<?php echo date("Y-m-d") ?>" placeholder="select Birth date" >
+                                        <input type="date" name="group_note_add_date" value="<?php echo date("Y-m-d") ?>">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <select name="group_category" class="form-control form-sm group_category"
+                                                data-trigger="selectmenu">
+                                            <option value="category">*Select a Category</option>
+                                            <option value="1">Favorite Stories</option>
+                                            <option value="2">From the Heart</option>
+                                            <option value="3">Our Sports/Teams</option>
+                                            <option value="4">Our Traditions</option>
+                                            <option value="5">Our Moments in Time</option>
+                                            <option value="6">Our Achievements</option>
+                                            <option value="7">Our Challenges</option>
+                                            <option value="8">Our Recipes</option>
+                                            <option value="9">Our Testimonies</option>
+                                            <option value="10">Our Affiliations/Clubs</option>
+                                            <option value="11">Our Special Events</option>
+                                            <option value="12">Our Family Medical History</option>
+                                            <option value="13">In Memory Of</option>
+                                            <option value="14">Other</option>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12">
                                     <div class="form-group">
                                         <label>
-                                            <select name="friends category" class="form-control form-sm"
-                                                data-trigger="selectmenu">
-                                                <option value="category">*Select a Category</option>
-                                                <option value="fave">Favorite Stories</option>
-                                                <option value="fromheart">From the Heart</option>
-                                                <option value="ourtraditions">Our Traditions</option>
-                                                <option value="ourtime">Our Moments in Time</option>
-                                                <option value="ourachievements">Our Achievements</option>
-                                                <option value="ourchallenges">Our Challenges</option>
-                                                <option value="ourrecipes">Our Recipes</option>
-                                                <option value="pets">Our Pets</option>
-                                                <option value="ourtestimonies">Our Testimonies</option>
-                                                <option value="ourclubs">Our Affiliations/Clubs</option>
-                                                <option value="special">Our Special Events</option>
-                                                <option value="oursports">Our Sports</option>
-                                                <option value="mentors">Our Mentors</option>
-                                                <option value="memoryof">In Memory Of</option>
-                                                <option value="other">Other</option>
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label>
-                                            <select name="friends" class="form-control form-sm"
-                                                data-trigger="selectmenu">
-                                                <option value="pickfriend">*Pick a Friend</option>
-                                                <option value="">Jack Sparrow</option>
-                                                <option value="">Lucille Ball</option>
-                                                <option value="">Billy Graham</option>
-                                                <option value="">Brad Pitt</option>
-                                                <option value="">Betsy Ross</option>
-                                                <option value="more">More Options</option>
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label>
-                                            <select name="multimedia" class="form-control form-sm"
-                                                data-trigger="selectmenu">
+                                            <select name="multimedia" class="form-control form-sm multimedia"
+                                                    data-trigger="selectmenu">
                                                 <option value="addmedia">Add Comment, Photo or Video</option>
-                                                <option value="addtext">Add Text</option>
-                                                <option value="addphoto">Add a Photo</option>
-                                                <option value="addvideo">Add a Video Link</option>
+                                                <option value="text">Add Text</option>
+                                                <option value="photo">Add a Photo</option>
+                                                <option value="video">Add a Video Link</option>
                                             </select>
                                         </label>
                                     </div>
                                 </div>
-
+                                <input type="hidden" id="add_note_group_id" value="<?php echo $checkGroup[0]['id']; ?>">
                                 <div class="col-xs-12">
-                                    &NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;<button
-                                        type="post" class="btn btn-primary">Add</button>
-                                    &NonBreakingSpace;&NonBreakingSpace;<button type="cancel"
-                                        class="btn btn-primary">Cancel</button>
+                                    <button type="submit" class="btn btn-primary activity-group-note-add">Add</button>
+                                    <button type="button" class="btn btn-primary add_cancel_button">Cancel</button>
                                 </div>
                         </form>
                     </div>
@@ -448,7 +380,7 @@ if($_SESSION['friend_group_request']) {
     </div>
 </div>
 </section>
-<?php include BASE_PATH . '/members/forms/add_friend_modal.php';?>
 <!-- Page Wrapper End -->
+<?php include BASE_PATH . '/members/forms/group_note_add_modal.php';?>
 
 <?php include BASE_PATH.'/members/includes/footer.php'?>

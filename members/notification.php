@@ -188,3 +188,76 @@ function genFriGroupNotMsg($params) {
     return $message;
 }
 
+// Check family group note exist
+function checkFamNoteRequest($user_id) {
+    $db = getDbInstance();
+    $query = 'SELECT * FROM tbl_fam_group_notes WHERE note_to = '.$user_id.' AND status = 0';
+    $family_group_requests = $db->rawQuery($query);
+    if(count($family_group_requests) > 0) {
+        $_SESSION['family_note_request'] = 1;
+    } else {
+        $_SESSION['family_note_request'] = 0;
+    }
+}
+
+// Generate family group note notification message
+function genFamNoteNotMsg($params) {
+
+    $message = "";
+
+    foreach ($params as $param):
+        $group_name = $param['group_name'];
+
+        $approve_url = BASE_URL."/members/activity-fam.php?from=".$param['user_id']."&&fam_group_note_id=".$param['id']."&&note_to=".$param['note_to']."&&stat=approved";
+        $disapprove_url = BASE_URL."/members/activity-fam.php?from=".$param['user_id']."&&fam_group_note_id=".$param['id']."&&note_to=".$param['note_to']."&&stat=delete";
+
+//        $approve_url = BASE_URL."/members/activity-fam.php?fam_group_note_id=".$param['id']."&&stat=approved";
+//        $disapprove_url = BASE_URL."/members/activity-fam.php?fam_group_note_id=".$param['id']."&&stat=delete";
+
+        $approve = '<a href="'.$approve_url.'">Approve</a>';
+        $disapprove = '<a href="'.$disapprove_url.'">Disapprove</a>';
+
+        $message .='<div class="alert alert-info alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            '.$group_name.' has posted a note '.$approve.' / '.$disapprove.'
+                      </div>';
+    endforeach;
+
+    return $message;
+}
+
+// Check friend group note exist
+function checkFriNoteRequest($user_id) {
+    $db = getDbInstance();
+    $query = 'SELECT * FROM tbl_fri_group_notes WHERE note_to = '.$user_id.' AND status = 0';
+    $friend_group_requests = $db->rawQuery($query);
+    if(count($friend_group_requests) > 0) {
+        $_SESSION['friend_note_request'] = 1;
+    } else {
+        $_SESSION['friend_note_request'] = 0;
+    }
+}
+
+// Generate friend group note notification message
+function genFriNoteNotMsg($params) {
+
+    $message = "";
+
+    foreach ($params as $param):
+        $group_name = $param['group_name'];
+
+        $approve_url = BASE_URL."/members/activity-frd.php?from=".$param['user_id']."&&fri_group_note_id=".$param['id']."&&note_to=".$param['note_to']."&&stat=approved";
+        $disapprove_url = BASE_URL."/members/activity-frd.php?from=".$param['user_id']."&&fri_group_note_id=".$param['id']."&&note_to=".$param['note_to']."&&stat=delete";
+
+        $approve = '<a href="'.$approve_url.'">Approve</a>';
+        $disapprove = '<a href="'.$disapprove_url.'">Disapprove</a>';
+
+        $message .='<div class="alert alert-info alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            '.$group_name.' has posted a note '.$approve.' / '.$disapprove.'
+                      </div>';
+    endforeach;
+
+    return $message;
+}
+
