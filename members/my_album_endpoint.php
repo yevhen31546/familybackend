@@ -1,46 +1,5 @@
 <?php
 
-// Function to fetch saved note lists
-function get_note_lists() {
-    $user_id = $_SESSION['user_id'];
-    $db = getDbInstance();
-    $query = 'SELECT *
-                FROM
-                (SELECT *
-                    FROM tbl_notes
-                    LEFT JOIN (
-                    SELECT
-                    tbl_categories.id AS categoryId,
-                    tbl_categories.cat_name AS cat_name
-                    FROM tbl_categories
-                    ) categories ON tbl_notes.cat_id = categories.categoryId
-                    LEFT JOIN (
-                    SELECT
-                    tbl_users.id AS userid,
-                    tbl_users.first_name AS first_name,
-                    tbl_users.last_name AS last_name
-                    FROM tbl_users
-                    ) users ON tbl_notes.user_id = users.userid) tmp
-                    WHERE tmp.user_id = '.$user_id.' OR (tmp.note_to = '.$user_id.' AND tmp.status = 1)';
-    $rows = $db->rawQuery($query);
-    return $rows;
-}
-
-// Function to save note lists
-function save_note_lists($data) {
-    $data_to_db['note_value'] = $data['note_value']; // text, video link, photo url
-    $data_to_db['note_media'] = $data['media_type']; // video, text, photo
-    $data_to_db['cat_id'] = $data['cat_id'];   // category id => 1: My Story, 2: ...
-    $data_to_db['note_date'] = $data['note_date']; // note post date
-//    $data_to_db['note_to'] = $data['to_who']; // receiver profile id
-    $data_to_db['user_id'] = $data['who']; // sender id
-
-    $db = getDbInstance();
-    $note_id = $db->insert('tbl_notes', $data_to_db);
-    return $note_id;
-}
-
-
 /**
  * After user approve or delete your notes, update notes
  */
@@ -88,6 +47,48 @@ if(isset($_GET) && isset($_GET['stat'])){
 //        $db->delete('tbl_notes');  // Delete posted note
     }
 }
+
+// Function to fetch saved note lists
+function get_note_lists() {
+    $user_id = $_SESSION['user_id'];
+    $db = getDbInstance();
+    $query = 'SELECT *
+                FROM
+                (SELECT *
+                    FROM tbl_notes
+                    LEFT JOIN (
+                    SELECT
+                    tbl_categories.id AS categoryId,
+                    tbl_categories.cat_name AS cat_name
+                    FROM tbl_categories
+                    ) categories ON tbl_notes.cat_id = categories.categoryId
+                    LEFT JOIN (
+                    SELECT
+                    tbl_users.id AS userid,
+                    tbl_users.first_name AS first_name,
+                    tbl_users.last_name AS last_name
+                    FROM tbl_users
+                    ) users ON tbl_notes.user_id = users.userid) tmp
+                    WHERE tmp.user_id = '.$user_id.' OR (tmp.note_to = '.$user_id.' AND tmp.status = 1)';
+    $rows = $db->rawQuery($query);
+    return $rows;
+}
+
+// Function to save note lists
+function save_note_lists($data) {
+    $data_to_db['note_value'] = $data['note_value']; // text, video link, photo url
+    $data_to_db['note_media'] = $data['media_type']; // video, text, photo
+    $data_to_db['cat_id'] = $data['cat_id'];   // category id => 1: My Story, 2: ...
+    $data_to_db['note_date'] = $data['note_date']; // note post date
+    $data_to_db['note_to'] = $data['to_who']; // receiver profile id
+    $data_to_db['user_id'] = $data['who']; // sender id
+
+    $db = getDbInstance();
+    $note_id = $db->insert('tbl_notes', $data_to_db);
+    return $note_id;
+}
+
+
 
 /**
  * Send Notes
@@ -179,16 +180,21 @@ if(isset($_POST) && isset($_POST['cat_id']) && $_POST['cat_id'] && $_POST['mode'
     if($data['note_value'] != '') {
         //    Save notes
         $note_id = save_note_lists($data);
+        if ($note_id) {
+           $_SESSION['success'] = 'Note added successfully. ';
+        } else {
+            $_SESSION['failure'] = 'Oops, failure... ';
+        }
 
         //    Send email to user
-        $email_param['note_id'] = $note_id;
-        $result = sendAddNoteEmail($email_param);
-        if($result) {
-            $_SESSION['success'] = "Note posted!";
-            $_POST = array();
-        } else {
-            $_SESSION['success'] = "Note isn't posted :(";
-        }
+//        $email_param['note_id'] = $note_id;
+//        $result = sendAddNoteEmail($email_param);
+//        if($result) {
+//            $_SESSION['success'] = "Note posted!";
+//            $_POST = array();
+//        } else {
+//            $_SESSION['success'] = "Note isn't posted :(";
+//        }
 
     } else {
         $_SESSION['failure'] = "Sorry, error occur in photo uploading!";

@@ -10,6 +10,13 @@ $db = getDbInstance();
 $db->where('id', $logged_id);
 $user = $db->getOne('tbl_users');
 
+require_once 'note_email_endpoint.php';
+require_once 'my_album_endpoint.php';
+require_once 'notification.php';
+
+// Check posted note exist
+checkNoteRequest($logged_id);
+
 //Get approved family and friends list
 $db = getDbInstance();
 $query = 'SELECT DISTINCT us.user_name,us.id FROM tbl_users us JOIN (SELECT DISTINCT with_who, who  FROM tbl_family WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa ON us.id=fa.with_who OR us.id=fa.who
@@ -20,13 +27,6 @@ $friendAndfamilies = [];
 foreach($friendAndfamilies_ as $friendAndfamily):
     array_push($friendAndfamilies, $friendAndfamily['user_name']);
 endforeach;
-
-require_once 'note_email_endpoint.php';
-require_once 'my_album_endpoint.php';
-require_once 'notification.php';
-
-// Check posted note exist
-checkNoteRequest($logged_id);
 
 if($_SESSION['note_request']) {
     $db = getDbInstance();
@@ -103,6 +103,8 @@ include BASE_PATH.'/members/includes/header.php'
 <section class="page--wrapper pt--80 pb--20">
     <div class="container">
         <div class="row">
+
+            <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
             <!-- Main Content Start -->
             <div class="main--content col-md-8 pb--60" data-trigger="stickyScroll">
                 <div class="main--content-inner drop--shadow">
@@ -116,7 +118,6 @@ include BASE_PATH.'/members/includes/header.php'
                     <!-- Filter Nav End -->
 
                     <!-- Activity List Start -->
-                    <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
                     <div class="activity--list">
                         <!-- Activity Items Start -->
                         <ul class="activity--items nav"> 
@@ -196,7 +197,7 @@ include BASE_PATH.'/members/includes/header.php'
                     <h2 class="h6 fw--700 widget--title">Add a Note</h2>
                     <!-- Buddy Finder Widget Start -->
                     <div class="buddy-finder--widget">
-                        <form id="add_note_form" action="#" method="post">
+                        <form id="add_note_form" action="" method="post">
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">

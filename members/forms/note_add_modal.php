@@ -10,7 +10,7 @@
                     <input type="hidden" name="cat_id" value="cat_id">
                     <input type="hidden" name="note_date" value="note_date">
                     <input type="hidden" name="note_media" value="note_media">
-<!--                    <input type="hidden" name="note_to">-->
+                    <input type="hidden" name="note_to">
                     <input type="hidden" name="mode" value="add">
                     <input type="hidden" name="note_id" value="">
                     <div class="box-body">
