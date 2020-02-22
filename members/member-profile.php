@@ -169,17 +169,25 @@ if(isset($_POST) && isset($_POST['family_member'])) {
     $db = getDbInstance();
     $family_id = $db->insert('tbl_family', $data_to_db);
 
-    $body = generateFamMessageBody($row, $family_user, $relation, $family_id); // $row: from, $family_user: to,
-    // $relation: family relationship
-
-    $stat = sendEmail($to, $body);
-    if ($stat) {
+    if ($family_id) {
         $_SESSION['success'] = 'Invitation email is sent successfully!';
         $_POST = array();
     } else {
         $_SESSION['failure'] = 'Sending invitation email is failed!';
         $_POST = array();
     }
+
+//    $body = generateFamMessageBody($row, $family_user, $relation, $family_id); // $row: from, $family_user: to,
+//    // $relation: family relationship
+//
+//    $stat = sendEmail($to, $body);
+//    if ($stat) {
+//        $_SESSION['success'] = 'Invitation email is sent successfully!';
+//        $_POST = array();
+//    } else {
+//        $_SESSION['failure'] = 'Sending invitation email is failed!';
+//        $_POST = array();
+//    }
 }
 
 // Invite friend
@@ -198,15 +206,22 @@ if(isset($_POST) && isset($_POST['myfriend'])) {
     $db = getDbInstance();
     $friend_id = $db->insert('tbl_friend', $data_to_db);
 
-    $body = generateFriMessageBody($row, $friend_user, $friend_id);
-    $stat = sendEmail($to, $body);
-    if ($stat) {
+    if ($friend_id) {
         $_SESSION['success'] = 'Invitation email is sent successfully!';
         $_POST = array();
     } else {
         $_SESSION['failure'] = 'Sending invitation email is failed!';
         $_POST = array();
     }
+//    $body = generateFriMessageBody($row, $friend_user, $friend_id);
+//    $stat = sendEmail($to, $body);
+//    if ($stat) {
+//        $_SESSION['success'] = 'Invitation email is sent successfully!';
+//        $_POST = array();
+//    } else {
+//        $_SESSION['failure'] = 'Sending invitation email is failed!';
+//        $_POST = array();
+//    }
 }
 
 if(isset($_POST) && isset($_POST['cover_photo_fg']) && isset($_FILES["cover_photo"]["name"])) {

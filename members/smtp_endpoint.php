@@ -113,21 +113,29 @@ if(isset($_GET) && isset($_GET['type'])) {
             );
             $db = getDbInstance();
             $db->where('id', $family_id);
-            $db->update('tbl_family', $data_to_db);
+            $stat = $db->update('tbl_family', $data_to_db);
 
-            $to = $sender['user_email']; // sender's email
-            $body = generateApprovedFamMessageBody($sender, $receiver, $family_relation);
-            $stat = sendEmail($to, $body);
             if ($stat) {
                 $_SESSION['success'] = $sender['user_name'].' has added you as family!';
             }
+
+//            $to = $sender['user_email']; // sender's email
+//            $body = generateApprovedFamMessageBody($sender, $receiver, $family_relation);
+//            $stat = sendEmail($to, $body);
+//            if ($stat) {
+//                $_SESSION['success'] = $sender['user_name'].' has added you as family!';
+//            }
         }
 
         if($status == 'delete') {
 //        echo "Request is declined";
-            $to = $sender['user_email']; // sender's email
-            $body = generateDeleteFamMessageBody($sender, $receiver, $family_relation);
-            $stat = sendEmail($to, $body);
+            $db = getDbInstance();
+            $db->where('id', $family_id);
+            $stat = $db->delete('tbl_family');
+
+//            $to = $sender['user_email']; // sender's email
+//            $body = generateDeleteFamMessageBody($sender, $receiver, $family_relation);
+//            $stat = sendEmail($to, $body);
         }
     }
     if($_GET['type']=='friend') {
@@ -159,17 +167,24 @@ if(isset($_GET) && isset($_GET['type'])) {
             $db = getDbInstance();
             $db->where('id', $friend_id);
             $re = $db->update('tbl_friend', $data_to_db);
-            $stat = sendEmail($to, $body);
-            if ($stat) {
+
+            if ($re) {
                 $_SESSION['success'] = $sender['user_name'].' has added you a friend!';
             }
+//            $stat = sendEmail($to, $body);
+//            if ($stat) {
+//                $_SESSION['success'] = $sender['user_name'].' has added you a friend!';
+//            }
         }
 
         if($status == 'delete') {
 //        echo "Request is declined";
-            $to = $sender['user_email']; // sender's email
-            $body = generateDeleteFriMessageBody($sender, $receiver);
-            $stat = sendEmail($to, $body);
+            $db = getDbInstance();
+            $db->where('id', $friend_id);
+            $re = $db->delete('tbl_friend');
+//            $to = $sender['user_email']; // sender's email
+//            $body = generateDeleteFriMessageBody($sender, $receiver);
+//            $stat = sendEmail($to, $body);
         }
     }
 }

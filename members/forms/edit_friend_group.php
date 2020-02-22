@@ -93,13 +93,7 @@ if(isset($_POST) && isset($_POST['group_name'])) {
             $fri_group_members_id[$i] = $db->insert('tbl_fri_groups_members', $data_to_db);
         }
 
-        //    Send friend group invitation
-        // $user: group creator
-        for ($i = 0; $i < count($friend_arr); $i++) {
-            $body = genFriGroupMsgBody($user, $_POST['group_name'], $group_id, $fri_group_members_id[$i]);
-            $stat = sendEmail($friend_data[$i]['user_email'], $body);
-        }
-        if ($stat) {
+        if ($fri_group_members_id[0]) {
             $_SESSION['success'] = 'Invitation email is sent successfully!';
             header('Location: '. BASE_URL .'/members/activity-frd.php');
             $_POST = array();
@@ -107,6 +101,21 @@ if(isset($_POST) && isset($_POST['group_name'])) {
             $_SESSION['failure'] = 'Sending invitation email is failed!';
             $_POST = array();
         }
+
+        //    Send friend group invitation
+        // $user: group creator
+//        for ($i = 0; $i < count($friend_arr); $i++) {
+//            $body = genFriGroupMsgBody($user, $_POST['group_name'], $group_id, $fri_group_members_id[$i]);
+//            $stat = sendEmail($friend_data[$i]['user_email'], $body);
+//        }
+//        if ($stat) {
+//            $_SESSION['success'] = 'Invitation email is sent successfully!';
+//            header('Location: '. BASE_URL .'/members/activity-frd.php');
+//            $_POST = array();
+//        } else {
+//            $_SESSION['failure'] = 'Sending invitation email is failed!';
+//            $_POST = array();
+//        }
     }
 
     else {

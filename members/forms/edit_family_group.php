@@ -93,12 +93,7 @@ if(isset($_POST) && isset($_POST['group_name'])) {
             $fam_group_members_id[$i] = $db->insert('tbl_fam_groups_members', $data_to_db);
         }
 
-        // $user: group creator
-        for ($i = 0; $i < count($family_arr); $i++) {
-            $body = genFamGroupMsgBody($user, $_POST['group_name'], $group_id, $fam_group_members_id[$i]);
-            $stat = sendEmail($family_members_data[$i]['user_email'], $body);
-        }
-        if ($stat) {
+        if ($fam_group_members_id[0]) {
             $_SESSION['success'] = 'Invitation email is sent successfully!';
             header('Location: '. BASE_URL .'/members/activity-fam.php');
             $_POST = array();
@@ -106,6 +101,20 @@ if(isset($_POST) && isset($_POST['group_name'])) {
             $_SESSION['failure'] = 'Sending invitation email is failed!';
             $_POST = array();
         }
+
+        // $user: group creator
+//        for ($i = 0; $i < count($family_arr); $i++) {
+//            $body = genFamGroupMsgBody($user, $_POST['group_name'], $group_id, $fam_group_members_id[$i]);
+//            $stat = sendEmail($family_members_data[$i]['user_email'], $body);
+//        }
+//        if ($stat) {
+//            $_SESSION['success'] = 'Invitation email is sent successfully!';
+//            header('Location: '. BASE_URL .'/members/activity-fam.php');
+//            $_POST = array();
+//        } else {
+//            $_SESSION['failure'] = 'Sending invitation email is failed!';
+//            $_POST = array();
+//        }
     }
 
     else {
