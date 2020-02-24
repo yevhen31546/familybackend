@@ -129,9 +129,16 @@ $userrow = $userdb->getOne('tbl_users');
                                                         <?php elseif ($row['note_media'] == 'photo'):?>
                                                             <img src="<?php echo $row['note_value']; ?>">
                                                         <?php elseif ($row['note_media'] == 'video'):?>
-                                                            <iframe width="100%" height="100%"
-                                                                    src="<?php echo $row['note_value']?>">
-                                                            </iframe>
+<!--                                                            <iframe width="100%" height="100%"-->
+<!--                                                                    src="--><?php //echo $row['note_value']?><!--">-->
+<!--                                                            </iframe>-->
+                                                            <a class="link--url"
+                                                               href="<?php echo $row['note_value']; ?>"
+                                                               data-trigger="video_popup"></a>
+
+                                                            <div class="link--video">
+                                                                <img src="img/activity-img/link-video-poster.jpg" alt="">
+                                                            </div>
                                                         <?php endif;?>
                                                     </div>
                                                 </div>
