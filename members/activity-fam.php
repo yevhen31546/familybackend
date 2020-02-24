@@ -69,7 +69,11 @@ include BASE_PATH.'/members/includes/header.php';
                     <!-- Filter Nav Start -->
                     <div class="filter--nav pb--60 clearfix">
                         <div class="filter--link float--left">
-                            <h2>Our Family Group – <?php echo $checkGroup[0]['group_name']; ?></h2>
+                            <?php if (count($checkGroup) > 0) { ?>
+                                <h2>Our Family Group – <?php echo $checkGroup[0]['group_name']; ?></h2>
+                            <?php } else { ?>
+                                <h2>Our Family</h2>
+                            <?php }?>
                         </div>
                     </div>
                     <!-- Filter Nav End -->
