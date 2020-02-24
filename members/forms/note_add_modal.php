@@ -15,12 +15,11 @@
                     <input type="hidden" name="note_id" value="">
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="example_input_first_name">Note here:</label>
                             <input type="text" name="note_value" class="form-control" placeholder="Enter the text" required>
                             <input type="file" name="note_photo" id="fileToUpload" required>
                             <img id="note_photo_id" src="#" alt="" />
-                            <div style="color: green;font: 20px Impact;" id="note_photo_alt">
-                                Upload your picture here
+                            <div id="note_photo_alt">
+                                Upload your image here
                             </div>
                             <input type="text" name="note_video" class="form-control" placeholder="Enter the video link" required>
                         </div>
