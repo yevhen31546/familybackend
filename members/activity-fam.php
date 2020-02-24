@@ -6,9 +6,6 @@ require_once BASE_PATH.'/includes/auth_validate.php';
 require_once 'fam_group_note_endpoint.php';
 require_once 'notification.php';
 
-/**
- * Check notification
- */
 // Check family group invitation exist
 checkFamGroupInvitation($logged_id);
 if($_SESSION['family_group_request']) {
@@ -31,23 +28,19 @@ if($_SESSION['family_group_request']) {
 checkFamNoteRequest($logged_id);
 if($_SESSION['family_note_request']) {
     $db = getDbInstance();
-    $query = 'SELECT tbl_fam_group_notes.*, tbl_fam_groups.`group_name`
-              FROM tbl_fam_group_notes, tbl_fam_groups
-              WHERE note_to = '.$logged_id.' AND status = 0';
+    $query = 'SELECT notes.*, gp.`group_name`
+              FROM tbl_fam_group_notes notes, tbl_fam_groups gp
+              WHERE notes.`note_to` = '.$logged_id.' AND notes.`status` = 0 AND gp.`id` = notes.`group_id`';
     $note_requests = $db->rawQuery($query);
 
     $notification_msg = genFamNoteNotMsg($note_requests);
     $_SESSION['fam_note_request_msg'] = $notification_msg;
 }
 
-// Get saved note lists for current user
-$rows = get_fam_group_note_lists();
-
-include BASE_PATH.'/members/includes/header.php'
+//print_r($rows);exit;
+include BASE_PATH.'/members/includes/header.php';
 
 ?>
-
-
 
 <!-- Page Header Start -->
 <div class="page--header pt--60 pb--60 text-center" data-bg-img="img/fambanner.png"
@@ -76,7 +69,7 @@ include BASE_PATH.'/members/includes/header.php'
                     <!-- Filter Nav Start -->
                     <div class="filter--nav pb--60 clearfix">
                         <div class="filter--link float--left">
-                            <h2>Our Family Collection of Notes</h2>
+                            <h2>Our Family Group – <?php echo $checkGroup[0]['group_name']; ?></h2>
                         </div>
                     </div>
                     <!-- Filter Nav End -->
@@ -201,21 +194,14 @@ include BASE_PATH.'/members/includes/header.php'
                                     <div class="form-group">
                                         <select name="group_category" class="form-control form-sm group_category"
                                                 data-trigger="selectmenu">
-                                            <option value="category">*Select a Category</option>
-                                            <option value="1">Favorite Stories</option>
-                                            <option value="2">From the Heart</option>
-                                            <option value="3">Our Sports/Teams</option>
-                                            <option value="4">Our Traditions</option>
-                                            <option value="5">Our Moments in Time</option>
-                                            <option value="6">Our Achievements</option>
-                                            <option value="7">Our Challenges</option>
-                                            <option value="8">Our Recipes</option>
-                                            <option value="9">Our Testimonies</option>
-                                            <option value="10">Our Affiliations/Clubs</option>
-                                            <option value="11">Our Special Events</option>
-                                            <option value="12">Our Family Medical History</option>
-                                            <option value="13">In Memory Of</option>
-                                            <option value="14">Other</option>
+                                            <?php
+                                            foreach ($category_lists as $category_list): ?>
+                                                <option value="<?php echo $category_list['id']; ?>">
+                                                    <?php echo $category_list['cat_name']; ?>
+                                                </option>
+                                                <?php
+                                            endforeach;
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -236,7 +222,7 @@ include BASE_PATH.'/members/includes/header.php'
                                 <input type="hidden" id="add_note_group_id" value="<?php echo $checkGroup[0]['id']; ?>">
                                 <div class="col-xs-12">
                                     <button type="submit" class="btn btn-primary activity-group-note-add">Add</button>
-                                    <button type="button" class="btn btn-primary add_cancel_button">Cancel</button>
+                                    <button type="button" class="btn btn-primary cancel_button">Cancel</button>
                                 </div>
                         </form>
                     </div>
@@ -250,36 +236,36 @@ include BASE_PATH.'/members/includes/header.php'
 
                     <!-- Text Widget Start -->
                     <div class="buddy-finder--widget">
-                        <form action="#">
+                        <form action="" method="post" id="view_note_form">
                             <div class="row">
-
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <input type="date" name="note_view_date" value="<?php echo date("Y-m-d") ?>">
+                                        <?php if (isset($_POST['note_view_date'])) { ?>
+                                            <input type="date" name="note_view_date"
+                                                   value="<?php echo $_POST['note_view_date'] ?>">
+                                        <?php } else { ?>
+                                            <input type="date" name="note_view_date"
+                                                   value="<?php echo date("Y-m-d") ?>">
+                                        <?php } ?>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12">
                                     <div class="form-group">
                                         <label>
-                                            <select name="our category" class="form-control form-sm"
-                                                data-trigger="selectmenu">
-                                                <option value="category">*Select a Category</option>
-                                                <option value="stories">Favorite Stories</option>
-                                                <option value="heart">From the Heart</option>
-                                                <option value="teams">Our Sports/Teams</option>
-                                                <option value="traditions">Our Traditions</option>
-                                                <option value="time">Our Moments in Time</option>
-                                                <option value="achievements">Our Achievements</option>
-                                                <option value="challenges">Our Challenges</option>
-                                                <option value="recipes">Our Recipes</option>
-                                                <option value="testimonies">Our Testimonies</option>
-                                                <option value="affiliations">Our Affiliations/Clubs</option>
-                                                <option value="events">Our Special Events</option>
-                                                <option value="medical">Our Family Medical History</option>
-                                                <option value="memory">In Memory Of</option>
-                                                <option value="our-other">Other</option>
-
+                                            <select name="view_category" class="form-control form-sm category"
+                                                    data-trigger="selectmenu">
+                                                <?php
+                                                foreach ($category_lists as $category_list): ?>
+                                                    <option value="<?php echo $category_list['id']; ?>"
+                                                        <?php if(isset($_POST['view_category']) &&
+                                                            ($_POST['view_category'] == $category_list['id']))
+                                                            echo 'selected'; ?> >
+                                                        <?php echo $category_list['cat_name']; ?>
+                                                    </option>
+                                                    <?php
+                                                endforeach;
+                                                ?>
                                             </select>
                                         </label>
                                     </div>
@@ -289,9 +275,8 @@ include BASE_PATH.'/members/includes/header.php'
 
                                 </div>
                                 <div class="col-xs-12">
-                                    <button type="post" class="btn btn-primary">Search</button>
-                                    &NonBreakingSpace;&NonBreakingSpace;<button type="cancel"
-                                        class="btn btn-primary">Cancel</button>
+                                    <button type="submit" class="btn btn-primary view_note_submit">Search</button>
+                                    <button type="button" class="btn btn-primary cancel_button">Cancel</button>
                                 </div>
                             </div>
                         </form>
@@ -305,50 +290,46 @@ include BASE_PATH.'/members/includes/header.php'
                     <h2 class="h6 fw--700 widget--title">Update a Note</h2>
                     <!-- Text Widget Start -->
                     <div class="buddy-finder--widget">
-                        <form action="#">
+                        <form action="" method="post" id="update_note_form">
                             <div class="row">
-
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <input type="date" name="note_update_date" value="<?php echo date("Y-m-d") ?>">
+                                        <?php if (isset($_POST['note_update_date'])) { ?>
+                                            <input type="date" name="note_update_date"
+                                                   value="<?php echo $_POST['note_update_date'] ?>">
+                                        <?php } else { ?>
+                                            <input type="date" name="note_update_date"
+                                                   value="<?php echo date("Y-m-d") ?>">
+                                        <?php } ?>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12">
                                     <div class="form-group">
                                         <label>
-                                            <select name="our category" class="form-control form-sm"
-                                                data-trigger="selectmenu">
-                                                <option value="category">*Select a Category</option>
-                                                <option value="stories">Favorite Stories</option>
-                                                <option value="heart">From the Heart</option>
-                                                <option value="teams">Our Sports/Teams</option>
-                                                <option value="traditions">Our Traditions</option>
-                                                <option value="time">Our Moments in Time</option>
-                                                <option value="achievements">Our Achievements</option>
-                                                <option value="challenges">Our Challenges</option>
-                                                <option value="recipes">Our Recipes</option>
-                                                <option value="testimonies">Our Testimonies</option>
-                                                <option value="affiliations">Our Affiliations/Clubs</option>
-                                                <option value="events">Our Special Events</option>
-                                                <option value="medical">Our Family Medical History</option>
-                                                <option value="memory">In Memory Of</option>
-                                                <option value="our-other">Other</option>
-
-
+                                            <select name="update_category" class="form-control form-sm"
+                                                    data-trigger="selectmenu">
+                                                <?php
+                                                foreach ($category_lists as $category_list): ?>
+                                                    <option value="<?php echo $category_list['id']; ?>"
+                                                        <?php if(isset($_POST['update_category']) &&
+                                                            ($_POST['update_category'] == $category_list['id']))
+                                                            echo 'selected'; ?> >
+                                                        <?php echo $category_list['cat_name']; ?>
+                                                    </option>
+                                                    <?php
+                                                endforeach;
+                                                ?>
                                             </select>
                                         </label>
                                     </div>
                                 </div>
-
                                 <div class="text--widget">
 
                                 </div>
-
                                 <div class="col-xs-12">
-                                    <button type="post" class="btn btn-primary">Search</button>
-                                    &NonBreakingSpace;&NonBreakingSpace;<button type="cancel"
-                                        class="btn btn-primary">Cancel</button>
+                                    <button type="submit" class="btn btn-primary update_note_submit">Search</button>
+                                    <button type="button" class="btn btn-primary cancel_button">Cancel</button>
                                 </div>
                             </div>
                         </form>

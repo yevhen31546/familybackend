@@ -4,30 +4,12 @@ require_once '../config/config.php';
 require_once '../vendor/autoload.php';
 require_once BASE_PATH.'/includes/auth_validate.php';
 
-// Get current user
-$logged_id = $_SESSION['user_id'];
-$db = getDbInstance();
-$db->where('id', $logged_id);
-$user = $db->getOne('tbl_users');
-
 require_once 'note_email_endpoint.php';
 require_once 'my_album_endpoint.php';
 require_once 'notification.php';
 
 // Check posted note exist
-checkNoteRequest($logged_id);
-
-//Get approved family and friends list
-$db = getDbInstance();
-$query = 'SELECT DISTINCT us.user_name,us.id FROM tbl_users us JOIN (SELECT DISTINCT with_who, who  FROM tbl_family WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa ON us.id=fa.with_who OR us.id=fa.who
-UNION
-SELECT DISTINCT us.user_name,us.id FROM tbl_users us JOIN (SELECT DISTINCT with_who, who  FROM tbl_friend WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa ON us.id=fa.with_who OR us.id=fa.who';
-$friendAndfamilies_ = $db->rawQuery($query);
-$friendAndfamilies = [];
-foreach($friendAndfamilies_ as $friendAndfamily):
-    array_push($friendAndfamilies, $friendAndfamily['user_name']);
-endforeach;
-
+checkNoteRequest($logged_id); // $_SESSION['note_request'] = 1
 if($_SESSION['note_request']) {
     $db = getDbInstance();
     $query = 'SELECT users.*, notes.id AS note_id, notes.user_id, notes.note_to, notes.status
@@ -40,49 +22,10 @@ if($_SESSION['note_request']) {
     $_SESSION['note_request_msg'] = $notification_msg;
 }
 
-// Get saved note lists for current user
-$rows = get_note_lists();
-
-include BASE_PATH.'/members/includes/header.php'
+include BASE_PATH.'/members/includes/header.php';
 ?>
-<style>
-    /*the container must be positioned relative:*/
-    .autocomplete {
-        position: relative;
-        display: inline-block;
-    }
 
-    .autocomplete-items {
-        position: absolute;
-        border: 1px solid #d4d4d4;
-        border-bottom: none;
-        border-top: none;
-        z-index: 99;
-        /*position the autocomplete items to be the same width as the container:*/
-        top: 100%;
-        left: 0;
-        right: 0;
-    }
-
-    .autocomplete-items div {
-        padding: 10px;
-        cursor: pointer;
-        background-color: #fff;
-        border-bottom: 1px solid #d4d4d4;
-    }
-
-    /*when hovering an item:*/
-    .autocomplete-items div:hover {
-        background-color: #e9e9e9;
-    }
-
-    /*when navigating through the items using the arrow keys:*/
-    .autocomplete-active {
-        background-color: DodgerBlue !important;
-        color: #ffffff;
-    }
-</style>
-
+<link rel="stylesheet" href="<?php echo BASE_URL;?>/members/css/auto_fill.css">
 <!-- Page Header Start -->
 <div class="page--header pt--60 pb--60 text-center" data-bg-img="img/myalbum6.png"
     data-overlay="0.35">
@@ -139,8 +82,12 @@ include BASE_PATH.'/members/includes/header.php'
                                     <!-- Activity Item Start -->
                                     <div class="activity--item">
                                         <div class="activity--avatar">
-                                            <a href="member-activity-personal.php">
-                                                <img src="img/activity-img/avatar-08.jpg" alt="">
+                                            <a href="<?php echo BASE_URL.'/members/member-activity-personal.php?user='.$row['user_id']; ?>" >
+                                                <?php if(isset($row['avatar'])) { ?>
+                                                    <img src="<?php echo substr($row['avatar'],2) ?>" alt="">
+                                                <?php } else { ?>
+                                                    <img src="img/activity-img/avatar-05.jpg" alt="">
+                                                <?php } ?>
                                             </a>
                                         </div>
 
@@ -162,10 +109,13 @@ include BASE_PATH.'/members/includes/header.php'
                                                     <img id="note_photo_edit" src="<?php echo $row['note_value']; ?>" style="padding-bottom: 10px;">
                                                     <input type="button" id="<?php echo $row['id'];?>_note_<?php echo $row['note_media'];?>" style="display: none;" class="btn btn-primary note_edit pull-right" value="Edit">
                                                 <?php elseif ($row['note_media'] == 'video'):?>
-                                                    <iframe id="note_video_edit" width="100%" height="100%"
-                                                            src="<?php echo $row['note_value']?>" style="padding-bottom: 10px;">
-                                                    </iframe>
-                                                    <input type="button" id="<?php echo $row['id'];?>_note_<?php echo $row['note_media'];?>" style="display: none;" class="btn btn-primary note_edit pull-right" value="Edit">
+                                                    <a class="link--url"
+                                                       href="<?php echo $row['note_value']; ?>"
+                                                       data-trigger="video_popup"></a>
+
+                                                    <div class="link--video">
+                                                        <img src="img/activity-img/link-video-poster.jpg" alt="">
+                                                    </div>
                                                 <?php endif;?>
                                             </div>
                                         </div>
@@ -209,19 +159,14 @@ include BASE_PATH.'/members/includes/header.php'
                                     <div class="form-group">
                                         <select name="category" class="form-control form-sm category"
                                             data-trigger="selectmenu">
-                                            <option value="category">*Select a Category</option>
-                                            <option value="1">My Story</option>
-                                            <option value="2">My Message from the Heart</option>
-                                            <option value="3">My Likes and Dislikes</option>
-                                            <option value="4">My Hobbies</option>
-                                            <option value="5">My Sports</option>
-                                            <option value="6">My Fun Facts</option>
-                                            <option value="7">My Adventures</option>
-                                            <option value="8">My Testimonies</option>
-                                            <option value="9">My Education</option>
-                                            <option value="10">My Affiliations</option>
-                                            <option value="11">My Thoughts</option>
-                                            <option value="12">Other Notes</option>
+                                            <?php
+                                            foreach ($category_lists as $category_list): ?>
+                                                <option value="<?php echo $category_list['id']; ?>">
+                                                    <?php echo $category_list['cat_name']; ?>
+                                                </option>
+                                            <?php
+                                            endforeach;
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -250,7 +195,7 @@ include BASE_PATH.'/members/includes/header.php'
                                 </div>
                                 <div class="col-xs-12">
                                     <button type="submit" class="btn btn-primary activity-note-add">Add</button>
-                                    <button type="button" class="btn btn-primary add_cancel_button">Cancel</button>
+                                    <button type="button" class="btn btn-primary cancel_button">Cancel</button>
                                 </div>
                         </form>
 
@@ -265,43 +210,43 @@ include BASE_PATH.'/members/includes/header.php'
 
                     <!-- Text Widget Start -->
                     <div class="buddy-finder--widget">
-                        <form action="#" method="post" id="view_note_form">
+                        <form action="" method="post" id="view_note_form">
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <input type="date" name="note_view_date" value="<?php echo date("Y-m-d") ?>">
+                                        <?php if (isset($_POST['note_view_date'])) { ?>
+                                        <input type="date" name="note_view_date"
+                                               value="<?php echo $_POST['note_view_date'] ?>">
+                                        <?php } else { ?>
+                                        <input type="date" name="note_view_date"
+                                               value="<?php echo date("Y-m-d") ?>">
+                                        <?php } ?>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12">
                                     <div class="form-group">
                                         <label>
-
                                             <select name="view_category" class="form-control form-sm category"
                                                     data-trigger="selectmenu">
-                                                <option value="category">*Select a Category</option>
-                                                <option value="1">My Story</option>
-                                                <option value="2">My Message from the Heart</option>
-                                                <option value="3">My Likes and Dislikes</option>
-                                                <option value="4">My Hobbies</option>
-                                                <option value="5">My Sports</option>
-                                                <option value="6">My Fun Facts</option>
-                                                <option value="7">My Adventures</option>
-                                                <option value="8">My Testimonies</option>
-                                                <option value="9">My Education</option>
-                                                <option value="10">My Affiliations</option>
-                                                <option value="11">My Thoughts</option>
-                                                <option value="12">Other Notes</option>
+                                                <?php
+                                                foreach ($category_lists as $category_list): ?>
+                                                    <option value="<?php echo $category_list['id']; ?>"
+                                                        <?php if(isset($_POST['view_category']) &&
+                                                            ($_POST['view_category'] == $category_list['id']))
+                                                            echo 'selected'; ?> >
+                                                        <?php echo $category_list['cat_name']; ?>
+                                                    </option>
+                                                <?php
+                                                endforeach;
+                                                ?>
                                             </select>
                                         </label>
                                     </div>
                                 </div>
-                                <div class="text--widget">
-
-                                </div>
                                 <div class="col-xs-12">
                                     <button type="submit" class="btn btn-primary view_note_submit">Search</button>
-                                    <button type="button" class="btn btn-primary view_cancel_button">Cancel</button>
+                                    <button type="button" class="btn btn-primary cancel_button">Cancel</button>
                                 </div>
                             </div>
                         </form>
@@ -315,19 +260,17 @@ include BASE_PATH.'/members/includes/header.php'
                     <h2 class="h6 fw--700 widget--title">Update a Note</h2>
                     <!-- Text Widget Start -->
                     <div class="buddy-finder--widget">
-                        <form action="#" method="post" id="update_note_form">
+                        <form action="" method="post" id="update_note_form">
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <input type="date" name="note_update_date" value="<?php echo date("Y-m-d") ?>">
-                                        <!--                                        <label>-->
-<!--                                            <select name="update_date" class="form-control form-sm"-->
-<!--                                                data-trigger="selectmenu">-->
-<!--                                                <option value="date">Select a Date</option>-->
-<!--                                                <option value="today">Today</option>-->
-<!--                                                <option value="anotherdate">Another Date</option>-->
-<!--                                            </select>-->
-<!--                                        </label>-->
+                                        <?php if (isset($_POST['note_update_date'])) { ?>
+                                            <input type="date" name="note_update_date"
+                                                   value="<?php echo $_POST['note_update_date'] ?>">
+                                        <?php } else { ?>
+                                            <input type="date" name="note_update_date"
+                                                   value="<?php echo date("Y-m-d") ?>">
+                                        <?php } ?>
                                     </div>
                                 </div>
 
@@ -336,20 +279,17 @@ include BASE_PATH.'/members/includes/header.php'
                                         <label>
                                             <select name="update_category" class="form-control form-sm"
                                                 data-trigger="selectmenu">
-                                                <option value="category">*Select a Category</option>
-                                                <option value="1">My Story</option>
-                                                <option value="2">My Message from the Heart</option>
-                                                <option value="3">My Likes and Dislikes</option>
-                                                <option value="4">My Hobbies</option>
-                                                <option value="5">My Sports</option>
-                                                <option value="6">My Fun Facts</option>
-                                                <option value="7">My Adventures</option>
-                                                <option value="8">My Testimonies</option>
-                                                <option value="9">My Education</option>
-                                                <option value="10">My Affiliations</option>
-                                                <option value="11">My Thoughts</option>
-                                                <option value="12">Other Notes</option>
-
+                                                <?php
+                                                foreach ($category_lists as $category_list): ?>
+                                                    <option value="<?php echo $category_list['id']; ?>"
+                                                        <?php if(isset($_POST['update_category']) &&
+                                                            ($_POST['update_category'] == $category_list['id']))
+                                                            echo 'selected'; ?> >
+                                                        <?php echo $category_list['cat_name']; ?>
+                                                    </option>
+                                                    <?php
+                                                endforeach;
+                                                ?>
                                             </select>
                                         </label>
                                     </div>
@@ -359,7 +299,7 @@ include BASE_PATH.'/members/includes/header.php'
                                 </div>
                                 <div class="col-xs-12">
                                     <button type="submit" class="btn btn-primary update_note_submit">Search</button>
-                                    <button type="button" class="btn btn-primary update_cancel_button">Cancel</button>
+                                    <button type="button" class="btn btn-primary cancel_button">Cancel</button>
                                 </div>
                             </div>
                         </form>

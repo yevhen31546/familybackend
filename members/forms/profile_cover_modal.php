@@ -11,7 +11,10 @@
                     <div class="box-body">
                         <div class="form-group">
                             <input type="file" name="cover_photo" id="fileToUpload" required>
-                            <img id="note_photo_id" src="#" alt="your image" style="color: green;font: 20px Impact;" />
+                            <img id="note_photo_id" src="#" alt="" />
+                            <div style="color: green;font: 20px Impact;" id="note_photo_alt">
+                                Upload your picture here
+                            </div>
                         </div>
                     </div>
                     <!-- /.box-body -->

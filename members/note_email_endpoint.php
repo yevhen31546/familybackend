@@ -8,10 +8,10 @@ function sendNoteEmail($to, $body) {
         ->setPassword(SMTP_PASS)
     ;
 
-// Create the Mailer using your created Transport
+    // Create the Mailer using your created Transport
     $mailer = new Swift_Mailer($transport);
 
-// Create a message
+    // Create a message
     $message = (new Swift_Message('Invitation from MyNotes4U!'))
         ->setFrom([SMTP_FROM => 'MyNotes4U'])
         ->setTo([$to => $to])
@@ -19,7 +19,7 @@ function sendNoteEmail($to, $body) {
         ->setBody($body)
     ;
 
-// Send the message
+    // Send the message
     $result = $mailer->send($message);
     return $result;
 }
@@ -62,7 +62,7 @@ function sendAddNoteEmail($data) {
     $to_who = $data['to_who'];
     $note_id = $data['note_id'];
 
-//    Get sender and receiver
+    //    Get sender and receiver
     $sender = array();
     $receiver = array();
     $db = getDbInstance();
@@ -88,10 +88,10 @@ function sendAddNoteEmail($data) {
         ->setPassword(SMTP_PASS)
     ;
 
-// Create the Mailer using your created Transport
+    // Create the Mailer using your created Transport
     $mailer = new Swift_Mailer($transport);
 
-// Create a message
+    // Create a message
     $message = (new Swift_Message('Invitation from MyNotes4U!'))
         ->setFrom([SMTP_FROM => 'MyNotes4U'])
         ->setTo([$to => $to])
@@ -99,7 +99,7 @@ function sendAddNoteEmail($data) {
         ->setBody($body)
     ;
 
-// Send the message
+    // Send the message
     $result = $mailer->send($message);
     return $result;
 }

@@ -4,10 +4,12 @@
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
+            $('#note_photo_id').attr('display', 'block');
+            $('#note_photo_alt').hide();
+
             reader.onload = function(e) {
                 $('#note_photo_id').attr('src', e.target.result);
             }
-
             reader.readAsDataURL(input.files[0]);
         }
     }
@@ -15,6 +17,9 @@
     function readAvatarURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
+
+            $('#avatar_preview').attr('display', 'block');
+            $('#avatar_preview_alt').hide();
 
             reader.onload = function(e) {
                 $('#avatar_preview').attr('src', e.target.result);
@@ -57,7 +62,7 @@
             $('#group_note_add_form input[name="group_note_add_date"]').css("border", "1px solid white");
             add_date_val = true;
         }
-        if(category == "category") {
+        if(category === "1") {
             $('#group_note_add_form input[name="group_category"]').parent().parent().css("border","1px solid red");//more efficient
             add_note_cat_val = false;
         } else {
@@ -81,6 +86,7 @@
                     $('.note-add-modal input[name="note_photo"]').hide();
                     $('.note-add-modal input[name="note_video"]').hide();
                     $('.note-add-modal #note_photo_id').hide();
+                    $('.note-add-modal #note_photo_alt').hide();
                     // $('.note-add-modal input[name="note_photo"]').show();
                     // $('.note-add-modal input[name="note_video"]').show();
                     $('.note-add-modal input[name="note_photo"]').removeAttr("required");
@@ -89,6 +95,7 @@
                 }
             } else if(media == 'photo') {
                 if(add_date_val && add_note_media_val && add_note_cat_val) {
+                    $('.add-note-content').text('Upload');
                     $('.note-add-modal').modal('toggle');
                     $('.note-add-modal input[name="cat_id"]').val(category);
                     $('.note-add-modal input[name="note_date"]').val(note_add_date);
@@ -96,6 +103,11 @@
                     $('.note-add-modal input[name="note_to"]').val(group_id);     // Profile id
                     $('.note-add-modal input[name="note_value"]').hide();
                     $('.note-add-modal input[name="note_photo"]').show();
+                    $('#note_photo_alt').show();
+                    var img_src = $('#note_photo_id').attr('src');
+                    if (img_src === '#' || img_src === '') {
+                        $('#note_photo_id').attr('display', 'none');
+                    }
                     $('.note-add-modal input[name="note_video"]').hide();
 
                     $('.note-add-modal #note_photo_id').show();
@@ -112,6 +124,7 @@
                     $('.note-add-modal input[name="note_to"]').val(group_id);     // Profile id
                     $('.note-add-modal input[name="note_value"]').hide();
                     $('.note-add-modal input[name="note_photo"]').hide();
+                    $('.note-add-modal #note_photo_alt').hide();
                     $('.note-add-modal input[name="note_video"]').show();
 
                     $('.note-add-modal #note_photo_id').hide();
@@ -150,6 +163,7 @@
         console.log("profile id: ", to);
         var note_add_date = $('#add_note_form input[name="note_add_date"]').val();
         console.log(note_add_date);
+
         //validation part
         if(note_add_date === '') {
             $('#add_note_form input[name="note_add_date"]').css("border", "1px solid red");
@@ -166,7 +180,7 @@
             $('#friendAndfamily').css("border", "1px solid #e5e5e5");
             add_date_val = true;
         }
-        if(category == "category") {
+        if(category === "1") {
             $('#add_note_form input[name="category"]').parent().parent().css("border","1px solid red");//more efficient
             add_note_cat_val = false;
         } else {
@@ -190,6 +204,7 @@
                     $('.note-add-modal input[name="note_photo"]').hide();
                     $('.note-add-modal input[name="note_video"]').hide();
                     $('.note-add-modal #note_photo_id').hide();
+                    $('.note-add-modal #note_photo_alt').hide();
                     // $('.note-add-modal input[name="note_photo"]').show();
                     // $('.note-add-modal input[name="note_video"]').show();
                     $('.note-add-modal input[name="note_photo"]').removeAttr("required");
@@ -198,13 +213,20 @@
                 }
             } else if(media == 'photo') {
                 if(add_date_val && add_note_media_val && add_note_cat_val) {
+                    $('.add-note-content').text('Upload');
                     $('.note-add-modal').modal('toggle');
                     $('.note-add-modal input[name="cat_id"]').val(category);
                     $('.note-add-modal input[name="note_date"]').val(note_add_date);
                     $('.note-add-modal input[name="note_media"]').val(media);
                     $('.note-add-modal input[name="note_to"]').val(to);     // Profile id
                     $('.note-add-modal input[name="note_value"]').hide();
+                    $('#note_photo_alt').show();
+                    var img_src = $('#note_photo_id').attr('src');
+                    if (img_src === '#' || img_src === '') {
+                        $('#note_photo_id').attr('display', 'none');
+                    }
                     $('.note-add-modal input[name="note_photo"]').show();
+
                     $('.note-add-modal input[name="note_video"]').hide();
 
                     $('.note-add-modal #note_photo_id').show();
@@ -221,6 +243,7 @@
                     $('.note-add-modal input[name="note_to"]').val(to);     // Profile id
                     $('.note-add-modal input[name="note_value"]').hide();
                     $('.note-add-modal input[name="note_photo"]').hide();
+                    $('.note-add-modal #note_photo_alt').hide();
                     $('.note-add-modal input[name="note_video"]').show();
 
                     $('.note-add-modal #note_photo_id').hide();
@@ -297,8 +320,10 @@
         }
     });
 
-    $('.add_cancel_button').click(function () {
-
+    $('.cancel_button').click(function () {
+        var link = window.location.href;
+        window.location.href = link;
+        // console.log('cancel!!', link);
     });
 
     $("#fileToUpload").change(function() {
@@ -311,20 +336,20 @@
         var view_date_val = true;
         var view_cat_val = true;
 
-        var view_date = $('#view_note_form ul[data-select-name="view_date"] li.selected').attr('data-option-value');
+        var view_date = $('#view_note_form ul[data-select-name="note_view_date"] li.selected').attr('data-option-value');
         var view_cat = $('#view_note_form ul[data-select-name="view_category"] li.selected').attr('data-option-value');
 
         console.log("view_date", view_date);
         console.log("view_cat", view_cat);
-        if(view_date == 'date') {
-            $('#view_note_form ul[data-select-name="view_date"] li.selected').parent().parent().css("border", "1px solid red");
+        if(view_date === '') {
+            $('#view_note_form ul[data-select-name="note_view_date"] li.selected').parent().parent().css("border", "1px solid red");
             view_date_val = false;
         } else {
-            $('#view_note_form ul[data-select-name="view_date"] li.selected').parent().parent().css("border", "1px solid white");
+            $('#view_note_form ul[data-select-name="note_view_date"] li.selected').parent().parent().css("border", "1px solid white");
             view_date_val = true;
         }
 
-        if( view_cat == 'category') {
+        if( view_cat === "1") {
             $('#view_note_form ul[data-select-name="view_category"] li.selected').parent().parent().css("border", "1px solid red");
             view_cat_val = false;
         } else {
@@ -342,20 +367,20 @@
         var update_date_val = true;
         var update_cat_val = true;
 
-        var update_date = $('#update_note_form ul[data-select-name="update_date"] li.selected').attr('data-option-value');
+        var update_date = $('#update_note_form ul[data-select-name="note_update_date"] li.selected').attr('data-option-value');
         var update_cat = $('#update_note_form ul[data-select-name="update_category"] li.selected').attr('data-option-value');
 
         console.log("update_date", update_date);
         console.log("update_cat", update_cat);
         if(update_date == 'date') {
-            $('#update_note_form ul[data-select-name="update_date"] li.selected').parent().parent().css("border", "1px solid red");
+            $('#update_note_form ul[data-select-name="note_update_date"] li.selected').parent().parent().css("border", "1px solid red");
             update_date_val = false;
         } else {
             $('#update_note_form ul[data-select-name="update_date"] li.selected').parent().parent().css("border", "1px solid white");
             update_date_val = true;
         }
 
-        if( update_cat == 'category') {
+        if( update_cat === '1') {
             $('#update_note_form ul[data-select-name="update_category"] li.selected').parent().parent().css("border", "1px solid red");
             update_cat_val = false;
         } else {
@@ -378,6 +403,12 @@
 
     $('#avatar_edit_btn').click(function(e){
         e.preventDefault();
+
+        var img_src = $('#avatar_preview').attr('src');
+        if (img_src === '#' || img_src === '') {
+            $('#avatar_preview').attr('display', 'none');
+            $('#avatar_preview_alt').attr('display', 'block');
+        }
 
         console.log("here is avatar edit");
         $('.avatar-upload-modal').modal('toggle');

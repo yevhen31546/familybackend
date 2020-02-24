@@ -153,8 +153,8 @@ function genFamGroupNotMsg($params) {
 function checkFriGroupInvitation($user_id) {
     $db = getDbInstance();
     $query = 'SELECT * FROM tbl_fri_groups_members WHERE who = '.$user_id.' AND stat = 0';
-    $family_group_requests = $db->rawQuery($query);
-    if(count($family_group_requests) > 0) {
+    $friend_group_requests = $db->rawQuery($query);
+    if(count($friend_group_requests) > 0) {
         $_SESSION['friend_group_request'] = 1;
     } else {
         $_SESSION['friend_group_request'] = 0;
@@ -191,7 +191,8 @@ function genFriGroupNotMsg($params) {
 // Check family group note exist
 function checkFamNoteRequest($user_id) {
     $db = getDbInstance();
-    $query = 'SELECT * FROM tbl_fam_group_notes WHERE note_to = '.$user_id.' AND status = 0';
+    $query = 'SELECT * FROM tbl_fam_group_notes gp, tbl_fam_groups_members gm
+              WHERE (gp.note_to = '.$user_id.' AND gp.status = 0) AND (gm.who='.$user_id.' AND stat = 1)';
     $family_group_requests = $db->rawQuery($query);
     if(count($family_group_requests) > 0) {
         $_SESSION['family_note_request'] = 1;
@@ -229,7 +230,8 @@ function genFamNoteNotMsg($params) {
 // Check friend group note exist
 function checkFriNoteRequest($user_id) {
     $db = getDbInstance();
-    $query = 'SELECT * FROM tbl_fri_group_notes WHERE note_to = '.$user_id.' AND status = 0';
+    $query = 'SELECT * FROM tbl_fri_group_notes gp, tbl_fri_groups_members gm
+              WHERE (gp.note_to = '.$user_id.' AND gp.status = 0) AND (gm.who='.$user_id.' AND stat = 1)';
     $friend_group_requests = $db->rawQuery($query);
     if(count($friend_group_requests) > 0) {
         $_SESSION['friend_note_request'] = 1;

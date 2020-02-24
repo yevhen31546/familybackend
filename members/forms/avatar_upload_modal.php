@@ -11,7 +11,10 @@
                     <div class="box-body">
                         <div class="form-group">
                             <input type="file" name="avatar_photo" id="avatarToUpload" required>
-                            <img id="avatar_preview" src="#" alt="your image" style="color: green;font: 20px Impact;" />
+                            <img id="avatar_preview" src="#" alt="" />
+                            <div style="color: green;font: 20px Impact;" id="avatar_preview_alt">
+                                Upload your picture here
+                            </div>
                         </div>
                     </div>
                     <!-- /.box-body -->

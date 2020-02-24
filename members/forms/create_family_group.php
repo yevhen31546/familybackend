@@ -148,7 +148,7 @@ if(isset($_POST) && isset($_POST['group_name'])) {
                                             <div class="box--item text-left textareaw">
                                                 <div>
                                                     <label>
-                                                        <h6>Please provide the Group description: </h6>
+                                                        <h6>Please provide the group description: </h6>
                                                     </label>
                                                     <textarea class="w-100" rows="4" cols="100%" name="description"></textarea>
                                                 </div>

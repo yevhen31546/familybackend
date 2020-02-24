@@ -132,16 +132,16 @@ if(isset($_POST) && isset($_POST['group_name'])) {
     <link rel="stylesheet" href="<?php echo BASE_URL;?>/members/plugins/multi-select/style.css">
 
     <!-- Page Header Start -->
-    <div class="page--header pt--60 pb--60 text-center" data-bg-img="../img/fambanner.png"
+    <div class="page--header pt--60 pb--60 text-center" data-bg-img="../img/frebanner.png"
          data-overlay="0.35">
         <div class="container">
             <div class="title">
-                <h2 class="h1 text-white">My Family</h2>
+                <h2 class="h1 text-white">My Friends</h2>
             </div>
 
             <ul class="breadcrumb text-gray ff--primary">
-                <li><a href="../../members/home.php" class="btn-link">Home</a></li>
-                <li class="active"><span class="text-primary">My Family</span></li>
+                <li><a href="../members/home.php" class="btn-link">Home</a></li>
+                <li class="active"><span class="text-primary">My Friends</span></li>
             </ul>
         </div>
     </div>
@@ -157,7 +157,7 @@ if(isset($_POST) && isset($_POST['group_name'])) {
 
                         <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
                         <form name="create-family-group-form" action="" method="post" onsubmit="return checkEditFriForm();">
-                            <h2>Create a Family Group</h2>
+                            <h2>Edit <?php echo $group['group_name']; ?></h2>
                             <div class="box--items-h">
                                 <div class="row gutter--15 AdjustRow">
                                     <div class="box--item text-center w-100">
@@ -166,7 +166,7 @@ if(isset($_POST) && isset($_POST['group_name'])) {
                                             <div class="box--item text-left">
                                                 <div>
                                                     <label>
-                                                        <h6>Please provide the name of the family group :&nbsp;&nbsp;&nbsp;
+                                                        <h6>Please provide the name of the friend group :&nbsp;&nbsp;&nbsp;
                                                             <input type="text" class="form-control" name="group_name"
                                                                    value="<?php echo $group['group_name']; ?>"
                                                                    required>&nbsp;&nbsp;&nbsp;</h6>
@@ -177,7 +177,7 @@ if(isset($_POST) && isset($_POST['group_name'])) {
                                             <div class="box--item text-left textareaw">
                                                 <div>
                                                     <label>
-                                                        <h6>Please provide the Group description: </h6>
+                                                        <h6>Please provide the group description: </h6>
                                                     </label>
                                                     <textarea class="w-100" rows="4" cols="100%" name="description">
                                                         <?php echo $group['description']; ?>
@@ -187,7 +187,7 @@ if(isset($_POST) && isset($_POST['group_name'])) {
 
                                             <div class="box--item text-left">
                                                 <label>
-                                                    <h6>Select group members  :</h6>
+                                                    <h6>Select group members (You can add more friends here) :</h6>
                                                 </label>
                                                 <multi-input>
                                                     <input list="speakers">

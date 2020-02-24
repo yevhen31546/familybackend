@@ -103,16 +103,16 @@ if(isset($_POST) && isset($_POST['group_name'])) {
     <link rel="stylesheet" href="<?php echo BASE_URL;?>/members/plugins/multi-select/style.css">
 
     <!-- Page Header Start -->
-    <div class="page--header pt--60 pb--60 text-center" data-bg-img="../img/fambanner.png"
+    <div class="page--header pt--60 pb--60 text-center" data-bg-img="../img/frebanner.png"
          data-overlay="0.35">
         <div class="container">
             <div class="title">
-                <h2 class="h1 text-white">My Family</h2>
+                <h2 class="h1 text-white">My Friends</h2>
             </div>
 
             <ul class="breadcrumb text-gray ff--primary">
-                <li><a href="../../members/home.php" class="btn-link">Home</a></li>
-                <li class="active"><span class="text-primary">My Family</span></li>
+                <li><a href="../members/home.php" class="btn-link">Home</a></li>
+                <li class="active"><span class="text-primary">My Friends</span></li>
             </ul>
         </div>
     </div>
@@ -146,7 +146,7 @@ if(isset($_POST) && isset($_POST['group_name'])) {
                                             <div class="box--item text-left textareaw">
                                                 <div>
                                                     <label>
-                                                        <h6>Please provide the Group description: </h6>
+                                                        <h6>Please provide the group description: </h6>
                                                     </label>
                                                     <textarea class="w-100" rows="4" cols="100%" name="description"></textarea>
                                                 </div>
