@@ -407,7 +407,7 @@
         var img_src = $('#avatar_preview').attr('src');
         if (img_src === '#' || img_src === '') {
             $('#avatar_preview').attr('display', 'none');
-            $('#avatar_preview_alt').attr('display', 'block');
+            $('#avatar_preview_alt').show();
         }
 
         console.log("here is avatar edit");
