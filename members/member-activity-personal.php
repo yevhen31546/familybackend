@@ -63,8 +63,6 @@ $userrow = $userdb->getOne('tbl_users');
                                     <li><a href="member-profile.php">Profile</a></li>
                                     <li><a href="member-friends.html">Friends</a></li>
                                     <li><a href="member-groups.html">Groups</a></li>
-                                    <li><a href="member-forum-topics.html">Forum</a></li>
-                                    <li><a href="member-media-all.html">Media</a></li>
                                 </ul>
                             </div>
                             <!-- Content Nav End -->
