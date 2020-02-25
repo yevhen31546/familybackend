@@ -69,8 +69,8 @@ include BASE_PATH.'/members/includes/header.php';
                     <!-- Filter Nav Start -->
                     <div class="filter--nav pb--60 clearfix">
                         <div class="filter--link float--left">
-                            <?php if (count($checkGroup) > 0) { ?>
-                                <h2>Our Family Group – <?php echo $checkGroup[0]['group_name']; ?></h2>
+                            <?php if (count($groupLists) > 0) { ?>
+                                <h2>Our Family Group – <?php echo $groupLists[0]['group_name']; ?></h2>
                             <?php } else { ?>
                                 <h2>Our Family</h2>
                             <?php }?>
@@ -167,9 +167,9 @@ include BASE_PATH.'/members/includes/header.php';
             <!-- Main Sidebar Start -->
             <div class="main--sidebar col-md-4 pb--60" data-trigger="stickyScroll">
                 <?php
-                if (count($checkGroup) > 0) { ?>
+                if (count($groupLists) > 0) { ?>
                     <div class="filter--link float--left">
-                        <a href="forms/edit_family_group.php?group_id=<?php echo $checkGroup[0]['id']; ?>"><h5>Edit <?php echo $checkGroup[0]['group_name']; ?></h5></a>
+                        <a href="forms/edit_family_group.php?group_id=<?php echo $groupLists[0]['id']; ?>"><h5>Edit <?php echo $groupLists[0]['group_name']; ?></h5></a>
                     </div>
                 <?php }
                 else { ?>
@@ -223,7 +223,12 @@ include BASE_PATH.'/members/includes/header.php';
                                         </label>
                                     </div>
                                 </div>
-                                <input type="hidden" id="add_note_group_id" value="<?php echo $checkGroup[0]['id']; ?>">
+                                <?php if (count($groupLists)>0) { ?>
+                                    <input type="hidden" id="add_note_group_id" value="<?php echo $groupLists[0]['id']; ?>">
+                                <?php } else { ?>
+                                    <input type="hidden" id="add_note_group_id" value="0">
+                                <?php } ?>
+
                                 <div class="col-xs-12">
                                     <button type="submit" class="btn btn-primary activity-group-note-add">Add</button>
                                     <button type="button" class="btn btn-primary cancel_button">Cancel</button>

@@ -59,7 +59,7 @@ if(isset($_GET) && isset($_GET['fri_group_note_id'])){
     } else if($_GET['stat'] == 'delete') {
 //        $body = generateDeleteNoteMessageBody($sender, $receiver);
 //        $stat = sendNoteEmail($to, $body);
-        $data_to_db['status'] = 0; // update status
+        $data_to_db['status'] = -1; // update status
 
         $db = getDbInstance();
         $db->where('id', $note_id);
@@ -88,7 +88,7 @@ if(isset($_GET) && isset($_GET['group_id'])) {
     else if($stat == 'delete') {
         $db = getDbInstance();
         $db->where('id', $member_id);
-        $db->delete('tbl_fri_group_notes');
+        $db->delete('tbl_fri_groups_members');
     }
 }
 

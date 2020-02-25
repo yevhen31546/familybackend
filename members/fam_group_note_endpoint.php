@@ -12,9 +12,22 @@ $category_lists = $db->get('tbl_group_note_cat');
  * Check family group exists or not
  */
 $db = getDbInstance();
-$db->where('by_who', $logged_id);
-$checkGroup = $db->get('tbl_fam_groups');
+$query = 'SELECT tbl_fam_groups.`id`, tbl_fam_groups.`group_name`
+FROM
+(
+SELECT DISTINCT fam_gp_mems.group_id
+FROM tbl_fam_groups_members fam_gp_mems
+WHERE fam_gp_mems.`who` = '.$logged_id.'
+UNION
+SELECT DISTINCT gp.`id` AS group_id
+FROM tbl_fam_groups gp
+WHERE gp.`by_who` = '.$logged_id.'
+) tmp, tbl_fam_groups
+WHERE tmp.group_id = tbl_fam_groups.`id`
+ORDER BY tmp.group_id';
 
+$groupLists = $db->rawQuery($query);
+//print_r($groupLists); exit;
 
 /*
  * Approve or delete group note
@@ -59,7 +72,7 @@ if(isset($_GET) && isset($_GET['fam_group_note_id'])){
     } else if($_GET['stat'] == 'delete') {
 //        $body = generateDeleteNoteMessageBody($sender, $receiver);
 //        $stat = sendNoteEmail($to, $body);
-        $data_to_db['status'] = 0; // update status
+        $data_to_db['status'] = -1; // update status
 
         $db = getDbInstance();
         $db->where('id', $note_id);
@@ -147,9 +160,10 @@ if(isset($_POST) && $_POST) {
 //        $db->where('stat', 1);
         $to = $db->get('tbl_fam_groups_members', null, 'who');
 
+        echo $group_id; exit;
         //    If media type is photo, then get img_url after upload that photo
         if ($media_type == 'photo') {
-            $target_dir = "./uploads/" . $group_id . "/group_notes/";
+            $target_dir = "./uploads/" . $log_user_id . "/group_notes/";
             if (!file_exists($target_dir)) {
                 mkdir($target_dir, 0777, true);  //create directory if not exist
             }

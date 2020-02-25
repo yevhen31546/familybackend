@@ -224,7 +224,11 @@ include BASE_PATH.'/members/includes/header.php'
                                         </label>
                                     </div>
                                 </div>
-                                <input type="hidden" id="add_note_group_id" value="<?php echo $checkGroup[0]['id']; ?>">
+                                <?php if (count($checkGroup)>0) { ?>
+                                    <input type="hidden" id="add_note_group_id" value="<?php echo $checkGroup[0]['id']; ?>">
+                                <?php } else { ?>
+                                    <input type="hidden" id="add_note_group_id" value="0">
+                                <?php } ?>
                                 <div class="col-xs-12">
                                     <button type="submit" class="btn btn-primary activity-group-note-add">Add</button>
                                     <button type="button" class="btn btn-primary cancel_button">Cancel</button>
