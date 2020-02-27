@@ -127,14 +127,15 @@
                     $('.note-add-modal input[name="note_to"]').val(group_id);     // Profile id
                     $('.note-add-modal input[name="note_value"]').hide();
                     $('.note-add-modal input[name="note_photo"]').show();
-                    $('#note_photo_alt').show();
                     var img_src = $('#note_photo_id').attr('src');
                     if (img_src === '#' || img_src === '') {
-                        $('#note_photo_id').attr('display', 'none');
+                        $('#note_photo_id').hide();
+                        $('#note_photo_alt').show();
+                    } else {
+                        $('#note_photo_id').show();
+                        $('#note_photo_alt').hide();
                     }
                     $('.note-add-modal input[name="note_video"]').hide();
-
-                    $('.note-add-modal #note_photo_id').show();
 
                     $('.note-add-modal input[name="note_value"]').removeAttr("required");
                     $('.note-add-modal input[name="note_video"]').removeAttr("required");
@@ -150,9 +151,8 @@
                     $('.note-add-modal input[name="note_value"]').hide();
                     $('.note-add-modal input[name="note_photo"]').hide();
                     $('.note-add-modal #note_photo_alt').hide();
-                    $('.note-add-modal input[name="note_video"]').show();
-
                     $('.note-add-modal #note_photo_id').hide();
+                    $('.note-add-modal input[name="note_video"]').show();
 
                     $('.note-add-modal input[name="note_value"]').removeAttr("required");
                     $('.note-add-modal input[name="note_photo"]').removeAttr("required");
@@ -267,9 +267,8 @@
                     $('.note-add-modal input[name="note_value"]').hide();
                     $('.note-add-modal input[name="note_photo"]').hide();
                     $('.note-add-modal #note_photo_alt').hide();
-                    $('.note-add-modal input[name="note_video"]').show();
-
                     $('.note-add-modal #note_photo_id').hide();
+                    $('.note-add-modal input[name="note_video"]').show();
 
                     $('.note-add-modal input[name="note_value"]').removeAttr("required");
                     $('.note-add-modal input[name="note_photo"]').removeAttr("required");
@@ -374,13 +373,14 @@
             $('.note-update-modal').modal('toggle');
             $('.note-update-modal input[name="note_photo"]').show();
             $('.note-update-modal #note_photo_id').show();
+            $('.note-update-modal #note_photo_id_edit').show();
 
             var note_value = $(this).parent().children('img').attr('src');
             $('#note_photo_id_edit').attr('src', note_value);
+
             $('.note-update-modal input[name="note_media"]').val('photo');
             $('.note-update-modal input[name="note_id"]').val(id);
             $('.note-update-modal input[name="note_to"]').val(to);     // Profile id
-            $('.note-update-modal #note_photo_id_edit').show();
 
             $('.note-update-modal input[name="note_value"]').hide();
             $('.note-update-modal input[name="note_video"]').hide();
