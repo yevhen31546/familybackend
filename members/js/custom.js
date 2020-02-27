@@ -59,6 +59,8 @@
 
     $('.activity-group-note-add').click(function (e) {
 
+        $('#myLargeModalLabel').html('Add New Note');
+
         $('.note-add-modal input[name="mode"]').val('add');
 
 
@@ -390,7 +392,7 @@
             $('.update-note-content').text('Update');
             $('.note-update-modal').modal('toggle');
             $('.note-update-modal input[name="note_video"]').show();
-            var note_value = $(this).parent().children('iframe').attr('src');
+            var note_value = $(this).parent().children().find('.link--url').attr('href');
             $('.note-update-modal input[name="note_video"]').val(note_value);
             $('.note-update-modal input[name="note_media"]').val('video');
             $('.note-update-modal input[name="note_id"]').val(id);
