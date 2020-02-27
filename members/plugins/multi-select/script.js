@@ -1,20 +1,25 @@
-const multiInput = document.querySelector('multi-input');
-
-function checkForm()
+function checkFamForm()
 {
-    if (multiInput.getValues().length > 0) {
-        var values = multiInput.getValues().join(',');
-        console.log('selected group members: ', values);
-        document.getElementById("family_lists").value = values;
+    const multiInput = document.querySelector('multi-input');
+    if (multiInput !== null) {
+        if (multiInput.getValues().length > 0) {
+            var values = multiInput.getValues().join(',');
+            console.log('selected group members: ', values);
+            document.getElementById("family_lists").value = values;
+        } else {
+            alert("Error: Please select group member!");
+            return false;
+        }
+        return true;
     } else {
-        alert("Error: Please select group member!");
+        alert('Please add family member');
         return false;
     }
-    return true;
 }
 
 function checkEditForm()
 {
+    const multiInput = document.querySelector('multi-input');
     if (multiInput.getValues().length > 0) {
         var values = multiInput.getValues().join(',');
         console.log('selected group members: ', values);
@@ -24,6 +29,7 @@ function checkEditForm()
 }
 
 function checkFriForm() {
+    const multiInput = document.querySelector('multi-input');
     if (multiInput.getValues().length > 0) {
         var values = multiInput.getValues().join(',');
         console.log('selected group members: ', values);
@@ -37,6 +43,7 @@ function checkFriForm() {
 
 function checkEditFriForm()
 {
+    const multiInput = document.querySelector('multi-input');
     if (multiInput.getValues().length > 0) {
         var values = multiInput.getValues().join(',');
         console.log('selected group members: ', values);

@@ -6,11 +6,19 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="" method="POST" enctype="multipart/form-data" onsubmit="return checkForm(this);">
                     <input type="hidden" name="cat_id" value="cat_id">
                     <input type="hidden" name="note_date" value="note_date">
                     <input type="hidden" name="note_media" value="note_media">
                     <input type="hidden" name="note_to">
+                    <input type="hidden" name="update_date"
+                           value="<?php if(isset($_POST['note_update_date']) && $_POST['update_category']){
+                               echo $_POST['note_update_date'];
+                           }?>">
+                    <input type="hidden" name="update_cat"
+                           value="<?php if(isset($_POST['note_update_date']) && $_POST['update_category']){
+                               echo $_POST['update_category'];
+                           }?>">
                     <input type="hidden" name="mode" value="add">
                     <input type="hidden" name="note_id" value="">
                     <div class="box-body">
@@ -38,3 +46,17 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+<script>
+    function checkForm(form)
+    {
+        var to = form.note_to.value;
+        var familyLists = <?php print_r(json_encode($familyLists)); ?>;
+        if(familyLists.indexOf(to) === -1) {
+            alert("Error: The selected profile is invalid!");
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>

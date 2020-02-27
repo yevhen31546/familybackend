@@ -5,7 +5,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
 $db = getDbInstance();
 $db->join('tbl_notes', 'tbl_notes.user_id = tbl_users.id')->join('tbl_categories','tbl_notes.cat_id = tbl_categories.id');
 $db->where('tbl_users.id', $_GET['user']);
-$db->orderBy('tbl_notes.id');
+$db->orderBy('tbl_notes.note_date');
 
 $rows = $db->get('tbl_users');
 
@@ -97,8 +97,12 @@ $userrow = $userdb->getOne('tbl_users');
                                             <!-- Activity Item Start -->
                                             <div class="activity--item">
                                                 <div class="activity--avatar">
-                                                    <a href="member-activity-personal.php">
-                                                        <img src="img/activity-img/avatar-01.jpg" alt="">
+                                                    <a href="<?php echo BASE_URL . '/members/member-activity-personal.php'; ?>">
+                                                        <?php if (isset($row['avatar'])) { ?>
+                                                            <img src="<?php echo substr($row['avatar'], 2) ?>" alt="">
+                                                        <?php } else { ?>
+                                                            <img src="img/activity-img/avatar-01.jpg" alt="">
+                                                        <?php } ?>
                                                     </a>
                                                 </div>
 

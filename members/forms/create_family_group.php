@@ -129,7 +129,7 @@ if(isset($_POST) && isset($_POST['group_name'])) {
                     <div class="main--content-inner">
 
                         <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
-                        <form name="create-family-group-form" action="" method="post" onsubmit="return checkForm();">
+                        <form name="create-family-group-form" action="" method="post" onsubmit="return checkFamForm(this);">
                             <h2>Create a Family Group</h2>
                             <div class="box--items-h">
                                 <div class="row gutter--15 AdjustRow">
@@ -158,6 +158,7 @@ if(isset($_POST) && isset($_POST['group_name'])) {
                                                 <label>
                                                     <h6>Select group members  :</h6>
                                                 </label>
+                                                <?php if (count($family_members)) { ?>
                                                 <multi-input>
                                                     <input list="speakers">
                                                     <datalist id="speakers">
@@ -170,6 +171,9 @@ if(isset($_POST) && isset($_POST['group_name'])) {
                                                         ?>
                                                     </datalist>
                                                 </multi-input>
+                                                <?php } else { ?>
+                                                    <p>You have no any family member. Please add family member.</p>
+                                                <?php } ?>
                                             </div>
                                             <input type="hidden" id="family_lists" name="family_lists">
 
@@ -192,6 +196,6 @@ if(isset($_POST) && isset($_POST['group_name'])) {
     <!-- Page Wrapper End -->
 
     <script src="../plugins/multi-select/multi-input.js"></script>
-    <script src="../plugins/multi-select/script.js"></script>
+    <<script src="../plugins/multi-select/script.js"></script>
 
 <?php include BASE_PATH.'/members/includes/footer.php'?>

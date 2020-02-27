@@ -34,11 +34,12 @@ if ($group_id != 0) {
  * Get friends for auto fill box
  */
 $db = getDbInstance();
-$get_friend_query = 'SELECT us.user_name, us.first_name, us.last_name
-                     FROM tbl_users us JOIN
-                     (SELECT with_who, who  
-                         FROM tbl_friend WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa
-                     ON us.id=fa.with_who OR us.id=fa.who WHERE us.id!='.$logged_id;
+$get_friend_query = 'SELECT us.id, us.user_name, us.user_email, us.first_name, us.last_name
+FROM tbl_users us
+WHERE id NOT IN (
+SELECT fri_gp_mems.who
+FROM tbl_fri_groups_members fri_gp_mems
+WHERE fri_gp_mems.group_id = '.$group_id.') AND us.`id` != '.$logged_id;
 $friends = $db->rawQuery($get_friend_query);
 
 /**
@@ -57,7 +58,7 @@ function genFriGroupMsgBody($from, $group_name, $group_id, $fri_group_members_id
 }
 if(isset($_POST) && isset($_POST['group_name'])) {
 
-//    Create the family group
+    //    Create the family group
     $data_to_db = array(
         'group_name' => $_POST['group_name'],
         'description' => $_POST['description'],
@@ -66,16 +67,23 @@ if(isset($_POST) && isset($_POST['group_name'])) {
     $db->where('id', $group_id);
     $update_result = $db->update('tbl_fri_groups', $data_to_db); // Group Id
 
+    if ($update_result) {
+        $_SESSION['success'] = 'Updated successfully!';
+    } else {
+        $_SESSION['failure'] = 'Update failed!';
+    }
+
     $friend_lists = $_POST['friend_lists'];
-//    print_r($family_lists);
+
     if ($friend_lists != '') {
-        //    Get family member's id/email
+        //    Get friend's id/email
         $friend_lists = $_POST['friend_lists'];
-        $friend_arr = explode (",", $friend_lists);
+        $friend_arr = explode(",", $friend_lists);
         $friend_data = []; // selected family member's data: id, email...
-        for ($i=0; $i<count($friend_arr); $i++) {
+
+        for ($i = 0; $i < count($friend_arr); $i++) {
             foreach ($friends as $friend):
-                if ($friend['user_name'] === $friend[$i]) {
+                if ($friend['user_name'] === $friend_arr[$i]) {
                     $friend_data[$i] = $friend;
                     continue;
                 }
@@ -84,22 +92,19 @@ if(isset($_POST) && isset($_POST['group_name'])) {
 
         //    Save to friend group member
         $fri_group_members_id = [];
-        for ($i=0; $i<count($friend_arr); $i++) {
+        for ($i = 0; $i < count($friend_arr); $i++) {
             $data_to_db = array(
                 'who' => $friend_data[$i]['id'],
-                'group_id' => $fri_group_id
+                'group_id' => $group_id
             );
             $db = getDbInstance();
             $fri_group_members_id[$i] = $db->insert('tbl_fri_groups_members', $data_to_db);
         }
 
         if ($fri_group_members_id[0]) {
-            $_SESSION['success'] = 'Invitation email is sent successfully!';
-            header('Location: '. BASE_URL .'/members/activity-frd.php');
-            $_POST = array();
+            $_SESSION['success'] = 'Updated successfully!';
         } else {
-            $_SESSION['failure'] = 'Sending invitation email is failed!';
-            $_POST = array();
+            $_SESSION['failure'] = 'Update failed!';
         }
 
         //    Send friend group invitation
@@ -117,12 +122,20 @@ if(isset($_POST) && isset($_POST['group_name'])) {
 //            $_POST = array();
 //        }
     }
-
-    else {
-        header('Location: '. BASE_URL .'/members/activity-frd.php');
-    }
-
 }
+
+/**
+ * Get friends for auto fill box
+ */
+$db = getDbInstance();
+$get_friend_query = 'SELECT us.id, us.user_name, us.user_email, us.first_name, us.last_name
+FROM tbl_users us
+WHERE id NOT IN (
+SELECT fri_gp_mems.who
+FROM tbl_fri_groups_members fri_gp_mems
+WHERE fri_gp_mems.group_id = '.$group_id.') AND us.`id` != '.$logged_id;
+$friends = $db->rawQuery($get_friend_query);
+//print_r($friends); exit;
 
 ?>
 
@@ -189,6 +202,7 @@ if(isset($_POST) && isset($_POST['group_name'])) {
                                                 <label>
                                                     <h6>Select group members (You can add more friends here) :</h6>
                                                 </label>
+                                                <?php if (count($friends) > 0) { ?>
                                                 <multi-input>
                                                     <input list="speakers">
                                                     <datalist id="speakers">
@@ -201,13 +215,16 @@ if(isset($_POST) && isset($_POST['group_name'])) {
                                                         ?>
                                                     </datalist>
                                                 </multi-input>
+                                                <?php } else { ?>
+                                                    <p>There is no profile to select or you selected all.</p>
+                                                <?php } ?>
                                             </div>
                                             <input type="hidden" id="friend_lists" name="friend_lists">
 
                                             <br/>
                                             <div class="row text-right" style="padding-right: 16px;">
                                                 <button type="submit" class="btn btn-primary">Update</button>
-                                                <a class="btn btn-primary" href="../../members/activity-frd.php">Cancel</a>
+                                                <a class="btn btn-primary" href="view_fri_group.php">Back</a>
                                             </div>
 
                                         </div>

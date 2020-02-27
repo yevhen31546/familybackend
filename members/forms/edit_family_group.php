@@ -35,11 +35,12 @@ if ($group_id != 0) {
  */
 $families = [];
 $db = getDbInstance();
-$get_family_query = 'SELECT us.id, us.user_name, us.user_email, us.first_name, us.last_name, fa.relation 
-                     FROM tbl_users us JOIN 
-                     (SELECT with_who, who, relation  
-                         FROM tbl_family WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa
-                     ON us.id=fa.with_who OR us.id=fa.who WHERE us.id!='.$logged_id;
+$get_family_query = 'SELECT us.id, us.user_name, us.user_email, us.first_name, us.last_name
+FROM tbl_users us
+WHERE id NOT IN (
+SELECT fam_gp_mems.who
+FROM tbl_fam_groups_members fam_gp_mems
+WHERE fam_gp_mems.group_id = '.$group_id.') AND us.`id` != '.$logged_id;
 $family_members = $db->rawQuery($get_family_query);
 
 /**
@@ -58,7 +59,7 @@ function genFamGroupMsgBody($from, $group_name, $group_id, $fam_group_members_id
 }
 if(isset($_POST) && isset($_POST['group_name'])) {
 
-//    Create the family group
+    //    Create the family group
     $data_to_db = array(
         'group_name' => $_POST['group_name'],
         'description' => $_POST['description'],
@@ -67,8 +68,14 @@ if(isset($_POST) && isset($_POST['group_name'])) {
     $db->where('id', $group_id);
     $update_result = $db->update('tbl_fam_groups', $data_to_db); // Group Id
 
+    if ($update_result) {
+        $_SESSION['success'] = 'Updated successfully!';
+    } else {
+        $_SESSION['failure'] = 'Update failed!';
+    }
+
     $family_lists = $_POST['family_lists'];
-//    print_r($family_lists);
+
     if ($family_lists != '') {
         //    Get family member's id/email
         $family_arr = explode (",", $family_lists);
@@ -94,12 +101,9 @@ if(isset($_POST) && isset($_POST['group_name'])) {
         }
 
         if ($fam_group_members_id[0]) {
-            $_SESSION['success'] = 'Invitation email is sent successfully!';
-            header('Location: '. BASE_URL .'/members/activity-fam.php');
-            $_POST = array();
+            $_SESSION['success'] = 'Updated successfully!';
         } else {
-            $_SESSION['failure'] = 'Sending invitation email is failed!';
-            $_POST = array();
+            $_SESSION['failure'] = 'Update failed!';
         }
 
         // $user: group creator
@@ -116,12 +120,20 @@ if(isset($_POST) && isset($_POST['group_name'])) {
 //            $_POST = array();
 //        }
     }
-
-    else {
-        header('Location: '. BASE_URL .'/members/activity-fam.php');
-    }
-
 }
+
+/**
+ * Get family members for auto fill box
+ */
+$families = [];
+$db = getDbInstance();
+$get_family_query = 'SELECT us.id, us.user_name, us.user_email, us.first_name, us.last_name
+FROM tbl_users us
+WHERE id NOT IN (
+SELECT fam_gp_mems.who
+FROM tbl_fam_groups_members fam_gp_mems
+WHERE fam_gp_mems.group_id = '.$group_id.') AND us.`id` != '.$logged_id;
+$family_members = $db->rawQuery($get_family_query);
 
 ?>
 
@@ -135,12 +147,12 @@ if(isset($_POST) && isset($_POST['group_name'])) {
          data-overlay="0.35">
         <div class="container">
             <div class="title">
-                <h2 class="h1 text-white">My Friends</h2>
+                <h2 class="h1 text-white">My Family</h2>
             </div>
 
             <ul class="breadcrumb text-gray ff--primary">
                 <li><a href="../members/home.php" class="btn-link">Home</a></li>
-                <li class="active"><span class="text-primary">My Friends</span></li>
+                <li class="active"><span class="text-primary">My Family</span></li>
             </ul>
         </div>
     </div>
@@ -188,25 +200,31 @@ if(isset($_POST) && isset($_POST['group_name'])) {
                                                 <label>
                                                     <h6>Select group members (You can add more family members here) :</h6>
                                                 </label>
-                                                <multi-input>
-                                                    <input list="speakers">
-                                                    <datalist id="speakers">
-                                                        <?php
-                                                        foreach ($family_members as $family):
-                                                            ?>
-                                                            <option value="<?php echo $family['user_name']; ?>"></option>
+
+                                                <?php if (count($family_members) > 0) { ?>
+                                                    <multi-input>
+                                                        <input list="speakers">
+                                                        <datalist id="speakers">
                                                             <?php
-                                                        endforeach;
-                                                        ?>
-                                                    </datalist>
-                                                </multi-input>
+                                                            foreach ($family_members as $family):
+                                                                ?>
+                                                                <option value="<?php echo $family['user_name']; ?>"></option>
+                                                                <?php
+                                                            endforeach;
+                                                            ?>
+                                                        </datalist>
+                                                    </multi-input>
+                                                <?php } else { ?>
+                                                    <p>There is no profile to select or you selected all.</p>
+                                                <?php } ?>
+
                                             </div>
                                             <input type="hidden" id="family_lists" name="family_lists">
 
                                             <br/>
                                             <div class="row text-right" style="padding-right: 16px;">
                                                 <button type="submit" class="btn btn-primary">Update</button>
-                                                <a class="btn btn-primary" href="../../members/activity-fam.php">Cancel</a>
+                                                <a class="btn btn-primary" href="view_fam_group.php">Back</a>
                                             </div>
 
                                         </div>

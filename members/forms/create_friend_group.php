@@ -71,12 +71,10 @@ if(isset($_POST) && isset($_POST['group_name'])) {
     }
 
     if ($fri_group_members_id[0]) {
-        $_SESSION['success'] = 'Invitation email is sent successfully!';
-        header('Location: '. BASE_URL .'/members/activity-frd.php');
-        $_POST = array();
+        $_SESSION['success'] = 'Group is created successfully!';
+        header('Location: '. BASE_URL .'/members/forms/view_fri_group');
     } else {
-        $_SESSION['failure'] = 'Sending invitation email is failed!';
-        $_POST = array();
+        $_SESSION['failure'] = 'Creating the group is failed!';
     }
 
     //    Send friend group invitation
@@ -156,6 +154,7 @@ if(isset($_POST) && isset($_POST['group_name'])) {
                                                 <label>
                                                     <h6>Select group members  :</h6>
                                                 </label>
+                                                <?php if (count($friends)) { ?>
                                                 <multi-input>
                                                     <input list="speakers">
                                                     <datalist id="speakers">
@@ -168,13 +167,16 @@ if(isset($_POST) && isset($_POST['group_name'])) {
                                                         ?>
                                                     </datalist>
                                                 </multi-input>
+                                                <?php } else { ?>
+                                                    <p>You have no any friend. Please add friend member.</p>
+                                                <?php } ?>
                                             </div>
                                             <input type="hidden" id="friend_lists" name="friend_lists">
 
                                             <br/>
                                             <div class="row text-right" style="padding-right: 16px;">
                                                 <button type="submit" class="btn btn-primary">Save</button>
-                                                <a class="btn btn-primary" href="../../members/activity-frd.php">Cancel</a>
+                                                <a class="btn btn-primary" href="../../members/activity-frd.php">Back</a>
                                             </div>
 
                                         </div>
