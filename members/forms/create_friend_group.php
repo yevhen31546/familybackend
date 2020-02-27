@@ -72,7 +72,7 @@ if(isset($_POST) && isset($_POST['group_name'])) {
 
     if ($fri_group_members_id[0]) {
         $_SESSION['success'] = 'Group is created successfully!';
-        header('Location: '. BASE_URL .'/members/forms/view_fri_group');
+        header('Location: '. BASE_URL .'/members/activity-frd.php');
     } else {
         $_SESSION['failure'] = 'Creating the group is failed!';
     }
