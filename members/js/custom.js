@@ -100,6 +100,7 @@
             add_note_media_val = true;
             if(media == 'text') {
                 if(add_date_val && add_note_media_val && add_note_cat_val) {
+                    $('.add-note-content').text('Send');
                     $('.note-add-modal').modal('toggle');
                     $('.note-add-modal input[name="cat_id"]').val(category);
                     $('.note-add-modal input[name="note_date"]').val(note_add_date);
@@ -140,6 +141,7 @@
                 }
             } else if(media == 'video') {
                 if(add_date_val && add_note_media_val && add_note_cat_val) {
+                    $('.add-note-content').text('Send');
                     $('.note-add-modal').modal('toggle');
                     $('.note-add-modal input[name="cat_id"]').val(category);
                     $('.note-add-modal input[name="note_date"]').val(note_add_date);
