@@ -11,7 +11,7 @@ $db->get('tbl_users');
 $db->where('id', $logged_id);
 $user = $db->getOne('tbl_users');
 
-/**
+/*
  * Get family group id
  */
 $group_id = 0;
@@ -19,7 +19,7 @@ if (isset($_GET) && isset($_GET['group_id'])) {
     $group_id = $_GET['group_id'];
 }
 
-/**
+/*
  * Get group info
  */
 $group = '';
@@ -30,7 +30,7 @@ if ($group_id != 0) {
 }
 //print_r($group); exit;
 
-/**
+/*
  * Get family members for auto fill box
  */
 $families = [];
@@ -43,20 +43,10 @@ FROM tbl_fam_groups_members fam_gp_mems
 WHERE fam_gp_mems.group_id = '.$group_id.') AND us.`id` != '.$logged_id;
 $family_members = $db->rawQuery($get_family_query);
 
-/**
+
+/*
  * Save family group
  */
-// generate invitation message body for family group
-function genFamGroupMsgBody($from, $group_name, $group_id, $fam_group_members_id) {
-    $who = $from['first_name']." ".$from['last_name'];
-    $approve_url = BASE_URL."/members/activity-fam.php?group_id=".$group_id."&&member_id=".$fam_group_members_id."&&stat=approved";
-    $delete_url = BASE_URL."/members/activity-fam.php?group_id=".$group_id."&&member_id=".$fam_group_members_id."&&stat=delete";
-
-    $message = "";
-
-    $message .="<html><head><title></title></head><body><p>Invitation is arrived from ".$group_name." that created by ".$who."</p><p><span><a href=".$approve_url.">Approve</a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><a href=".$delete_url.">Delete</a></span></p></body></html>";
-    return $message;
-}
 if(isset($_POST) && isset($_POST['group_name'])) {
 
     //    Create the family group
@@ -122,7 +112,32 @@ if(isset($_POST) && isset($_POST['group_name'])) {
     }
 }
 
-/**
+
+/*
+ * Remove group member
+ */
+if(isset($_POST) && isset($_POST['del_member_id'])) {
+    $db->where('id', $_POST['del_member_id']);
+    $result = $db->delete('tbl_fam_groups_members');
+    if ($result) {
+        $_SESSION['success'] = 'Removed successfully';
+    } else {
+        $_SESSION['failure'] = 'Oops... removing fail!';
+    }
+}
+
+/*
+ * Get group member lists
+ */
+$query = 'SELECT us.`id` AS user_id, us.`avatar`, us.`first_name`, us.`last_name`, tmp.member_id
+FROM tbl_users us
+RIGHT JOIN (SELECT gp_mems.`who`, gp_mems.`id` AS member_id
+FROM tbl_fam_groups_members gp_mems
+WHERE gp_mems.group_id = '.$group_id.' AND gp_mems.stat = 1) tmp
+ON us.`id` = tmp.who';
+$rows = $db->rawQuery($query);
+
+/*
  * Get family members for auto fill box
  */
 $families = [];
@@ -162,11 +177,10 @@ $family_members = $db->rawQuery($get_family_query);
     <section class="page--wrapper pt--80 pb--20">
         <div class="container">
             <div class="row">
+                <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
                 <!-- Main Content Start -->
-                <div class="main--content col-md-12 pb--60">
-                    <div class="main--content-inner">
-
-                        <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
+                <div class="main--content col-md-8 pb--60">
+                    <div class="main--content-inner drop--shadow">
                         <form name="create-family-group-form" action="" method="post" onsubmit="return checkEditForm();">
                             <h2>Edit <?php echo $group['group_name']; ?></h2>
                             <div class="box--items-h">
@@ -233,6 +247,68 @@ $family_members = $db->rawQuery($get_family_query);
                             </div>
                         </form>
                     </div>
+                </div>
+                <!-- Main Content End -->
+
+                <!-- Main Sidebar Start -->
+                <div class="main--sidebar col-md-4 pb--60" data-trigger="stickyScroll">
+                    <!-- Widget Start -->
+                    <div class="widget">
+                        <h2 class="h6 fw--700 widget--title">Existing member lists</h2>
+                        <hr>
+                        <!-- Buddy Finder Widget Start -->
+                        <div class="activity--list">
+                            <ul class="activity--items nav">
+                                <?php if (count($rows) > 0) {
+                                    foreach ($rows as $row):?>
+                                        <li>
+                                            <form action="" method="post">
+                                            <!-- Activity Item Start -->
+                                            <div class="activity--item">
+                                                <div class="activity--avatar">
+                                                    <a href="<?php echo BASE_URL.'/members/member-activity-personal.php?user='.$row['user_id']; ?>" >
+                                                        <?php if(isset($row['avatar'])) { ?>
+                                                            <img src="<?php echo '../'.substr($row['avatar'],2) ?>" alt="">
+                                                        <?php } else { ?>
+                                                            <img src="../img/activity-img/avatar-05.jpg" alt="">
+                                                        <?php } ?>
+                                                    </a>
+                                                </div>
+
+                                                <div class="activity--info fs--14">
+                                                    <div class="activity--header">
+                                                        <a href="<?php echo BASE_URL.'/members/member-activity-personal.php?user='.$row['user_id']; ?>" >
+                                                            <strong>
+                                                            <?php echo $row['first_name']; ?>&nbsp;<?php echo $row['last_name'];
+                                                            ?>
+                                                            </strong>
+                                                        </a>
+                                                        <button type="submit"
+                                                                id="<?php echo $row['member_id']; ?>_member; ?>"
+                                                                class="btn btn-primary remove_member pull-right"
+                                                                value="Remove">
+                                                            <i class="fa fa-trash"></i>&nbsp; Remove
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                                <input type="hidden" name="del_member_id" value="<?php echo $row['member_id']; ?>" >
+                                            </div>
+                                            <!-- Activity Item End -->
+                                            </form>
+                                        </li>
+                                    <?php endforeach;
+                                } else { ?>
+                                    <li style="text-align: center;">
+                                        There isn't any user
+                                    </li>
+                                <?php }
+                                ?>
+                            </ul>
+                        </div>
+                        <!-- Buddy Finder Widget End -->
+                    </div>
+                    <!-- Widget End -->
                 </div>
             </div>
         </div>

@@ -86,19 +86,10 @@ function get_fam_group_note_lists($cat, $note_date, $group_id) {
     $user_id = $_SESSION['user_id'];
     $db = getDbInstance();
     $query = 'SELECT us.`id`, us.`avatar`, us.`first_name`, us.`last_name`, tmp.`note_date`, tmp.note_media, tmp.`note_value`, tmp.note_id, tmp.cat_id
-                FROM 
-		        (SELECT notes.`note_date`, notes.`cat_id`, notes.`note_value`, notes.`user_id`, notes.`id` AS note_id, notes.`note_media`
-                FROM tbl_fam_group_notes notes
-                RIGHT JOIN
-                (SELECT nott.`note_id`
-                FROM tbl_fam_gp_not nott
-                WHERE nott.`to_who` = '.$user_id.' AND nott.`group_id` = '.$group_id.' AND nott.status = 1) nottt
-                ON notes.`id` = nottt.note_id
-                UNION
-                SELECT notes.`note_date`, notes.`cat_id`, notes.`note_value`, notes.`user_id`, notes.`id` AS note_id, notes.`note_media`
-                FROM tbl_fam_group_notes notes
-                WHERE notes.`user_id` = '.$user_id.' AND notes.group_id = '.$group_id.') tmp, tbl_users us
-                WHERE us.`id`= tmp.user_id';
+            FROM (SELECT notes.`note_date`, notes.`cat_id`, notes.`note_value`, notes.`user_id`, notes.`id` AS note_id, notes.`note_media`
+            FROM tbl_fam_group_notes notes
+            WHERE notes.group_id = '.$group_id.') tmp, tbl_users us
+            WHERE us.`id`= tmp.user_id';
     if ($cat != '' && $note_date != '') {
         $query .=' AND tmp.cat_id ='.$cat.' AND tmp.note_date = "'.$note_date.'"';
     }
@@ -112,11 +103,10 @@ function get_fam_group_note__update_lists($cat, $note_date, $group_id) {
     $user_id = $_SESSION['user_id'];
     $db = getDbInstance();
     $query = 'SELECT us.`id`, us.`avatar`, us.`first_name`, us.`last_name`, tmp.`note_date`, tmp.note_media, tmp.`note_value`, tmp.note_id, tmp.cat_id
-                FROM 
-		      (SELECT notes.`note_date`, notes.`cat_id`, notes.`note_value`, notes.`user_id`, notes.`id` AS note_id, notes.`note_media`
-                FROM tbl_fam_group_notes notes
-                WHERE notes.`user_id` = '.$user_id.' AND notes.group_id = '.$group_id.') tmp, tbl_users us
-                WHERE us.`id`= tmp.user_id';
+            FROM (SELECT notes.`note_date`, notes.`cat_id`, notes.`note_value`, notes.`user_id`, notes.`id` AS note_id, notes.`note_media`
+            FROM tbl_fam_group_notes notes
+            WHERE notes.`user_id` = '.$user_id.' AND notes.group_id = '.$group_id.') tmp, tbl_users us
+            WHERE us.`id`= tmp.user_id';
     if ($cat != '' && $note_date != '') {
         $query .=' AND tmp.cat_id ='.$cat.' AND tmp.note_date = "'.$note_date.'"';
     }
@@ -205,11 +195,11 @@ if(isset($_POST) && $_POST) {
             $note_id = $db->insert('tbl_fam_group_notes', $data_to_db);
 
             if ($note_id) {
-                for ($i = 0; $i < count($members); $i++) {
-                    $data['note_id'] = $note_id;
-                    $data['group_id'] = $group_id;
-                    $data['to_who'] = $members[$i]['who'];
-                    $db->insert('tbl_fam_gp_not', $data);
+//                for ($i = 0; $i < count($members); $i++) {
+//                    $data['note_id'] = $note_id;
+//                    $data['group_id'] = $group_id;
+//                    $data['to_who'] = $members[$i]['who'];
+//                    $db->insert('tbl_fam_gp_not', $data);
 //                    // data to email
 //                    $email_param = array(
 //                        'who' => $log_user_id,
@@ -226,7 +216,7 @@ if(isset($_POST) && $_POST) {
 //                    } else {
 //                        $_SESSION['success'] = "Note isn't posted :(";
 //                    }
-                }
+//                }
                 $_SESSION['success'] = 'Note added successfully. ';
             } else {
                 $_SESSION['failure'] = 'Oops, failure... ';

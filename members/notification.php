@@ -65,7 +65,7 @@ function genFamGroupNotMsg($params) {
 
         $message .='<div class="alert alert-info alert-dismissable">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            Invitation is arrived from '.$group_name.' that created by '.$who.'.     
+                            You have a request from '.$who.' to join the '.$group_name.'.     
                              '.$approve.' or '.$disapprove.'
                       </div>';
     endforeach;
@@ -92,7 +92,7 @@ function genFriGroupNotMsg($params) {
 
         $message .='<div class="alert alert-info alert-dismissable">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            Invitation is arrived from '.$group_name.' that created by '.$who.'.     
+                            You have a request from '.$who.' to join the '.$group_name.'.     
                              '.$approve.' or '.$disapprove.'
                       </div>';
     endforeach;

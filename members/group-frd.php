@@ -8,7 +8,7 @@ require_once 'fri_group_note_endpoint.php';
 require_once 'notification.php';
 
 // Check friend group note exist
-checkFriGroupNoteRequest($group['id']);
+//checkFriGroupNoteRequest($group['id']);
 
 include BASE_PATH.'/members/includes/header.php';
 
@@ -41,9 +41,9 @@ include BASE_PATH.'/members/includes/header.php';
                         <div class="filter--nav pb--60 clearfix">
                             <div class="filter--link float--left">
                                 <?php if (count($group) > 0) { ?>
-                                    <h2>Our – <?php echo $group['group_name']; ?></h2>
+                                    <h2>Our Friends Group – <?php echo $group['group_name']; ?></h2>
                                 <?php } else { ?>
-                                    <h2>Our Friend Group</h2>
+                                    <h2>Our Friends Group</h2>
                                 <?php }?>
 
                             </div>

@@ -181,8 +181,6 @@
         console.log(category);
         var media = $('ul[data-select-name="multimedia"] li.selected').attr('data-option-value');
         console.log(media);
-        var to = $("#friendAndfamily").val(); // Get Profile Id
-        console.log("profile id: ", to);
         var note_add_date = $('#add_note_form input[name="note_add_date"]').val();
         console.log(note_add_date);
 
@@ -192,14 +190,6 @@
             add_date_val = false;
         } else {
             $('#add_note_form input[name="note_add_date"]').css("border", "1px solid white");
-            add_date_val = true;
-        }
-        if(typeof to === 'undefined' || to === '') {
-            console.log("error");
-            $('#friendAndfamily').css("border", "1px solid red");
-            add_date_val = false;
-        } else {
-            $('#friendAndfamily').css("border", "1px solid #e5e5e5");
             add_date_val = true;
         }
         if(category === "1") {
@@ -222,7 +212,6 @@
                     $('.note-add-modal input[name="cat_id"]').val(category);
                     $('.note-add-modal input[name="note_date"]').val(note_add_date);
                     $('.note-add-modal input[name="note_media"]').val(media);
-                    $('.note-add-modal input[name="note_to"]').val(to);     // Profile id
                     $('.note-add-modal input[name="note_value"]').show();
                     $('.note-add-modal input[name="note_photo"]').hide();
                     $('.note-add-modal input[name="note_video"]').hide();
@@ -241,7 +230,6 @@
                     $('.note-add-modal input[name="cat_id"]').val(category);
                     $('.note-add-modal input[name="note_date"]').val(note_add_date);
                     $('.note-add-modal input[name="note_media"]').val(media);
-                    $('.note-add-modal input[name="note_to"]').val(to);     // Profile id
                     $('.note-add-modal input[name="note_value"]').hide();
                     var img_src = $('#note_photo_id').attr('src');
                     if (img_src === '#' || img_src === '') {
@@ -265,7 +253,6 @@
                     $('.note-add-modal input[name="cat_id"]').val(category);
                     $('.note-add-modal input[name="note_date"]').val(note_add_date);
                     $('.note-add-modal input[name="note_media"]').val(media);
-                    $('.note-add-modal input[name="note_to"]').val(to);     // Profile id
                     $('.note-add-modal input[name="note_value"]').hide();
                     $('.note-add-modal input[name="note_photo"]').hide();
                     $('.note-add-modal #note_photo_alt').hide();

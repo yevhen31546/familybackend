@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST" enctype="multipart/form-data" onsubmit="return checkForm(this);">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="cat_id" value="cat_id">
                     <input type="hidden" name="note_date" value="note_date">
                     <input type="hidden" name="note_media" value="note_media">
@@ -46,17 +46,3 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-
-<script>
-    function checkForm(form)
-    {
-        var to = form.note_to.value;
-        var familyLists = <?php print_r(json_encode($familyLists)); ?>;
-        if(familyLists.indexOf(to) === -1) {
-            alert("Error: The selected profile is invalid!");
-            return false;
-        } else {
-            return true;
-        }
-    }
-</script>

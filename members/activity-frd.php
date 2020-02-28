@@ -10,7 +10,7 @@ include BASE_PATH.'/members/includes/header.php';
 // Check friend group invitation exist
 checkFriGroupInvitation($logged_id);
 // Check friend note exist
-checkFriNoteRequest($logged_id);
+//checkFriNoteRequest($logged_id);
 ?>
 <link rel="stylesheet" href="<?php echo BASE_URL;?>/members/css/auto_fill.css">
 <!-- Page Header Start -->

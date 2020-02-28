@@ -8,13 +8,13 @@ require_once 'fam_group_note_endpoint.php';
 require_once 'notification.php';
 
 // Check family group note exist
-checkFamGroupNoteRequest($group['id']);
+//checkFamGroupNoteRequest($group['id']);
 
 include BASE_PATH.'/members/includes/header.php';
 
 ?>
 <!-- Page Header Start -->
-<div class="page--header pt--60 pb--60 text-center" data-bg-img="img/frebanner.png"
+<div class="page--header pt--60 pb--60 text-center" data-bg-img="img/fambanner.png"
      data-overlay="0.35">
     <div class="container">
         <div class="title">
@@ -41,7 +41,7 @@ include BASE_PATH.'/members/includes/header.php';
                     <div class="filter--nav pb--60 clearfix">
                         <div class="filter--link float--left">
                             <?php if (count($group) > 0) { ?>
-                                <h2>Our – <?php echo $group['group_name']; ?></h2>
+                                <h2>Our Family Group – <?php echo $group['group_name']; ?></h2>
                             <?php } else { ?>
                                 <h2>Our Family Group</h2>
                             <?php }?>

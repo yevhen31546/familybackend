@@ -202,29 +202,34 @@ if(isset($_GET) && isset($_GET['exit_group'])) {
 function get_fam_note_lists($cat, $note_date) {
     $user_id = $_SESSION['user_id'];
     $db = getDbInstance();
-    $query = 'SELECT *
-                FROM
-                (SELECT *
-                FROM tbl_fam_notes
-                LEFT JOIN (
-                SELECT
-                tbl_group_note_cat.id AS categoryId,
-                tbl_group_note_cat.cat_name AS cat_name
-                FROM tbl_group_note_cat
-                ) categories ON tbl_fam_notes.cat_id = categories.categoryId
-                LEFT JOIN (
-                SELECT
-                tbl_users.id AS userid,
-                tbl_users.first_name AS first_name,
-                tbl_users.last_name AS last_name,
-                tbl_users.avatar AS avatar
-                FROM tbl_users
-                ) users ON tbl_fam_notes.user_id = users.userid) tmp
-                WHERE (tmp.user_id = '.$user_id.' OR (tmp.note_to = '.$user_id.' AND tmp.status = 1))';
+    $query = 'SELECT us.`id`, us.`avatar`, us.`first_name`, us.`last_name`, tmp.`note_date`, tmp.note_media,
+                      tmp.`note_value`, tmp.note_id, tmp.cat_id
+            FROM (SELECT notes.`note_date`, notes.`cat_id`, notes.`note_value`, notes.`user_id`, 
+                      notes.`id` AS note_id, notes.`note_media`
+            FROM tbl_fam_notes notes
+            WHERE notes.`user_id` = '.$user_id.'
+            UNION
+            SELECT notes.`note_date`, notes.`cat_id`, notes.`note_value`, 
+                    notes.`user_id`, notes.`id` AS note_id, notes.`note_media`
+            FROM tbl_fam_notes notes
+            WHERE notes.`user_id` IN (
+                        SELECT DISTINCT fff.fam_id
+                        FROM (
+                            SELECT fam.with_who AS fam_id
+                            FROM tbl_family fam
+                            WHERE fam.who = '.$user_id.' AND fam.stat = 1
+                            UNION
+                            SELECT fam.who AS fam_id
+                            FROM tbl_family fam
+                            WHERE fam.with_who = '.$user_id.' AND fam.stat = 1
+                        ) fff
+                    )
+            ) tmp, tbl_users us
+            WHERE us.`id`= tmp.user_id';
     if ($cat != '' && $note_date != '') {
-        $query .=' AND tmp.categoryId ='.$cat.' AND tmp.note_date = "'.$note_date.'"';
+        $query .=' AND tmp.cat_id ='.$cat.' AND tmp.note_date = "'.$note_date.'"';
     }
-    $query .='ORDER BY tmp.note_date DESC';
+    $query .=' ORDER BY tmp.note_date DESC';
 
     $rows = $db->rawQuery($query);
     return $rows;
@@ -233,27 +238,16 @@ function get_fam_note_lists($cat, $note_date) {
 function get_update_note_lists($cat, $note_date) {
     $user_id = $_SESSION['user_id'];
     $db = getDbInstance();
-    $query = 'SELECT *
-                FROM
-                (SELECT *
-                    FROM tbl_fam_notes notes
-                    LEFT JOIN (
-                    SELECT
-                    tbl_group_note_cat.id AS categoryId,
-                    tbl_group_note_cat.cat_name AS cat_name
-                    FROM tbl_group_note_cat
-                    ) categories ON notes.cat_id = categories.categoryId
-                    LEFT JOIN (
-                    SELECT
-                    tbl_users.id AS userid,
-                    tbl_users.first_name AS first_name,
-                    tbl_users.last_name AS last_name,
-                    tbl_users.`avatar` AS avatar
-                    FROM tbl_users
-                    ) users ON notes.user_id = users.userid) tmp
-                    WHERE tmp.user_id = '.$user_id;
+    $query = 'SELECT us.`id`, us.`avatar`, us.`first_name`,
+             us.`last_name`, tmp.`note_date`, tmp.note_media, tmp.`note_value`, tmp.note_id, tmp.cat_id
+            FROM (SELECT notes.`note_date`, notes.`cat_id`, 
+            notes.`note_value`, notes.`user_id`, notes.`id` AS note_id, notes.`note_media`
+            FROM tbl_fam_notes notes
+            WHERE notes.`user_id` = '.$user_id.'
+            ) tmp, tbl_users us
+            WHERE us.`id`= tmp.user_id';
     if ($cat != '' && $note_date != '') {
-        $query .=' AND tmp.categoryId ='.$cat.' AND tmp.note_date = "'.$note_date.'"';
+        $query .=' AND tmp.cat_id ='.$cat.' AND tmp.note_date = "'.$note_date.'"';
     }
     $query .=' ORDER BY tmp.note_date DESC';
 
@@ -267,16 +261,9 @@ if(isset($_POST) && $_POST) {
         $db = getDbInstance();
         $log_user_id = $_SESSION['user_id'];
         $media_type = $_POST['note_media'];
-        $note_to = $_POST['note_to'];
         $note_date = $_POST['note_date'];
         $cat_id = $_POST['cat_id'];
         $note_value = '';
-
-        //    get receiver's id
-        $db = getDbInstance();
-        $db->where('user_name', $note_to);
-        $to = $db->getValue('tbl_users', 'id');
-//        print_r($to); exit;
 
         //    If media type is photo, then get img_url after upload that photo
         if($media_type == 'photo'){
@@ -338,13 +325,11 @@ if(isset($_POST) && $_POST) {
 
         if ($note_value != '') {
             // data to save to db
-
             $data_to_db = [];
             $data_to_db['note_value'] = $note_value; // text, video link, photo url
             $data_to_db['note_media'] = $media_type; // video, text, photo
             $data_to_db['cat_id'] = $cat_id;   // category id => 1: My Story, 2: ...
             $data_to_db['note_date'] = $note_date; // note post date
-            $data_to_db['note_to'] = $to; // receiver profile id
             $data_to_db['user_id'] = $log_user_id; // sender id
 
             $db = getDbInstance();

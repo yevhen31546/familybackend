@@ -122,7 +122,7 @@ if(isset($_POST) && isset($_POST['group_name'])) {
             <div class="row">
                 <!-- Main Content Start -->
                 <div class="main--content col-md-12 pb--60">
-                    <div class="main--content-inner">
+                    <div class="main--content-inner drop--shadow">
 
                         <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
                         <form name="create-family-group-form" action="" method="post" onsubmit="return checkFriForm();">
