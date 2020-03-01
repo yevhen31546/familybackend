@@ -131,3 +131,11 @@ li-icon {
 @media only screen and (max-width: 300px) {
     .myprev, .mynext {font-size: 11px}
 }
+
+#note_comment {
+    margin-top: 20px;
+}
+
+.comment_content {
+    margin-top: 10px;
+}

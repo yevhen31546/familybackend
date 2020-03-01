@@ -32,7 +32,9 @@ $rows = $db->get('tbl_users');
                             <!-- Filter Nav Start -->
                             <div class="filter--nav pb--30 clearfix">
                                 <div class="filter--link float--left">
-                                    <h2 class="h4">Total My Notes Members : Hari can this be a count?</h2>
+                                    <h2 class="h4">
+                                        Total My Notes Members: &nbsp;&nbsp; <?php echo count($rows); ?>
+                                    </h2>
                                 </div>
 
                                 <div class="filter--options float--right">
@@ -77,13 +79,18 @@ $rows = $db->get('tbl_users');
                                                 <div class="actions">
                                                     <ul class="nav">
                                                         <li>
-                                                            <a href="#" title="Send Message" class="btn-link" data-toggle="tooltip" data-placement="bottom">
+                                                            <a href="mailto:<?php echo $row['user_email']; ?>" title="Send Message" class="btn-link" data-toggle="tooltip" data-placement="bottom">
                                                                 <i class="fa fa-envelope-o"></i>
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#" title="Add Friend" class="btn-link" data-toggle="tooltip" data-placement="bottom">
+                                                            <a href="#" title="Add as Friend" class="btn-link" data-toggle="tooltip" data-placement="bottom">
                                                                 <i class="fa fa-user-plus"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="Add as Family" class="btn-link" data-toggle="tooltip" data-placement="bottom">
+                                                                <i class="fa fa-group"></i>
                                                             </a>
                                                         </li>
                                                     </ul>

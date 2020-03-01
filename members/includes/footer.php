@@ -89,8 +89,7 @@
                         <!-- Links Widget Start -->
                         <div class="links--widget">
                             <ul class="nav">
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">Join a Group</a></li>
+                                <li><a href="<?php echo BASE_URL.'/members/member-profile.php'; ?>">My Account</a></li>
                                 <li><a href="#">FAQ</a></li>
                                 <li><a href="pp.pdf" target="_blank">Privacy Policy</a></li>
                                 <li><a href="tc.pdf" target="_blank">Terms and Conditions</a></li>
@@ -113,7 +112,7 @@
         <div class="container">
             <!-- Widget Start -->
             <div class="widget">
-                <h2 class="h4 fw--700 widget--title">Recent Active Members-Hari this section should autopopulate</h2>
+                <h2 class="h4 fw--700 widget--title">Recent Active Members</h2>
 
                 <!-- Recent Active Members Widget Start -->
                 <div class="recent-active-members--widget style--2">

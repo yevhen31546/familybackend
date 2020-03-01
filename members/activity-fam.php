@@ -102,6 +102,13 @@ checkFamGroupInvitation($logged_id);
                                                 <?php elseif ($row['note_media'] == 'photo'):?>
                                                     <img id="note_photo_edit" src="<?php echo $row['note_value']; ?>"
                                                          style="padding-bottom: 10px;">
+                                                    <?php if (isset($row['note_comment']) &&
+                                                        $row['note_comment'] !== '') { ?>
+                                                        <div class="comment_content">
+                                                            <i class="fa mr--8 fa-comment-o"></i>
+                                                            <?php echo $row['note_comment'] ?>
+                                                        </div>
+                                                    <?php } ?>
                                                     <input type="button" id="<?php echo $row['note_id'];?>_note_<?php echo $row['note_media'];?>"
                                                            style="display: none;" class="btn btn-primary note_edit pull-right"
                                                            value="Edit">
@@ -112,6 +119,13 @@ checkFamGroupInvitation($logged_id);
                                                            data-trigger="video_popup"></a>
                                                         <img src="img/activity-img/link-video-poster.jpg" alt="">
                                                     </div>
+                                                    <?php if (isset($row['note_comment']) &&
+                                                        $row['note_comment'] !== '') { ?>
+                                                        <div class="comment_content">
+                                                            <i class="fa mr--8 fa-comment-o"></i>
+                                                            <?php echo $row['note_comment'] ?>
+                                                        </div>
+                                                    <?php } ?>
                                                     <input type="button"
                                                            id="<?php echo $row['note_id']; ?>_note_<?php echo $row['note_media']; ?>"
                                                            style="display: none;"

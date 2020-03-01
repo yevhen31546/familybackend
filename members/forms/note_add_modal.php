@@ -22,6 +22,8 @@
                                 Upload your image here
                             </div>
                             <input type="text" name="note_video" class="form-control" placeholder="Enter the video link" required>
+                            <input type="text" name="note_comment" class="form-control" id="note_comment"
+                                   placeholder="Enter the comment" >
                         </div>
                     </div>
                     <!-- /.box-body -->

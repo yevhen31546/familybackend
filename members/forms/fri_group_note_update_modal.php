@@ -25,8 +25,11 @@
                         <div class="form-group">
                             <input type="text" name="note_value" class="form-control" placeholder="Enter the text" required>
                             <input type="file" name="note_photo" id="updateImage" required>
+                            <input type="hidden" name="update_note_photo">
                             <img id="note_photo_id_edit" src="#" alt="" />
                             <input type="text" name="note_video" class="form-control" placeholder="Enter the video link" required>
+                            <input type="text" name="note_comment" class="form-control" id="note_comment"
+                                   placeholder="Enter the comment" >
                         </div>
                     </div>
                     <!-- /.box-body -->

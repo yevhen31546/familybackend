@@ -1,17 +1,17 @@
 <?php
 session_start();
 require_once '../config/config.php';
-require_once '../vendor/autoload.php';
 require_once BASE_PATH.'/includes/auth_validate.php';
+require_once '../vendor/autoload.php';
 require_once 'smtp_endpoint.php';
 require_once 'notification.php';
 require_once 'member_profile_endpoint.php';
-include BASE_PATH.'/members/includes/header.php';
 
 checkFamilyRequest($logged_id);
 checkFriendRequest($logged_id);
-?>
+include BASE_PATH.'/members/includes/header.php';
 
+?>
 
 <link rel="stylesheet" href="<?php echo BASE_URL;?>/members/css/auto_fill.css">
 
@@ -224,7 +224,6 @@ checkFriendRequest($logged_id);
             <!-- Main Content End -->
 
             <!-- Main Sidebar Start -->
-            
             <div class="main--sidebar col-md-4 pb--60" data-trigger="stickyScroll">
                 <!-- Widget Start -->
                 <div class="widget">
@@ -270,7 +269,6 @@ checkFriendRequest($logged_id);
 
                 <!-- Widget End -->
             </div>
-
             <!-- Main Sidebar End -->
         </div>
     </div>

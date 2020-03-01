@@ -102,7 +102,7 @@
             add_note_media_val = true;
             if(media == 'text') {
                 if(add_date_val && add_note_media_val && add_note_cat_val) {
-                    $('.add-note-content').text('Send');
+                    $('.add-note-content').text('Add');
                     $('.note-add-modal').modal('toggle');
                     $('.note-add-modal input[name="cat_id"]').val(category);
                     $('.note-add-modal input[name="note_date"]').val(note_add_date);
@@ -111,6 +111,7 @@
                     $('.note-add-modal input[name="note_value"]').show();
                     $('.note-add-modal input[name="note_photo"]').hide();
                     $('.note-add-modal input[name="note_video"]').hide();
+                    $('.note-add-modal #note_comment').hide();
                     $('.note-add-modal #note_photo_id').hide();
                     $('.note-add-modal #note_photo_alt').hide();
                     // $('.note-add-modal input[name="note_photo"]').show();
@@ -137,6 +138,7 @@
                         $('#note_photo_id').show();
                         $('#note_photo_alt').hide();
                     }
+                    $('.note-add-modal #note_comment').show();
                     $('.note-add-modal input[name="note_video"]').hide();
 
                     $('.note-add-modal input[name="note_value"]').removeAttr("required");
@@ -144,7 +146,7 @@
                 }
             } else if(media == 'video') {
                 if(add_date_val && add_note_media_val && add_note_cat_val) {
-                    $('.add-note-content').text('Send');
+                    $('.add-note-content').text('Add');
                     $('.note-add-modal').modal('toggle');
                     $('.note-add-modal input[name="cat_id"]').val(category);
                     $('.note-add-modal input[name="note_date"]').val(note_add_date);
@@ -152,6 +154,7 @@
                     $('.note-add-modal input[name="note_to"]').val(group_id);     // Profile id
                     $('.note-add-modal input[name="note_value"]').hide();
                     $('.note-add-modal input[name="note_photo"]').hide();
+                    $('.note-add-modal #note_comment').show();
                     $('.note-add-modal #note_photo_alt').hide();
                     $('.note-add-modal #note_photo_id').hide();
                     $('.note-add-modal input[name="note_video"]').show();
@@ -207,7 +210,7 @@
             add_note_media_val = true;
             if(media == 'text') {
                 if(add_date_val && add_note_media_val && add_note_cat_val) {
-                    $('.add-note-content').text('Send');
+                    $('.add-note-content').text('Add');
                     $('.note-add-modal').modal('toggle');
                     $('.note-add-modal input[name="cat_id"]').val(category);
                     $('.note-add-modal input[name="note_date"]').val(note_add_date);
@@ -215,6 +218,7 @@
                     $('.note-add-modal input[name="note_value"]').show();
                     $('.note-add-modal input[name="note_photo"]').hide();
                     $('.note-add-modal input[name="note_video"]').hide();
+                    $('.note-add-modal #note_comment').hide();
                     $('.note-add-modal #note_photo_id').hide();
                     $('.note-add-modal #note_photo_alt').hide();
                     // $('.note-add-modal input[name="note_photo"]').show();
@@ -239,6 +243,7 @@
                         $('#note_photo_id').show();
                         $('#note_photo_alt').hide();
                     }
+                    $('.note-add-modal #note_comment').show();
                     $('.note-add-modal input[name="note_photo"]').show();
 
                     $('.note-add-modal input[name="note_video"]').hide();
@@ -248,13 +253,14 @@
                 }
             } else if(media == 'video') {
                 if(add_date_val && add_note_media_val && add_note_cat_val) {
-                    $('.add-note-content').text('Send');
+                    $('.add-note-content').text('Add');
                     $('.note-add-modal').modal('toggle');
                     $('.note-add-modal input[name="cat_id"]').val(category);
                     $('.note-add-modal input[name="note_date"]').val(note_add_date);
                     $('.note-add-modal input[name="note_media"]').val(media);
                     $('.note-add-modal input[name="note_value"]').hide();
                     $('.note-add-modal input[name="note_photo"]').hide();
+                    $('.note-add-modal #note_comment').show();
                     $('.note-add-modal #note_photo_alt').hide();
                     $('.note-add-modal #note_photo_id').hide();
                     $('.note-add-modal input[name="note_video"]').show();
@@ -346,7 +352,7 @@
             $('.note-update-modal').modal('toggle');
             $('.note-update-modal input[name="note_value"]').show();
 
-            var note_value = $(this).parent().children('p').html();
+            var note_value = $(this).parent().children('p').html().trim();
             $('.note-update-modal input[name="note_value"]').val(note_value);
             $('.note-update-modal input[name="note_media"]').val('text');
             $('.note-update-modal input[name="note_id"]').val(id);
@@ -354,6 +360,7 @@
             $('.note-update-modal #note_photo_id_edit').hide();
             $('.note-update-modal input[name="note_photo"]').hide();
             $('.note-update-modal input[name="note_video"]').hide();
+            $('.note-update-modal #note_comment').hide();
 
             $('.note-update-modal input[name="note_photo"]').removeAttr("required");
             $('.note-update-modal input[name="note_video"]').removeAttr("required");
@@ -365,14 +372,21 @@
             $('.note-update-modal #note_photo_id_edit').show();
 
             var note_value = $(this).parent().children('img').attr('src');
+            var note_comment = $(this).parent().children('div.comment_content').text().trim();
             $('#note_photo_id_edit').attr('src', note_value);
 
             $('.note-update-modal input[name="note_media"]').val('photo');
             $('.note-update-modal input[name="note_id"]').val(id);
             $('.note-update-modal input[name="note_to"]').val(to);     // Profile id
+            $('.note-update-modal #note_comment').show();
+            $('.note-update-modal #note_comment').val(note_comment);
 
             $('.note-update-modal input[name="note_value"]').hide();
             $('.note-update-modal input[name="note_video"]').hide();
+            if (note_value !== '') {
+                $('.note-update-modal input[name="update_note_photo"]').val(note_value);
+                $('.note-update-modal input[name="note_photo"]').removeAttr("required");
+            }
             $('.note-update-modal input[name="note_value"]').removeAttr("required");
             $('.note-update-modal input[name="note_video"]').removeAttr("required");
         } else if(media == 'video') {
@@ -380,11 +394,15 @@
             $('.note-update-modal').modal('toggle');
             $('.note-update-modal input[name="note_video"]').show();
             var note_value = $(this).parent().children().find('.link--url').attr('href');
+            var note_comment = $(this).parent().children('div.comment_content').text().trim();
+            console.log(note_comment);
             $('.note-update-modal input[name="note_video"]').val(note_value);
             $('.note-update-modal input[name="note_media"]').val('video');
             $('.note-update-modal input[name="note_id"]').val(id);
             $('.note-update-modal input[name="note_to"]').val(to);     // Profile id
             $('.note-update-modal #note_photo_id_edit').hide();
+            $('.note-update-modal #note_comment').show();
+            $('.note-update-modal #note_comment').val(note_comment);
 
             $('.note-update-modal input[name="note_value"]').hide();
             $('.note-update-modal input[name="note_photo"]').hide();

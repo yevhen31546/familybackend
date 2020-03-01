@@ -203,14 +203,14 @@ function get_fam_note_lists($cat, $note_date) {
     $user_id = $_SESSION['user_id'];
     $db = getDbInstance();
     $query = 'SELECT us.`id`, us.`avatar`, us.`first_name`, us.`last_name`, tmp.`note_date`, tmp.note_media,
-                      tmp.`note_value`, tmp.note_id, tmp.cat_id
+                      tmp.`note_value`, tmp.note_comment, tmp.note_id, tmp.cat_id
             FROM (SELECT notes.`note_date`, notes.`cat_id`, notes.`note_value`, notes.`user_id`, 
-                      notes.`id` AS note_id, notes.`note_media`
+                      notes.`id` AS note_id, notes.`note_media`, notes.note_comment
             FROM tbl_fam_notes notes
             WHERE notes.`user_id` = '.$user_id.'
             UNION
             SELECT notes.`note_date`, notes.`cat_id`, notes.`note_value`, 
-                    notes.`user_id`, notes.`id` AS note_id, notes.`note_media`
+                    notes.`user_id`, notes.`id` AS note_id, notes.`note_media`, notes.note_comment
             FROM tbl_fam_notes notes
             WHERE notes.`user_id` IN (
                         SELECT DISTINCT fff.fam_id
@@ -239,9 +239,9 @@ function get_update_note_lists($cat, $note_date) {
     $user_id = $_SESSION['user_id'];
     $db = getDbInstance();
     $query = 'SELECT us.`id`, us.`avatar`, us.`first_name`,
-             us.`last_name`, tmp.`note_date`, tmp.note_media, tmp.`note_value`, tmp.note_id, tmp.cat_id
+             us.`last_name`, tmp.`note_date`, tmp.note_media, tmp.`note_value`, tmp.note_comment, tmp.note_id, tmp.cat_id
             FROM (SELECT notes.`note_date`, notes.`cat_id`, 
-            notes.`note_value`, notes.`user_id`, notes.`id` AS note_id, notes.`note_media`
+            notes.`note_value`, notes.`user_id`, notes.`id` AS note_id, notes.`note_media`, notes.note_comment
             FROM tbl_fam_notes notes
             WHERE notes.`user_id` = '.$user_id.'
             ) tmp, tbl_users us
@@ -262,6 +262,7 @@ if(isset($_POST) && $_POST) {
         $log_user_id = $_SESSION['user_id'];
         $media_type = $_POST['note_media'];
         $note_date = $_POST['note_date'];
+        $note_comment = $_POST['note_comment'];
         $cat_id = $_POST['cat_id'];
         $note_value = '';
 
@@ -331,6 +332,7 @@ if(isset($_POST) && $_POST) {
             $data_to_db['cat_id'] = $cat_id;   // category id => 1: My Story, 2: ...
             $data_to_db['note_date'] = $note_date; // note post date
             $data_to_db['user_id'] = $log_user_id; // sender id
+            $data_to_db['note_comment'] = $note_comment; // sender id
 
             $db = getDbInstance();
             $note_id = $db->insert('tbl_fam_notes', $data_to_db);
@@ -388,6 +390,7 @@ if(isset($_POST) && $_POST) {
             $data_to_db['note_value'] = $_POST['note_value'];
             $db = getDbInstance();
             $db->where('id', $_POST['note_id']);
+            $data_to_db['note_comment'] = $_POST['note_comment'];
             $last_id = $db->update('tbl_fam_notes', $data_to_db);
             if ($last_id)
             {
@@ -400,7 +403,7 @@ if(isset($_POST) && $_POST) {
             $rows = get_update_note_lists($update_cat, $update_date);
         }
         //    Update photo
-        else if($media_type == 'photo' && isset($_FILES["note_photo"]["name"])) {
+        else if($media_type == 'photo' && isset($_FILES["note_photo"]["name"]) && $_FILES["note_photo"]["name"]) {
             $target_dir = "./uploads/".$_SESSION['user_id']."/fam_notes/";
             if (!file_exists($target_dir)) {
                 mkdir($target_dir, 0777, true);  //create directory if not exist
@@ -446,6 +449,7 @@ if(isset($_POST) && $_POST) {
                     //                echo "The file ". basename( $_FILES["note_photo"]["name"]). " has been uploaded.";
                     $data_to_db = array();
                     $data_to_db['note_value'] = $target_file;
+                    $data_to_db['note_comment'] = $_POST['note_comment'];
                     $db = getDbInstance();
                     $db->where('id', $_POST['note_id']);
                     $last_id = $db->update('tbl_fam_notes', $data_to_db);
@@ -465,11 +469,30 @@ if(isset($_POST) && $_POST) {
             }
             $rows = get_update_note_lists($update_cat, $update_date);
         }
+        else if($media_type == 'photo' && empty($_FILES["note_photo"]["name"])) {
+            $db = getDbInstance();
+            $data_to_db = array();
+            $data_to_db['note_value'] = $_POST['update_note_photo'];
+            $data_to_db['note_comment'] = $_POST['note_comment'];
+            $db->where('id', $_POST['note_id']);
+            $last_id = $db->update('tbl_fam_notes', $data_to_db);
+
+            if ($last_id)
+            {
+                $_SESSION['success'] = 'Successfully updated';
+            }
+            else
+            {
+                $_SESSION['failure'] = 'Update failed!';
+            }
+            $rows = get_update_note_lists($update_cat, $update_date);
+        }
         // Update video
         else if($media_type == 'video' && isset($_POST['note_video'])) {
             $db = getDbInstance();
             $data_to_db = array();
             $data_to_db['note_value'] = $_POST['note_video'];
+            $data_to_db['note_comment'] = $_POST['note_comment'];
             $db->where('id', $_POST['note_id']);
             $last_id = $db->update('tbl_fam_notes', $data_to_db);
 

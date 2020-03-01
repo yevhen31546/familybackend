@@ -85,20 +85,7 @@
                 <!-- Header Topbar Social End -->
 
                 <!-- Header Topbar Links Start -->
-                <ul class="header--topbar-links nav ff--primary float--right">
-                    <li>
-                        <a href="<?php echo BASE_URL;?>/coming-soon.html" title="Cart" data-toggle="tooltip" data-placement="bottom">
-                            <i class="fa fa-shopping-basket"></i>
-                            <span class="badge"></span>
-                        </a>
-                    </li>
-                    <!-- <li>
-                        <a href="#" class="btn-link">
-                            <i class="fa mr--8 fa-user-o"></i>
-                            <span>My Account</span>
-                        </a>
-                    </li> -->
-                </ul>
+
                 <!-- Header Topbar Links End -->
             </div>
         </div>

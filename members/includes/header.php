@@ -84,12 +84,12 @@
 
                 <!-- Header Topbar Links Start -->
                 <ul class="header--topbar-links nav ff--primary float--right">
-                    <!--<li>
-                        <a href="../cart.html" title="Cart" data-toggle="tooltip" data-placement="bottom">
-                            <i class="fa fa-shopping-basket"></i>
-                            <span class="badge">3</span>
+                    <li style="border-right: black;">
+                        <a href="#">
+                            <i class="fa mr--8 fa-bell-o"></i>
+                            <span>5</span>
                         </a>
-                    </li>-->
+                    </li>
                     <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa mr--8 fa-user-o"></i>

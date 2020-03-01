@@ -6,10 +6,6 @@ $db = getDbInstance();
 $db->where('id', $logged_id);
 $row = $db->getOne('tbl_users');
 
-//Get User list
-$db = getDbInstance();
-$user_list = $db->get('tbl_users');
-
 /*
  * Approve/Disapprove friend/family request
  */

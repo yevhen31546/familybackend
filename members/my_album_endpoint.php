@@ -21,6 +21,7 @@ function save_note_lists($data) {
     $data_to_db['cat_id'] = $data['cat_id'];   // category id => 1: My Story, 2: ...
     $data_to_db['note_date'] = $data['note_date']; // note post date
     $data_to_db['user_id'] = $data['who']; // sender id
+    $data_to_db['note_comment'] = $data['note_comment']; // sender id
 
     $db = getDbInstance();
     $note_id = $db->insert('tbl_notes', $data_to_db);
@@ -73,6 +74,7 @@ if(isset($_POST) && $_POST) {
             'media_type' => $media_type,
             'cat_id' => $_POST['cat_id'],
             'note_value' => '',
+            'note_comment' => $_POST['note_comment'],
             'note_date' => $_POST['note_date']
         );
 
@@ -184,7 +186,7 @@ if(isset($_POST) && $_POST) {
             }
         }
         //    Update photo
-        else if($media_type == 'photo' && isset($_FILES["note_photo"]["name"])) {
+        else if($media_type == 'photo' && isset($_FILES["note_photo"]["name"]) && $_FILES["note_photo"]["name"]) {
             $target_dir = "./uploads/".$_SESSION['user_id']."/notes/";
             if (!file_exists($target_dir)) {
                 mkdir($target_dir, 0777, true);  //create directory if not exist
@@ -230,6 +232,7 @@ if(isset($_POST) && $_POST) {
                     //                echo "The file ". basename( $_FILES["note_photo"]["name"]). " has been uploaded.";
                     $data_to_db = array();
                     $data_to_db['note_value'] = $target_file;
+                    $data_to_db['note_comment'] = $_POST['note_comment'];
                     $db = getDbInstance();
                     $db->where('id', $_POST['note_id']);
                     $last_id = $db->update('tbl_notes', $data_to_db);
@@ -249,11 +252,30 @@ if(isset($_POST) && $_POST) {
             }
             $rows = get_note_lists($update_cat, $update_date);
         }
+        else if($media_type == 'photo' && empty($_FILES["note_photo"]["name"])) {
+            $db = getDbInstance();
+            $data_to_db = array();
+            $data_to_db['note_value'] = $_POST['update_note_photo'];
+            $data_to_db['note_comment'] = $_POST['note_comment'];
+            $db->where('id', $_POST['note_id']);
+            $last_id = $db->update('tbl_notes', $data_to_db);
+
+            if ($last_id)
+            {
+                $_SESSION['success'] = 'Successfully updated';
+            }
+            else
+            {
+                $_SESSION['failure'] = 'Update failed!';
+            }
+            $rows = get_note_lists($update_cat, $update_date);
+        }
         // Update video
         else if($media_type == 'video' && isset($_POST['note_video'])) {
             $db = getDbInstance();
             $data_to_db = array();
             $data_to_db['note_value'] = $_POST['note_video'];
+            $data_to_db['note_comment'] = $_POST['note_comment'];
             $db->where('id', $_POST['note_id']);
             $last_id = $db->update('tbl_notes', $data_to_db);
 

@@ -51,7 +51,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                             </div>
 
                             <div class="content fs--14 text-darker mt--4">
-                                <p><a href="mailto:mynotes4u.01@gmail.com" class="btn-link">support@mynotes4u.com</a></p>
+                                <p><a href="mailto:support@mynotes4u.com" class="btn-link">support@mynotes4u.com</a></p>
                             </div>
                         </div>
                         <!-- Contact Info Item End -->
