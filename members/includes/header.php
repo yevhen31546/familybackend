@@ -86,8 +86,7 @@
                 <ul class="header--topbar-links nav ff--primary float--right">
                     <li style="border-right: black;">
                         <a href="#">
-                            <i class="fa mr--8 fa-bell-o"></i>
-                            <span>5</span>
+                            <i class="fa fa-bell-o"></i><span class="badge">3</span>
                         </a>
                     </li>
                     <li class="dropdown active">

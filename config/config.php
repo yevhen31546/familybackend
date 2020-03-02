@@ -31,11 +31,9 @@ define('DB_HOST', "mysql.gip.superb.net");
 define('DB_USER', "u_family_db");
 define('DB_PASSWORD', "Norman@12345");
 define('DB_NAME', "family_db");
-
 define('SMTP_HOST', 'smtp.gmail.com');
 define('SMTP_PORT', 465);
 define('SMTP_ENC', 'ssl');
-
 define('SMTP_FROM', 'test4@mynotes4u.com'); // Should be updated in production mode
 define('SMTP_PASS', 'Pineturtle1971!'); // Should be updated in production mode
 define('SMTP_ENDPOINT', 'https://mynotes4u.com/members/member-profile.php' );
