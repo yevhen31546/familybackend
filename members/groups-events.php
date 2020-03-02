@@ -21,7 +21,7 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
         $search_param = $_GET['letter'];
         $db = getDbInstance();
         $db->join('tbl_event', 'tbl_users.id = tbl_event.eventsubmitby');
-        $db->where('eventname', $search_param.'%', 'LIKE');
+        $db->where('eventgroup', $search_param.'%', 'LIKE');
         $db->orderBy('eventdate');
         $rows = $db->get('tbl_users');
     }
@@ -116,17 +116,17 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
 
                                         <div class="title">
                                             <h4 class="color"><?php echo $row['eventgroup'] ?></h4>
-                                            <p><h6>Event Name: <?php echo $row['eventname'] ?></h6></p>
+                                            <p><h6>Event Theme: <?php echo $row['eventname'] ?></h6></p>
                                         </div>
 
                                         <div class="desc text-darker">
-                                            <p>Event Held For: <?php echo $row['eventname'] ?></p>
+                                            <p>Event Held For: <?php echo $row['eventgroup'] ?></p>
                                             <!-- <p>Actual Event Date: xxxxxxxxxxxxxxxxxxxx</p> -->
                                             <p>Submitted by: <?php echo $row['first_name'].$row['last_name'];?></p>
                                             <p>Date Submited: <?php echo $row['eventdate'];?></p>
                                             <p><?php echo $row['eventcomment'];?></p>
                                             <?php if ($row['utubelink'] != '') {?>
-                                                <p><a href="<?php echo $row['utubelink'] ?>" target="_blank"> YouTube link </a></p>
+                                                <p><a href="<?php echo $row['utubelink'] ?>" target="_blank"> See More </a></p>
                                             <?php }?>
                                         </div>
                                     </div>

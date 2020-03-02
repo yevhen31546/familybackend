@@ -222,9 +222,10 @@ if(isset($_POST) && isset($_POST['traveldate']) && $_POST['traveldate'] != '') {
 
                                         <div class="box--item text-left textareaw">
                                             <div><label>
-                                                    <h6>Add a link to UTube.&nbsp;&nbsp;&nbsp;</h6>
+                                                    <h6>Add a link such as, YouTube, Facebook, Twitter, etc.&nbsp;&nbsp;&nbsp;</h6>
                                                 </label>
-                                                <input type="text" class="form-control" name="utubelink" placeholder="Enter the UTube link">
+                                                <input type="text" class="form-control" name="utubelink"
+                                                       placeholder="Enter the link here">
                                             </div>
                                         </div>
                                     </div>

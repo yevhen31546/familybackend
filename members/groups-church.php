@@ -8,23 +8,16 @@ $db->orderBy('churchdate');
 $rows = $db->get('tbl_users');
 
 if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
-    if(isset($_GET['groupfilter'])){
-        $filter_val = $_GET['groupfilter'];        
-        $db = getDbInstance();
-        $db->join('tbl_church', 'tbl_users.id = tbl_church.churchsubmitby');
-        $db->where('churchgroup', '%'.$filter_val.'%', 'LIKE');
-        $db->orderBy('churchdate');
-        $rows = $db->get('tbl_users');
+    $db = getDbInstance();
+    $db->join('tbl_church', 'tbl_users.id = tbl_church.churchsubmitby');
+    if (isset($_GET['groupfilter']) && $_GET['groupfilter']) {
+        $db->where('churchgroup', '%'.$_GET['groupfilter'].'%', 'LIKE');
     }
-
-    if(isset($_GET['letter'])) {
-        $search_param = $_GET['letter'];
-        $db = getDbInstance();
-        $db->join('tbl_church', 'tbl_users.id = tbl_church.churchsubmitby');
-        $db->where('churchname', $search_param.'%', 'LIKE');
-        $db->orderBy('churchdate');
-        $rows = $db->get('tbl_users');
+    if(isset($_GET['letter']) && $_GET['letter']) {
+        $db->where('churchname', '%'.$_GET['letter'].'%', 'LIKE');
     }
+    $db->orderBy('churchdate');
+    $rows = $db->get('tbl_users');
 }
 ?>
 
@@ -128,7 +121,7 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                                             <p>Date Submited: <?php echo $row['churchdate'];?></p>
                                             <p>Church Comment: <?php echo $row['churchcomment'];?></p>
                                             <?php if ($row['utubelink'] != '') {?>
-                                                <p><a href="<?php echo $row['utubelink'] ?>" target="_blank">YouTube link </a></p>
+                                                <p><a href="<?php echo $row['utubelink'] ?>" target="_blank">See More </a></p>
                                             <?php }?>
                                         </div>
                                     </div>

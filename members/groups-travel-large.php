@@ -40,7 +40,9 @@ $user = $db->get('tbl_users');
         <div class="row">
             <div class="main--content col-md-12 pb--60">
                 <div class="main--content-inner">
-                                                
+                    <a href="groups-travel.php">
+                        <h5><i class="fa fa-angle-left"></i>&nbsp;&nbsp;Back</h5>
+                    </a>
                     <!-- Box Items Start -->
                                             
                     <div class="box--items-h">

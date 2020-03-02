@@ -8,23 +8,18 @@ $db->orderBy('traveldate');
 $rows = $db->get('tbl_users');
 
 if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
-    if(isset($_GET['groupfilter'])){
-        $filter_val = $_GET['groupfilter'];        
-        $db = getDbInstance();
-        $db->join('tbl_travel', 'tbl_users.id = tbl_travel.travelsubmitby');
-        $db->where('travelgroup', '%'.$filter_val.'%', 'LIKE');
-        $db->orderBy('traveldate');
-        $rows = $db->get('tbl_users');
+    $db = getDbInstance();
+    $db->join('tbl_travel', 'tbl_users.id = tbl_travel.travelsubmitby');
+    if (isset($_GET['groupfilter']) && $_GET['groupfilter'] === 'all') {
+        $db->where(1);
+    } elseif (isset($_GET['groupfilter']) && $_GET['groupfilter']) {
+        $db->where('travelgroup', '%'.$_GET['groupfilter'].'%', 'LIKE');
     }
-
-    if(isset($_GET['letter'])) {
-        $search_param = $_GET['letter'];
-        $db = getDbInstance();
-        $db->join('tbl_travel', 'tbl_users.id = tbl_travel.travelsubmitby');
-        $db->where('travelname', $search_param.'%', 'LIKE');
-        $db->orderBy('traveldate');
-        $rows = $db->get('tbl_users');
+    if(isset($_GET['letter']) && $_GET['letter']) {
+        $db->where('travelernames', '%'.$_GET['letter'].'%', 'LIKE');
     }
+    $db->orderBy('traveldate');
+    $rows = $db->get('tbl_users');
 }
 ?>
 
@@ -59,30 +54,28 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                         </div>
 
                         <div class="filter--options float--right">
+                            <form action="" method="GET" id="groupfilterform">
                             <label style="display: flex;">
                                 <span class="h4 fs--14 ff--primary fw--500 text-darker">Find a Group :</span>
-                                <form action="" method="GET" id="groupfilterform">
                                     <select name="groupfilter" id="groupfilter" class="form-control form-sm" onchange="this.form.submit();" data-trigger="selectmenu">
-                                        <option value="Family Vacation" selected>Family Vacation</option>
+                                        <option value="all" selected>Most Current Added</option>
+                                        <option value="Family Vacation" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Family Vacation') echo 'selected'; ?> >Family Vacation</option>
                                         <option value="Just-4-Fun" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Just-4-Fun') echo 'selected'; ?> >Just-4-Fun</option>
                                         <option value="Special Occasion" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Special Occasion') echo 'selected'; ?> >Special Occasion</option>
                                         <option value="Weekend Getaway" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Weekend Getaway') echo 'selected'; ?> >Weekend Getaway</option>
                                         <option value="Other" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Other') echo 'selected'; ?> >Other</option>
                                     </select>
-
-                                </form>
                             </label>
 
-
                             <div>
-                                <form action="" method="post" name="search" onclick="submit">
                                 <?php
                                     foreach (range('A', 'Z') as $char) {
                                         echo '<a href='.BASE_URL.'/members/groups-travel.php?letter='.$char.'> '.$char.'</a> |';
                                     }
                                 ?>
-                                </form>
                             </div>
+
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -122,7 +115,7 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                                         <p>Date Submited: <?php echo $row['traveldate'];?></p>
                                         <p><?php echo $row['travelcomment'];?></p>
                                         <?php if ($row['utubelink'] != '') {?>
-                                            <p><a href="<?php echo $row['utubelink'] ?>" target="_blank"> Youtube link </a></p>
+                                            <p><a href="<?php echo $row['utubelink'] ?>" target="_blank"> See More </a></p>
                                         <?php }?>
                                     </div>
                                 </div>

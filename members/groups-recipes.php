@@ -35,7 +35,8 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
         $search_param = $_GET['letter'];
         $db = getDbInstance();
         $db->join('tbl_recipes', 'tbl_users.id = tbl_recipes.rec_submit_by');
-        $db->where('rec_title', $search_param.'%', 'LIKE');
+        $db->where('rec_type', $search_param.'%', 'LIKE');
+        $db->orWhere('rec_title', $search_param.'%', 'LIKE');
         $db->orderBy('rec_date');
         $rows = $db->get('tbl_users');
     }
@@ -89,6 +90,7 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                                         <option value="Family Favorite" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Family Favorite') echo 'selected'; ?> >Family Favorite</option>
                                         <option value="Gluten Free" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Gluten Free') echo 'selected'; ?> >Gluten Free</option>
                                         <option value="Vegetarian" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Vegetarian') echo 'selected'; ?> >Vegetarian</option>
+                                        <option value="Other" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Other') echo 'selected'; ?> >Other</option>
                                     </select>
 
                                 </form>

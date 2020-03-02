@@ -145,6 +145,7 @@ if(isset($_POST) && isset($_POST['rec_date']) && $_POST['rec_date'] != '') {
                                                     <option value="Family Favorite">Family Favorite</option>
                                                     <option value="Gluten Free">Gluten Free</option>
                                                     <option value="Vegetarian">Vegetarian</option>
+                                                    <option value="Other">Other</option>
                                                 </select>
 <!--                                                <input type="checkbox" name="rec_type[]" value="Breakfast" id="RecipeType_0" >Breakfast-->
 <!--                                                <input type="checkbox" name="rec_type[]" value="Lunch" id="RecipeType_1" >Lunch-->

@@ -123,7 +123,7 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                                         <p>Date Submited: <?php echo $row['homerepairdate'];?></p>
                                         <p><?php echo $row['homerepaircomment'];?></p>
                                         <?php if ($row['utubelink'] != '') {?>
-                                            <p><a href="<?php echo $row['utubelink'] ?>" target="_blank"> YouTube link </a></p>
+                                            <p><a href="<?php echo $row['utubelink'] ?>" target="_blank"> See More </a></p>
                                         <?php }?>
                                     </div>
                                 </div>

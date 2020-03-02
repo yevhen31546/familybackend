@@ -40,9 +40,11 @@ $user = $db->get('tbl_users');
         <div class="row">
             <div class="main--content col-md-12 pb--60">
                 <div class="main--content-inner">
-                                                
+
+                    <a href="groups-church.php">
+                        <h5><i class="fa fa-angle-left"></i>&nbsp;&nbsp;Back</h5>
+                    </a>
                     <!-- Box Items Start -->
-                                            
                     <div class="box--items-h">
                         <div class="row gutter--15 AdjustRow">
                         
@@ -104,7 +106,6 @@ $user = $db->get('tbl_users');
                             </div>
                         </div>
                     </div>
-
                     <!-- Box Items End -->
 
                 </div>

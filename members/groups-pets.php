@@ -8,10 +8,10 @@ $db->orderBy('petdate');
 $rows = $db->get('tbl_users');
 
 if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
-    if(isset($_GET['groupfilter'])){        
+    $db = getDbInstance();
+    $db->join('tbl_pet', 'tbl_users.id = tbl_pet.petsubmitby');
+    if(isset($_GET['groupfilter']) && $_GET['groupfilter']){
         $filter_val = $_GET['groupfilter'];
-        $db = getDbInstance();
-        $db->join('tbl_pet', 'tbl_users.id = tbl_pet.petsubmitby');
         $db->where('petgroup', '%'.$filter_val.'%', 'LIKE');
         $db->orderBy('petdate');
         $rows = $db->get('tbl_users');
@@ -19,9 +19,7 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
 
     if(isset($_GET['letter'])) {
         $search_param = $_GET['letter'];
-        $db = getDbInstance();
-        $db->join('tbl_pet', 'tbl_users.id = tbl_pet.petsubmitby');
-        $db->where('petname', $search_param.'%', 'LIKE');
+        $db->where('petbreed', $search_param.'%', 'LIKE');
         $db->orderBy('petdate');
         $rows = $db->get('tbl_users');
     }
@@ -122,7 +120,7 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                                         <p>Date Submited: <?php echo $row['petdate'];?></p>
                                         <p><?php echo $row['petcomment'];?></p>
                                         <?php if ($row['utubelink'] != '') {?>
-                                            <p><a href="<?php echo $row['utubelink'] ?>" target="_blank"> YouTube link </a></p>
+                                            <p><a href="<?php echo $row['utubelink'] ?>" target="_blank"> See More </a></p>
                                         <?php }?>
                                     </div>
                                 </div>

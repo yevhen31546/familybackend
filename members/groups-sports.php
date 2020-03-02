@@ -7,12 +7,23 @@ $db->join('tbl_sport', 'tbl_users.id = tbl_sport.sportsubmitby');
 $db->orderBy('sportdate');
 $rows = $db->get('tbl_users');
 
-if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
-    if(isset($_GET['groupfilter'])){
-        $filter_val = $_GET['groupfilter'];        
+if(isset($_GET) && (isset($_GET['sport_name_filter']) || isset($_GET['letter']))) {
+    if(isset($_GET['sport_name_filter'])){
         $db = getDbInstance();
         $db->join('tbl_sport', 'tbl_users.id = tbl_sport.sportsubmitby');
-        $db->where('sportgroup', '%'.$filter_val.'%', 'LIKE');
+
+        $filter_val = $_GET['sport_name_filter'];
+        if ($filter_val === 'all') {
+            $db->where(1);
+        } else {
+            $db->where('sportname', '%'.$filter_val.'%', 'LIKE');
+        }
+        if (isset($_GET['team_name_filter']) && $_GET['team_name_filter']) {
+            $db->Where('sportteamname', '%'.$_GET['team_name_filter'].'%', 'LIKE');
+        }
+        if (isset($_GET['player_name_filter']) && $_GET['player_name_filter']) {
+            $db->Where('sportperson', '%'.$_GET['player_name_filter'].'%', 'LIKE');
+        }
         $db->orderBy('sportdate');
         $rows = $db->get('tbl_users');
     }
@@ -59,22 +70,204 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                         </div>
 
                         <div class="filter--options float--right">
-                        <label style="display: flex;">
-                                    <span class="h4 fs--14 ff--primary fw--500 text-darker">Find a Group :</span>
-                                    <form action="" method="GET" id="groupfilterform">
-                                        <select name="groupfilter" id="groupfilter" class="form-control form-sm" onchange="this.form.submit();" data-trigger="selectmenu">
-                                        <option value="Girl" selected>Girl</option>
-                                        <option value="Boy" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Boy') echo 'selected'; ?> >Boy</option>
-                                        <option value="Women" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Women') echo 'selected'; ?> >Women</option>
-                                        <option value="Men" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Men') echo 'selected'; ?> >Men</option>
-                                        <option value="Coed" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Coed') echo 'selected'; ?> >Coed</option>
+                            <form method="GET">
+                                <label style="display: flex;">
+                                    <span class="h4 fs--14 ff--primary fw--500 text-darker">Find a Sport :</span>
+                                    <select name="sport_name_filter" class="form-control form-sm" data-trigger="selectmenu">
+                                        <option value="all" selected>All</option>
+                                        <option value="Aerobics" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Aerobics') echo 'selected'; ?> >
+                                            Aerobics
+                                        </option>
+                                        <option value="Badminton" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Badminton') echo 'selected'; ?> >
+                                            Badminton
+                                        </option>
+                                        <option value="Ballet/Dance" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Ballet/Dance') echo 'selected'; ?> >
+                                            Ballet/Dance
+                                        </option>
+                                        <option value="Baseball" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Baseball') echo 'selected'; ?> >
+                                            Baseball
+                                        </option>
+                                        <option value="Basketball" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Basketball') echo 'selected'; ?> >
+                                            Basketball
+                                        </option>
+                                        <option value="Bowling" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Bowling') echo 'selected'; ?> >
+                                            Bowling
+                                        </option>
+                                        <option value="Boxing" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Boxing') echo 'selected'; ?> >
+                                            Boxing
+                                        </option>
+                                        <option value="Cheerleading" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Cheerleading') echo 'selected'; ?> >
+                                            Cheerleading
+                                        </option>
+                                        <option value="Cross Fit" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Cross Fit') echo 'selected'; ?> >
+                                            Cross Fit
+                                        </option>
+                                        <option value="Cycling" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Cycling') echo 'selected'; ?> >
+                                            Cycling
+                                        </option>
+                                        <option value="Diving" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Diving') echo 'selected'; ?> >
+                                            Diving
+                                        </option>
+                                        <option value="Equestrian" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Equestrian') echo 'selected'; ?> >
+                                            Equestrian
+                                        </option>
+                                        <option value="Fishing" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Fishing') echo 'selected'; ?> >
+                                            Fishing
+                                        </option>
+                                        <option value="Football" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Football') echo 'selected'; ?> >
+                                            Football
+                                        </option>
+                                        <option value="Golf" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Golf') echo 'selected'; ?> >
+                                            Golf
+                                        </option>
+                                        <option value="Gymnastics" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Gymnastics') echo 'selected'; ?> >
+                                            Gymnastics
+                                        </option>
+                                        <option value="Hockey" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Hockey') echo 'selected'; ?> >
+                                            Hockey
+                                        </option>
+                                        <option value="Hunting" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Hunting') echo 'selected'; ?> >
+                                            Hunting
+                                        </option>
+                                        <option value="Jump Roping" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Jump Roping') echo 'selected'; ?> >
+                                            Jump Roping
+                                        </option>
+                                        <option value="Karate" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Karate') echo 'selected'; ?> >
+                                            Karate
+                                        </option>
+                                        <option value="Lacrosse" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Lacrosse') echo 'selected'; ?> >
+                                            Lacrosse
+                                        </option>
+                                        <option value="Marathons" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Marathons') echo 'selected'; ?> >
+                                            Marathons
+                                        </option>
+                                        <option value="Martial Arts" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Martial Arts') echo 'selected'; ?> >
+                                            Martial Arts
+                                        </option>
+                                        <option value="Motor Sports" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Motor Sports') echo 'selected'; ?> >
+                                            Motor Sports
+                                        </option>
+                                        <option value="Parachuting" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Parachuting') echo 'selected'; ?> >
+                                            Parachuting
+                                        </option>
+                                        <option value="Running" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Running') echo 'selected'; ?> >
+                                            Running
+                                        </option>
+                                        <option value="Skating" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Skating') echo 'selected'; ?> >
+                                            Skating
+                                        </option>
+                                        <option value="Skiing" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Skiing') echo 'selected'; ?> >
+                                            Skiing
+                                        </option>
+                                        <option value="Snow Boarding" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Snow Boarding') echo 'selected'; ?> >
+                                            Snow Boarding
+                                        </option>
+                                        <option value="Soccer" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Soccer') echo 'selected'; ?> >
+                                            Soccer
+                                        </option>
+                                        <option value="Softball" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Softball') echo 'selected'; ?> >
+                                            Softball
+                                        </option>
+                                        <option value="Swimming" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Swimming') echo 'selected'; ?> >
+                                            Swimming
+                                        </option>
+                                        <option value="Target Shooting" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Target Shooting') echo 'selected'; ?> >
+                                            Target Shooting
+                                        </option>
+                                        <option value="Tee-Ball" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Tee-Ball') echo 'selected'; ?> >
+                                            Tee-Ball
+                                        </option>
+                                        <option value="Tennis" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Tennis') echo 'selected'; ?> >
+                                            Tennis
+                                        </option>
+                                        <option value="Track and Field" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Track and Field') echo 'selected'; ?> >
+                                            Track and Field
+                                        </option>
+                                        <option value="Triathlon" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Triathlon') echo 'selected'; ?> >
+                                            Triathlon
+                                        </option>
+                                        <option value="Volleyball" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Volleyball') echo 'selected'; ?> >
+                                            Volleyball
+                                        </option>
+                                        <option value="Weightlifting" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Weightlifting') echo 'selected'; ?> >
+                                            Weightlifting
+                                        </option>
+                                        <option value="Wrestling" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Wrestling') echo 'selected'; ?> >
+                                            Wrestling
+                                        </option>
+                                        <option value="Yoga" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Yoga') echo 'selected'; ?> >
+                                            Yoga
+                                        </option>
+                                        <option value="Zumba" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Zumba') echo 'selected'; ?> >
+                                            Zumba
+                                        </option>
+                                        <option value="Other" <?php if(isset($_GET['sport_name_filter']) &&
+                                            $_GET['sport_name_filter'] == 'Other') echo 'selected'; ?> >
+                                            Other
+                                        </option>
                                     </select>
+                                    <span class="h4 fs--14 ff--primary fw--500 text-darker" style="padding-left: 10px;">
+                                        Find a Team :
+                                    </span>
+                                    <input type="text" name="team_name_filter"
+                                           value="<?php if (isset($_GET['team_name_filter']))
+                                               echo $_GET['team_name_filter']; ?>">
+                                    <span class="h4 fs--14 ff--primary fw--500 text-darker" style="padding-left: 10px;">
+                                        Find a Player :
+                                    </span>
+                                    <input type="text" name="player_name_filter"
+                                           value="<?php if (isset($_GET['player_name_filter']))
+                                               echo $_GET['player_name_filter']; ?>">
+                                    <button type="submit" class="btn btn-primary" style="padding-left: 10px;
+                                        margin-left: 10px;padding-top: 1px; padding-bottom: 1px; padding-right: 10px;">
+                                        Filter
+                                    </button>
+                                </label>
+                            </form>
 
-                                </form>
-                            </label>
-
-
-                            <div>
+                            <div style="margin-top: 10px; float: right;">
                                 <form action="" method="post" name="search" onclick="submit">
                                 <?php
                                     foreach (range('A', 'Z') as $char) {
@@ -116,13 +309,13 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                                     </div>
 
                                     <div class="desc text-darker">
-                                        <p>Sport Person: <?php echo $row['sportperson'];?></p>
                                         <p>Team Name: <?php echo $row['sportteamname'];?></p>
+                                        <p>Player's Name: <?php echo $row['sportperson'];?></p>
                                         <p>Submitted by: <?php echo $row['first_name'].$row['last_name'];?></p>
                                         <p>Date Submited: <?php echo $row['sportdate'];?></p>
                                         <p><?php echo $row['sportcomment'];?></p>
                                         <?php if ($row['utubelink'] != '') {?>
-                                            <p><a href="<?php echo $row['utubelink'] ?>" target="_blank"> YouTube link </a></p>
+                                            <p><a href="<?php echo $row['utubelink'] ?>" target="_blank"> See More </a></p>
                                         <?php }?>
                                     </div>
                                 </div>

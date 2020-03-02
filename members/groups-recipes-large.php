@@ -45,7 +45,9 @@ $user = $db->get('tbl_users');
             <!-- Main Content Start -->
             <div class="main--content col-md-12 pb--60">
                 <div class="main--content-inner">
-
+                    <a href="groups-recipes.php">
+                        <h5><i class="fa fa-angle-left"></i>&nbsp;&nbsp;Back</h5>
+                    </a>
                     <!-- Box Items Start -->
                     <div class="box--items-h">
                         <div class="row gutter--15 AdjustRow">

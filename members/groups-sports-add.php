@@ -10,8 +10,6 @@ $submitted_by_user = $db->getOne('tbl_users')['first_name'] . ' ' . $db->getOne(
 
 if(isset($_POST) && isset($_POST['sportdate']) && $_POST['sportdate'] != '') {
     $data_to_db = $_POST;
-    if ($data_to_db['sportgroup']=='')
-        $data_to_db['sportgroup'] = 'Girl';
     if ($data_to_db['sportname']=='')
         $data_to_db['sportname'] = 'Aerobics';
     // // Multi image upload
@@ -154,18 +152,6 @@ if(isset($_POST) && isset($_POST['sportdate']) && $_POST['sportdate'] != '') {
                                 <div class="box--item text-center w-100">
                                     <div class="col-md-9 col-xs-12">
                                         <div class="box--item text-left">
-                                            <label>
-                                                <span class="h4 fs--14 ff--primary fw--500 text-darker"><strong>Select a Group :</strong></span>
-
-                                                <select name="sportgroup" id="sportgroup" class="input-medium" data-trigger="selectmenu">
-                                                    <option value="Girl">Girl</option>
-                                                    <option value="Boy">Boy</option>
-                                                    <option value="Women">Women</option>
-                                                    <option value="Men">Men</option>
-                                                    <option value="Coed">Coed</option>
-                                                </select>
-                                            </label>
-                                            <br>
 
                                             <label>
                                                 <span class="h4 fs--14 ff--primary fw--500 text-darker"><strong>Select a Sport :</strong></span>
@@ -220,14 +206,12 @@ if(isset($_POST) && isset($_POST['sportdate']) && $_POST['sportdate'] != '') {
                                         </div>
 
                                         <div class="box--item text-left">
-											<p><h6>Enter the name of the person involved in the sport in the box below.</h6></p>
-                                            <div><label><h6>Name:&nbsp;&nbsp;&nbsp;<input type="text" name="sportperson">&nbsp;&nbsp;&nbsp;</h6></label></div></div>
-										
-
-                                        <div class="box--item text-left">
-											<p><h6>Enter the name of the team, if applicable.</h6></p>
+                                            <p><h6>Enter the name of the team, if applicable.</h6></p>
                                             <div><label><h6>Team Name:&nbsp;&nbsp;&nbsp;<input type="text" name="sportteamname">&nbsp;&nbsp;&nbsp;</h6></label></div></div>
 
+                                        <div class="box--item text-left">
+											<p><h6>Enter the name of the person involved in the sport in the box below.</h6></p>
+                                            <div><label><h6>Player's Name:&nbsp;&nbsp;&nbsp;<input type="text" name="sportperson">&nbsp;&nbsp;&nbsp;</h6></label></div></div>
 
                                         <div class="box--item text-left">
                                             <label>
@@ -278,9 +262,9 @@ if(isset($_POST) && isset($_POST['sportdate']) && $_POST['sportdate'] != '') {
 
                                         <div class="box--item text-left textareaw">
                                             <div><label>
-                                                    <h6>Add a link to YouTube.&nbsp;&nbsp;&nbsp;</h6>
+                                                    <h6>Add a link such as, YouTube, Facebook, Twitter, etc.&nbsp;&nbsp;&nbsp;</h6>
                                                 </label>
-                                                <input type="text" class="form-control" name="utubelink" placeholder="Enter the YouTube link">
+                                                <input type="text" class="form-control" name="utubelink" placeholder="Enter the link here">
                                             </div>
                                         </div>
                                     </div>
