@@ -14,32 +14,24 @@ $rows = $db->get('tbl_users');
 // exit;
 
 if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
-    if(isset($_GET['groupfilter'])){
-        $filter_val = $_GET['groupfilter'];
-        if($filter_val == 'last-active') {
-            $db = getDbInstance();
-            $db->join('tbl_recipes', 'tbl_users.id = tbl_recipes.rec_submit_by');
-            $db->orderBy('rec_date');
-            $rows = $db->get('tbl_users');
+    $db = getDbInstance();
+    $db->join('tbl_recipes', 'tbl_users.id = tbl_recipes.rec_submit_by');
+    if (isset($_GET['groupfilter']) && $_GET['groupfilter'] === 'all') {
+        if (isset($_GET['letter']) && $_GET['letter']) {
+            $db->where('rec_title', $_GET['letter'].'%', 'LIKE');
+        } else {
+            $db->where(1);
         }
-        else {
-            $db = getDbInstance();
-            $db->join('tbl_recipes', 'tbl_users.id = tbl_recipes.rec_submit_by');
-            $db->where('rec_type', '%'.$filter_val.'%', 'LIKE');
-            $db->orderBy('rec_date');
-            $rows = $db->get('tbl_users');
-        }
+    } elseif (isset($_GET['letter']) && $_GET['letter'] && isset($_GET['groupfilter']) && $_GET['groupfilter']) {
+        $db->where('rec_type', $_GET['groupfilter'].'%', 'LIKE');
+        $db->where('rec_title', $_GET['letter'].'%', 'LIKE');
+    } elseif (isset($_GET['groupfilter']) && $_GET['groupfilter'] && empty($_GET['letter'])) {
+        $db->where('rec_type', $_GET['groupfilter'].'%', 'LIKE');
+    } elseif(isset($_GET['letter']) && $_GET['letter'] && empty($_GET['groupfilter'])) {
+        $db->where('rec_title', $_GET['letter'].'%', 'LIKE');
     }
-
-    if(isset($_GET['letter'])) {
-        $search_param = $_GET['letter'];
-        $db = getDbInstance();
-        $db->join('tbl_recipes', 'tbl_users.id = tbl_recipes.rec_submit_by');
-        $db->where('rec_type', $search_param.'%', 'LIKE');
-        $db->orWhere('rec_title', $search_param.'%', 'LIKE');
-        $db->orderBy('rec_date');
-        $rows = $db->get('tbl_users');
-    }
+    $db->orderBy('rec_date');
+    $rows = $db->get('tbl_users');
 }
 
 
@@ -78,34 +70,36 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                         </div>
 
                         <div class="filter--options float--right">
+                            <form action="" method="GET" id="groupfilterform">
                             <label style="display: flex;">
                                 <span class="h4 fs--14 ff--primary fw--500 text-darker">Find a Group :</span>
-                                <form action="" method="GET" id="groupfilterform">
-                                    <select name="groupfilter" id="groupfilter" class="form-control form-sm" onchange="this.form.submit();" data-trigger="selectmenu">
-                                        <option value="last-active" selected>Most Current Added</option>
-                                        <option value="Breakfast" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Breakfast') echo 'selected'; ?> >Breakfast</option>
-                                        <option value="Lunch" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Lunch') echo 'selected'; ?> >Lunch</option>
-                                        <option value="Dinner" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Dinner') echo 'selected'; ?> >Dinner</option>
-                                        <option value="Dessert" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Dessert') echo 'selected'; ?> >Dessert</option>
-                                        <option value="Family Favorite" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Family Favorite') echo 'selected'; ?> >Family Favorite</option>
-                                        <option value="Gluten Free" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Gluten Free') echo 'selected'; ?> >Gluten Free</option>
-                                        <option value="Vegetarian" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Vegetarian') echo 'selected'; ?> >Vegetarian</option>
-                                        <option value="Other" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Other') echo 'selected'; ?> >Other</option>
-                                    </select>
-
-                                </form>
+                                <select name="groupfilter" id="groupfilter" class="form-control form-sm" onchange="this.form.submit();" data-trigger="selectmenu">
+                                    <option value="all" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'all') echo 'selected'; ?> >Most Current Added</option>
+                                    <option value="Breakfast" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Breakfast') echo 'selected'; ?> >Breakfast</option>
+                                    <option value="Lunch" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Lunch') echo 'selected'; ?> >Lunch</option>
+                                    <option value="Dinner" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Dinner') echo 'selected'; ?> >Dinner</option>
+                                    <option value="Dessert" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Dessert') echo 'selected'; ?> >Dessert</option>
+                                    <option value="Family" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Family Favorite') echo 'selected'; ?> >Family Favorite</option>
+                                    <option value="Gluten" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Gluten Free') echo 'selected'; ?> >Gluten Free</option>
+                                    <option value="Vegetarian" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Vegetarian') echo 'selected'; ?> >Vegetarian</option>
+                                    <option value="Other" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Other') echo 'selected'; ?> >Other</option>
+                                </select>
                             </label>
 
-                            <div>
-                                <form action="" method="post" name="search" onclick="submit">
-                                <?php
-
-                                foreach (range('A', 'Z') as $char) {
-                                    echo '<a href='.BASE_URL.'/members/groups-recipes.php?letter='.$char.'> '.$char.'</a> |';
-                                }
-                                ?>
-                                </form>
-                            </div> Hari - a user can select to sort by recipe type, or the title alphabetically
+                                <div>
+                                    <?php
+                                    foreach (range('A', 'Z') as $char) {
+                                        if (isset($_GET['groupfilter'])) {
+                                            echo '<a href='.BASE_URL.'/members/groups-recipes.php?groupfilter='.
+                                                $_GET['groupfilter'].'&&letter='
+                                                .$char.'> '.$char.'</a> |';
+                                        } else {
+                                            echo '<a href='.BASE_URL.'/members/groups-recipes.php?letter='.$char.'> '.$char.'</a> |';
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <!-- Filter Nav End -->

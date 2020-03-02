@@ -11,16 +11,23 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
     $db = getDbInstance();
     $db->join('tbl_travel', 'tbl_users.id = tbl_travel.travelsubmitby');
     if (isset($_GET['groupfilter']) && $_GET['groupfilter'] === 'all') {
-        $db->where(1);
-    } elseif (isset($_GET['groupfilter']) && $_GET['groupfilter']) {
-        $db->where('travelgroup', '%'.$_GET['groupfilter'].'%', 'LIKE');
-    }
-    if(isset($_GET['letter']) && $_GET['letter']) {
-        $db->where('travelernames', '%'.$_GET['letter'].'%', 'LIKE');
+        if (isset($_GET['letter']) && $_GET['letter']) {
+            $db->where('travelernames', $_GET['letter'].'%', 'LIKE');
+        } else {
+            $db->where(1);
+        }
+    } elseif (isset($_GET['letter']) && $_GET['letter'] && isset($_GET['groupfilter']) && $_GET['groupfilter']) {
+        $db->where('travelgroup', $_GET['groupfilter'].'%', 'LIKE');
+        $db->where('travelernames', $_GET['letter'].'%', 'LIKE');
+    } elseif (isset($_GET['groupfilter']) && $_GET['groupfilter'] && empty($_GET['letter'])) {
+        $db->where('travelgroup', $_GET['groupfilter'].'%', 'LIKE');
+    } elseif(isset($_GET['letter']) && $_GET['letter'] && empty($_GET['groupfilter']) && !$_GET['groupfilter']) {
+        $db->where('travelernames', $_GET['letter'].'%', 'LIKE');
     }
     $db->orderBy('traveldate');
     $rows = $db->get('tbl_users');
 }
+
 ?>
 
 <?php include BASE_PATH . '/members/includes/header.php' ?>
@@ -57,20 +64,26 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                             <form action="" method="GET" id="groupfilterform">
                             <label style="display: flex;">
                                 <span class="h4 fs--14 ff--primary fw--500 text-darker">Find a Group :</span>
-                                    <select name="groupfilter" id="groupfilter" class="form-control form-sm" onchange="this.form.submit();" data-trigger="selectmenu">
-                                        <option value="all" selected>Most Current Added</option>
-                                        <option value="Family Vacation" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Family Vacation') echo 'selected'; ?> >Family Vacation</option>
-                                        <option value="Just-4-Fun" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Just-4-Fun') echo 'selected'; ?> >Just-4-Fun</option>
-                                        <option value="Special Occasion" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Special Occasion') echo 'selected'; ?> >Special Occasion</option>
-                                        <option value="Weekend Getaway" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Weekend Getaway') echo 'selected'; ?> >Weekend Getaway</option>
-                                        <option value="Other" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Other') echo 'selected'; ?> >Other</option>
-                                    </select>
+                                <select name="groupfilter" id="groupfilter" class="form-control form-sm" onchange="this.form.submit();" data-trigger="selectmenu">
+                                    <option value="all" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'all') echo 'selected'; ?> >Most Current Added</option>
+                                    <option value="Family" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Family') echo 'selected'; ?> >Family Vacation</option>
+                                    <option value="Just-4-Fun" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Just-4-Fun') echo 'selected'; ?> >Just-4-Fun</option>
+                                    <option value="Special" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Special') echo 'selected'; ?> >Special Occasion</option>
+                                    <option value="Weekend" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Weekend') echo 'selected'; ?> >Weekend Getaway</option>
+                                    <option value="Other" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Other') echo 'selected'; ?> >Other</option>
+                                </select>
                             </label>
 
                             <div>
                                 <?php
                                     foreach (range('A', 'Z') as $char) {
-                                        echo '<a href='.BASE_URL.'/members/groups-travel.php?letter='.$char.'> '.$char.'</a> |';
+                                        if (isset($_GET['groupfilter'])) {
+                                            echo '<a href='.BASE_URL.'/members/groups-travel.php?groupfilter='.
+                                                $_GET['groupfilter'].'&&letter='
+                                                .$char.'> '.$char.'</a> |';
+                                        } else {
+                                            echo '<a href='.BASE_URL.'/members/groups-travel.php?letter='.$char.'> '.$char.'</a> |';
+                                        }
                                     }
                                 ?>
                             </div>

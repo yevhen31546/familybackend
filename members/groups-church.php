@@ -10,15 +10,24 @@ $rows = $db->get('tbl_users');
 if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
     $db = getDbInstance();
     $db->join('tbl_church', 'tbl_users.id = tbl_church.churchsubmitby');
-    if (isset($_GET['groupfilter']) && $_GET['groupfilter']) {
-        $db->where('churchgroup', '%'.$_GET['groupfilter'].'%', 'LIKE');
-    }
-    if(isset($_GET['letter']) && $_GET['letter']) {
-        $db->where('churchname', '%'.$_GET['letter'].'%', 'LIKE');
+    if (isset($_GET['groupfilter']) && $_GET['groupfilter'] === 'all') {
+        if (isset($_GET['letter']) && $_GET['letter']) {
+            $db->where('churchname', $_GET['letter'].'%', 'LIKE');
+        } else {
+            $db->where(1);
+        }
+    } elseif (isset($_GET['letter']) && $_GET['letter'] && isset($_GET['groupfilter']) && $_GET['groupfilter']) {
+        $db->where('churchgroup', $_GET['groupfilter'].'%', 'LIKE');
+        $db->where('churchname', $_GET['letter'].'%', 'LIKE');
+    } elseif (isset($_GET['groupfilter']) && $_GET['groupfilter'] && empty($_GET['letter'])) {
+        $db->where('churchgroup', $_GET['groupfilter'].'%', 'LIKE');
+    } elseif(isset($_GET['letter']) && $_GET['letter'] && empty($_GET['groupfilter'])) {
+        $db->where('churchname', $_GET['letter'].'%', 'LIKE');
     }
     $db->orderBy('churchdate');
     $rows = $db->get('tbl_users');
 }
+
 ?>
 
 
@@ -53,36 +62,40 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                             </div>
 
                             <div class="filter--options float--right">
+                                <form action="" method="GET" id="groupfilterform">
                                 <label style="display: flex;">
                                     <span class="h4 fs--14 ff--primary fw--500 text-darker">Find a Group :</span>
-                                    <form action="" method="GET" id="groupfilterform">
-                                        <select name="groupfilter" id="groupfilter" class="form-control form-sm" onchange="this.form.submit();" data-trigger="selectmenu">
-                                            <option value="Adults/Family" selected>Adults/Family</option>
-                                            <option value="Bible Study" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Bible Study') echo 'selected'; ?> >Bible Study</option>
-                                            <option value="Children's Church" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == "Children's Church") echo 'selected'; ?> >Children's Church</option>
-                                            <option value="Choir/Worship" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Choir/Worship') echo 'selected'; ?> >Choir/Worship</option>
-                                            <option value="College/Career Group" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'College/Career Group') echo 'selected'; ?> >College/Career Group</option>
-                                            <option value="Home Group" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Home Group') echo 'selected'; ?> >Home Group</option>
-                                            <option value="Prayer" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Prayer') echo 'selected'; ?> >Prayer</option>
-                                            <option value="Seniors" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Seniors') echo 'selected'; ?> >Seniors</option>
-                                            <option value="Singles" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Singles') echo 'selected'; ?> >Singles</option>
-                                            <option value="Youth Group" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Youth Group') echo 'selected'; ?> >Youth Group</option>
-                                            <option value="Other" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Other') echo 'selected'; ?> >Other</option>
-                                        </select>
-
-                                    </form>
+                                    <select name="groupfilter" id="groupfilter" class="form-control form-sm" onchange="this.form.submit();" data-trigger="selectmenu">
+                                        <option value="all" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'all') echo 'selected'; ?> >Most Current Added</option>
+                                        <option value="Adults/Family" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Adults/Family') echo 'selected'; ?> >Adults/Family</option>
+                                        <option value="Bible" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Bible') echo 'selected'; ?> >Bible Study</option>
+                                        <option value="Children" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == "Children") echo 'selected'; ?> >Children's Church</option>
+                                        <option value="Choir/Worship" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Choir/Worship') echo 'selected'; ?> >Choir/Worship</option>
+                                        <option value="College/Career Group" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'College/Career Group') echo 'selected'; ?> >College/Career Group</option>
+                                        <option value="Home" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Home') echo 'selected'; ?> >Home Group</option>
+                                        <option value="Prayer" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Prayer') echo 'selected'; ?> >Prayer</option>
+                                        <option value="Seniors" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Seniors') echo 'selected'; ?> >Seniors</option>
+                                        <option value="Singles" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Singles') echo 'selected'; ?> >Singles</option>
+                                        <option value="Youth" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Youth') echo 'selected'; ?> >Youth Group</option>
+                                        <option value="Other" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Other') echo 'selected'; ?> >Other</option>
+                                    </select>
                                 </label>
 
-
                                 <div>
-                                    <form action="" method="post" name="search" onclick="submit">
                                     <?php
-                                        foreach (range('A', 'Z') as $char) {
+                                    foreach (range('A', 'Z') as $char) {
+                                        if (isset($_GET['groupfilter'])) {
+                                            echo '<a href='.BASE_URL.'/members/groups-church.php?groupfilter='.
+                                                $_GET['groupfilter'].'&&letter='
+                                                .$char.'> '.$char.'</a> |';
+                                        } else {
                                             echo '<a href='.BASE_URL.'/members/groups-church.php?letter='.$char.'> '.$char.'</a> |';
                                         }
+                                    }
                                     ?>
-                                    </form>
                                 </div>
+
+                                </form>
                             </div>
                         </div>
                     </div>

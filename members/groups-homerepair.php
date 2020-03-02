@@ -8,24 +8,26 @@ $db->orderBy('homerepairdate');
 $rows = $db->get('tbl_users');
 
 if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
-    if(isset($_GET['groupfilter'])){
-        $filter_val = $_GET['groupfilter'];        
-        $db = getDbInstance();
-        $db->join('tbl_homerepair', 'tbl_users.id = tbl_homerepair.homerepairsubmitby');
-        $db->where('homerepairgroup', '%'.$filter_val.'%', 'LIKE');
-        $db->orderBy('homerepairdate');
-        $rows = $db->get('tbl_users');
+    $db = getDbInstance();
+    $db->join('tbl_homerepair', 'tbl_users.id = tbl_homerepair.homerepairsubmitby');
+    if (isset($_GET['groupfilter']) && $_GET['groupfilter'] === 'all') {
+        if (isset($_GET['letter']) && $_GET['letter']) {
+            $db->where('homerepairgroup', $_GET['letter'].'%', 'LIKE');
+        } else {
+            $db->where(1);
+        }
+    } elseif (isset($_GET['letter']) && $_GET['letter'] && isset($_GET['groupfilter']) && $_GET['groupfilter']) {
+        $db->where('homerepairgroup', $_GET['groupfilter'].'%', 'LIKE');
+        $db->where('homerepairgroup', $_GET['letter'].'%', 'LIKE');
+    } elseif (isset($_GET['groupfilter']) && $_GET['groupfilter'] && empty($_GET['letter'])) {
+        $db->where('homerepairgroup', $_GET['groupfilter'].'%', 'LIKE');
+    } elseif(isset($_GET['letter']) && $_GET['letter'] && empty($_GET['groupfilter'])) {
+        $db->where('homerepairgroup', $_GET['letter'].'%', 'LIKE');
     }
-
-    if(isset($_GET['letter'])) {
-        $search_param = $_GET['letter'];
-        $db = getDbInstance();
-        $db->join('tbl_homerepair', 'tbl_users.id = tbl_homerepair.homerepairsubmitby');
-        $db->where('homerepairgroup', $search_param.'%', 'LIKE');
-        $db->orderBy('homerepairdate');
-        $rows = $db->get('tbl_users');
-    }
+    $db->orderBy('homerepairdate');
+    $rows = $db->get('tbl_users');
 }
+
 ?>
 
 <?php include BASE_PATH . '/members/includes/header.php' ?>
@@ -64,12 +66,13 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                                 <form action="" method="GET" id="groupfilterform">
 
                                     <select name="groupfilter" id="groupfilter" class="input-medium" onchange="this.form.submit();" data-trigger="selectmenu">
-                                        <option value="Bathroom" selected>Bathroom</option>
+                                        <option value="all" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'all') echo 'selected'; ?> >Most Current Added</option>
+                                        <option value="Bathroom" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Bathroom') echo 'selected'; ?> >Bathroom</option>
                                         <option value="Bedroom" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Bedroom') echo 'selected'; ?> >Bedroom</option>
-                                        <option value="Entertainment Room" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == "Entertainment Room") echo 'selected'; ?> >Entertainment Room</option>
+                                        <option value="Entertainment" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == "Entertainment") echo 'selected'; ?> >Entertainment Room</option>
                                         <option value="Kitchen" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Kitchen') echo 'selected'; ?> >Kitchen</option>
-                                        <option value="Living Room" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Living Room') echo 'selected'; ?> >Living Room</option>
-                                        <option value="Nursery Room" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Nursery Room') echo 'selected'; ?> >Nursery Room</option>
+                                        <option value="Living" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Living') echo 'selected'; ?> >Living Room</option>
+                                        <option value="Nursery" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Nursery') echo 'selected'; ?> >Nursery Room</option>
                                         <option value="Other" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Other') echo 'selected'; ?> >Other</option>
                                     </select>
 

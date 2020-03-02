@@ -8,23 +8,24 @@ $db->orderBy('eventdate');
 $rows = $db->get('tbl_users');
 
 if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
-    if(isset($_GET['groupfilter'])){
-        $filter_val = $_GET['groupfilter'];        
-        $db = getDbInstance();
-        $db->join('tbl_event', 'tbl_users.id = tbl_event.eventsubmitby');
-        $db->where('eventgroup', '%'.$filter_val.'%', 'LIKE');
-        $db->orderBy('eventdate');
-        $rows = $db->get('tbl_users');
+    $db = getDbInstance();
+    $db->join('tbl_event', 'tbl_users.id = tbl_event.eventsubmitby');
+    if (isset($_GET['groupfilter']) && $_GET['groupfilter'] === 'all') {
+        if (isset($_GET['letter']) && $_GET['letter']) {
+            $db->where('eventname', $_GET['letter'].'%', 'LIKE');
+        } else {
+            $db->where(1);
+        }
+    } elseif (isset($_GET['letter']) && $_GET['letter'] && isset($_GET['groupfilter']) && $_GET['groupfilter']) {
+        $db->where('eventgroup', $_GET['groupfilter'].'%', 'LIKE');
+        $db->where('eventname', $_GET['letter'].'%', 'LIKE');
+    } elseif (isset($_GET['groupfilter']) && $_GET['groupfilter'] && empty($_GET['letter'])) {
+        $db->where('eventgroup', $_GET['groupfilter'].'%', 'LIKE');
+    } elseif(isset($_GET['letter']) && $_GET['letter'] && empty($_GET['groupfilter'])) {
+        $db->where('eventname', $_GET['letter'].'%', 'LIKE');
     }
-
-    if(isset($_GET['letter'])) {
-        $search_param = $_GET['letter'];
-        $db = getDbInstance();
-        $db->join('tbl_event', 'tbl_users.id = tbl_event.eventsubmitby');
-        $db->where('eventgroup', $search_param.'%', 'LIKE');
-        $db->orderBy('eventdate');
-        $rows = $db->get('tbl_users');
-    }
+    $db->orderBy('eventdate');
+    $rows = $db->get('tbl_users');
 }
 
 ?>
@@ -59,34 +60,38 @@ if(isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
                         </div>
 
                         <div class="filter--options float--right">
-                            <label style="display: flex;">
-                                <span class="fs--14 ff--primary fw--500 text-darker">Find an Event :</span>
-                                <form action="" method="GET" id="groupfilterform">
+                            <form action="" method="GET" id="groupfilterform">
+                                <label style="display: flex;">
+                                    <span class="fs--14 ff--primary fw--500 text-darker">Find an Event :</span>
 
                                     <select name="groupfilter" id="groupfilter" class="form-control form-sm"  onchange="this.form.submit();" data-trigger="selectmenu">
-                                        <option value="Anniversaries" selected>Anniversaries</option>
-                                        <option value="Baby Showers" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Baby Showers') echo 'selected'; ?> >Baby Showers</option>
-                                        <option value="Bachelor Parties" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Bachelor Parties') echo 'selected'; ?> >Bachelor Parties</option>
+                                        <option value="all" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'all') echo 'selected'; ?> >Most Current Added</option>
+                                        <option value="Anniversaries" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Anniversaries') echo 'selected'; ?> >Anniversaries</option>
+                                        <option value="Baby" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Baby') echo 'selected'; ?> >Baby Showers</option>
+                                        <option value="Bachelor" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Bachelor') echo 'selected'; ?> >Bachelor Parties</option>
                                         <option value="Birthday" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Birthday') echo 'selected'; ?> >Birthday</option>
-                                        <option value="Bridal Showers" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Bridal Showers') echo 'selected'; ?> >Bridal Showers</option>
+                                        <option value="Bridal" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Bridal') echo 'selected'; ?> >Bridal Showers</option>
                                         <option value="Concerts" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Concerts') echo 'selected'; ?> >Concerts</option>
                                         <option value="Graduations" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Graduations') echo 'selected'; ?> >Graduations</option>
                                         <option value="Parties" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Parties') echo 'selected'; ?> >Parties</option>
                                         <option value="Weddings" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Weddings') echo 'selected'; ?> >Weddings</option>
                                         <option value="Other" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Other') echo 'selected'; ?> >Other</option>
                                     </select>
-                                </form>
-                            </label>
-                            <div>
-                                <form action="" method="post" name="search" onclick="submit">
-                                <?php
-
-                                foreach (range('A', 'Z') as $char) {
-                                    echo '<a href='.BASE_URL.'/members/groups-events.php?letter='.$char.'> '.$char.'</a> |';
-                                }
-                                ?>
-                                </form>
-                            </div>
+                                </label>
+                                <div>
+                                    <?php
+                                    foreach (range('A', 'Z') as $char) {
+                                        if (isset($_GET['groupfilter'])) {
+                                            echo '<a href='.BASE_URL.'/members/groups-events.php?groupfilter='.
+                                                $_GET['groupfilter'].'&&letter='
+                                                .$char.'> '.$char.'</a> |';
+                                        } else {
+                                            echo '<a href='.BASE_URL.'/members/groups-events.php?letter='.$char.'> '.$char.'</a> |';
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <!-- Filter Nav End -->
