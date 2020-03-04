@@ -4,7 +4,7 @@ require_once '../config/config.php';
 require_once BASE_PATH.'/includes/auth_validate.php';
 
 $page = 1;
-$page_per_num = 2;
+$page_per_num = 12;
 $tbl_name = 'tbl_users';
 
 $db = getDbInstance();
