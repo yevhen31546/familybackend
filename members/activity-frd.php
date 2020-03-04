@@ -151,10 +151,21 @@ checkFriGroupInvitation($logged_id);
                 </div>
 
                 <!-- Load More Button Start -->
-                <div class="load-more--btn pt--30 text-center">
-                    <a href="#" class="btn btn-animate">
-                        <span>See More Activities<i class="fa ml--10 fa-caret-right"></i></span>
-                    </a>
+                <div class="page--count pt--30">
+                    <form method="get">
+                        <label class="ff--primary fs--14 fw--500 text-darker" style="text-align: center;">
+                            <span>Viewing</span>
+
+                            <a href="<?php echo BASE_URL.'/members/activity-frd.php?page_num='.$prev_page; ?>"
+                               class="btn-link"><i class="fa fa-caret-left"></i></a>
+                            <input type="number" name="page_num" value="<?php echo $page; ?>"
+                                   class="form-control form-sm">
+                            <a href="<?php echo BASE_URL.'/members/activity-frd.php?page_num='.$next_page; ?>"
+                               class="btn-link"><i class="fa fa-caret-right"></i></a>
+
+                            <span>of <?php echo $totalPages; ?></span>
+                        </label>
+                    </form>
                 </div>
                 <!-- Load More Button End -->
             </div>

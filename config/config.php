@@ -15,7 +15,6 @@ define('CURRENT_PAGE', basename($_SERVER['REQUEST_URI']));
 //define('DB_USER', "root");
 //define('DB_PASSWORD', "");
 //define('DB_NAME', "familymember");
-//
 //define('SMTP_HOST', 'smtp.gmail.com');
 //define('SMTP_PORT', 465);
 //define('SMTP_ENC', 'ssl');

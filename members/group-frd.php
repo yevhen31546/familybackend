@@ -158,10 +158,22 @@ include BASE_PATH.'/members/includes/header.php';
                     </div>
 
                     <!-- Load More Button Start -->
-                    <div class="load-more--btn pt--30 text-center">
-                        <a href="#" class="btn btn-animate">
-                            <span>See More Activities<i class="fa ml--10 fa-caret-right"></i></span>
-                        </a>
+                    <div class="page--count pt--30">
+                        <form method="get">
+                            <label class="ff--primary fs--14 fw--500 text-darker" style="text-align: center">
+                                <span>Viewing</span>
+
+                                <a href="<?php echo BASE_URL.'/members/group-frd.php?group_id='.$group_id.'&page_num='.$prev_page; ?>"
+                                   class="btn-link"><i class="fa fa-caret-left"></i></a>
+                                <input type="hidden" name="group_id" value="<?php echo $group_id; ?>" >
+                                <input type="number" name="page_num" value="<?php echo $page; ?>"
+                                       class="form-control form-sm">
+                                <a href="<?php echo BASE_URL.'/members/group-frd.php?group_id='.$group_id.'&page_num='.$next_page; ?>"
+                                   class="btn-link"><i class="fa fa-caret-right"></i></a>
+
+                                <span>of <?php echo $totalPages; ?></span>
+                            </label>
+                        </form>
                     </div>
                     <!-- Load More Button End -->
                 </div>

@@ -14,6 +14,23 @@ $user = $db->getOne('tbl_users');
 $db = getDbInstance();
 $category_lists = $db->get('tbl_categories');
 
+/*
+ * Init pagination variables
+ */
+$page = 1;
+$pageLimit = 10;
+$next_page = 1;
+$prev_page = 1;
+$totalPages = 1;
+
+// Handle pagination
+if (isset($_GET) && isset($_GET['page_num'])) {
+    $page = $_GET['page_num'];
+    if ($page < 1) {
+        $page = 1;
+    }
+}
+
 // Function to save note lists
 function save_note_lists($data) {
     $data_to_db['note_value'] = $data['note_value']; // text, video link, photo url
@@ -29,9 +46,10 @@ function save_note_lists($data) {
 }
 
 // Function to fetch saved note lists
-function get_note_lists($cat, $note_date) {
+function get_note_lists($cat, $note_date, $page, $pageLimit) {
     $user_id = $_SESSION['user_id'];
     $db = getDbInstance();
+    $offset = $pageLimit * ($page - 1);
     $query = 'SELECT *
                 FROM
                 (SELECT *
@@ -51,15 +69,20 @@ function get_note_lists($cat, $note_date) {
                 FROM tbl_users
                 ) users ON tbl_notes.user_id = users.userid) tmp
                 WHERE tmp.user_id = '.$user_id;
+
     if ($cat != '' && $note_date != '') {
         $query .=' AND tmp.categoryId ='.$cat.' AND tmp.note_date = "'.$note_date.'"';
     }
-    $query .=' ORDER BY tmp.note_date DESC';
 
+    $totalCount = count($db->rawQuery($query));
+    $query .=' ORDER BY tmp.note_date DESC LIMIT '.$offset.', '.$pageLimit;
     $rows = $db->rawQuery($query);
-    return $rows;
-}
 
+    $result = array();
+    $result['totalPages'] = ceil($totalCount / $pageLimit);
+    $result['rows'] = $rows;
+    return $result;
+}
 
 // Add && View && Update Notes
 if(isset($_POST) && $_POST) {
@@ -90,42 +113,34 @@ if(isset($_POST) && $_POST) {
             // Check if image file is a actual image or fake image
             $check = getimagesize($_FILES["note_photo"]["tmp_name"]);
             if($check !== false) {
-                //                echo "File is an image - " . $check["mime"] . ".";
                 $uploadOk = 1;
             } else {
-                //                echo "File is not an image.";
-                $uploadOk = 0;
+                $uploadOk = 0; // File is not an image
             }
             // Check if file already exists
             if (file_exists($target_file)) {
-                //            echo "Sorry, file already exists.";
                 $_SESSION['failure'] = "Sorry, file already exists.";
                 $uploadOk = 0;
             }
             // Check file size
             if ($_FILES["note_photo"]["size"] > 2000000) {
-                //            echo "Sorry, your file is too large.";
                 $_SESSION['failure'] = "Sorry, your file is too large.";
                 $uploadOk = 0;
             }
-            //         Allow certain file formats
+            // Allow certain file formats
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
                 && $imageFileType != "gif" ) {
-                //            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                 $_SESSION['failure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                 $uploadOk = 0;
             }
             // Check if $uploadOk is set to 0 by an failure
             if ($uploadOk == 0) {
-                //            echo "Sorry, your file was not uploaded.";
-                //            $_SESSION['failure'] = "Sorry, your file was not uploaded.";
-                // if everything is ok, try to upload file
+                 $_SESSION['failure'] = "Sorry, your file was not uploaded.";
             } else {
                 if (move_uploaded_file($_FILES["note_photo"]["tmp_name"], $target_file)) {
-                    //                echo "The file ". basename( $_FILES["note_photo"]["name"]). " has been uploaded.";
                     $data['note_value'] = $target_file;
                 } else {
-                    //                echo "Sorry, there was an failure uploading your file.";
+                    $_SESSION['failure'] = "Sorry, there was an failure uploading your file.";
                 }
             }
         }
@@ -137,7 +152,6 @@ if(isset($_POST) && $_POST) {
         }
 
         if($data['note_value'] != '') {
-            //    Save notes
             $note_id = save_note_lists($data);
             if ($note_id) {
                 $_SESSION['success'] = 'Note added successfully. ';
@@ -148,27 +162,33 @@ if(isset($_POST) && $_POST) {
             $_SESSION['failure'] = "Sorry, error occur in photo uploading!";
         }
 
-        $rows = get_note_lists('', '');
+        $result = get_note_lists('', '', $page, $pageLimit);
+        $totalPages = $result['totalPages'];
+        $rows = $result['rows'];
     }
     elseif (isset($_POST['note_view_date']) && $_POST['view_category']) {
         $view_date = $_POST['note_view_date'];
         $view_cat = $_POST['view_category'];
         $newDate = date("Y-m-d", strtotime($view_date));
 
-        $rows = get_note_lists($view_cat, $newDate);
+        $result = get_note_lists($view_cat, $newDate, $page, $pageLimit);
+        $totalPages = $result['totalPages'];
+        $rows = $result['rows'];
     }
     elseif (isset($_POST['note_update_date']) && $_POST['update_category'] && !isset($_POST['mode'])) {
         $update_cat = $_POST['update_category'];
         $update_date = $_POST['note_update_date'];
         $newDate = date("Y-m-d", strtotime($update_date));
 
-        $rows = get_note_lists($update_cat, $newDate);
+        $result = get_note_lists($update_cat, $newDate, $page, $pageLimit);
+        $totalPages = $result['totalPages'];
+        $rows = $result['rows'];
     }
     elseif (isset($_POST['mode']) && isset($_POST['note_id']) && $_POST['note_id'] != '' && $_POST['mode'] == 'edit') {
         $media_type = $_POST['note_media'];
         $update_date = $_POST['note_update_date'];
         $update_cat = $_POST['update_category'];
-        //    Update text
+        // Update text
         if($media_type == 'text' && isset($_POST['note_value'])){
             $data_to_db = array();
             $data_to_db['note_value'] = $_POST['note_value'];
@@ -178,14 +198,13 @@ if(isset($_POST) && $_POST) {
             if ($last_id)
             {
                 $_SESSION['success'] = 'Successfully updated';
-                $rows = get_note_lists($update_cat, $update_date);
             }
             else
             {
                 $_SESSION['failure'] = 'Update failed!';
             }
         }
-        //    Update photo
+        // Update photo
         else if($media_type == 'photo' && isset($_FILES["note_photo"]["name"]) && $_FILES["note_photo"]["name"]) {
             $target_dir = "./uploads/".$_SESSION['user_id']."/notes/";
             if (!file_exists($target_dir)) {
@@ -197,39 +216,31 @@ if(isset($_POST) && $_POST) {
             // Check if image file is a actual image or fake image
             $check = getimagesize($_FILES["note_photo"]["tmp_name"]);
             if($check !== false) {
-                //                echo "File is an image - " . $check["mime"] . ".";
                 $uploadOk = 1;
             } else {
-                //                echo "File is not an image.";
-                $uploadOk = 0;
+                $uploadOk = 0; // File is not an image.
             }
             // Check if file already exists
             if (file_exists($target_file)) {
-                //            echo "Sorry, file already exists.";
                 $_SESSION['failure'] = "Sorry, file already exists.";
                 $uploadOk = 0;
             }
             // Check file size
             if ($_FILES["note_photo"]["size"] > 500000) {
-                //            echo "Sorry, your file is too large.";
                 $_SESSION['failure'] = "Sorry, your file is too large.";
                 $uploadOk = 0;
             }
-            //         Allow certain file formats
+            // Allow certain file formats
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
                 && $imageFileType != "gif" ) {
-                //            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                 $_SESSION['failure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                 $uploadOk = 0;
             }
             // Check if $uploadOk is set to 0 by an failure
             if ($uploadOk == 0) {
-                //            echo "Sorry, your file was not uploaded.";
-                //            $_SESSION['failure'] = "Sorry, your file was not uploaded.";
-                // if everything is ok, try to upload file
+                $_SESSION['failure'] = "Sorry, your file was not uploaded.";
             } else {
                 if (move_uploaded_file($_FILES["note_photo"]["tmp_name"], $target_file)) {
-                    //                echo "The file ". basename( $_FILES["note_photo"]["name"]). " has been uploaded.";
                     $data_to_db = array();
                     $data_to_db['note_value'] = $target_file;
                     $data_to_db['note_comment'] = $_POST['note_comment'];
@@ -246,12 +257,11 @@ if(isset($_POST) && $_POST) {
                         $_SESSION['failure'] = 'Update failed!';
                     }
                 } else {
-                    //                echo "Sorry, there was an failure uploading your file.";
                     $_SESSION['failure'] = "Sorry, your file was not uploaded.";
                 }
             }
-            $rows = get_note_lists($update_cat, $update_date);
         }
+        // Update only photo's comment
         else if($media_type == 'photo' && empty($_FILES["note_photo"]["name"])) {
             $db = getDbInstance();
             $data_to_db = array();
@@ -268,7 +278,6 @@ if(isset($_POST) && $_POST) {
             {
                 $_SESSION['failure'] = 'Update failed!';
             }
-            $rows = get_note_lists($update_cat, $update_date);
         }
         // Update video
         else if($media_type == 'video' && isset($_POST['note_video'])) {
@@ -282,14 +291,30 @@ if(isset($_POST) && $_POST) {
             if ($last_id)
             {
                 $_SESSION['success'] = 'Successfully updated';
-                $rows = get_note_lists($update_cat, $update_date);
             }
             else
             {
                 $_SESSION['failure'] = 'Update failed!';
             }
         }
+
+        $result = get_note_lists($update_cat, $update_date, $page, $pageLimit);
+        $totalPages = $result['totalPages'];
+        $rows = $result['rows'];
     }
 } else {
-    $rows = get_note_lists('', '');
+    $result = get_note_lists('', '', $page, $pageLimit);
+    $totalPages = $result['totalPages'];
+    $rows = $result['rows'];
+}
+
+if ($page >= $totalPages) {
+    $next_page = $totalPages;
+} else {
+    $next_page = $page + 1;
+}
+if ($page > 1) {
+    $prev_page = $page - 1;
+} else {
+    $prev_page = $page;
 }
