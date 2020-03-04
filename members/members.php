@@ -2,8 +2,34 @@
 session_start();
 require_once '../config/config.php';
 require_once BASE_PATH.'/includes/auth_validate.php';
+
+$page = 1;
+$page_per_num = 2;
+$tbl_name = 'tbl_users';
+
 $db = getDbInstance();
-$rows = $db->get('tbl_users');
+$db->pageLimit = $page_per_num;
+if (isset($_GET) && isset($_GET['page_num'])) {
+    $page = $_GET['page_num'];
+    if ($page < 1) {
+        $page = 1;
+    }
+}
+$rows = $db->paginate($tbl_name, $page);
+$total = $db->totalCount;
+$pages = $db->totalPages;
+
+if ($page >= $pages) {
+    $next_page = $pages;
+} else {
+    $next_page = $page + 1;
+}
+if ($page > 1) {
+    $prev_page = $page - 1;
+} else {
+    $prev_page = $page;
+}
+
 ?>
 <?php include BASE_PATH.'/members/includes/header.php'?>
 
@@ -33,7 +59,7 @@ $rows = $db->get('tbl_users');
                             <div class="filter--nav pb--30 clearfix">
                                 <div class="filter--link float--left">
                                     <h2 class="h4">
-                                        Total My Notes Members: &nbsp;&nbsp; <?php echo count($rows); ?>
+                                        Total My Notes Members: &nbsp;&nbsp; <?php echo $total; ?>
                                     </h2>
                                 </div>
 
@@ -105,15 +131,20 @@ $rows = $db->get('tbl_users');
 
                             <!-- Page Count Start -->
                             <div class="page--count pt--30">
+                                <form method="get">
                                 <label class="ff--primary fs--14 fw--500 text-darker">
                                     <span>Viewing</span>
 
-                                    <a href="#" class="btn-link"><i class="fa fa-caret-left"></i></a>
-                                    <input type="number" name="page-count" value="01" class="form-control form-sm">
-                                    <a href="#" class="btn-link"><i class="fa fa-caret-right"></i></a>
+                                    <a href="<?php echo BASE_URL.'/members/members.php?page_num='.$prev_page; ?>"
+                                       class="btn-link"><i class="fa fa-caret-left"></i></a>
+                                    <input type="number" name="page_num" value="<?php echo $page; ?>"
+                                           class="form-control form-sm">
+                                    <a href="<?php echo BASE_URL.'/members/members.php?page_num='.$next_page; ?>"
+                                       class="btn-link"><i class="fa fa-caret-right"></i></a>
 
-                                    <span>of 2,500</span>
+                                    <span>of <?php echo $pages; ?></span>
                                 </label>
+                                </form>
                             </div>
                             <!-- Page Count End -->
                         </div>
