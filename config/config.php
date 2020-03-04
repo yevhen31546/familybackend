@@ -10,34 +10,34 @@ define('CURRENT_PAGE', basename($_SERVER['REQUEST_URI']));
 
 // Local
 
-//define('BASE_URL', 'http://familyback1219.com');
-//define('DB_HOST', "localhost");
-//define('DB_USER', "root");
-//define('DB_PASSWORD', "");
-//define('DB_NAME', "familymember");
-//
-//define('SMTP_HOST', 'smtp.gmail.com');
-//define('SMTP_PORT', 465);
-//define('SMTP_ENC', 'ssl');
-//define('SMTP_FROM', 'pandamoney425@gmail.com'); // Should be updated in production mode
-//define('SMTP_PASS', 'self1971'); // Should be updated in production mode
-//define('SMTP_ENDPOINT', 'http://familyback1219.com/members/member-profile.php' );
-//define('SMTP_APPROVED_URL', 'http://familyback1219.com/members/member-profile.php' );
+define('BASE_URL', 'http://familyback1219.com');
+define('DB_HOST', "localhost");
+define('DB_USER', "root");
+define('DB_PASSWORD', "");
+define('DB_NAME', "familymember");
 
-// Server
-
-define('BASE_URL', 'https://mynotes4u.com');
-define('DB_HOST', "mysql.gip.superb.net");
-define('DB_USER', "u_family_db");
-define('DB_PASSWORD', "Norman@12345");
-define('DB_NAME', "family_db");
 define('SMTP_HOST', 'smtp.gmail.com');
 define('SMTP_PORT', 465);
 define('SMTP_ENC', 'ssl');
-define('SMTP_FROM', 'test4@mynotes4u.com'); // Should be updated in production mode
-define('SMTP_PASS', 'Pineturtle1971!'); // Should be updated in production mode
-define('SMTP_ENDPOINT', 'https://mynotes4u.com/members/member-profile.php' );
-define('SMTP_APPROVED_URL', 'https://mynotes4u.com/members/member-profile.php' );
+define('SMTP_FROM', 'pandamoney425@gmail.com'); // Should be updated in production mode
+define('SMTP_PASS', 'self1971'); // Should be updated in production mode
+define('SMTP_ENDPOINT', 'http://familyback1219.com/members/member-profile.php' );
+define('SMTP_APPROVED_URL', 'http://familyback1219.com/members/member-profile.php' );
+
+// Server
+
+//define('BASE_URL', 'https://mynotes4u.com');
+//define('DB_HOST', "mysql.gip.superb.net");
+//define('DB_USER', "u_family_db");
+//define('DB_PASSWORD', "Norman@12345");
+//define('DB_NAME', "family_db");
+//define('SMTP_HOST', 'smtp.gmail.com');
+//define('SMTP_PORT', 465);
+//define('SMTP_ENC', 'ssl');
+//define('SMTP_FROM', 'test4@mynotes4u.com'); // Should be updated in production mode
+//define('SMTP_PASS', 'Pineturtle1971!'); // Should be updated in production mode
+//define('SMTP_ENDPOINT', 'https://mynotes4u.com/members/member-profile.php' );
+//define('SMTP_APPROVED_URL', 'https://mynotes4u.com/members/member-profile.php' );
 
 
 
