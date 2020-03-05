@@ -10,6 +10,10 @@ You can write your custom css styles in this file...
     cursor: pointer;
 }
 
+.group_edit {
+    cursor: pointer;
+}
+
 .pv-profile-wrapper a:visited {
     color: #0073b1;
 }

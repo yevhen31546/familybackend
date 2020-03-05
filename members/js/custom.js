@@ -434,6 +434,18 @@
         $('.profile-cover-modal').modal('toggle');
     });
 
+    /*Add additional photo*/
+    $('.group_edit').click(function(e){
+        e.preventDefault();
+
+        console.log("here is group edit");
+        var post_id = $(this).data('post-id');
+        var origin_photos = $(this).data('post-photos');
+        $('.group-edit-modal input[name="post_id"]').val(post_id);
+        $('.group-edit-modal input[name="origin_photos"]').val(origin_photos);
+        $('.group-edit-modal').modal('toggle');
+    });
+
     $('#avatar_edit_btn').click(function(e){
         e.preventDefault();
 
