@@ -73,12 +73,12 @@ include BASE_PATH.'/members/includes/header.php';
                 </div>
 
                 <div class="col-md-9 pb--60">
-                    <ul><h3><a href="FAQ/FAQ/AddNote/story_html5.html" target=_blank/>How do I add a note?</a></h3></ul>
-                    <ul><h3><a href="FAQ/FAQ/UpdateNote/story_html5.html" target=_blank/>How do I update a note?</a></h3></ul>
-                    <ul><h3><a href="FAQ/FAQ/InvFriend/story_html5.html" target=_blank/>How do I invite a friend?</a></h3></ul>
-                    <ul><h3><a href="FAQ/FAQ/InvFamily/story_html5.html" target=_blank/>How do I invite a family member?</a></h3></ul>
-                    <ul><h3><a href="FAQ/FAQ/Password/story_html5.html" target=_blank/>How do I change my password?</a></h3></ul>
-                    <ul><h3><a href="FAQ/FAQ/cancel/story_html5.html" target=_blank/>How do I cancel my subscription?</a></h3></ul>
+                    <ul><h3><a href="<?php echo BASE_URL.'/FAQ/AddNote/story_html5.html'; ?>" target=_blank/>How do I add a note?</a></h3></ul>
+                    <ul><h3><a href="<?php echo BASE_URL.'/FAQ/UpdateNote/story_html5.html'; ?>" target=_blank/>How do I update a note?</a></h3></ul>
+                    <ul><h3><a href="<?php echo BASE_URL.'/FAQ/InvFriend/story_html5.html'; ?>" target=_blank/>How do I invite a friend?</a></h3></ul>
+                    <ul><h3><a href="<?php echo BASE_URL.'/FAQ/InvFamily/story_html5.html'; ?>" target=_blank/>How do I invite a family member?</a></h3></ul>
+                    <ul><h3><a href="<?php echo BASE_URL.'/FAQ/Password/story_html5.html'; ?>" target=_blank/>How do I change my password?</a></h3></ul>
+                    <ul><h3><a href="<?php echo BASE_URL.'/FAQ/cancel/story_html5.html'; ?>" target=_blank/>How do I cancel my subscription?</a></h3></ul>
                     <!-- Contact Form Start -->
                     <!-- <div class="contact--form" data-form="ajax">
                          <div class="contact--title">
