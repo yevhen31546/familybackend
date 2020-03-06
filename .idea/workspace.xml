@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0dcfc1bc-f385-4583-b2ea-764e7c8ae5c4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/activity-fam.php" afterPath="$PROJECT_DIR$/members/activity-fam.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/activity-frd.php" afterPath="$PROJECT_DIR$/members/activity-frd.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/activity-me.php" afterPath="$PROJECT_DIR$/members/activity-me.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/contact.php" afterPath="$PROJECT_DIR$/members/contact.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,8 +17,18 @@
       <file leaf-file-name="config.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="23" column="22" lean-forward="false" selection-start-line="12" selection-start-column="19" selection-end-line="23" selection-end-column="22" />
+            <state relative-caret-position="456">
+              <caret line="23" column="15" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="23" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="contact.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/members/contact.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="311">
+              <caret line="43" column="36" lean-forward="false" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -70,7 +78,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>bell</find>
       <find>count</find>
       <find>limit</find>
       <find>$totalPages</find>
@@ -100,6 +107,7 @@
       <find>filter nav end</find>
       <find>flash</find>
       <find>sport_name_filter</find>
+      <find>address :</find>
     </findStrings>
     <replaceStrings>
       <replace>index.php</replace>
@@ -148,7 +156,6 @@
         <option value="$PROJECT_DIR$/members/forms/fam_group_note_update_modal.php" />
         <option value="$PROJECT_DIR$/members/forms/group_note_add_modal.php" />
         <option value="$PROJECT_DIR$/members/includes/footer.php" />
-        <option value="$PROJECT_DIR$/members/contact.php" />
         <option value="$PROJECT_DIR$/includes/header.php" />
         <option value="$PROJECT_DIR$/members/groups-church-large.php" />
         <option value="$PROJECT_DIR$/members/groups-travel-large.php" />
@@ -180,6 +187,7 @@
         <option value="$PROJECT_DIR$/members/activity-fam.php" />
         <option value="$PROJECT_DIR$/members/activity-frd.php" />
         <option value="$PROJECT_DIR$/members/activity-me.php" />
+        <option value="$PROJECT_DIR$/members/contact.php" />
         <option value="$PROJECT_DIR$/config/config.php" />
       </list>
     </option>
@@ -322,12 +330,12 @@
       <workItem from="1583023936178" duration="53230000" />
       <workItem from="1583285525369" duration="23366000" />
       <workItem from="1583373828430" duration="18257000" />
-      <workItem from="1583467301282" duration="663000" />
+      <workItem from="1583467301282" duration="1552000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="520751000" />
+    <option name="totallyTimeSpent" value="521640000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -433,14 +441,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/members/contact.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="49" column="87" lean-forward="false" selection-start-line="49" selection-start-column="87" selection-end-line="49" selection-end-column="87" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/members/forms/view_fam_group.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="303">
@@ -466,6 +466,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="54" column="28" lean-forward="false" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -498,6 +499,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="684">
           <caret line="202" column="57" lean-forward="true" selection-start-line="158" selection-start-column="48" selection-end-line="202" selection-end-column="57" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -716,6 +718,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="478">
           <caret line="40" column="74" lean-forward="false" selection-start-line="40" selection-start-column="74" selection-end-line="40" selection-end-column="74" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -746,6 +749,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-17">
           <caret line="18" column="22" lean-forward="true" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+          <folding>
+            <element signature="e#2215#3745#0#PHP" expanded="false" />
+            <element signature="e#3486#3637#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -753,6 +760,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1232">
           <caret line="123" column="64" lean-forward="false" selection-start-line="123" selection-start-column="58" selection-end-line="123" selection-end-column="64" />
+          <folding>
+            <element signature="e#518#2232#0#PHP" expanded="false" />
+            <element signature="e#2234#3764#0#PHP" expanded="false" />
+            <element signature="e#3505#3656#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -804,6 +816,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="467">
           <caret line="68" column="26" lean-forward="true" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
+          <folding>
+            <element signature="e#507#2221#0#PHP" expanded="false" />
+            <element signature="e#3817#3968#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -841,10 +857,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/members/contact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="43" column="36" lean-forward="false" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="23" column="22" lean-forward="false" selection-start-line="12" selection-start-column="19" selection-end-line="23" selection-end-column="22" />
+        <state relative-caret-position="456">
+          <caret line="23" column="15" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="23" selection-end-column="15" />
           <folding />
         </state>
       </provider>

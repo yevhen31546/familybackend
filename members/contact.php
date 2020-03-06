@@ -39,7 +39,9 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                             </div>
 
                             <div class="content fs--14 text-darker mt--4">
-                                <p>Oklahoma City, Oklahoma</p>
+                                <p>MyNotes4u
+                                <br>P.O. Box 50
+                                <br>Harrah, OK 73045-0050</p>
                             </div>
                         </div>
                         <!-- Contact Info Item End -->
