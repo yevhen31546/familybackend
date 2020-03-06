@@ -90,7 +90,7 @@
                         <div class="links--widget">
                             <ul class="nav">
                                 <li><a href="<?php echo BASE_URL.'/members/member-profile.php'; ?>">My Account</a></li>
-                                <li><a href="#">FAQ</a></li>
+                                <li><a href="<?php echo BASE_URL.'/members/FAQ.php'; ?>">FAQ</a></li>
                                 <li><a href="pp.pdf" target="_blank">Privacy Policy</a></li>
                                 <li><a href="tc.pdf" target="_blank">Terms and Conditions</a></li>
                                 <li><a href="cr.pdf" target="_blank">Community Rules</a></li>
