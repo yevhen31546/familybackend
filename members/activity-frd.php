@@ -349,7 +349,7 @@ checkFriGroupInvitation($logged_id);
 
                 <div class="ad--widget">
                     <a href="#">
-                        <img src="img/widgets-img/ad.jpg" alt="" class="center-block">
+                        <img src="img/widgets-img/TractHeels-2.png" alt="" class="center-block">
                     </a>
                 </div>
                 <!-- Ad Widget End -->
