@@ -30,7 +30,7 @@ define('DB_HOST', "mysql.gip.superb.net");
 define('DB_USER', "u_family_db");
 define('DB_PASSWORD', "Norman@12345");
 define('DB_NAME', "family_db");
-define('SMTP_HOST', 'smtp.mynotes4u.com');
+define('SMTP_HOST', 'mail.superb.net');
 define('SMTP_PORT', 465);
 define('SMTP_ENC', 'ssl');
 define('SMTP_FROM', 'support@mynotes4u.com'); // Should be updated in production mode

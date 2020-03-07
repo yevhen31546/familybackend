@@ -2,46 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0dcfc1bc-f385-4583-b2ea-764e7c8ae5c4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/members/uploads/1/covers/cover123.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/members/uploads/1/notes/3F590EDE-270B-4861-9485-621A59260DAF.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/members/uploads/1/notes/Reaceeet2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/members/uploads/1/recipes/Reaceeet2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/members/uploads/1/recipes/_GJB8767_2016-02-27_05-48-1-2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/members/uploads/1/recipes/avatar-12.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/members/uploads/1/recipes/human.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tbl_user.sql" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.php" afterPath="$PROJECT_DIR$/config/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/activity-fam.php" afterPath="$PROJECT_DIR$/members/activity-fam.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/activity-frd.php" afterPath="$PROJECT_DIR$/members/activity-frd.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/activity-me.php" afterPath="$PROJECT_DIR$/members/activity-me.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/fam_group_note_endpoint.php" afterPath="$PROJECT_DIR$/members/fam_group_note_endpoint.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/forms/create_family_group.php" afterPath="$PROJECT_DIR$/members/forms/create_family_group.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/forms/create_friend_group.php" afterPath="$PROJECT_DIR$/members/forms/create_friend_group.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/forms/edit_family_group.php" afterPath="$PROJECT_DIR$/members/forms/edit_family_group.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/forms/edit_friend_group.php" afterPath="$PROJECT_DIR$/members/forms/edit_friend_group.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/forms/view_fam_group.php" afterPath="$PROJECT_DIR$/members/forms/view_fam_group.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/forms/view_fri_group.php" afterPath="$PROJECT_DIR$/members/forms/view_fri_group.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/fri_group_note_endpoint.php" afterPath="$PROJECT_DIR$/members/fri_group_note_endpoint.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/group-fam.php" afterPath="$PROJECT_DIR$/members/group-fam.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/group-frd.php" afterPath="$PROJECT_DIR$/members/group-frd.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-church-add.php" afterPath="$PROJECT_DIR$/members/groups-church-add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-church.php" afterPath="$PROJECT_DIR$/members/groups-church.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-events.php" afterPath="$PROJECT_DIR$/members/groups-events.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-homerepair.php" afterPath="$PROJECT_DIR$/members/groups-homerepair.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-pets.php" afterPath="$PROJECT_DIR$/members/groups-pets.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-recipes.php" afterPath="$PROJECT_DIR$/members/groups-recipes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-sports.php" afterPath="$PROJECT_DIR$/members/groups-sports.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-travel.php" afterPath="$PROJECT_DIR$/members/groups-travel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/home.php" afterPath="$PROJECT_DIR$/members/home.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/includes/header.php" afterPath="$PROJECT_DIR$/members/includes/header.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/member-activity-endpoint.php" afterPath="$PROJECT_DIR$/members/member-activity-endpoint.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/member-activity-personal.php" afterPath="$PROJECT_DIR$/members/member-activity-personal.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/my_album_endpoint.php" afterPath="$PROJECT_DIR$/members/my_album_endpoint.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/my_family_endpoint.php" afterPath="$PROJECT_DIR$/members/my_family_endpoint.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/my_friend_endpoint.php" afterPath="$PROJECT_DIR$/members/my_friend_endpoint.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/notification.php" afterPath="$PROJECT_DIR$/members/notification.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/smtp_endpoint.php" afterPath="$PROJECT_DIR$/members/smtp_endpoint.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -55,8 +17,18 @@
       <file leaf-file-name="config.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="17" column="31" lean-forward="false" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="31" />
+            <state relative-caret-position="675">
+              <caret line="38" column="16" lean-forward="false" selection-start-line="27" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="contact.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/members/contact.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="16" column="52" lean-forward="false" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -74,7 +46,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>br</find>
       <find>family_request_msg</find>
       <find>checkFam</find>
       <find>bell</find>
@@ -104,6 +75,7 @@
       <find>first</find>
       <find>tbl_fam_gp_not</find>
       <find>fri_gp</find>
+      <find>send</find>
     </findStrings>
     <replaceStrings>
       <replace>index.php</replace>
@@ -184,9 +156,9 @@
         <option value="$PROJECT_DIR$/members/groups-sports.php" />
         <option value="$PROJECT_DIR$/members/groups-sports-add.php" />
         <option value="$PROJECT_DIR$/members/groups-travel.php" />
-        <option value="$PROJECT_DIR$/config/config.php" />
         <option value="$PROJECT_DIR$/members/notification.php" />
         <option value="$PROJECT_DIR$/members/includes/header.php" />
+        <option value="$PROJECT_DIR$/config/config.php" />
       </list>
     </option>
   </component>
@@ -307,12 +279,12 @@
       <workItem from="1583467301282" duration="5766000" />
       <workItem from="1583475380748" duration="5365000" />
       <workItem from="1583545358479" duration="4143000" />
-      <workItem from="1583550986026" duration="30688000" />
+      <workItem from="1583550986026" duration="32724000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="566050000" />
+    <option name="totallyTimeSpent" value="568086000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -404,16 +376,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cart.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="183" column="52" lean-forward="false" selection-start-line="183" selection-start-column="49" selection-end-line="183" selection-end-column="52" />
-          <folding>
-            <element signature="e#1496#6895#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/includes/flash_messages.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -937,10 +899,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/members/contact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" column="52" lean-forward="false" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="31" lean-forward="false" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="31" />
+        <state relative-caret-position="675">
+          <caret line="38" column="16" lean-forward="false" selection-start-line="27" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
           <folding />
         </state>
       </provider>
