@@ -463,6 +463,14 @@
         readAvatarURL(this);
     });
 
+    // cnt = 0;
+    // // Bell notification
+    // $('#notification-bell').click(function() {
+    //
+    //     $('#bell-notification-body').addClass('dropdown');
+    // });
+
+
     $(document).ready(function(){
         MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 

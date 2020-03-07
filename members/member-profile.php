@@ -7,8 +7,9 @@ require_once 'smtp_endpoint.php';
 require_once 'notification.php';
 require_once 'member_profile_endpoint.php';
 
-checkFamilyRequest($logged_id);
-checkFriendRequest($logged_id);
+$bell_count += checkFamilyRequest($logged_id);
+$bell_count += checkFriendRequest($logged_id);
+
 include BASE_PATH.'/members/includes/header.php';
 
 ?>
@@ -36,7 +37,6 @@ include BASE_PATH.'/members/includes/header.php';
                     <?php } else { ?>
                         <img src="img/cover-header-img/avatar-01.jpg" alt="">
                     <?php } ?>
-
             </div>
         </div>
 
@@ -47,7 +47,6 @@ include BASE_PATH.'/members/includes/header.php';
         <div class="cover--user-activity">
             <p><i class="fa mr--8 fa-clock-o"></i>Active 1 year 9 monts ago</p>
         </div>
-        <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
     </div>
 </div>
 <!-- Cover Header End -->

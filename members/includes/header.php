@@ -84,22 +84,19 @@
 
                 <!-- Header Topbar Links Start -->
                 <ul class="header--topbar-links nav ff--primary float--right">
-                    <li class="dropdown" style="border-right: black;">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <li id="bell-notification-body" class="dropdown">
+                        <a href="#" id="notification-bell">
                             <i class="fa fa-bell-o"></i>
-                            <span class="badge">3</span>
+                            <span class="badge"><?php echo $bell_count; ?></span>
                         </a>
 
                         <ul class="dropdown-menu bell-notification">
-                            <li>
-                                You have invite request meail from xyzabc group. approve / disapprove.
-                            </li>
-                            <li>
-                                You have invite request meail from xyzabc group. approve / disapprove.
-                            </li>
-                            <li>
-                                You have invite request meail from xyzabc group. approve / disapprove.
-                            </li>
+                            <?php for ($i = 0; $i < $bell_count; $i++) { ?>
+
+                                    <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
+                            <?php
+                            }
+                            ?>
                         </ul>
                     </li>
                     <li class="dropdown">

@@ -14,12 +14,19 @@ You can write your custom css styles in this file...
     width: 170px;
     overflow-y: scroll;
     height: 200px;
+    margin-top: 3px;
+    margin-left: 3px !important;
+    padding-left:10px !important;
 }
 
-.bell-notification li{
-    margin-top: 3px;
-    margin-left: 3px;
-    padding-left:3px;
+ul.dropdown-menu.bell-notification a {
+    display: inline;
+    padding: 0px;
+}
+
+ul.dropdown-menu.bell-notification hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .group_edit {

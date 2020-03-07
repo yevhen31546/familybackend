@@ -14,10 +14,7 @@ function genFriReqNotMsg($params) {
         $approve = '<a href="'.$approve_url.'">Approve</a>';
         $disapprove = '<a href="'.$disapprove_url.'">Disapprove</a>';
 
-        $message .='<div class="alert alert-info alert-dismissable">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            '.$sender_name.' has sent a friend request. '.$approve.' or '.$disapprove.'
-                      </div>';
+        $message .=$sender_name.' has sent a friend request. '.$approve.' or '.$disapprove.'<hr>';
     endforeach;
 
     return $message;
@@ -37,10 +34,7 @@ function genFamReqNotMsg($params) {
         $approve = '<a href="'.$approve_url.'">Approve</a>';
         $disapprove = '<a href="'.$disapprove_url.'">Disapprove</a>';
 
-        $message .='<div class="alert alert-info alert-dismissable">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            '.$sender_name.' has sent a family request. '.$approve.' or '.$disapprove.'
-                      </div>';
+        $message .=$sender_name.' has sent a family request. '.$approve.' or '.$disapprove.'<hr>';
     endforeach;
 
     return $message;
@@ -63,11 +57,7 @@ function genFamGroupNotMsg($params) {
         $approve = '<a href="'.$approve_url.'">Approve</a>';
         $disapprove = '<a href="'.$delete_url.'">Disapprove</a>';
 
-        $message .='<div class="alert alert-info alert-dismissable">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            You have a request from '.$who.' to join the '.$group_name.'.     
-                             '.$approve.' or '.$disapprove.'
-                      </div>';
+        $message .='You have a request from '.$who.' to join the '.$group_name.'.'.$approve.' or '.$disapprove.'<hr>';
     endforeach;
 
     return $message;
@@ -90,11 +80,7 @@ function genFriGroupNotMsg($params) {
         $approve = '<a href="'.$approve_url.'">Approve</a>';
         $disapprove = '<a href="'.$delete_url.'">Disapprove</a>';
 
-        $message .='<div class="alert alert-info alert-dismissable">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            You have a request from '.$who.' to join the '.$group_name.'.     
-                             '.$approve.' or '.$disapprove.'
-                      </div>';
+        $message .='You have a request from '.$who.' to join the '.$group_name.'.'.$approve.' or '.$disapprove.'<hr>';
     endforeach;
 
     return $message;
@@ -114,10 +100,7 @@ function genFamNoteNotMsg($params) {
         $approve = '<a href="'.$approve_url.'">Approve</a>';
         $disapprove = '<a href="'.$disapprove_url.'">Disapprove</a>';
 
-        $message .='<div class="alert alert-info alert-dismissable">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            '.$sender_name.' has posted something on your profile. '.$approve.' / '.$disapprove.'
-                      </div>';
+        $message .= $sender_name.' has posted something on your profile. '.$approve.' / '.$disapprove.'<hr>';
     endforeach;
 
     return $message;
@@ -137,10 +120,7 @@ function genFamGroupNoteNotMsg($params) {
         $approve = '<a href="'.$approve_url.'">Approve</a>';
         $disapprove = '<a href="'.$disapprove_url.'">Disapprove</a>';
 
-        $message .='<div class="alert alert-info alert-dismissable">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            '.$group_name.' has posted a note '.$approve.' / '.$disapprove.'
-                      </div>';
+        $message .=$group_name.' has posted a note '.$approve.' / '.$disapprove.'<hr>';
     endforeach;
 
     return $message;
@@ -160,10 +140,7 @@ function genFriNoteNotMsg($params) {
         $approve = '<a href="'.$approve_url.'">Approve</a>';
         $disapprove = '<a href="'.$disapprove_url.'">Disapprove</a>';
 
-        $message .='<div class="alert alert-info alert-dismissable">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            '.$sender_name.' has posted something on your profile. '.$approve.' / '.$disapprove.'
-                      </div>';
+        $message .= $sender_name.' has posted something on your profile. '.$approve.' / '.$disapprove.'<hr>';
     endforeach;
 
     return $message;
@@ -183,10 +160,7 @@ function genFriGroupNoteNotMsg($params) {
         $approve = '<a href="'.$approve_url.'">Approve</a>';
         $disapprove = '<a href="'.$disapprove_url.'">Disapprove</a>';
 
-        $message .='<div class="alert alert-info alert-dismissable">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            '.$group_name.' has posted a note '.$approve.' / '.$disapprove.'
-                      </div>';
+        $message .= $group_name.' has posted a note '.$approve.' / '.$disapprove.'<hr>';
     endforeach;
 
     return $message;
@@ -234,8 +208,10 @@ function checkFamilyRequest($user_id) {
     if(count($family_requests) > 0) {
         $notification_msg = genFamReqNotMsg($family_requests);
         $_SESSION['family_request_msg'] = $notification_msg;
+        return count($family_requests);
     } else {
         $_SESSION['family_request_msg'] = '';
+        return 0;
     }
 }
 
@@ -250,8 +226,10 @@ function checkFriendRequest($user_id) {
     if(count($friend_requests) > 0) {
         $notification_msg = genFriReqNotMsg($friend_requests);
         $_SESSION['friend_request_msg'] = $notification_msg;
+        return count($friend_requests);
     } else {
         $_SESSION['friend_request_msg'] = '';
+        return 0;
     }
 }
 
@@ -270,8 +248,10 @@ function checkFamGroupInvitation($user_id) {
     if(count($fam_group_requests) > 0) {
         $notification_msg = genFamGroupNotMsg($fam_group_requests);
         $_SESSION['fam_group_requests_msg'] = $notification_msg;
+        return count($fam_group_requests);
     } else {
         $_SESSION['fam_group_requests_msg'] = '';
+        return 0;
     }
 }
 
@@ -290,8 +270,10 @@ function checkFriGroupInvitation($user_id) {
     if(count($friend_group_requests) > 0) {
         $notification_msg = genFriGroupNotMsg($friend_group_requests);
         $_SESSION['fri_group_requests_msg'] = $notification_msg;
+        return count($friend_group_requests);
     } else {
         $_SESSION['fri_group_requests_msg'] = '';
+        return 0;
     }
 }
 
@@ -312,8 +294,10 @@ function checkFamGroupNoteRequest($group_id) {
     if(count($family_group_note_requests) > 0) {
         $notification_msg = genFamGroupNoteNotMsg($family_group_note_requests);
         $_SESSION['fam_group_note_request_msg'] = $notification_msg;
+        return count($family_group_note_requests);
     } else {
         $_SESSION['fam_group_note_request_msg'] = '';
+        return 0;
     }
 }
 
@@ -329,8 +313,10 @@ function checkFamNoteRequest($user_id) {
     if(count($note_requests) > 0) {
         $notification_msg = genFamNoteNotMsg($note_requests);
         $_SESSION['fam_note_request_msg'] = $notification_msg;
+        return count($note_requests);
     } else {
         $_SESSION['fam_note_request_msg'] = '';
+        return 0;
     }
 }
 
@@ -346,8 +332,10 @@ function checkFriNoteRequest($user_id) {
     if(count($note_requests) > 0) {
         $notification_msg = genFriNoteNotMsg($note_requests);
         $_SESSION['fri_note_request_msg'] = $notification_msg;
+        return count($note_requests);
     } else {
         $_SESSION['fri_note_request_msg'] = '';
+        return 0;
     }
 }
 
@@ -368,8 +356,10 @@ function checkFriGroupNoteRequest($group_id) {
     if(count($friend_group_note_requests) > 0) {
         $notification_msg = genFriGroupNoteNotMsg($friend_group_note_requests);
         $_SESSION['fri_group_note_request_msg'] = $notification_msg;
+        return count($friend_group_note_requests);
     } else {
         $_SESSION['fri_group_note_request_msg'] = '';
+        return 0;
     }
 }
 

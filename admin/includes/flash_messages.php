@@ -26,5 +26,3 @@ echo '<div class="alert alert-info alert-dismissable">
   	  </div>';
   unset($_SESSION['info']);
 }
-
- ?>

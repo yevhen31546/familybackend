@@ -30,15 +30,15 @@ define('DB_HOST', "mysql.gip.superb.net");
 define('DB_USER', "u_family_db");
 define('DB_PASSWORD', "Norman@12345");
 define('DB_NAME', "family_db");
-define('SMTP_HOST', 'smtp.gmail.com');
+define('SMTP_HOST', 'smtp.mynotes4u.com');
 define('SMTP_PORT', 465);
 define('SMTP_ENC', 'ssl');
-define('SMTP_FROM', 'test4@mynotes4u.com'); // Should be updated in production mode
-define('SMTP_PASS', 'Pineturtle1971!'); // Should be updated in production mode
+define('SMTP_FROM', 'support@mynotes4u.com'); // Should be updated in production mode
+define('SMTP_PASS', 'August151959'); // Should be updated in production mode
 define('SMTP_ENDPOINT', 'https://mynotes4u.com/members/member-profile.php' );
 define('SMTP_APPROVED_URL', 'https://mynotes4u.com/members/member-profile.php' );
 
-
+define('LOGO_URL', '/whitelogosm.png');
 
 require_once BASE_PATH . '/lib/MysqliDb/MysqliDb.php';
 require_once BASE_PATH . '/helpers/helpers.php';
@@ -49,3 +49,5 @@ require_once BASE_PATH . '/helpers/helpers.php';
 function getDbInstance() {
 	return new MysqliDb(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 }
+
+$bell_count = 0; // number of notification for badge
