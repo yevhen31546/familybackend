@@ -2,15 +2,12 @@
 session_start();
 require_once '../config/config.php';
 require_once BASE_PATH.'/includes/auth_validate.php';
-require_once '../vendor/autoload.php';
-require_once 'note_email_endpoint.php';
 require_once 'my_friend_endpoint.php';
 require_once 'notification.php';
-include BASE_PATH.'/members/includes/header.php';
 // Check friend group invitation exist
-checkFriGroupInvitation($logged_id);
-// Check friend note exist
-//checkFriNoteRequest($logged_id);
+$bell_count += checkFriGroupInvitation($logged_id);
+
+include BASE_PATH.'/members/includes/header.php';
 ?>
 <link rel="stylesheet" href="<?php echo BASE_URL;?>/members/css/auto_fill.css">
 <!-- Page Header Start -->
@@ -33,7 +30,6 @@ checkFriGroupInvitation($logged_id);
 <section class="page--wrapper pt--80 pb--20">
     <div class="container">
         <div class="row">
-            <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
             <!-- Main Content Start -->
             <div class="main--content col-md-8 pb--60" data-trigger="stickyScroll">
                 <div class="main--content-inner drop--shadow">

@@ -119,28 +119,33 @@ if(isset($_POST) && $_POST) {
             }
             // Check if file already exists
             if (file_exists($target_file)) {
-                $_SESSION['failure'] = "Sorry, file already exists.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, file already exists.<hr>";
                 $uploadOk = 0;
             }
             // Check file size
             if ($_FILES["note_photo"]["size"] > 2000000) {
-                $_SESSION['failure'] = "Sorry, your file is too large.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, your file is too large.<hr>";
                 $uploadOk = 0;
             }
             // Allow certain file formats
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
                 && $imageFileType != "gif" ) {
-                $_SESSION['failure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<hr>";
                 $uploadOk = 0;
             }
             // Check if $uploadOk is set to 0 by an failure
             if ($uploadOk == 0) {
-                 $_SESSION['failure'] = "Sorry, your file was not uploaded.";
+                $bell_count++;
+                 $_SESSION['failure'] = "Sorry, your file was not uploaded.<hr>";
             } else {
                 if (move_uploaded_file($_FILES["note_photo"]["tmp_name"], $target_file)) {
                     $data['note_value'] = $target_file;
                 } else {
-                    $_SESSION['failure'] = "Sorry, there was an failure uploading your file.";
+                    $bell_count++;
+                    $_SESSION['failure'] = "Sorry, there was an failure uploading your file.<hr>";
                 }
             }
         }
@@ -154,12 +159,15 @@ if(isset($_POST) && $_POST) {
         if($data['note_value'] != '') {
             $note_id = save_note_lists($data);
             if ($note_id) {
-                $_SESSION['success'] = 'Note added successfully. ';
+                $bell_count++;
+                $_SESSION['success'] = 'Note added successfully.<hr>';
             } else {
-                $_SESSION['failure'] = 'Oops, failure... ';
+                $bell_count++;
+                $_SESSION['failure'] = 'Oops, failure...<hr>';
             }
         } else {
-            $_SESSION['failure'] = "Sorry, error occur in photo uploading!";
+            $bell_count++;
+            $_SESSION['failure'] = "Sorry, error occur in photo uploading!<hr>";
         }
 
         $result = get_note_lists('', '', $page, $pageLimit);
@@ -197,11 +205,13 @@ if(isset($_POST) && $_POST) {
             $last_id = $db->update('tbl_notes', $data_to_db);
             if ($last_id)
             {
-                $_SESSION['success'] = 'Successfully updated';
+                $bell_count++;
+                $_SESSION['success'] = 'Successfully updated<hr>';
             }
             else
             {
-                $_SESSION['failure'] = 'Update failed!';
+                $bell_count++;
+                $_SESSION['failure'] = 'Update failed!<hr>';
             }
         }
         // Update photo
@@ -222,23 +232,27 @@ if(isset($_POST) && $_POST) {
             }
             // Check if file already exists
             if (file_exists($target_file)) {
-                $_SESSION['failure'] = "Sorry, file already exists.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, file already exists.<hr>";
                 $uploadOk = 0;
             }
             // Check file size
             if ($_FILES["note_photo"]["size"] > 500000) {
-                $_SESSION['failure'] = "Sorry, your file is too large.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, your file is too large.<hr>";
                 $uploadOk = 0;
             }
             // Allow certain file formats
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
                 && $imageFileType != "gif" ) {
-                $_SESSION['failure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<hr>";
                 $uploadOk = 0;
             }
             // Check if $uploadOk is set to 0 by an failure
             if ($uploadOk == 0) {
-                $_SESSION['failure'] = "Sorry, your file was not uploaded.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, your file was not uploaded.<hr>";
             } else {
                 if (move_uploaded_file($_FILES["note_photo"]["tmp_name"], $target_file)) {
                     $data_to_db = array();
@@ -250,14 +264,17 @@ if(isset($_POST) && $_POST) {
 
                     if ($last_id)
                     {
-                        $_SESSION['success'] = 'Successfully updated';
+                        $bell_count++;
+                        $_SESSION['success'] = 'Successfully updated<hr>';
                     }
                     else
                     {
-                        $_SESSION['failure'] = 'Update failed!';
+                        $bell_count++;
+                        $_SESSION['failure'] = 'Update failed!<hr>';
                     }
                 } else {
-                    $_SESSION['failure'] = "Sorry, your file was not uploaded.";
+                    $bell_count++;
+                    $_SESSION['failure'] = "Sorry, your file was not uploaded.<hr>";
                 }
             }
         }
@@ -272,11 +289,13 @@ if(isset($_POST) && $_POST) {
 
             if ($last_id)
             {
-                $_SESSION['success'] = 'Successfully updated';
+                $bell_count++;
+                $_SESSION['success'] = 'Successfully updated<hr>';
             }
             else
             {
-                $_SESSION['failure'] = 'Update failed!';
+                $bell_count++;
+                $_SESSION['failure'] = 'Update failed!<hr>';
             }
         }
         // Update video
@@ -290,11 +309,13 @@ if(isset($_POST) && $_POST) {
 
             if ($last_id)
             {
-                $_SESSION['success'] = 'Successfully updated';
+                $bell_count++;
+                $_SESSION['success'] = 'Successfully updated<hr>';
             }
             else
             {
-                $_SESSION['failure'] = 'Update failed!';
+                $bell_count++;
+                $_SESSION['failure'] = 'Update failed!<hr>';
             }
         }
 

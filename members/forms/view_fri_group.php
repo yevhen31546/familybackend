@@ -2,15 +2,13 @@
 session_start();
 require_once '../../config/config.php';
 require_once BASE_PATH . '/includes/auth_validate.php';
-require_once '../../vendor/autoload.php';
-require_once '../smtp_endpoint.php';
 
 $logged_id = $_SESSION['user_id'];
 $db = getDbInstance();
 $db->get('tbl_users');
 $db->where('id', $logged_id);
 $user = $db->getOne('tbl_users');
-//print_r($user);exit;
+
 /*
  * Get group lists
  */
@@ -23,7 +21,6 @@ $query = 'SELECT us.`avatar`, us.first_name, us.last_name, temp.*
             WHERE tmp.group_id = gp.`id`) temp, tbl_users us
         WHERE us.`id` = temp.by_who';
 $belongs_groups = $db->rawQuery($query);
-//print_r($belongs_groups); exit;
 
 $query = 'SELECT gp.*
         FROM tbl_fri_groups gp
@@ -57,7 +54,7 @@ include BASE_PATH.'/members/includes/header.php';
         <div class="container">
             <div class="row">
 
-                <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
+
                 <a href="../activity-frd.php">
 
                     <h5><i class="fa fa-angle-left"></i>&nbsp;&nbsp;Back to My Friend page</h5>

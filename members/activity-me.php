@@ -29,7 +29,6 @@ include BASE_PATH.'/members/includes/header.php';
     <div class="container">
         <div class="row">
 
-            <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
             <!-- Main Content Start -->
             <div class="main--content col-md-8 pb--60" data-trigger="stickyScroll">
                 <div class="main--content-inner drop--shadow">
@@ -334,7 +333,6 @@ include BASE_PATH.'/members/includes/header.php';
                             </div>
                         </form>
                     </div>
-
 
                 </div>
                 <!-- Widget End -->

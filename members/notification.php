@@ -172,32 +172,17 @@ function genFriGroupNoteNotMsg($params) {
 
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// Check notification ///
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Checking family request
+// Checking family member request
 function checkFamilyRequest($user_id) {
     $db = getDbInstance();
     $query = 'SELECT users.*, family.id AS family_id, family.who, family.with_who, family.relation, family.stat
@@ -255,7 +240,7 @@ function checkFamGroupInvitation($user_id) {
     }
 }
 
-// Check family group invitation exist
+// Check friend group invitation exist
 function checkFriGroupInvitation($user_id) {
     $db = getDbInstance();
     $query = 'SELECT us.`first_name`, us.`last_name`, gg.`group_name`, gg.`id` AS member_id, gg.`group_id`
@@ -273,30 +258,6 @@ function checkFriGroupInvitation($user_id) {
         return count($friend_group_requests);
     } else {
         $_SESSION['fri_group_requests_msg'] = '';
-        return 0;
-    }
-}
-
-// Check family group note exist
-function checkFamGroupNoteRequest($group_id) {
-    $user_id = $_SESSION['user_id'];
-    $db = getDbInstance();
-    $query = 'SELECT us.`id`, us.`first_name`, us.`last_name`, tmp.note_id, tmp.cat_id, tmp.not_id, tmp.group_id, gp.group_name
-                FROM (SELECT notes.`note_date`, notes.`cat_id`, notes.`note_value`, notes.`user_id`, notes.`id` AS note_id, nottt.not_id, notes.`group_id`
-                FROM tbl_fam_group_notes notes
-                RIGHT JOIN
-                (SELECT nott.`id` AS not_id, nott.`note_id`
-                FROM tbl_fam_gp_not nott
-                WHERE nott.`to_who` = '.$user_id.' AND nott.`group_id` = '.$group_id.' AND nott.status = 0) nottt
-                ON notes.`id` = nottt.note_id) tmp, tbl_fam_groups gp, tbl_users us
-                WHERE us.`id`= tmp.user_id AND gp.`id`=tmp.group_id';
-    $family_group_note_requests = $db->rawQuery($query);
-    if(count($family_group_note_requests) > 0) {
-        $notification_msg = genFamGroupNoteNotMsg($family_group_note_requests);
-        $_SESSION['fam_group_note_request_msg'] = $notification_msg;
-        return count($family_group_note_requests);
-    } else {
-        $_SESSION['fam_group_note_request_msg'] = '';
         return 0;
     }
 }
@@ -320,7 +281,7 @@ function checkFamNoteRequest($user_id) {
     }
 }
 
-// Check friend group note exist
+// Check friend note exist
 function checkFriNoteRequest($user_id) {
     $db = getDbInstance();
     $query = 'SELECT users.*, notes.id AS note_id, notes.user_id, notes.note_to, notes.status
@@ -338,29 +299,3 @@ function checkFriNoteRequest($user_id) {
         return 0;
     }
 }
-
-// Check friend group note exist
-function checkFriGroupNoteRequest($group_id) {
-    $user_id = $_SESSION['user_id'];
-    $db = getDbInstance();
-    $query = 'SELECT us.`id`, us.`first_name`, us.`last_name`, tmp.note_id, tmp.cat_id, tmp.not_id, tmp.group_id, gp.group_name
-                FROM (SELECT notes.`note_date`, notes.`cat_id`, notes.`note_value`, notes.`user_id`, notes.`id` AS note_id, nottt.not_id, notes.`group_id`
-                FROM tbl_fri_group_notes notes
-                RIGHT JOIN
-                (SELECT nott.`id` AS not_id, nott.`note_id`
-                FROM tbl_fri_gp_not nott
-                WHERE nott.`to_who` = '.$user_id.' AND nott.`group_id` = '.$group_id.' AND nott.status = 0) nottt
-                ON notes.`id` = nottt.note_id) tmp, tbl_fri_groups gp, tbl_users us
-                WHERE us.`id`= tmp.user_id AND gp.`id`=tmp.group_id';
-    $friend_group_note_requests = $db->rawQuery($query);
-    if(count($friend_group_note_requests) > 0) {
-        $notification_msg = genFriGroupNoteNotMsg($friend_group_note_requests);
-        $_SESSION['fri_group_note_request_msg'] = $notification_msg;
-        return count($friend_group_note_requests);
-    } else {
-        $_SESSION['fri_group_note_request_msg'] = '';
-        return 0;
-    }
-}
-
-

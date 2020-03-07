@@ -46,16 +46,20 @@ if (isset($_POST) && isset($_POST['post_id'])) {
             $result = $db->update($target_tbl, $update_value);
 
             if ($result) {
-                $_SESSION['success'] = "Additional photo is added successfully!.";
+                $bell_count++;
+                $_SESSION['success'] = "Additional photo is added successfully!.<hr>";
             } else {
-                $_SESSION['failure'] = 'Update error'.$db->getLastError();
+                $bell_count++;
+                $_SESSION['failure'] = 'Update error'.$db->getLastError().'<hr>';
             }
 
         } else {     //  If File Was Not Moved.
-            $_SESSION['failure'] = "Please try again!";
+            $bell_count++;
+            $_SESSION['failure'] = "Please try again!<hr>";
         }
     } else {     //   If File Size And File Type Was Incorrect.
-        $_SESSION['failure'] = "Photo is invalid size or type(jpg, png, jpeg)";
+        $bell_count++;
+        $_SESSION['failure'] = "Photo is invalid size or type(jpg, png, jpeg)<hr>";
     }
 }
 
@@ -404,7 +408,6 @@ if ($page > 1) {
                     </div>
                 </div>
                 <!-- Filter Nav End -->
-                <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
 
                 <!-- Box Items Start -->
                 <div class="box--items-h">

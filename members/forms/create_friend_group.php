@@ -11,7 +11,7 @@ $db->get('tbl_users');
 $db->where('id', $logged_id);
 $user = $db->getOne('tbl_users');
 
-/**
+/*
  * Get friend for auto fill box
  */
 $db = getDbInstance();
@@ -22,25 +22,13 @@ $get_friend_query = 'SELECT us.id, us.user_name, us.user_email, us.first_name, u
                      ON us.id=fa.with_who OR us.id=fa.who WHERE us.id!='.$logged_id;
 $friends = $db->rawQuery($get_friend_query);
 
-/**
+/*
  * Save friend group
  */
-// generate invitation message body for family group
-function genFriGroupMsgBody($from, $group_name, $group_id, $fri_group_members_id) {
-    $who = $from['first_name']." ".$from['last_name'];
-    $approve_url = BASE_URL."/members/activity-frd.php?group_id=".$group_id."&&member_id=".$fri_group_members_id."&&stat=approved";
-    $delete_url = BASE_URL."/members/activity-frd.php?group_id=".$group_id."&&member_id=".$fri_group_members_id."&&stat=delete";
-
-    $message = "";
-
-    $message .="<html><head><title></title></head><body><p>Invitation is arrived from ".$group_name." that created by ".$who."</p><p><span><a href=".$approve_url.">Approve</a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><a href=".$delete_url.">Delete</a></span></p></body></html>";
-    return $message;
-}
 if(isset($_POST) && isset($_POST['group_name'])) {
-    //    Create the friend group
     $data_to_db = array(
         'group_name' => $_POST['group_name'],
-        'description' => $_POST['description'],
+        'description' => trim($_POST['description']),
         'by_who' => $logged_id
     );
     $db = getDbInstance();
@@ -70,27 +58,20 @@ if(isset($_POST) && isset($_POST['group_name'])) {
         $fri_group_members_id[$i] = $db->insert('tbl_fri_groups_members', $data_to_db);
     }
 
-    if ($fri_group_members_id[0]) {
-        $_SESSION['success'] = 'Group is created successfully!';
-        header('Location: '. BASE_URL .'/members/activity-frd.php');
-    } else {
-        $_SESSION['failure'] = 'Creating the group is failed!';
-    }
-
     //    Send friend group invitation
     // $user: group creator
-//    for ($i = 0; $i < count($friend_arr); $i++) {
-//        $body = genFriGroupMsgBody($user, $_POST['group_name'], $fri_group_id, $fri_group_members_id[$i]);
-//        $stat = sendEmail($friend_data[$i]['user_email'], $body);
-//    }
-//    if ($stat) {
-//        $_SESSION['success'] = 'Invitation email is sent successfully!';
-//        header('Location: '. BASE_URL .'/members/activity-frd.php');
-//        $_POST = array();
-//    } else {
-//        $_SESSION['failure'] = 'Sending invitation email is failed!';
-//        $_POST = array();
-//    }
+    $stat = 0;
+    for ($i = 0; $i < count($friend_arr); $i++) {
+        $body = genFriGroupMsgBody($user, $_POST['group_name'], $fri_group_id, $fri_group_members_id[$i]);
+        $stat = sendEmail($friend_data[$i]['user_email'], $body);
+    }
+    if ($stat) {
+        $bell_count++;
+        $_SESSION['success'] = 'Invitation email is sent successfully!<hr>';
+    } else {
+        $bell_count++;
+        $_SESSION['failure'] = 'Sending invitation email is failed!<hr>';
+    }
 }
 
 ?>
@@ -124,7 +105,6 @@ if(isset($_POST) && isset($_POST['group_name'])) {
                 <div class="main--content col-md-12 pb--60">
                     <div class="main--content-inner drop--shadow">
 
-                        <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
                         <form name="create-family-group-form" action="" method="post" onsubmit="return checkFriForm();">
                             <h2>Create a Friend Group</h2>
                             <div class="box--items-h">

@@ -4,7 +4,11 @@ require_once '../config/config.php';
 require_once BASE_PATH.'/includes/auth_validate.php';
 require_once '../vendor/autoload.php';
 require_once 'smtp_endpoint.php';
+require_once 'notification.php';
 require_once 'member-activity-endpoint.php';
+
+$bell_count += checkFamilyRequest($logged_id);
+$bell_count += checkFriendRequest($logged_id);
 
 $db = getDbInstance();
 $db->join('tbl_notes', 'tbl_notes.user_id = tbl_users.id')->join('tbl_categories','tbl_notes.cat_id = tbl_categories.id');
@@ -55,7 +59,6 @@ include BASE_PATH.'/members/includes/header.php';
         <section class="page--wrapper pt--80 pb--20">
             <div class="container">
                 <div class="row">
-                    <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
                     <!-- Main Content Start -->
                     <div class="main--content col-md-8 pb--60" data-trigger="stickyScroll">
                         <div class="main--content-inner drop--shadow">

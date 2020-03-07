@@ -20,17 +20,6 @@ if (isset($_GET) && isset($_GET['group_id'])) {
 }
 
 /*
- * Get group info
- */
-$group = '';
-if ($group_id != 0) {
-    $db = getDbInstance();
-    $db->where('id', $group_id);
-    $group = $db->getOne('tbl_fam_groups');
-}
-//print_r($group); exit;
-
-/*
  * Get family members for auto fill box
  */
 $families = [];
@@ -45,27 +34,19 @@ $family_members = $db->rawQuery($get_family_query);
 
 
 /*
- * Save family group
+ * update family group
  */
 if(isset($_POST) && isset($_POST['group_name'])) {
 
-    //    Create the family group
     $data_to_db = array(
         'group_name' => $_POST['group_name'],
-        'description' => $_POST['description'],
+        'description' => trim($_POST['description'])
     );
     $db = getDbInstance();
     $db->where('id', $group_id);
     $update_result = $db->update('tbl_fam_groups', $data_to_db); // Group Id
 
-    if ($update_result) {
-        $_SESSION['success'] = 'Updated successfully!';
-    } else {
-        $_SESSION['failure'] = 'Update failed!';
-    }
-
     $family_lists = $_POST['family_lists'];
-
     if ($family_lists != '') {
         //    Get family member's id/email
         $family_arr = explode (",", $family_lists);
@@ -90,25 +71,19 @@ if(isset($_POST) && isset($_POST['group_name'])) {
             $fam_group_members_id[$i] = $db->insert('tbl_fam_groups_members', $data_to_db);
         }
 
-        if ($fam_group_members_id[0]) {
-            $_SESSION['success'] = 'Updated successfully!';
-        } else {
-            $_SESSION['failure'] = 'Update failed!';
-        }
-
         // $user: group creator
-//        for ($i = 0; $i < count($family_arr); $i++) {
-//            $body = genFamGroupMsgBody($user, $_POST['group_name'], $group_id, $fam_group_members_id[$i]);
-//            $stat = sendEmail($family_members_data[$i]['user_email'], $body);
-//        }
-//        if ($stat) {
-//            $_SESSION['success'] = 'Invitation email is sent successfully!';
-//            header('Location: '. BASE_URL .'/members/activity-fam.php');
-//            $_POST = array();
-//        } else {
-//            $_SESSION['failure'] = 'Sending invitation email is failed!';
-//            $_POST = array();
-//        }
+        $stat = 0;
+        for ($i = 0; $i < count($family_arr); $i++) {
+            $body = genFamGroupMsgBody($user, $_POST['group_name'], $group_id, $fam_group_members_id[$i]);
+            $stat = sendEmail($family_members_data[$i]['user_email'], $body);
+        }
+        if ($stat) {
+            $bell_count++;
+            $_SESSION['success'] = 'Invitation email is sent successfully!<hr>';
+        } else {
+            $bell_count++;
+            $_SESSION['failure'] = 'Sending invitation email is failed!<hr>';
+        }
     }
 }
 
@@ -120,9 +95,11 @@ if(isset($_POST) && isset($_POST['del_member_id'])) {
     $db->where('id', $_POST['del_member_id']);
     $result = $db->delete('tbl_fam_groups_members');
     if ($result) {
-        $_SESSION['success'] = 'Removed successfully';
+        $bell_count++;
+        $_SESSION['success'] = 'Removed successfully<hr>';
     } else {
-        $_SESSION['failure'] = 'Oops... removing fail!';
+        $bell_count++;
+        $_SESSION['failure'] = 'Oops... removing fail!<hr>';
     }
 }
 
@@ -149,6 +126,16 @@ SELECT fam_gp_mems.who
 FROM tbl_fam_groups_members fam_gp_mems
 WHERE fam_gp_mems.group_id = '.$group_id.') AND us.`id` != '.$logged_id;
 $family_members = $db->rawQuery($get_family_query);
+
+/*
+ * Get group info
+ */
+$group = '';
+if ($group_id != 0) {
+    $db = getDbInstance();
+    $db->where('id', $group_id);
+    $group = $db->getOne('tbl_fam_groups');
+}
 
 ?>
 
@@ -177,7 +164,7 @@ $family_members = $db->rawQuery($get_family_query);
     <section class="page--wrapper pt--80 pb--20">
         <div class="container">
             <div class="row">
-                <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
+
                 <!-- Main Content Start -->
                 <div class="main--content col-md-8 pb--60">
                     <div class="main--content-inner drop--shadow">
@@ -205,7 +192,7 @@ $family_members = $db->rawQuery($get_family_query);
                                                         <h6>Please provide the group description: </h6>
                                                     </label>
                                                     <textarea class="w-100" rows="4" cols="100%" name="description">
-                                                        <?php echo $group['description']; ?>
+                                                        <?php echo trim($group['description']); ?>
                                                     </textarea>
                                                 </div>
                                             </div>

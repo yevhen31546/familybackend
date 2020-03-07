@@ -87,16 +87,15 @@
                     <li id="bell-notification-body" class="dropdown">
                         <a href="#" id="notification-bell">
                             <i class="fa fa-bell-o"></i>
-                            <span class="badge"><?php echo $bell_count; ?></span>
+                            <?php if ($bell_count > 0) { ?>
+                                <span class="badge"><?php echo $bell_count; ?></span>
+                            <?php } ?>
                         </a>
 
                         <ul class="dropdown-menu bell-notification">
                             <?php for ($i = 0; $i < $bell_count; $i++) { ?>
-
-                                    <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
-                            <?php
-                            }
-                            ?>
+                                <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
+                            <?php } ?>
                         </ul>
                     </li>
                     <li class="dropdown">

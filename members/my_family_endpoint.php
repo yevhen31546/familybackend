@@ -26,79 +26,8 @@ $db = getDbInstance();
 $category_lists = $db->get('tbl_group_note_cat');
 
 /*
- * Approve or delete note
- */
-
-if(isset($_GET) && isset($_GET['note_id'])){
-    if (empty($_POST) && (empty($_POST['update_category']) || empty($_POST['view_category']))) {
-        $note_id = $_GET['note_id']; // note id
-        $from = $_GET['from'];
-        $note_to = $_GET['note_to'];
-
-        //    Get sender data
-        $db = getDbInstance();
-        $db->where('id', $from);
-        $sender = $db->getOne('tbl_users');
-
-        //    Get receiver data
-        $db = getDbInstance();
-        $db->where('id', $note_to);
-        $receiver = $db->getOne('tbl_users');
-
-        $to = $sender['user_email']; // sender's email
-        if ($_GET['stat'] == 'approved') {
-            $data_to_db['status'] = 1; // update status
-
-            $db = getDbInstance();
-            $db->where('id', $note_id);
-            $status = $db->getValue('tbl_fam_notes', 'status');
-            if ($status) {
-                header('Location: ' . BASE_URL . '/members/activity-fam.php');
-            } else {
-                $db->where('id', $note_id);
-                $last_id = $db->update('tbl_fam_notes', $data_to_db);  // Update tbl_notes's status
-                if ($last_id) {
-                    //            echo "successfully added";
-                    //
-                    //            $body = generateApprovedNoteMessageBody($sender, $receiver);
-                    //            $stat = sendNoteEmail($to, $body);
-                    //            if ($stat) {
-                    //                $_SESSION['success'] = $sender['user_name'].' has posted something on your profile successfully';
-                    //            }
-                    $_SESSION['success'] = $sender['user_name'] . ' has posted something on your profile successfully';
-
-                } else {
-                    $_SESSION['failure'] = 'error: approve to notes';
-                    //            echo "error: save to notes";
-                }
-            }
-        } else if ($_GET['stat'] == 'delete') {
-            //        $body = generateDeleteNoteMessageBody($sender, $receiver);
-            //        $stat = sendNoteEmail($to, $body);
-            $data_to_db['status'] = -1; // update status
-
-            $db = getDbInstance();
-            $db->where('id', $note_id);
-            $status = $db->getValue('tbl_fam_notes', 'status');
-            if ($status) {
-                header('Location: ' . BASE_URL . '/members/activity-fam.php');
-            } else {
-                $db->where('id', $note_id);
-                $last_id = $db->update('tbl_fam_notes', $data_to_db);  // Update tbl_notes's status
-                if ($last_id) {
-                    $_SESSION['success'] = 'Disapproved note!';
-                } else {
-                    $_SESSION['failure'] = 'Disapproving note is failed!';
-                }
-            }
-        }
-    }
-}
-
-/*
  * Approve or delete group member request
  */
-
 if(isset($_GET) && isset($_GET['group_id'])) {
     if (empty($_POST) && (empty($_POST['update_category']) || empty($_POST['view_category']))) {
         $stat = $_GET['stat'];
@@ -118,9 +47,11 @@ if(isset($_GET) && isset($_GET['group_id'])) {
                 $db->where('id', $member_id);
                 $result = $db->update('tbl_fam_groups_members', $data_to_db);
                 if ($result) {
-                    $_SESSION['success'] = 'Approved as group member!';
+                    $bell_count++;
+                    $_SESSION['success'] = 'Approved as group member!<hr>';
                 } else {
-                    $_SESSION['failure'] = 'Approving as group member is failed!';
+                    $bell_count++;
+                    $_SESSION['failure'] = 'Approving as group member is failed!<hr>';
                 }
             }
 
@@ -137,9 +68,11 @@ if(isset($_GET) && isset($_GET['group_id'])) {
                 $db->where('id', $member_id);
                 $last_id = $db->update('tbl_fam_groups_members', $data_to_db);
                 if ($last_id) {
-                    $_SESSION['success'] = 'Disapproved as group member!';
+                    $bell_count++;
+                    $_SESSION['success'] = 'Disapproved as group member!<hr>';
                 } else {
-                    $_SESSION['failure'] = 'Disapproving as group member is failed!';
+                    $bell_count++;
+                    $_SESSION['failure'] = 'Disapproving as group member is failed!<hr>';
                 }
             }
         }
@@ -149,7 +82,6 @@ if(isset($_GET) && isset($_GET['group_id'])) {
 /*
  * Exit from group
  */
-
 if(isset($_GET) && isset($_GET['exit_group'])) {
     if (empty($_POST) && (empty($_POST['update_category']) || empty($_POST['view_category']))) {
         $stat = $_GET['exit_group'];
@@ -166,9 +98,11 @@ if(isset($_GET) && isset($_GET['exit_group'])) {
             $db->where('who', $member_id);
             $last_id = $db->delete('tbl_fam_groups_members');
             if ($last_id) {
-                $_SESSION['success'] = 'Exit from group successfully!';
+                $bell_count++;
+                $_SESSION['success'] = 'Exit from group successfully!<hr>';
             } else {
-                $_SESSION['failure'] = 'Exit group failed!';
+                $bell_count++;
+                $_SESSION['failure'] = 'Exit group failed!<hr>';
             }
         } else {
             header('Location: ' . BASE_URL . '/members/activity-fam.php');
@@ -315,29 +249,33 @@ if(isset($_POST) && $_POST) {
             }
             // Check if file already exists
             if (file_exists($target_file)) {
-                $_SESSION['failure'] = "Sorry, file already exists.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, file already exists.<hr>";
                 $uploadOk = 0;
             }
             // Check file size
             if ($_FILES["note_photo"]["size"] > 2000000) {
-                $_SESSION['failure'] = "Sorry, your file is too large.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, your file is too large.<hr>";
                 $uploadOk = 0;
             }
             // Allow certain file formats
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
                 && $imageFileType != "gif" ) {
-                //            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-                $_SESSION['failure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<hr>";
                 $uploadOk = 0;
             }
             // Check if $uploadOk is set to 0 by an failure
             if ($uploadOk == 0) {
-                $_SESSION['failure'] = "Sorry, your file was not uploaded.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, your file was not uploaded.<hr>";
             } else {
                 if (move_uploaded_file($_FILES["note_photo"]["tmp_name"], $target_file)) {
                     $note_value = $target_file;
                 } else {
-                    $_SESSION['failure'] =  "Sorry, there was an failure uploading your file.";
+                    $bell_count++;
+                    $_SESSION['failure'] =  "Sorry, there was an failure uploading your file.<hr>";
                 }
             }
         }
@@ -362,30 +300,16 @@ if(isset($_POST) && $_POST) {
             $note_id = $db->insert('tbl_fam_notes', $data_to_db);
 
             if ($note_id) {
-                $_SESSION['success'] = 'Note added successfully. ';
+                $bell_count++;
+                $_SESSION['success'] = 'Note added successfully.<hr>';
             } else {
-                $_SESSION['failure'] = 'Oops, failure... ';
+                $bell_count++;
+                $_SESSION['failure'] = 'Oops, failure... <hr>';
             }
 
-//    // data to email
-//    $email_param = array(
-//        'who' => $log_user_id,
-//        'to_who' => $to,
-//        'note_id' => ''
-//    );
-
-            //    Send email to user
-//        $email_param['note_id'] = $note_id;
-//        $result = sendAddNoteEmail($email_param);
-//        if($result) {
-//            $_SESSION['success'] = "Note posted!";
-//            $_POST = array();
-//        } else {
-//            $_SESSION['success'] = "Note isn't posted :(";
-//        }
-
         } else {
-            $_SESSION['failure'] = "Sorry, error occur in photo uploading!";
+            $bell_count++;
+            $_SESSION['failure'] = "Sorry, error occur in photo uploading!<hr>";
         }
 
         $result = get_fam_note_lists('', '', $page, $pageLimit);
@@ -424,11 +348,13 @@ if(isset($_POST) && $_POST) {
             $last_id = $db->update('tbl_fam_notes', $data_to_db);
             if ($last_id)
             {
-                $_SESSION['success'] = 'Successfully updated';
+                $bell_count++;
+                $_SESSION['success'] = 'Successfully updated<hr>';
             }
             else
             {
-                $_SESSION['failure'] = 'Update failed!';
+                $bell_count++;
+                $_SESSION['failure'] = 'Update failed!<hr>';
             }
         }
         // Update photo
@@ -449,23 +375,27 @@ if(isset($_POST) && $_POST) {
             }
             // Check if file already exists
             if (file_exists($target_file)) {
-                $_SESSION['failure'] = "Sorry, file already exists.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, file already exists.<hr>";
                 $uploadOk = 0;
             }
             // Check file size
             if ($_FILES["note_photo"]["size"] > 500000) {
-                $_SESSION['failure'] = "Sorry, your file is too large.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, your file is too large.<hr>";
                 $uploadOk = 0;
             }
             // Allow certain file formats
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
                 && $imageFileType != "gif" ) {
-                $_SESSION['failure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<hr>";
                 $uploadOk = 0;
             }
             // Check if $uploadOk is set to 0 by an failure
             if ($uploadOk == 0) {
-                $_SESSION['failure'] = "Sorry, your file was not uploaded.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, your file was not uploaded.<hr>";
             } else {
                 if (move_uploaded_file($_FILES["note_photo"]["tmp_name"], $target_file)) {
                     $data_to_db = array();
@@ -477,14 +407,17 @@ if(isset($_POST) && $_POST) {
 
                     if ($last_id)
                     {
-                        $_SESSION['success'] = 'Successfully updated';
+                        $bell_count++;
+                        $_SESSION['success'] = 'Successfully updated<hr>';
                     }
                     else
                     {
-                        $_SESSION['failure'] = 'Update failed!';
+                        $bell_count++;
+                        $_SESSION['failure'] = 'Update failed!<hr>';
                     }
                 } else {
-                    $_SESSION['failure'] = "Sorry, your file was not uploaded.";
+                    $bell_count++;
+                    $_SESSION['failure'] = "Sorry, your file was not uploaded.<hr>";
                 }
             }
         }
@@ -498,11 +431,13 @@ if(isset($_POST) && $_POST) {
 
             if ($last_id)
             {
-                $_SESSION['success'] = 'Successfully updated';
+                $bell_count++;
+                $_SESSION['success'] = 'Successfully updated<hr>';
             }
             else
             {
-                $_SESSION['failure'] = 'Update failed!';
+                $bell_count++;
+                $_SESSION['failure'] = 'Update failed!<hr>';
             }
         }
         // Update video
@@ -516,11 +451,13 @@ if(isset($_POST) && $_POST) {
 
             if ($last_id)
             {
-                $_SESSION['success'] = 'Successfully updated';
+                $bell_count++;
+                $_SESSION['success'] = 'Successfully updated<hr>';
             }
             else
             {
-                $_SESSION['failure'] = 'Update failed!';
+                $bell_count++;
+                $_SESSION['failure'] = 'Update failed!<hr>';
             }
         }
 

@@ -73,15 +73,10 @@ if(isset($_POST) && isset($_POST['churchname']) && $_POST['churchname'] != '') {
         {
             if ($_FILES["videourl"]["error"] > 0)
             {
-                echo "Return Code: " . $_FILES["videourl"]["error"] . "<br />";
+                $_SESSION['failure'] = "Return Code: " . $_FILES["videourl"]["error"] . "<br />";
             }
             else
             {
-                // echo "Upload: " . $_FILES["videourl"]["name"] . "<br />";
-                // echo "Type: " . $_FILES["videourl"]["type"] . "<br />";
-                // echo "Size: " . ($_FILES["videourl"]["size"] / 1024) . " Kb<br />";
-                // echo "Temp file: " . $_FILES["videourl"]["tmp_name"] . "<br />";
-
                 if (move_uploaded_file($_FILES['videourl']['tmp_name'], $target_path)) {
                     $data_to_db['videourl'] = $target_path;
                     $_SESSION['success'] = "Image uploaded successfully!.";

@@ -51,51 +51,6 @@ if (isset($_GET) && isset($_GET['page_num'])) {
     }
 }
 
-/*
- * Approve or delete group note
- */
-if(isset($_GET) && isset($_GET['notification_id'])){
-    if (empty($_POST) && (empty($_POST['update_category']) || empty($_POST['view_category']))) {
-        $not_id = $_GET['notification_id']; // group_notification id
-        $db = getDbInstance();
-        if($_GET['stat'] == 'approved') {
-            $db->where('id', $not_id);
-            $status = $db->getValue('tbl_fri_gp_not', 'status');
-            if($status) {
-                header('Location: ' . BASE_URL . '/members/group-frd.php?group_id='.$group['id']);
-            }
-            else {
-                $data_to_db['status'] = 1; // update status
-                $db->where('id', $not_id);
-                $last_id = $db->update('tbl_fri_gp_not', $data_to_db);
-                if ($last_id) {
-                    $_SESSION['success'] = 'Group note has approved successfully';
-
-                } else {
-                    $_SESSION['failure'] = 'error: Approve to notes';
-                }
-            }
-        } else if($_GET['stat'] == 'delete') {
-            $db->where('id', $not_id);
-            $status = $db->getValue('tbl_fri_gp_not', 'status');
-            if($status === -1) {
-                header('Location: ' . BASE_URL . '/members/group-frd.php?group_id='.$group['id']);
-            }
-            else {
-                $data_to_db['status'] = -1; // update status
-
-                $db->where('id', $not_id);
-                $last_id = $db->update('tbl_fri_gp_not', $data_to_db);  // Update tbl_notes's status
-                if ($last_id) {
-                    $_SESSION['success'] = 'Group note has disapproved successfully';
-
-                } else {
-                    $_SESSION['failure'] = 'error: disapprove to notes';
-                }
-            }
-        }
-    }
-}
 
 // Function to fetch saved note lists
 function get_fri_group_note_lists($cat, $note_date, $group_id, $page, $pageLimit) {
@@ -178,28 +133,33 @@ if(isset($_POST) && $_POST) {
             }
             // Check if file already exists
             if (file_exists($target_file)) {
-                $_SESSION['failure'] = "Sorry, file already exists.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, file already exists.<hr>";
                 $uploadOk = 0;
             }
             // Check file size
             if ($_FILES["note_photo"]["size"] > 2000000) {
-                $_SESSION['failure'] = "Sorry, your file is too large.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, your file is too large.<hr>";
                 $uploadOk = 0;
             }
             // Allow certain file formats
             if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
                 && $imageFileType != "gif") {
-                $_SESSION['failure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<hr>";
                 $uploadOk = 0;
             }
             // Check if $uploadOk is set to 0 by an failure
             if ($uploadOk == 0) {
-                $_SESSION['failure'] = "Sorry, your file was not uploaded.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, your file was not uploaded.<hr>";
             } else {
                 if (move_uploaded_file($_FILES["note_photo"]["tmp_name"], $target_file)) {
                     $note_value = $target_file;
                 } else {
-                    $_SESSION['failure'] = "Sorry, there was an failure uploading your file.";
+                    $bell_count++;
+                    $_SESSION['failure'] = "Sorry, there was an failure uploading your file.<hr>";
                 }
             }
         }
@@ -222,42 +182,15 @@ if(isset($_POST) && $_POST) {
             $note_id = $db->insert('tbl_fri_group_notes', $data_to_db);
 
             if ($note_id) {
-//                for ($i = 0; $i < count($members); $i++) {
-//                    $data['note_id'] = $note_id;
-//                    $data['group_id'] = $group_id;
-//                    $data['to_who'] = $members[$i]['who'];
-//                    $db->where('group_id', $data['group_id']);
-//                    $db->where('to_who', $data['to_who']);
-//                    $status = $db->getValue('tbl_fri_gp_not', 'status');
-//
-//                    // Check family exists
-//                    if ($status !== 1) {
-//                        $db->insert('tbl_fri_gp_not', $data);
-//                    }
-
-//                    // data to email
-//                    $email_param = array(
-//                        'who' => $log_user_id,
-//                        'to_who' => $to,
-//                        'note_id' => ''
-//                    );
-//
-//                    // Send email to user
-//                    $email_param['note_id'] = $note_id;
-//                    $result = sendAddNoteEmail($email_param);
-//                    if($result) {
-//                        $_SESSION['success'] = "Note posted!";
-//                        $_POST = array();
-//                    } else {
-//                        $_SESSION['success'] = "Note isn't posted :(";
-//                    }
-//                }
-                $_SESSION['success'] = 'Note added successfully. ';
+                $bell_count++;
+                $_SESSION['success'] = 'Note added successfully.<hr>';
             } else {
-                $_SESSION['failure'] = 'Oops, failure... ';
+                $bell_count++;
+                $_SESSION['failure'] = 'Oops, failure...<hr>';
             }
         } else {
-            $_SESSION['failure'] = "Sorry, error occur in photo uploading!";
+            $bell_count++;
+            $_SESSION['failure'] = "Sorry, error occur in photo uploading!<hr>";
         }
 
         $result = get_fri_group_note_lists('', '', $group['id'], $page, $pageLimit);
@@ -296,11 +229,13 @@ if(isset($_POST) && $_POST) {
             $last_id = $db->update('tbl_fri_group_notes', $data_to_db);
             if ($last_id)
             {
-                $_SESSION['success'] = 'Successfully updated';
+                $bell_count++;
+                $_SESSION['success'] = 'Successfully updated<hr>';
             }
             else
             {
-                $_SESSION['failure'] = 'Update failed!';
+                $bell_count++;
+                $_SESSION['failure'] = 'Update failed!<hr>';
             }
         }
         // Update photo
@@ -321,24 +256,27 @@ if(isset($_POST) && $_POST) {
             }
             // Check if file already exists
             if (file_exists($target_file)) {
-                //            echo "Sorry, file already exists.";
-                $_SESSION['failure'] = "Sorry, file already exists.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, file already exists.<hr>";
                 $uploadOk = 0;
             }
             // Check file size
             if ($_FILES["note_photo"]["size"] > 500000) {
-                $_SESSION['failure'] = "Sorry, your file is too large.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, your file is too large.<hr>";
                 $uploadOk = 0;
             }
             // Allow certain file formats
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
                 && $imageFileType != "gif" ) {
-                $_SESSION['failure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<hr>";
                 $uploadOk = 0;
             }
             // Check if $uploadOk is set to 0 by an failure
             if ($uploadOk == 0) {
-                $_SESSION['failure'] = "Sorry, your file was not uploaded.";
+                $bell_count++;
+                $_SESSION['failure'] = "Sorry, your file was not uploaded.<hr>";
             } else {
                 if (move_uploaded_file($_FILES["note_photo"]["tmp_name"], $target_file)) {
                     $data_to_db = array();
@@ -350,14 +288,17 @@ if(isset($_POST) && $_POST) {
 
                     if ($last_id)
                     {
-                        $_SESSION['success'] = 'Successfully updated';
+                        $bell_count++;
+                        $_SESSION['success'] = 'Successfully updated<hr>';
                     }
                     else
                     {
-                        $_SESSION['failure'] = 'Update failed!';
+                        $bell_count++;
+                        $_SESSION['failure'] = 'Update failed!<hr>';
                     }
                 } else {
-                    $_SESSION['failure'] = "Sorry, your file was not uploaded.";
+                    $bell_count++;
+                    $_SESSION['failure'] = "Sorry, your file was not uploaded.<hr>";
                 }
             }
         }
@@ -371,11 +312,13 @@ if(isset($_POST) && $_POST) {
 
             if ($last_id)
             {
-                $_SESSION['success'] = 'Successfully updated';
+                $bell_count++;
+                $_SESSION['success'] = 'Successfully updated<hr>';
             }
             else
             {
-                $_SESSION['failure'] = 'Update failed!';
+                $bell_count++;
+                $_SESSION['failure'] = 'Update failed!<hr>';
             }
         }
         // Update video
@@ -389,11 +332,13 @@ if(isset($_POST) && $_POST) {
 
             if ($last_id)
             {
-                $_SESSION['success'] = 'Successfully updated';
+                $bell_count++;
+                $_SESSION['success'] = 'Successfully updated<hr>';
             }
             else
             {
-                $_SESSION['failure'] = 'Update failed!';
+                $bell_count++;
+                $_SESSION['failure'] = 'Update failed!<hr>';
             }
         }
 

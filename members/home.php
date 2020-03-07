@@ -2,12 +2,12 @@
 session_start();
 require_once '../config/config.php';
 require_once BASE_PATH . '/includes/auth_validate.php';
+
 $db = getDbInstance();
 $db->join('tbl_recipes', 'tbl_users.id = tbl_recipes.rec_submit_by');
 $rows = $db->get('tbl_users');
 ?>
 <?php include BASE_PATH . '/members/includes/header.php' ?>
-        
 
 <!-- Demos Section Start -->
 <section id="demos" class="pt--70">

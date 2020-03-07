@@ -13,7 +13,6 @@ if(isset($_POST) && isset($_POST['family_member'])) {
     $relation = $_POST['family_member'];
     $to = $family_user['user_email'];
 
-//    Request Save to tbl_family
     $data_to_db = array(
         'who' => $logged_id,
         'with_who' => $family_user['id'],
@@ -25,31 +24,26 @@ if(isset($_POST) && isset($_POST['family_member'])) {
     $db->where('relation', $relation);
     $stat = $db->getValue('tbl_family', 'stat');
     if ($stat === 0) {
-        $_SESSION['failure'] = 'Already send, pending status...!';
+        $bell_count++;
+        $_SESSION['failure'] = 'Already send, pending status...!<hr>';
     } else {
         $family_id = $db->insert('tbl_family', $data_to_db);
 
         if ($family_id) {
-            $_SESSION['success'] = 'Invitation email is sent successfully!';
-            $_POST = array();
+            $body = generateFamMessageBody($row, $family_user, $relation, $family_id); // $row: from, $family_user: to,
+            $stat = sendEmail($to, $body);
+            if ($stat) {
+                $bell_count++;
+                $_SESSION['success'] = 'Invitation email is sent successfully!<hr>';
+            } else {
+                $bell_count++;
+                $_SESSION['failure'] = 'Sending invitation email is failed!<hr>';
+            }
         } else {
-            $_SESSION['failure'] = 'Sending invitation email is failed!';
-            $_POST = array();
+            $bell_count++;
+            $_SESSION['failure'] = 'Sending invitation email is failed!<hr>';
         }
     }
-
-
-//    $body = generateFamMessageBody($row, $family_user, $relation, $family_id); // $row: from, $family_user: to,
-//    // $relation: family relationship
-//
-//    $stat = sendEmail($to, $body);
-//    if ($stat) {
-//        $_SESSION['success'] = 'Invitation email is sent successfully!';
-//        $_POST = array();
-//    } else {
-//        $_SESSION['failure'] = 'Sending invitation email is failed!';
-//        $_POST = array();
-//    }
 }
 
 // Invite friend
@@ -60,7 +54,6 @@ if(isset($_POST) && isset($_POST['myfriend'])) {
     $friend_user = $db->getOne('tbl_users');
     $to = $friend_user['user_email'];
 
-    //    Request Save to tbl_family
     $data_to_db = array(
         'who' => $logged_id,
         'with_who' => $friend_user['id']
@@ -69,28 +62,29 @@ if(isset($_POST) && isset($_POST['myfriend'])) {
     $db->where('with_who', $friend_user['id']);
     $stat = $db->getValue('tbl_friend', 'stat');
     if ($stat === 0) {
+        $bell_count++;
         $_SESSION['failure'] = 'Already send, pending status...!';
     } else {
         $friend_id = $db->insert('tbl_friend', $data_to_db);
 
         if ($friend_id) {
-            $_SESSION['success'] = 'Invitation email is sent successfully!';
-            $_POST = array();
+            $body = generateFriMessageBody($row, $friend_user, $friend_id);
+            $stat = sendEmail($to, $body);
+            if ($stat) {
+                $bell_count++;
+                $_SESSION['success'] = 'Invitation email is sent successfully!<hr>';
+                $_POST = array();
+            } else {
+                $bell_count++;
+                $_SESSION['failure'] = 'Sending invitation email is failed!<hr>';
+                $_POST = array();
+            }
         } else {
-            $_SESSION['failure'] = 'Sending invitation email is failed!';
+            $bell_count++;
+            $_SESSION['failure'] = 'Sending invitation email is failed!<hr>';
             $_POST = array();
         }
     }
-
-//    $body = generateFriMessageBody($row, $friend_user, $friend_id);
-//    $stat = sendEmail($to, $body);
-//    if ($stat) {
-//        $_SESSION['success'] = 'Invitation email is sent successfully!';
-//        $_POST = array();
-//    } else {
-//        $_SESSION['failure'] = 'Sending invitation email is failed!';
-//        $_POST = array();
-//    }
 }
 
 // Get all users for auto fill box

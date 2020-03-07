@@ -12,7 +12,7 @@ function sendEmail($to, $body) {
     $mailer = new Swift_Mailer($transport);
 
     // Create a message
-    $message = (new Swift_Message('Invitation from MyNotes4U!'))
+    $message = (new Swift_Message('MyNotes4U!'))
         ->setFrom([SMTP_FROM => 'MyNotes4U'])
         ->setTo([$to => $to])
         ->setContentType("text/html")
@@ -63,7 +63,7 @@ function generateApprovedFriMessageBody($sender, $receiver) {
     $sendername = $sender['first_name']." ".$sender['last_name'];
 
     $message = "";
-    $message .="<html><head><title></title></head><body><img src='".BASE_URL.LOGO_URL."'><p>Hello ".$sendername."! Congratulations</p><p>".$receivername.". was approved your friend request</p><p><a href='".SMTP_APPROVED_URL."'>View</a> </p></body></html>";
+    $message .="<html><head><title></title></head><body><img src='".BASE_URL.LOGO_URL."'><p>Hello ".$sendername."! Congratulations</p><p>".$receivername." was approved your friend request</p><p><a href='".SMTP_APPROVED_URL."'>View</a> </p></body></html>";
     return $message;
 }
 
@@ -87,3 +87,26 @@ function generateDeleteFriMessageBody($sender, $receiver) {
     return $message;
 }
 
+// generate invitation message body for family group
+function genFamGroupMsgBody($from, $group_name, $group_id, $fam_group_members_id) {
+    $who = $from['first_name']." ".$from['last_name'];
+    $approve_url = BASE_URL."/members/activity-fam.php?group_id=".$group_id."&&member_id=".$fam_group_members_id."&&stat=approved";
+    $delete_url = BASE_URL."/members/activity-fam.php?group_id=".$group_id."&&member_id=".$fam_group_members_id."&&stat=delete";
+
+    $message = "";
+
+    $message .="<html><head><title></title></head><body><img src='".BASE_URL.LOGO_URL."'><p>Invitation is arrived from ".$group_name." that created by ".$who."</p><p><span><a href=".$approve_url.">Approve</a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><a href=".$delete_url.">Delete</a></span></p></body></html>";
+    return $message;
+}
+
+// generate invitation message body for friend group
+function genFriGroupMsgBody($from, $group_name, $group_id, $fri_group_members_id) {
+    $who = $from['first_name']." ".$from['last_name'];
+    $approve_url = BASE_URL."/members/activity-frd.php?group_id=".$group_id."&&member_id=".$fri_group_members_id."&&stat=approved";
+    $delete_url = BASE_URL."/members/activity-frd.php?group_id=".$group_id."&&member_id=".$fri_group_members_id."&&stat=delete";
+
+    $message = "";
+
+    $message .="<html><head><title></title></head><body><img src='".BASE_URL.LOGO_URL."'><p>Invitation is arrived from ".$group_name." that created by ".$who."</p><p><span><a href=".$approve_url.">Approve</a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><a href=".$delete_url.">Delete</a></span></p></body></html>";
+    return $message;
+}

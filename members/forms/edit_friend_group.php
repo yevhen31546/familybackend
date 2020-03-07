@@ -19,16 +19,6 @@ if (isset($_GET) && isset($_GET['group_id'])) {
     $group_id = $_GET['group_id'];
 }
 
-/*
- * Get group info
- */
-$group = '';
-if ($group_id != 0) {
-    $db = getDbInstance();
-    $db->where('id', $group_id);
-    $group = $db->getOne('tbl_fri_groups');
-}
-//print_r($group); exit;
 
 /*
  * Get friends for auto fill box
@@ -43,27 +33,19 @@ WHERE fri_gp_mems.group_id = '.$group_id.') AND us.`id` != '.$logged_id;
 $friends = $db->rawQuery($get_friend_query);
 
 /*
- * Save friend group
+ * update friend group
  */
 if(isset($_POST) && isset($_POST['group_name'])) {
 
-    //    Create the family group
     $data_to_db = array(
         'group_name' => $_POST['group_name'],
-        'description' => $_POST['description'],
+        'description' => trim($_POST['description'])
     );
     $db = getDbInstance();
     $db->where('id', $group_id);
     $update_result = $db->update('tbl_fri_groups', $data_to_db); // Group Id
 
-    if ($update_result) {
-        $_SESSION['success'] = 'Updated successfully!';
-    } else {
-        $_SESSION['failure'] = 'Update failed!';
-    }
-
     $friend_lists = $_POST['friend_lists'];
-
     if ($friend_lists != '') {
         //    Get friend's id/email
         $friend_lists = $_POST['friend_lists'];
@@ -90,26 +72,19 @@ if(isset($_POST) && isset($_POST['group_name'])) {
             $fri_group_members_id[$i] = $db->insert('tbl_fri_groups_members', $data_to_db);
         }
 
-        if ($fri_group_members_id[0]) {
-            $_SESSION['success'] = 'Updated successfully!';
-        } else {
-            $_SESSION['failure'] = 'Update failed!';
-        }
-
         //    Send friend group invitation
-        // $user: group creator
-//        for ($i = 0; $i < count($friend_arr); $i++) {
-//            $body = genFriGroupMsgBody($user, $_POST['group_name'], $group_id, $fri_group_members_id[$i]);
-//            $stat = sendEmail($friend_data[$i]['user_email'], $body);
-//        }
-//        if ($stat) {
-//            $_SESSION['success'] = 'Invitation email is sent successfully!';
-//            header('Location: '. BASE_URL .'/members/activity-frd.php');
-//            $_POST = array();
-//        } else {
-//            $_SESSION['failure'] = 'Sending invitation email is failed!';
-//            $_POST = array();
-//        }
+        //$user: group creator
+        for ($i = 0; $i < count($friend_arr); $i++) {
+            $body = genFriGroupMsgBody($user, $_POST['group_name'], $group_id, $fri_group_members_id[$i]);
+            $stat = sendEmail($friend_data[$i]['user_email'], $body);
+        }
+        if ($stat) {
+            $bell_count++;
+            $_SESSION['success'] = 'Invitation email is sent successfully!<hr>';
+        } else {
+            $bell_count++;
+            $_SESSION['failure'] = 'Sending invitation email is failed!<hr>';
+        }
     }
 }
 
@@ -121,9 +96,11 @@ if(isset($_POST) && isset($_POST['del_member_id'])) {
     $db->where('id', $_POST['del_member_id']);
     $result = $db->delete('tbl_fri_groups_members');
     if ($result) {
-        $_SESSION['success'] = 'Removed successfully';
+        $bell_count++;
+        $_SESSION['success'] = 'Removed successfully<hr>';
     } else {
-        $_SESSION['failure'] = 'Oops... removing fail!';
+        $bell_count++;
+        $_SESSION['failure'] = 'Oops... removing fail!<hr>';
     }
 }
 
@@ -151,7 +128,16 @@ SELECT fri_gp_mems.who
 FROM tbl_fri_groups_members fri_gp_mems
 WHERE fri_gp_mems.group_id = '.$group_id.') AND us.`id` != '.$logged_id;
 $friends = $db->rawQuery($get_friend_query);
-//print_r($friends); exit;
+
+/*
+ * Get group info
+ */
+$group = '';
+if ($group_id != 0) {
+    $db = getDbInstance();
+    $db->where('id', $group_id);
+    $group = $db->getOne('tbl_fri_groups');
+}
 
 ?>
 
@@ -184,7 +170,6 @@ $friends = $db->rawQuery($get_friend_query);
                 <div class="main--content col-md-8 pb--60">
                     <div class="main--content-inner drop--shadow">
 
-                        <?php include BASE_PATH . '/includes/flash_messages.php'; ?>
                         <form name="create-family-group-form" action="" method="post" onsubmit="return checkEditFriForm();">
                             <h2>Edit <?php echo $group['group_name']; ?></h2>
                             <div class="box--items-h">
@@ -209,7 +194,7 @@ $friends = $db->rawQuery($get_friend_query);
                                                         <h6>Please provide the group description: </h6>
                                                     </label>
                                                     <textarea class="w-100" rows="4" cols="100%" name="description">
-                                                        <?php echo $group['description']; ?>
+                                                        <?php echo trim($group['description']); ?>
                                                     </textarea>
                                                 </div>
                                             </div>
