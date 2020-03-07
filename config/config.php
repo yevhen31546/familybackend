@@ -7,7 +7,7 @@ define('BASE_PATH', dirname(dirname(__FILE__)));
 
 define('APP_FOLDER', 'simpleadmin');
 define('CURRENT_PAGE', basename($_SERVER['REQUEST_URI']));
-
+define('LOGO_URL', '/whitelogosm.png');
 // Local
 
 //define('BASE_URL', 'http://familyback1219.com');
@@ -37,8 +37,6 @@ define('SMTP_FROM', 'support@mynotes4u.com'); // Should be updated in production
 define('SMTP_PASS', 'August151959'); // Should be updated in production mode
 define('SMTP_ENDPOINT', 'https://mynotes4u.com/members/member-profile.php' );
 define('SMTP_APPROVED_URL', 'https://mynotes4u.com/members/member-profile.php' );
-
-define('LOGO_URL', '/whitelogosm.png');
 
 require_once BASE_PATH . '/lib/MysqliDb/MysqliDb.php';
 require_once BASE_PATH . '/helpers/helpers.php';

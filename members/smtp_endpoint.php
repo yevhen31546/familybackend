@@ -115,7 +115,6 @@ function genFriGroupMsgBody($from, $group_name, $group_id, $fri_group_members_id
 function genContactFormMsgBody($email, $subject, $name, $msg) {
     $message = "";
 
-
     $message .="<div style='display:grid; justify-content: center'>
                     <img src='".BASE_URL.LOGO_URL."'>
                     <p>Form details below.</p>

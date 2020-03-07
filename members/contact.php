@@ -5,7 +5,6 @@ require_once BASE_PATH.'/includes/auth_validate.php';
 require_once '../vendor/autoload.php';
 require_once './smtp_endpoint.php';
 
-
 if(isset($_POST['email'])) {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $subject = filter_var($_POST['subject'], FILTER_SANITIZE_STRING);
@@ -16,13 +15,12 @@ if(isset($_POST['email'])) {
     sendEmail(SMTP_FROM, $body);
 
     $bell_count++;
-    $_SESSION['success'] = 'Thank you for contacting us. We will be in touch with you very soon.';
+    $_SESSION['success'] = 'Thank you for contacting us. We will be in touch with you very soon.<hr>';
 }
 
+include BASE_PATH.'/members/includes/header.php';
+
 ?>
-
-<?php include BASE_PATH.'/members/includes/header.php'?>
-
     <!-- Page Header Start -->
     <div class="page--header pt--60 pb--60 text-center" data-bg-img="img/page-header-img/contact(1).png" data-overlay="0.35">
         <div class="container">
