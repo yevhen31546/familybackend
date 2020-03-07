@@ -110,3 +110,20 @@ function genFriGroupMsgBody($from, $group_name, $group_id, $fri_group_members_id
     $message .="<html><head><title></title></head><body><img src='".BASE_URL.LOGO_URL."'><p>Invitation is arrived from ".$group_name." that created by ".$who."</p><p><span><a href=".$approve_url.">Approve</a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><a href=".$delete_url.">Delete</a></span></p></body></html>";
     return $message;
 }
+
+// contact form message body
+function genContactFormMsgBody($email, $subject, $name, $msg) {
+    $message = "";
+
+
+    $message .="<div style='display:grid; justify-content: center'>
+                    <img src='".BASE_URL.LOGO_URL."'>
+                    <p>Form details below.</p>
+                    <br>
+                    <p>Name:&nbsp;&nbsp;$name</p>
+                    <p>Email:&nbsp;&nbsp;$email</p>
+                    <p>Subject:&nbsp;&nbsp;$subject</p>
+                    <p>Message:&nbsp;&nbsp;$msg</p>
+                </div>";
+    return $message;
+}

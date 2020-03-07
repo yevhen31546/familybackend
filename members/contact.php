@@ -2,6 +2,23 @@
 session_start();
 require_once '../config/config.php';
 require_once BASE_PATH.'/includes/auth_validate.php';
+require_once '../vendor/autoload.php';
+require_once './smtp_endpoint.php';
+
+
+if(isset($_POST['email'])) {
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $subject = filter_var($_POST['subject'], FILTER_SANITIZE_STRING);
+    $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+    $message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
+
+    $body = genContactFormMsgBody($email, $subject, $name, $message);
+    sendEmail(SMTP_FROM, $body);
+
+    $bell_count++;
+    $_SESSION['success'] = 'Thank you for contacting us. We will be in touch with you very soon.';
+}
+
 ?>
 
 <?php include BASE_PATH.'/members/includes/header.php'?>
@@ -24,9 +41,6 @@ require_once BASE_PATH.'/includes/auth_validate.php';
     <!-- Contact Section Start -->
     <div class="contact--section pt--80 pb--20">
         <div class="container">
-            <!-- Map Start -->
-            <!--<div class="map mb--80" data-trigger="map" data-map-options='{"latitude": "23.790546", "longitude": "90.375583", "zoom": "16", "api_key": "AIzaSyBK9f7sXWmqQ1E-ufRXV3VpXOn_ifKsDuc"}'></div>-->
-            <!-- Map End -->
 
             <div class="row">
                 <div class="col-md-3 pb--60">
@@ -57,25 +71,14 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                             </div>
                         </div>
                         <!-- Contact Info Item End -->
-
-                        <!-- Contact Info Item Start -->
-                        <!--<div class="contact-info--Item">
-                            <div class="title">
-                                <h3 class="h4"><i class="mr--10 fa fa-phone"></i>Telephone :</h3>
-                            </div>
-
-                            <div class="content fs--14 text-darker mt--4">
-                                <p><a href="tel:(+00)123123456" class="btn-link">(+00) 123123456</a>, <a href="tel:(+00)123123456" class="btn-link">(+00) 123123456</a></p>
-                            </div>
-                        </div>-->
-                        <!-- Contact Info Item End -->
                     </div>
                     <!-- Contact Info Items End -->
                 </div>
 
                 <div class="col-md-9 pb--60">
                     <!-- Contact Form Start -->
-                    <div class="contact--form" data-form="ajax">
+                    <div class="contact--form">
+<!--                        <div class="contact--form" data-form="ajax">-->
                         <div class="contact--title">
                             <h3 class="h4">Drop Us A Line</h3>
                         </div>
@@ -88,7 +91,7 @@ require_once BASE_PATH.'/includes/auth_validate.php';
                             <p>(Required field are marked *)</p>
                         </div>
 
-                        <form action="forms/contact-form.php" method="post">
+                        <form action="" method="post">
                             <div class="row gutter--20">
                                 <div class="col-xs-6 col-xxs-12">
                                     <div class="form-group">
@@ -130,3 +133,4 @@ require_once BASE_PATH.'/includes/auth_validate.php';
     <!-- Contact Section End -->
 
 <?php include BASE_PATH.'/members/includes/footer.php'?>
+
