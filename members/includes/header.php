@@ -84,12 +84,25 @@
 
                 <!-- Header Topbar Links Start -->
                 <ul class="header--topbar-links nav ff--primary float--right">
-                    <li style="border-right: black;">
-                        <a href="#">
-                            <i class="fa fa-bell-o"></i><span class="badge">3</span>
+                    <li class="dropdown" style="border-right: black;">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="badge">3</span>
                         </a>
+
+                        <ul class="dropdown-menu bell-notification">
+                            <li>
+                                You have invite request meail from xyzabc group. approve / disapprove.
+                            </li>
+                            <li>
+                                You have invite request meail from xyzabc group. approve / disapprove.
+                            </li>
+                            <li>
+                                You have invite request meail from xyzabc group. approve / disapprove.
+                            </li>
+                        </ul>
                     </li>
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa mr--8 fa-user-o"></i>
                             <span>My Account</span>
@@ -97,7 +110,7 @@
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li class="active">
+                            <li>
                                 <a href="<?php echo BASE_URL;?>/members/member-profile.php"><span>My Profile</span></a></li>
                             <li><a href="<?php echo BASE_URL;?>/members/logout.php"><span>Log out</span></a></li>
                         </ul>

@@ -10,6 +10,18 @@ You can write your custom css styles in this file...
     cursor: pointer;
 }
 
+.bell-notification {
+    width: 170px;
+    overflow-y: scroll;
+    height: 200px;
+}
+
+.bell-notification li{
+    margin-top: 3px;
+    margin-left: 3px;
+    padding-left:3px;
+}
+
 .group_edit {
     cursor: pointer;
 }
