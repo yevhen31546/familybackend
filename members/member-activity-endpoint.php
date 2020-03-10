@@ -2,6 +2,9 @@
 
 // Get current user
 $logged_id = $_SESSION['user_id'];
+$db = getDbInstance();
+$db->where('id', $logged_id);
+$row = $db->getOne('tbl_users');
 
 // Invite family member
 if(isset($_POST) && isset($_POST['family_member'])) {

@@ -44,10 +44,6 @@ include BASE_PATH.'/members/includes/header.php';
                     <h2 class="h3 fw--600"><?php echo $userrow['first_name'].' '. $userrow['last_name'];?></h2>
                 </div>
 
-<!--                <div class="cover--user-activity">-->
-<!--                    <p><i class="fa mr--8 fa-clock-o"></i>Active 1 year 9 monts ago</p>-->
-<!--                </div>-->
-
                 <div class="cover--user-desc fw--400 fs--18 fstyle--i text-darkest">
                     <p>Hello everyone ! There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
                 </div>

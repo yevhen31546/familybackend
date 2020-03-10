@@ -34,7 +34,7 @@ define('SMTP_HOST', 'smtp.superb.net');
 define('SMTP_PORT', 587);
 define('SMTP_ENC', 'tls');
 define('SMTP_FROM', 'support@mynotes4u.com'); // Should be updated in production mode
-define('SMTP_PASS', 'August151959'); // Should be updated in production mode
+define('SMTP_PASS', 'Axugust151959'); // Should be updated in production mode August151959
 define('SMTP_ENDPOINT', 'https://mynotes4u.com/members/member-profile.php' );
 define('SMTP_APPROVED_URL', 'https://mynotes4u.com/members/member-profile.php' );
 
