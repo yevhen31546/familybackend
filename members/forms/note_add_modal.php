@@ -29,7 +29,7 @@
                     <!-- /.box-body -->
                     <div class="box-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-success pull-right add-note-content">Send</button>
+                        <button type="submit" class="btn btn-success pull-right add-note-content">Post</button>
                     </div>
                 </form>
             </div>

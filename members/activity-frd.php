@@ -226,7 +226,7 @@ include BASE_PATH.'/members/includes/header.php';
                                     </div>
                                 </div>
                                 <div class="col-xs-12">
-                                    <button type="submit" class="btn btn-primary activity-note-add">Add</button>
+                                    <button type="submit" class="btn btn-primary activity-note-add">Post</button>
                                     <button type="button" class="btn btn-primary cancel_button">Cancel</button>
                                 </div>
                         </form>

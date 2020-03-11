@@ -225,7 +225,7 @@ include BASE_PATH.'/members/includes/header.php';
                                         <input type="hidden" id="add_note_group_id" value="0">
                                     <?php } ?>
                                     <div class="col-xs-12">
-                                        <button type="submit" class="btn btn-primary activity-group-note-add">Add</button>
+                                        <button type="submit" class="btn btn-primary activity-group-note-add">Post</button>
                                         <button type="button" class="btn btn-primary cancel_button">Cancel</button>
                                     </div>
                                 </div>
