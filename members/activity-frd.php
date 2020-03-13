@@ -6,7 +6,6 @@ require_once 'my_friend_endpoint.php';
 require_once 'notification.php';
 // Check friend group invitation exist
 $bell_count += checkFriGroupInvitation($logged_id);
-
 include BASE_PATH.'/members/includes/header.php';
 ?>
 <link rel="stylesheet" href="<?php echo BASE_URL;?>/members/css/auto_fill.css">
@@ -77,7 +76,9 @@ include BASE_PATH.'/members/includes/header.php';
                                                             <?php echo $row['first_name']; ?>&nbsp;<?php echo $row['last_name'];
                                                             ?>
                                                         </a>
-                                                        Shared a link
+                                                        posted
+                                                        an <?php echo $row['note_media']; ?>
+                                                        on <?php echo $row['cat_name'] ?> </p>
                                                     </p>
                                                 </div>
 

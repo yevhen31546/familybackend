@@ -57,11 +57,11 @@ function get_fri_group_note_lists($cat, $note_date, $group_id, $page, $pageLimit
     $db = getDbInstance();
     $offset = $pageLimit * ($page - 1);
     $query = 'SELECT us.`id`, us.`avatar`, us.`first_name`, us.`last_name`, tmp.`note_date`, tmp.note_media, 
-                    tmp.`note_value`, tmp.note_id, tmp.cat_id, tmp.note_comment
+                    tmp.`note_value`, tmp.note_id, tmp.cat_id, tmp.note_comment, tmp.`cat_name`
             FROM (SELECT notes.`note_date`, notes.`cat_id`, notes.`note_value`, notes.`user_id`, notes.`id` AS note_id,
-                        notes.`note_media`, notes.note_comment
-            FROM tbl_fri_group_notes notes
-            WHERE notes.group_id = '.$group_id.') tmp, tbl_users us
+                        notes.`note_media`, notes.note_comment, category.cat_name
+            FROM tbl_fri_group_notes notes, tbl_group_note_cat category
+            WHERE notes.group_id = '.$group_id.' AND notes.`cat_id` = category.`id`) tmp, tbl_users us
             WHERE us.`id`= tmp.user_id';
 
     if ($cat != '' && $note_date != '') {
@@ -83,11 +83,11 @@ function get_fri_group_note__update_lists($cat, $note_date, $group_id, $page, $p
     $db = getDbInstance();
     $offset = $pageLimit * ($page - 1);
     $query = 'SELECT us.`id`, us.`avatar`, us.`first_name`, us.`last_name`, tmp.`note_date`, tmp.note_media,
-                      tmp.`note_value`, tmp.note_id, tmp.cat_id, tmp.note_comment
+                      tmp.`note_value`, tmp.note_id, tmp.cat_id, tmp.note_comment, tmp.`cat_name`
             FROM (SELECT notes.`note_date`, notes.`cat_id`, notes.`note_value`, notes.`user_id`, notes.`id` AS note_id,
-                          notes.`note_media`, notes.note_comment
-            FROM tbl_fri_group_notes notes
-            WHERE notes.`user_id` = '.$user_id.' AND notes.group_id = '.$group_id.') tmp, tbl_users us
+                          notes.`note_media`, notes.note_comment, category.`cat_name`
+            FROM tbl_fri_group_notes notes, tbl_group_note_cat category
+            WHERE notes.`user_id` = '.$user_id.' AND notes.group_id = '.$group_id.' AND notes.`cat_id` = category.`id`) tmp, tbl_users us
             WHERE us.`id`= tmp.user_id';
 
     if ($cat != '' && $note_date != '') {

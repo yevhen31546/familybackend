@@ -77,7 +77,9 @@ include BASE_PATH.'/members/includes/header.php';
                                                         <?php echo $row['first_name']; ?>&nbsp;<?php echo $row['last_name'];
                                                             ?>
                                                     </a>
-                                                    Shared a link
+                                                    posted
+                                                    an <?php echo $row['note_media']; ?>
+                                                    on <?php echo $row['cat_name'] ?> </p>
                                                 </p>
                                             </div>
 

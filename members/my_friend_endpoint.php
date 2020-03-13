@@ -141,15 +141,15 @@ function get_fri_note_lists($cat, $note_date, $page, $pageLimit) {
     $db = getDbInstance();
     $offset = $pageLimit * ($page - 1);
     $query = 'SELECT us.`id`, us.`avatar`, us.`first_name`, us.`last_name`, tmp.`note_date`, tmp.note_media,
-                      tmp.`note_value`, tmp.note_id, tmp.cat_id, tmp.note_comment
+                      tmp.`note_value`, tmp.note_id, tmp.cat_id, tmp.note_comment, tmp.`cat_name`
             FROM (SELECT notes.`note_date`, notes.`cat_id`, notes.`note_value`, notes.`user_id`, 
-                      notes.`id` AS note_id, notes.`note_media`, notes.note_comment
-            FROM tbl_fri_notes notes
-            WHERE notes.`user_id` = '.$user_id.'
+                      notes.`id` AS note_id, notes.`note_media`, notes.note_comment, category.`cat_name`
+            FROM tbl_fri_notes notes, tbl_group_note_cat category
+            WHERE notes.`user_id` = '.$user_id.' AND category.`id` = notes.`cat_id`
             UNION
             SELECT notes.`note_date`, notes.`cat_id`, notes.`note_value`, 
-                    notes.`user_id`, notes.`id` AS note_id, notes.`note_media`, notes.note_comment
-            FROM tbl_fri_notes notes
+                    notes.`user_id`, notes.`id` AS note_id, notes.`note_media`, notes.note_comment, category.`cat_name`
+            FROM tbl_fri_notes notes, tbl_group_note_cat category
             WHERE notes.`user_id` IN (
                         SELECT DISTINCT fff.frd_id
                         FROM (
@@ -161,7 +161,7 @@ function get_fri_note_lists($cat, $note_date, $page, $pageLimit) {
                             FROM tbl_friend frd
                             WHERE frd.with_who = '.$user_id.' AND frd.stat = 1
                         ) fff
-                    )
+                    ) AND category.`id` = notes.`cat_id`
             ) tmp, tbl_users us
             WHERE us.`id`= tmp.user_id';
 
@@ -183,12 +183,12 @@ function get_update_note_lists($cat, $note_date, $page, $pageLimit) {
     $user_id = $_SESSION['user_id'];
     $db = getDbInstance();
     $offset = $pageLimit * ($page - 1);
-    $query = 'SELECT us.`id`, us.`avatar`, us.`first_name`, tmp.note_comment,
+    $query = 'SELECT us.`id`, us.`avatar`, us.`first_name`, tmp.note_comment, tmp.`cat_name`,
              us.`last_name`, tmp.`note_date`, tmp.note_media, tmp.`note_value`, tmp.note_id, tmp.cat_id
-            FROM (SELECT notes.`note_date`, notes.`cat_id`, notes.note_comment,
+            FROM (SELECT notes.`note_date`, notes.`cat_id`, notes.note_comment, category.`cat_name`,
             notes.`note_value`, notes.`user_id`, notes.`id` AS note_id, notes.`note_media`
-            FROM tbl_fri_notes notes
-            WHERE notes.`user_id` = '.$user_id.'
+            FROM tbl_fri_notes notes, tbl_group_note_cat category
+            WHERE notes.`user_id` = '.$user_id.' AND category.`id` = notes.`cat_id`
             ) tmp, tbl_users us
             WHERE us.`id`= tmp.user_id';
 
