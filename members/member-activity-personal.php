@@ -205,7 +205,7 @@ include BASE_PATH.'/members/includes/header.php';
                         <!-- Widget Start -->
                         <div class="widget">
                             <h2 class="h4 fw--700 widget--title">Advertisements</h2>
-s                            <!-- Ad Widget Start -->
+                            <!-- Ad Widget Start -->
                             <div class="ad--widget">
                                 <a href="#">
                                     <img src="img/widgets-img/ad.jpg" alt="" class="center-block">
