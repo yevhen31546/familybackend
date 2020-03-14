@@ -31,6 +31,33 @@ if(isset($_POST['user_name']) && $_POST['user_name'] != '') {
 
             if ($last_id)
             {
+                // Checking for user comes by invitation
+                if(isset($_GET['ref']) && $_GET['ref']) {
+                    $db = getDbInstance();
+                    $db->where('ref_code', $_GET['ref']);
+                    $is_friend = $db->getOne('tbl_friend_ref');
+                    $is_family = $db->getOne('tbl_family_ref');
+                    // add to friend table
+                    if ($is_friend) {
+                        $data = array(
+                            'who' => $is_friend['who'],
+                            'with_who' => $last_id,
+                            'stat' => 1
+                        );
+                        $db->insert('tbl_friend', $data);
+                    }
+                    // add to family table
+                    elseif ($is_family) {
+                        $data = array(
+                            'who' => $is_family['who'],
+                            'with_who' => $last_id,
+                            'relation' => $is_family['relation'],
+                            'stat' => 1
+                        );
+                        $db->insert('tbl_family', $data);
+                    }
+                }
+
                 $_SESSION['success'] = 'User added successfully!';
                 // Redirect to the Members page
                 header('Location: members/home.php');

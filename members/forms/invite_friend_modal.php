@@ -1,7 +1,7 @@
 <!--Invite friend modal for outside site-->
 <div class="modal fade invite-friend-modal" id="invite-friend-modal" tabindex="-1"
      role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="myLargeModalLabel">Invite a Friend</h4>

@@ -126,3 +126,37 @@ function genContactFormMsgBody($email, $subject, $name, $msg) {
                 </div>";
     return $message;
 }
+
+// Generate invitation message body for outside friend
+function generateInviteFriMessageBody($user, $ref_code) {
+    $join_url = BASE_URL."/register.php?ref=".$ref_code;
+    $message = "";
+
+    $message .="<html><head><title></title></head>
+                <body>
+                    <img src='".BASE_URL.LOGO_URL."'>
+                    <p>Hello!</p>
+                    <p>You have been added as a friend by ".$user['first_name']." ".$user['last_name']." on MyNotes4U.</p>
+                    <p>Click the button below to join</p>
+                    <p><a href=".$join_url.">Join MyNotes4U</a></p>
+                </body>
+                </html>";
+    return $message;
+}
+
+// Generate invitation message body for outside family
+function generateInviteFamMessageBody($user, $ref_code, $relation) {
+    $join_url = BASE_URL."/register.php?ref=".$ref_code;
+    $message = "";
+
+    $message .="<html><head><title></title></head>
+                <body>
+                    <img src='".BASE_URL.LOGO_URL."'>
+                    <p>Hello!</p>
+                    <p>You have been added as a family by ".$user['first_name']." ".$user['last_name']." on MyNotes4U.</p>
+                    <p>Click the button below to join</p>
+                    <p><a href=".$join_url.">Join MyNotes4U</a></p>
+                </body>
+                </html>";
+    return $message;
+}

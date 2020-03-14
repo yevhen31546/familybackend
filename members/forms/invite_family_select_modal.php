@@ -1,7 +1,7 @@
 <!--Add as family modal-->
 <div class="modal fade invite-family-select-modal" id="invite-family-select-modal" tabindex="-1"
      role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="myLargeModalLabel">Add as Family</h4>
