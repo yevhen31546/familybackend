@@ -77,7 +77,9 @@ include BASE_PATH.'/members/includes/header.php';
 
                                                 <div class="name">
                                                     <h3 class="h6 fs--12">
-                                                        <a href="member-activity-personal.php?user=<?php echo $row['id'];?>" class="btn-link"><?php echo $row['first_name'].$row['last_name'];?></a>
+                                                        <a href="member-activity-personal.php?user=<?php echo $row['id'];?>" class="btn-link">
+                                                            <?php echo $row['first_name']." ".$row['last_name'];?>
+                                                        </a>
                                                     </h3>
                                                 </div>
 
@@ -91,12 +93,18 @@ include BASE_PATH.'/members/includes/header.php';
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#" title="Add as Friend" class="btn-link" data-toggle="tooltip" data-placement="bottom">
+                                                            <a href="#" title="Add as Friend"
+                                                               class="btn-link invite_friend"
+                                                               data-toggle="tooltip" data-placement="bottom"
+                                                               data-username="<?php echo $row['user_name']; ?>">
                                                                 <i class="fa fa-user-plus"></i>
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#" title="Add as Family" class="btn-link" data-toggle="tooltip" data-placement="bottom">
+                                                            <a href="#" title="Add as Family"
+                                                               class="btn-link invite_family"
+                                                               data-toggle="tooltip" data-placement="bottom"
+                                                               data-username="<?php echo $row['user_name']; ?>">
                                                                 <i class="fa fa-group"></i>
                                                             </a>
                                                         </li>
@@ -131,12 +139,15 @@ include BASE_PATH.'/members/includes/header.php';
                         </div>
                     </div>
                     <!-- Main Content End -->
+                    <?php include BASE_PATH . '/members/forms/invite_family_select_modal.php';?>
+                    <?php include BASE_PATH . '/members/forms/invite_family_modal.php';?>
+                    <?php include BASE_PATH . '/members/forms/invite_friend_modal.php';?>
 
                     <!-- Main Sidebar Start -->
                     <div class="main--sidebar col-md-3 pb--60" data-trigger="stickyScroll">
                         <!-- Widget Start -->
                         <div class="widget">
-                            <h2 class="h4 fw--600 widget--title">Invite a Family Member</h2>
+                            <h2 class="h4 fw--500 widget--title">Invite a Family Member</h2>
                             <form action="" autocomplete="off" method="post" onsubmit="return checkFamilyForm(this);">
                                 <div class="autocomplete" style="width: 100%;">
                                     <input id="myfamily" type="text" class="form-control" name="myfamily" placeholder="Family member's Name">
@@ -168,12 +179,29 @@ include BASE_PATH.'/members/includes/header.php';
 
                         <div class="widget">
                             <form action="" method="post" onsubmit="return checkFriendForm(this);">
-                                <h2 class="h4 fw--600 widget--title">Invite a Friend</h2>
+                                <h2 class="h4 fw--500 widget--title">Invite a Friend</h2>
                                 <div class="autocomplete" style="width: 100%;">
                                     <input id="myfriend" type="text" class="form-control" name="myfriend" placeholder="Friend's Name">
                                 </div>
                                 <button type="submit" class="btn btn-sm btn-google btn btn-primary" style="margin-top: 20px;"><i class="fa mr--8 fa-play"></i>Send</button>
                             </form>
+                        </div>
+
+                        <div class="widget">
+                            <h2 class="h4 fw--500 widget--title">Invite a Member</h2>
+                            <div style="margin-bottom: 0.7em">
+                                <button type="button" class="btn btn-sm btn-google btn btn-primary invite_outside_family">
+                                    <i class="fa mr--8 fa-play"></i>
+                                    Invite a Family Member
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" style="padding-right: 65px;"
+                                        class="btn btn-sm btn-google btn btn-primary invite_outside_friend">
+                                    <i class="fa mr--8 fa-play"></i>
+                                    Invite a Friend
+                                </button>
+                            </div>
                         </div>
 
                         <!-- Widget End -->
@@ -186,6 +214,45 @@ include BASE_PATH.'/members/includes/header.php';
         <!-- Page Wrapper End -->
 
 <script>
+
+    function checkFamilyForm(form) {
+        var families = <?php print_r(json_encode($users)); ?>;
+
+        if(form.myfamily.value === '') {
+            alert("Error: Please type family member's name :(");
+            form.myfamily.focus();
+            return false;
+        } else if (families.indexOf(form.myfamily.value) === -1) {
+            form.myfamily.focus();
+            alert("Error: Selected profile is invalid!");
+            return false;
+        }
+
+        if(form.family_member.value === "family_member") {
+            alert("Error: Please select family relationship!");
+            form.family_member.focus();
+            return false;
+        }
+
+        return true;
+    }
+
+    function checkFriendForm(form) {
+        var friends = <?php print_r(json_encode($users)); ?>;
+
+        if(form.myfriend.value === "") {
+            alert("Error: Please type friend's name :(");
+            form.myfriend.focus();
+            return false;
+        } else if (friends.indexOf(form.myfriend.value) === -1) {
+            form.myfriend.focus();
+            alert("Error: Selected profile is invalid!");
+            return false;
+        }
+
+        return true;
+    }
+
     function autocomplete(inp, arr) {
         /*the autocomplete function takes two arguments,
         the text field element and an array of possible autocompleted values:*/

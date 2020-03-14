@@ -463,12 +463,51 @@
         readAvatarURL(this);
     });
 
-    // cnt = 0;
-    // // Bell notification
-    // $('#notification-bell').click(function() {
-    //
-    //     $('#bell-notification-body').addClass('dropdown');
-    // });
+    /*
+     *add as friend in member page
+    */
+    $(".invite_friend").click(function(event){
+        event.preventDefault(); // don't "execute" the link
+        var member_name = $(this).attr('data-username');
+        var form_html = "<form action='' method='post' style='display: none'>" +
+            "<input type='hidden' name='myfriend' value='"+member_name +"'/>" +
+            "<input type='submit' />" +
+            "</form>";
+
+        var $form = $(form_html).appendTo($('body'));
+
+        $form.submit();
+    });
+
+    /*
+     *add as family in member page
+    */
+    $(".invite_family").click(function(event){
+        event.preventDefault(); // don't "execute" the link
+        var member_name = $(this).attr('data-username'); // member name
+        // console.log('form..', member_name);
+
+        $('.invite-family-select-modal').modal('toggle');
+
+        $('.invite-family-select-modal input[name="myfamily"]').val(member_name);
+
+    });
+
+    /*
+     *invite friend for outside of site
+    */
+    $(".invite_outside_friend").click(function(event){
+        event.preventDefault(); // don't "execute" the link
+        $('.invite-friend-modal').modal('toggle');
+    });
+
+    /*
+     *invite family for outside of site
+    */
+    $(".invite_outside_family").click(function(event){
+        event.preventDefault(); // don't "execute" the link
+        $('.invite-family-modal').modal('toggle');
+    });
 
 
     $(document).ready(function(){
