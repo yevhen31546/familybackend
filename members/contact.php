@@ -25,12 +25,12 @@ include BASE_PATH.'/members/includes/header.php';
     <div class="page--header pt--60 pb--60 text-center" data-bg-img="img/page-header-img/contact(1).png" data-overlay="0.35">
         <div class="container">
             <div class="title">
-                <h2 class="h1 text-white">Contact</h2>
+                <h2 class="h1 text-white"></h2>
             </div>
 
             <ul class="breadcrumb text-gray ff--primary">
-                <li><a href="../members/home.php" class="btn-link">Home</a></li>
-                <li class="active"><span class="text-primary">Contact</span></li>
+<!--                <li><a href="../members/home.php" class="btn-link"></a></li>-->
+<!--                <li class="active"><span class="text-primary"></span></li>-->
             </ul>
         </div>
     </div>

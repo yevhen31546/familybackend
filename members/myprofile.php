@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 ?>
                             </div>
                         <?php endif; ?>
-                        <button type="submit" class="btn btn-success pull-right">Save</button>
+                        <button type="submit" class="btn btn-primary pull-right">Save</button>
                     </div>
                 </div>
             </form>

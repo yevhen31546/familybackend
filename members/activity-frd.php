@@ -218,7 +218,7 @@ include BASE_PATH.'/members/includes/header.php';
                                         <label>
                                             <select name="multimedia" class="form-control form-sm multimedia"
                                                     data-trigger="selectmenu">
-                                                <option value="addmedia">Add Comment, Photo or Video</option>
+                                                <option value="addmedia">Select Note Type</option>
                                                 <option value="text">Add Text</option>
                                                 <option value="photo">Add a Photo</option>
                                                 <option value="video">Add a Video Link</option>
@@ -227,7 +227,7 @@ include BASE_PATH.'/members/includes/header.php';
                                     </div>
                                 </div>
                                 <div class="col-xs-12">
-                                    <button type="submit" class="btn btn-primary activity-note-add">Post</button>
+                                    <button type="submit" class="btn btn-primary activity-note-add">Add</button>
                                     <button type="button" class="btn btn-primary cancel_button">Cancel</button>
                                 </div>
                         </form>

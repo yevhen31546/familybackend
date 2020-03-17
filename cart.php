@@ -8,6 +8,7 @@ if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === TRUE)
 {
     header('Location: members/home.php');
 }
+
 ?>
 <?php include BASE_PATH.'/includes/header.php'; ?>
 

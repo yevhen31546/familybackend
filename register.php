@@ -111,11 +111,12 @@ if(isset($_POST['user_name']) && $_POST['user_name'] != '') {
                         </div>
                         <div class="form-group">
                             <label class="control-label">Phone number</label>
-                            <input type="text" name="phone_no" class="form-control">
+                            <input type="text" name="phone_no" class="form-control" required>
                         </div>
                         <div class="form-group" style="display: flex">
-                            <input type="checkbox" class="form-control" style="width: 1.25rem; height: 1.25rem" required>
-                            &nbsp;&nbsp;I agree to the terms and conditions
+                            <input type="checkbox" class="form-control" style="width: 3.25rem; height: 1.25rem" required>
+                            &nbsp;&nbsp;I agree to be legally bound by these Terms and Conditions,
+                            the MyNotes4U Privacy Statement, and the MyNotes4U Community Rules.
                         </div>
                         <?php if (isset($_SESSION['register_failure'])): ?>
                             <div class="alert alert-danger alert-dismissable fade in">
@@ -126,8 +127,8 @@ if(isset($_POST['user_name']) && $_POST['user_name'] != '') {
                                 ?>
                             </div>
                         <?php endif; ?>
-                        <button type="submit" class="btn btn-success loginField">Register</button>
-                        <a href="login.php" class="btn btn-success loginField pull-right">Login</a>
+                        <button type="submit" class="btn loginField" style="background: #7398aa; color: white;">Register</button>
+                        <a href="login.php" class="btn loginField pull-right"  style="background: #7398aa; color: white;">Login</a>
                     </div>
                 </div>
             </form>

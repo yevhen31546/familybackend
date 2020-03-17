@@ -52,7 +52,7 @@ include BASE_PATH.'/members/includes/header.php';
                             </div>
 
                             <div class="content fs--14 text-darker mt--4">
-                                <p><a href="mailto:mynotes4u.01@gmail.com" class="btn-link">support@mynotes4u.com</a></p>
+                                <p><a href="mailto:support@mynotes4u.com" class="btn-link">support@mynotes4u.com</a></p>
                             </div>
                         </div>
                         <!-- Contact Info Item End -->
