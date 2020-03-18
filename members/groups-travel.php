@@ -26,6 +26,9 @@ if (isset($_POST) && isset($_POST['post_id'])) {
 
     // Add photo
     $target_path = "./uploads/".$_SESSION['user_id'].$upload_path_seg."/image/";
+    if (!file_exists($target_path)) {
+        mkdir($target_path, 0777, true);
+    }
     $valid_extensions = array("jpeg", "jpg", "png");      // Extensions which are allowed.
     $ext = explode('.', basename($_FILES['post_photo']['name']));   // Explode file name from dot(.)
     $file_extension = end($ext); // Store extensions in the variable.

@@ -21,7 +21,7 @@
                     <!-- /.box-body -->
                     <div class="box-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-success pull-right add-note-content">Add</button>
+                        <button type="submit" class="btn btn-primary pull-right add-note-content">Add</button>
                     </div>
                 </form>
             </div>

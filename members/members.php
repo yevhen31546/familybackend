@@ -15,7 +15,7 @@ include BASE_PATH.'/members/includes/header.php';
 ?>
     <link rel="stylesheet" href="<?php echo BASE_URL;?>/members/css/auto_fill.css">
         <!-- Page Header Start -->
-        <div class="page--header pt--60 pb--60 text-center" data-bg-img="img/page-header-img/members2.png" data-overlay="0.35">
+        <div class="page--header pt--60 pb--60 text-center" data-bg-img="img/page-header-img/members2.png" data-overlay="0.25">
             <div class="container">
                 <div class="title">
                     <h2 class="h1 text-white">Members</h2>
@@ -50,7 +50,7 @@ include BASE_PATH.'/members/includes/header.php';
 
                                         <select name="membersfilter" class="form-control form-sm" data-trigger="selectmenu">
                                             <option value="last-active" selected>Last Active</option>
-                                            <option value="new-registered">New Registerd</option>
+                                            <option value="new-registered">Newly Registered</option>
                                             <option value="alphabetical">Alphabetical</option>
                                         </select>
                                     </label>
@@ -147,10 +147,10 @@ include BASE_PATH.'/members/includes/header.php';
                     <div class="main--sidebar col-md-3 pb--60" data-trigger="stickyScroll">
                         <!-- Widget Start -->
                         <div class="widget">
-                            <h2 class="h4 fw--500 widget--title">Invite a Family Member</h2>
+                            <h2 class="h4 fw--500 widget--title">Invite Family to Join</h2>
                             <form action="" autocomplete="off" method="post" onsubmit="return checkFamilyForm(this);">
                                 <div class="autocomplete" style="width: 100%;">
-                                    <input id="myfamily" type="text" class="form-control" name="myfamily" placeholder="Family member's Name">
+                                    <input id="myfamily" type="text" class="form-control" name="myfamily" placeholder="Family Member's Name">
                                 </div>
                                 <div class="form-group" style="margin-top: 10px;">
                                     <select name="family_member" class="form-control form-sm">
@@ -179,7 +179,7 @@ include BASE_PATH.'/members/includes/header.php';
 
                         <div class="widget">
                             <form action="" method="post" onsubmit="return checkFriendForm(this);">
-                                <h2 class="h4 fw--500 widget--title">Invite a Friend</h2>
+                                <h2 class="h4 fw--500 widget--title">Invite a Friends to Join</h2>
                                 <div class="autocomplete" style="width: 100%;">
                                     <input id="myfriend" type="text" class="form-control" name="myfriend" placeholder="Friend's Name">
                                 </div>
@@ -188,18 +188,18 @@ include BASE_PATH.'/members/includes/header.php';
                         </div>
 
                         <div class="widget">
-                            <h2 class="h4 fw--500 widget--title">Invite a Member</h2>
+                            <h2 class="h4 fw--500 widget--title">Connect Members to Your Albums</h2>
                             <div style="margin-bottom: 0.7em">
                                 <button type="button" class="btn btn-sm btn-google btn btn-primary invite_outside_family">
                                     <i class="fa mr--8 fa-play"></i>
-                                    Invite a Family Member
+                                    Connect to Family Album
                                 </button>
                             </div>
                             <div>
-                                <button type="button" style="padding-right: 65px;"
+                                <button type="button"
                                         class="btn btn-sm btn-google btn btn-primary invite_outside_friend">
                                     <i class="fa mr--8 fa-play"></i>
-                                    Invite a Friend
+                                    Connect to Friend Album
                                 </button>
                             </div>
                         </div>
