@@ -248,7 +248,7 @@ if(isset($_POST) && isset($_POST['friend_name'])) {
         $ref_id = $db->insert('tbl_friend_ref', $data_to_db);
 
         if ($ref_id) {
-            $body = generateInviteFriMessageBody($row, $ref_code);
+            $body = generateInviteFriMessageBody($row, $myfriend, $ref_code);
             $stat = sendEmail($to, $body);
             if ($stat) {
                 $bell_count++;
@@ -324,7 +324,7 @@ if(isset($_POST) && isset($_POST['family_name'])) {
         $ref_id = $db->insert('tbl_family_ref', $data_to_db);
 
         if ($ref_id) {
-            $body = generateInviteFamMessageBody($row, $ref_code, $relation);
+            $body = generateInviteFamMessageBody($row, $myfamily, $ref_code, $relation);
             $stat = sendEmail($to, $body);
             if ($stat) {
                 $bell_count++;
