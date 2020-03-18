@@ -75,7 +75,7 @@ function get_note_lists($cat, $note_date, $page, $pageLimit) {
     }
 
     $totalCount = count($db->rawQuery($query));
-    $query .=' ORDER BY tmp.note_date DESC LIMIT '.$offset.', '.$pageLimit;
+    $query .=' ORDER BY tmp.note_date DESC, tmp.id DESC LIMIT '.$offset.', '.$pageLimit;
     $rows = $db->rawQuery($query);
 
     $result = array();

@@ -110,7 +110,7 @@ include BASE_PATH.'/members/includes/header.php';
 
                                                 <div class="activity--info fs--14">
                                                     <div class="activity--header">
-                                                        <p><a href="member-activity-personal.php"><?php echo $row['first_name'].$row['last_name']?></a> posted an <?php echo $row['note_media'];?> on <?php echo $row['cat_name']?></p>
+                                                        <p><a href="member-activity-personal.php"><?php echo $row['first_name'].$row['last_name']?></a> posted a <?php echo $row['note_media'];?> on <?php echo $row['cat_name']?></p>
                                                     </div>
 
                                                     <div class="activity--meta fs--12">

@@ -68,7 +68,7 @@ function get_fam_group_note_lists($cat, $note_date, $group_id, $page, $pageLimit
     }
 
     $totalCount = count($db->rawQuery($query));
-    $query .=' ORDER BY tmp.note_date DESC LIMIT '.$offset.', '.$pageLimit;
+    $query .=' ORDER BY tmp.note_date DESC, tmp.note_id DESC LIMIT '.$offset.', '.$pageLimit;
     $rows = $db->rawQuery($query);
 
     $result = array();
@@ -94,7 +94,7 @@ function get_fam_group_note__update_lists($cat, $note_date, $group_id, $page, $p
     }
 
     $totalCount = count($db->rawQuery($query));
-    $query .=' ORDER BY tmp.note_date DESC LIMIT '.$offset.', '.$pageLimit;
+    $query .=' ORDER BY tmp.note_date DESC, tmp.note_id DESC LIMIT '.$offset.', '.$pageLimit;
     $rows = $db->rawQuery($query);
 
     $result = array();

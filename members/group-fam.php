@@ -83,7 +83,7 @@ include BASE_PATH.'/members/includes/header.php';
                                                             ?>
                                                         </a>
                                                         posted
-                                                        an <?php echo $row['note_media']; ?>
+                                                        a <?php echo $row['note_media']; ?>
                                                         on <?php echo $row['cat_name'] ?> </p>
                                                     </p>
                                                 </div>
