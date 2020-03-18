@@ -64,7 +64,9 @@ $user = $db->get('tbl_users');
                                                 <?php if ($photo=='') { ?>
                                                     <img src="img/group-img/01.jpg" width="800px" height="418px" alt="" class="imgslider">
                                                 <?php } else { ?>
-                                                    <img src="<?php echo $photo;?>" width="800px" height="418px" alt="" class="imgslider">   
+                                                    <div class="group-large-photo"
+                                                         style="background-image:url('<?php echo $photo; ?>');">
+                                                    </div>
                                                 <?php } ?>                                            
                                             </a>
 

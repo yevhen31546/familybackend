@@ -162,3 +162,13 @@ li-icon {
 .comment_content {
     margin-top: 10px;
 }
+
+.group-large-photo {
+    width: 800px;
+    height: 418px;
+    /*background-size: cover;*/
+    background-size: contain;
+    background-repeat: no-repeat;
+    /*background-position: 85% 50%;*/
+    background-position: right;
+}
