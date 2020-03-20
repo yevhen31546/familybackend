@@ -338,9 +338,7 @@ include BASE_PATH.'/members/includes/header.php';
                 <!-- Widget End -->
 
                 <div class="ad--widget">
-                    <a href="#">
-                        <img src="img/widgets-img/PUFAdv.png" alt="" class="center-block">
-                    </a>
+                    <img src="img/widgets-img/PUFAdv.png" alt="" class="center-block">
                 </div>
                 <!-- Ad Widget End -->
             </div>
