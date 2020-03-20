@@ -2,6 +2,11 @@
 session_start();
 require_once 'config/config.php';
 $token = bin2hex(openssl_random_pseudo_bytes(16));
+// If user is not subscribed, redirect to subscribe page
+if (empty($_GET['on0'])) {
+//    exit;
+    header('Location: cart.php');
+}
 
 // If User has already logged in, redirect to dashboard page.
 if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === TRUE)
