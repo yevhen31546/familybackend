@@ -210,7 +210,7 @@ if ($page > 1) {
                                                 ?>
                                                 <img src="<?php echo $img_arr[0]; ?>" width="800px;" height="418px;" alt="">
                                             <?php } else { ?>
-                                                <img src="../members/img/recipe800x419.png" alt="">
+                                                <img src="../members/img/add_photo.png" alt="">
                                             <?php } ?>
                                             <?php if ($user_id === $row[$join_field]) { ?>
                                                 <a data-control-name="edit_top_card"

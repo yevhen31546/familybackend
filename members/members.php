@@ -49,7 +49,6 @@ include BASE_PATH.'/members/includes/header.php';
                                         <span class="fs--14 ff--primary fw--500 text-darker">Show By :</span>
 
                                         <select name="membersfilter" class="form-control form-sm" data-trigger="selectmenu">
-                                            <option value="last-active" selected>Last Active</option>
                                             <option value="new-registered">Newly Registered</option>
                                             <option value="alphabetical">Alphabetical</option>
                                         </select>
@@ -78,7 +77,7 @@ include BASE_PATH.'/members/includes/header.php';
                                                 <div class="name">
                                                     <h3 class="h6 fs--12">
                                                         <a href="member-activity-personal.php?user=<?php echo $row['id'];?>" class="btn-link">
-                                                            <?php echo $row['first_name']." ".$row['last_name'];?>
+                                                            <?php echo $row['last_name']." ".$row['first_name'];?>
                                                         </a>
                                                     </h3>
                                                 </div>
