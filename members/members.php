@@ -147,7 +147,7 @@ include BASE_PATH.'/members/includes/header.php';
                     <div class="main--sidebar col-md-3 pb--60" data-trigger="stickyScroll">
                         <!-- Widget Start -->
                         <div class="widget">
-                            <h2 class="h4 fw--500 widget--title">Invite Family to Join</h2>
+                            <h2 class="h4 fw--500 widget--title">Connect Members to Your Family Albums</h2>
                             <form action="" autocomplete="off" method="post" onsubmit="return checkFamilyForm(this);">
                                 <div class="autocomplete" style="width: 100%;">
                                     <input id="myfamily" type="text" class="form-control" name="myfamily" placeholder="Family Member's Name">
@@ -179,7 +179,7 @@ include BASE_PATH.'/members/includes/header.php';
 
                         <div class="widget">
                             <form action="" method="post" onsubmit="return checkFriendForm(this);">
-                                <h2 class="h4 fw--500 widget--title">Invite a Friends to Join</h2>
+                                <h2 class="h4 fw--500 widget--title">Connect Members to Your Friend Albums</h2>
                                 <div class="autocomplete" style="width: 100%;">
                                     <input id="myfriend" type="text" class="form-control" name="myfriend" placeholder="Friend's Name">
                                 </div>
@@ -188,18 +188,19 @@ include BASE_PATH.'/members/includes/header.php';
                         </div>
 
                         <div class="widget">
-                            <h2 class="h4 fw--500 widget--title">Connect Members to Your Albums</h2>
+                            <h2 class="h4 fw--500 widget--title">Invite Family to Join MyNotes4u.com</h2>
                             <div style="margin-bottom: 0.7em">
                                 <button type="button" class="btn btn-sm btn-google btn btn-primary invite_outside_family">
                                     <i class="fa mr--8 fa-play"></i>
-                                    Connect to Family Album
+                                    Send Invite
                                 </button>
                             </div>
+                            <h2 class="h4 fw--500 widget--title">Invite a Friend to Join MyNotes4u.com</h2>
                             <div>
                                 <button type="button"
                                         class="btn btn-sm btn-google btn btn-primary invite_outside_friend">
                                     <i class="fa mr--8 fa-play"></i>
-                                    Connect to Friend Album
+                                    Send Invite
                                 </button>
                             </div>
                         </div>
