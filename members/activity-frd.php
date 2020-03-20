@@ -90,16 +90,17 @@ include BASE_PATH.'/members/includes/header.php';
                                                 </div>
 
                                                 <div class="activity--content">
-                                                    <?php if ($row['note_media'] == 'text'):?>
-                                                        <p id="note_text_edit"><?php echo $row['note_value']?></p>
+                                                    <?php if ($row['note_media'] == 'text'): ?>
+                                                        <p id="note_text_edit"><?php echo $row['note_value'] ?></p>
                                                         <input type="button"
-                                                               id="<?php echo $row['note_id']; ?>_note_<?php echo $row['note_media']; ?>"
+                                                               id="<?php echo $row['id']; ?>_note_<?php echo $row['note_media']; ?>"
                                                                style="display: none;"
                                                                class="btn btn-primary note_edit pull-right"
                                                                value="Edit">
-                                                    <?php elseif ($row['note_media'] == 'photo'):?>
-                                                        <img id="note_photo_edit" src="<?php echo $row['note_value']; ?>"
-                                                             style="padding-bottom: 10px;">
+                                                    <?php elseif ($row['note_media'] == 'photo'): ?>
+                                                        <img id="note_photo_edit"
+                                                             src="<?php echo $row['note_value']; ?>"
+                                                             style="padding-bottom: 10px; width: 800px; height: 291px;">
                                                         <?php if (isset($row['note_comment']) &&
                                                             $row['note_comment'] !== '') { ?>
                                                             <div class="comment_content">
@@ -107,17 +108,42 @@ include BASE_PATH.'/members/includes/header.php';
                                                                 <?php echo $row['note_comment'] ?>
                                                             </div>
                                                         <?php } ?>
-                                                        <input type="button" id="<?php echo $row['note_id'];?>_note_<?php echo $row['note_media'];?>"
-                                                               style="display: none;" class="btn btn-primary note_edit pull-right"
+                                                        <input type="button"
+                                                               id="<?php echo $row['id']; ?>_note_<?php echo $row['note_media']; ?>"
+                                                               style="display: none;"
+                                                               class="btn btn-primary note_edit pull-right"
                                                                value="Edit">
-                                                    <?php elseif ($row['note_media'] == 'video'):?>
-                                                        <div class="link--video">
-                                                            <a class="link--url"
-                                                               href="<?php echo $row['note_value']; ?>"
-                                                               data-trigger="video_popup"></a>
-                                                            <img src="img/activity-img/link-video-poster.jpg" alt="">
-                                                        </div>
-                                                        <?php if (isset($row['note_comment'])  &&
+                                                    <?php elseif ($row['note_media'] == 'video'): ?>
+                                                        <!-- Youtube video -->
+                                                        <?php if (strpos($row['note_value'], 'youtube') > 0) { ?>
+                                                            <div class="link--video">
+                                                                <a class="link--url"
+                                                                   href="<?php echo $row['note_value']; ?>"
+                                                                   data-trigger="video_popup"></a>
+                                                                <?php
+                                                                $video_url = $row['note_value'];
+                                                                $find = "=";
+                                                                $pos = strpos($video_url, $find) + 1;
+                                                                $video_img = substr($video_url, $pos);
+                                                                $thumb_video_img = "http://img.youtube.com/vi/".$video_img."/mqdefault.jpg";
+                                                                ?>
+                                                                <img src="<?php echo $thumb_video_img; ?>" alt=""
+                                                                     style="width: 800px; height: 291px;">
+                                                                <!--                                                            <iframe src="http://www.youtube.com/embed/--><?php //echo $video_img;?><!--"-->
+                                                                <!--                                                                    width="800" height="291" frameborder="0" allowfullscreen></iframe>-->
+
+                                                            </div>
+                                                            <!-- Facebook video -->
+                                                        <?php } ?>
+                                                        <?php if (strpos($row['note_value'], 'facebook') > 0) { ?>
+                                                            <!-- Your embedded video player code -->
+                                                            <div class="fb-video"
+                                                                 data-href="<?php echo $row['note_value']; ?>"
+                                                                 data-width="800" data-allowfullscreen="true">
+                                                                <div class="fb-xfbml-parse-ignore"></div>
+                                                            </div>
+                                                        <?php } ?>
+                                                        <?php if (isset($row['note_comment']) &&
                                                             $row['note_comment'] !== '') { ?>
                                                             <div class="comment_content">
                                                                 <i class="fa mr--8 fa-comment-o"></i>
@@ -125,11 +151,11 @@ include BASE_PATH.'/members/includes/header.php';
                                                             </div>
                                                         <?php } ?>
                                                         <input type="button"
-                                                               id="<?php echo $row['note_id']; ?>_note_<?php echo $row['note_media']; ?>"
+                                                               id="<?php echo $row['id']; ?>_note_<?php echo $row['note_media']; ?>"
                                                                style="display: none;"
                                                                class="btn btn-primary note_edit pull-right"
                                                                value="Edit">
-                                                    <?php endif;?>
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                         </div>
