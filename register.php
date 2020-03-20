@@ -84,7 +84,24 @@ if(isset($_POST['user_name']) && $_POST['user_name'] != '') {
         margin-bottom: 136px;
     }
 </style>
-    <section id="demos" class="pt--70">
+    <section id="demos" class="pt--10">
+        <div class="col-md-10 col-md-offset-1" style="margin-bottom: 1%; background: aliceblue; padding: 1%;">
+            <p>
+                <b>Thank you for your payment.</b><br>
+                Your transaction has been completed and a receipt for your purchase has been emailed to you.<br>
+                To view your account transaction details, log into your PayPal account.<br>
+            </p>
+            <p>
+                <b>To begin using MyNotes4u you must first setup your account.</b><br>
+                Fill in your account information. Be sure to remember your <strong>‘Username’</strong> and
+                <strong>‘Password’</strong>.
+                You will need them to sign-in to your account later. Select the <strong>‘Register’</strong> button when completed.
+            </p>
+            <p>
+                For your next visit, you will use the <strong>‘Member Login’</strong> option at MyNotes4u.com.
+                You will be prompted to enter the same Username and Password that you entered on this page.
+            </p>
+        </div>
         <div id="page-" class="col-md-4 col-md-offset-4">
             <form class="form loginform" method="POST" action="">
                 <div class="login-panel panel panel-default">
