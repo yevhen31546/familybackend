@@ -71,14 +71,17 @@ if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === TRUE)
                         <label class="control-label">Password</label>
                         <input type="password" name="password" class="form-control" required="required">
                     </div>
+                    <div class="form-group">
+                        <a href="forgot_password.php">Forgot your password?</a>
+                    </div>
 <!--                    <div class="checkbox">-->
 <!--                        <label>-->
 <!--                            <input name="remember" type="checkbox" value="1">Remember Me-->
 <!--                        </label>-->
 <!--                    </div>-->
                     <?php if (isset($_SESSION['login_failure'])): ?>
-                    <div class="alert alert-danger alert-dismissable fade in">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <div class="alert alert-danger alert-dismissable fade in" style="margin-bottom: 10px;">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close" style="right: 6px !important;">&times;</a>
                         <?php
                         echo $_SESSION['login_failure'];
                         unset($_SESSION['login_failure']);

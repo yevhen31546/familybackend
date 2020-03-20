@@ -320,3 +320,29 @@ function generateInviteFamMessageBody($user, $receiver_name, $ref_code, $relatio
                 </html>";
     return $message;
 }
+
+
+// Generate family message body
+function generateForgotPassMsgBody($token) {
+    $reset_url = BASE_URL.'/reset_password.php?token='.$token;
+
+    $message = "";
+    $message .="<html><head><title></title></head>
+                <body>
+                <img src='".BASE_URL.LOGO_URL."'>
+                <p>
+                    We heard that you lost your MyNotes4u.com password. Sorry about that!
+                </p>
+                <p>
+                    But don't worry! You can use the following link to reset your password:
+                </p>
+                <p>
+                    <span><a href=".$reset_url.">Link to reset password</a></span>
+                </p>
+                <p>
+                    If you don't use this link within 3 hours, it will expire.
+                </p>
+                </body>
+                </html>";
+    return $message;
+}
