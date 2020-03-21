@@ -70,8 +70,11 @@ function get_note_lists($cat, $note_date, $page, $pageLimit) {
                 ) users ON tbl_notes.user_id = users.userid) tmp
                 WHERE tmp.user_id = '.$user_id;
 
-    if ($cat != '' && $note_date != '') {
-        $query .=' AND tmp.categoryId ='.$cat.' AND tmp.note_date = "'.$note_date.'"';
+    if ($cat != '') {
+        $query .=' AND tmp.categoryId ='.$cat;
+    }
+    if ($note_date != '') {
+        $query .=' AND tmp.note_date ="'.$note_date.'"';
     }
 
     $totalCount = count($db->rawQuery($query));
@@ -174,19 +177,25 @@ if(isset($_POST) && $_POST) {
         $totalPages = $result['totalPages'];
         $rows = $result['rows'];
     }
-    elseif (isset($_POST['note_view_date']) && $_POST['view_category']) {
+    elseif (isset($_POST['view_category']) && $_POST['view_category']) {
         $view_date = $_POST['note_view_date'];
         $view_cat = $_POST['view_category'];
-        $newDate = date("Y-m-d", strtotime($view_date));
+        $newDate = '';
+        if ($view_date) {
+            $newDate = date("Y-m-d", strtotime($view_date));
+        }
 
         $result = get_note_lists($view_cat, $newDate, $page, $pageLimit);
         $totalPages = $result['totalPages'];
         $rows = $result['rows'];
     }
-    elseif (isset($_POST['note_update_date']) && $_POST['update_category'] && !isset($_POST['mode'])) {
+    elseif ($_POST['update_category'] && !isset($_POST['mode'])) {
         $update_cat = $_POST['update_category'];
         $update_date = $_POST['note_update_date'];
-        $newDate = date("Y-m-d", strtotime($update_date));
+        $newDate = '';
+        if ($update_date) {
+            $newDate = date("Y-m-d", strtotime($update_date));
+        }
 
         $result = get_note_lists($update_cat, $newDate, $page, $pageLimit);
         $totalPages = $result['totalPages'];

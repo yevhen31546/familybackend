@@ -63,8 +63,11 @@ function get_fam_group_note_lists($cat, $note_date, $group_id, $page, $pageLimit
             WHERE notes.group_id = '.$group_id.' AND notes.`cat_id` = category.`id`) tmp, tbl_users us
             WHERE us.`id`= tmp.user_id';
 
-    if ($cat != '' && $note_date != '') {
-        $query .=' AND tmp.cat_id ='.$cat.' AND tmp.note_date = "'.$note_date.'"';
+    if ($cat != '') {
+        $query .=' AND tmp.cat_id ='.$cat;
+    }
+    if ($note_date != '') {
+        $query .=' AND tmp.note_date ="'.$note_date.'"';
     }
 
     $totalCount = count($db->rawQuery($query));
@@ -89,8 +92,11 @@ function get_fam_group_note__update_lists($cat, $note_date, $group_id, $page, $p
             WHERE notes.`user_id` = '.$user_id.' AND notes.group_id = '.$group_id.' AND notes.`cat_id` = category.`id`) tmp, tbl_users us
             WHERE us.`id`= tmp.user_id';
 
-    if ($cat != '' && $note_date != '') {
-        $query .=' AND tmp.cat_id ='.$cat.' AND tmp.note_date = "'.$note_date.'"';
+    if ($cat != '') {
+        $query .=' AND tmp.cat_id ='.$cat;
+    }
+    if ($note_date != '') {
+        $query .=' AND tmp.note_date ="'.$note_date.'"';
     }
 
     $totalCount = count($db->rawQuery($query));
@@ -198,7 +204,10 @@ if(isset($_POST) && $_POST) {
     elseif (isset($_POST['note_view_date']) && $_POST['view_category']) {
         $view_date = $_POST['note_view_date'];
         $view_cat = $_POST['view_category'];
-        $newDate = date("Y-m-d", strtotime($view_date));
+        $newDate = '';
+        if ($view_date) {
+            $newDate = date("Y-m-d", strtotime($view_date));
+        }
 
         $result = get_fam_group_note_lists($view_cat, $newDate, $group['id'], $page, $pageLimit);
         $totalPages = $result['totalPages'];
@@ -207,7 +216,10 @@ if(isset($_POST) && $_POST) {
     elseif (isset($_POST['note_update_date']) && $_POST['update_category'] && !isset($_POST['mode'])) {
         $update_cat = $_POST['update_category'];
         $update_date = $_POST['note_update_date'];
-        $newDate = date("Y-m-d", strtotime($update_date));
+        $newDate = '';
+        if ($update_date) {
+            $newDate = date("Y-m-d", strtotime($update_date));
+        }
 
         $result = get_fam_group_note__update_lists($update_cat, $newDate, $group['id'], $page, $pageLimit);
         $totalPages = $result['totalPages'];
@@ -217,6 +229,10 @@ if(isset($_POST) && $_POST) {
         $media_type = $_POST['note_media'];
         $update_cat = $_POST['update_category'];
         $update_date = $_POST['note_update_date'];
+        $newDate = '';
+        if ($update_date) {
+            $newDate = date("Y-m-d", strtotime($update_date));
+        }
         // Update text
         if($media_type == 'text' && isset($_POST['note_value'])){
             $data_to_db = array();
@@ -304,6 +320,7 @@ if(isset($_POST) && $_POST) {
             $data_to_db = array();
             $data_to_db['note_value'] = $_POST['update_note_photo'];
             $data_to_db['note_comment'] = $_POST['note_comment'];
+
             $db->where('id', $_POST['note_id']);
             $last_id = $db->update('tbl_fam_group_notes', $data_to_db);
 

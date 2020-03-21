@@ -99,7 +99,7 @@ include BASE_PATH.'/members/includes/header.php';
                                                     <?php if ($row['note_media'] == 'text'): ?>
                                                         <p id="note_text_edit"><?php echo $row['note_value'] ?></p>
                                                         <input type="button"
-                                                               id="<?php echo $row['id']; ?>_note_<?php echo $row['note_media']; ?>"
+                                                               id="<?php echo $row['note_id']; ?>_note_<?php echo $row['note_media']; ?>"
                                                                style="display: none;"
                                                                class="btn btn-primary note_edit pull-right"
                                                                value="Edit">
@@ -115,7 +115,7 @@ include BASE_PATH.'/members/includes/header.php';
                                                             </div>
                                                         <?php } ?>
                                                         <input type="button"
-                                                               id="<?php echo $row['id']; ?>_note_<?php echo $row['note_media']; ?>"
+                                                               id="<?php echo $row['note_id']; ?>_note_<?php echo $row['note_media']; ?>"
                                                                style="display: none;"
                                                                class="btn btn-primary note_edit pull-right"
                                                                value="Edit">
@@ -157,7 +157,7 @@ include BASE_PATH.'/members/includes/header.php';
                                                             </div>
                                                         <?php } ?>
                                                         <input type="button"
-                                                               id="<?php echo $row['id']; ?>_note_<?php echo $row['note_media']; ?>"
+                                                               id="<?php echo $row['note_id']; ?>_note_<?php echo $row['note_media']; ?>"
                                                                style="display: none;"
                                                                class="btn btn-primary note_edit pull-right"
                                                                value="Edit">
@@ -275,7 +275,7 @@ include BASE_PATH.'/members/includes/header.php';
                                                        value="<?php echo $_POST['note_view_date'] ?>">
                                             <?php } else { ?>
                                                 <input type="date" name="note_view_date"
-                                                       value="<?php echo date("Y-m-d") ?>">
+                                                       placeholder="Choose date">
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -329,7 +329,7 @@ include BASE_PATH.'/members/includes/header.php';
                                                        value="<?php echo $_POST['note_update_date'] ?>">
                                             <?php } else { ?>
                                                 <input type="date" name="note_update_date"
-                                                       value="<?php echo date("Y-m-d") ?>">
+                                                       placeholder="Choose date">
                                             <?php } ?>
                                         </div>
                                     </div>

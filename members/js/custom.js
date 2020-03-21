@@ -45,7 +45,7 @@
     var update_cat = $('input[name="update_category"]').val();
     var update_date = $('input[name="note_update_date"]').val();
     // console.log('update flag:', update_date);
-    if ((update_cat === '') || (update_date === '')) {
+    if (update_cat === '') {
         localStorage.removeItem("edit");
     } else {
         localStorage.setItem("edit", "true");
@@ -284,13 +284,13 @@
 
         console.log("view_date", view_date);
         console.log("view_cat", view_cat);
-        if(view_date === '') {
-            $('#view_note_form input[name="note_view_date"]').css("border", "1px solid red");
-            view_date_val = false;
-        } else {
-            $('#view_note_form input[name="note_view_date"]').css("border", "1px solid white");
-            view_date_val = true;
-        }
+        // if(view_date === '') {
+        //     $('#view_note_form input[name="note_view_date"]').css("border", "1px solid red");
+        //     view_date_val = false;
+        // } else {
+        //     $('#view_note_form input[name="note_view_date"]').css("border", "1px solid white");
+        //     view_date_val = true;
+        // }
 
         if( view_cat === "1") {
             $('#view_note_form ul[data-select-name="view_category"] li.selected').parent().parent().css("border", "1px solid red");
@@ -299,7 +299,7 @@
             $('#view_note_form ul[data-select-name="view_category"] li.selected').parent().parent().css("border", "1px solid white");
             view_cat_val = true;
         }
-        if(view_date_val && view_cat_val) {
+        if(view_cat_val) {
             $('#view_note_form').submit();
         }
     });
@@ -314,13 +314,13 @@
         var update_date = $('#update_note_form input[name="note_update_date"]').val();
         var update_cat = $('#update_note_form ul[data-select-name="update_category"] li.selected').attr('data-option-value');
 
-        if(update_date == '') {
-            $('#update_note_form input[name="note_update_date"]').css("border", "1px solid red");
-            update_date_val = false;
-        } else {
-            $('#update_note_form input[name="note_update_date"]').css("border", "1px solid white");
-            update_date_val = true;
-        }
+        // if(update_date == '') {
+        //     $('#update_note_form input[name="note_update_date"]').css("border", "1px solid red");
+        //     update_date_val = false;
+        // } else {
+        //     $('#update_note_form input[name="note_update_date"]').css("border", "1px solid white");
+        //     update_date_val = true;
+        // }
 
         if( update_cat === '1') {
             $('#update_note_form ul[data-select-name="update_category"] li.selected').parent().parent().css("border", "1px solid red");
@@ -329,7 +329,7 @@
             $('#update_note_form ul[data-select-name="update_category"] li.selected').parent().parent().css("border", "1px solid white");
             update_cat_val = true;
         }
-        if(update_date_val && update_cat_val) {
+        if(update_cat_val) {
             window.localStorage.setItem('edit', 'true');
             $('#update_note_form').submit();
         }
@@ -393,16 +393,23 @@
             $('.update-note-content').text('Update');
             $('.note-update-modal').modal('toggle');
             $('.note-update-modal input[name="note_video"]').show();
-            var note_value = $(this).parent().children().find('.link--url').attr('href');
-            var note_comment = $(this).parent().children('div.comment_content').text().trim();
-            console.log(note_comment);
+            var youtube_link = $(this).parent().children().find('.link--url').attr('href');
+
             $('.note-update-modal input[name="note_video"]').val(note_value);
+            if (!youtube_link) {
+                var facebook_link = $(this).parent().children('div.fb-video').attr('data-href');
+            }
+            var note_value = youtube_link? youtube_link:facebook_link;
+            console.log('note_value: ', note_value);
+            var note_comment = $(this).parent().children('div.comment_content').text().trim();
+            console.log('comment: ', note_comment);
             $('.note-update-modal input[name="note_media"]').val('video');
             $('.note-update-modal input[name="note_id"]').val(id);
             $('.note-update-modal input[name="note_to"]').val(to);     // Profile id
             $('.note-update-modal #note_photo_id_edit').hide();
             $('.note-update-modal #note_comment').show();
             $('.note-update-modal #note_comment').val(note_comment);
+            $('.note-update-modal input[name="note_video"]').val(note_value);
 
             $('.note-update-modal input[name="note_value"]').hide();
             $('.note-update-modal input[name="note_photo"]').hide();

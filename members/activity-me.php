@@ -271,7 +271,7 @@ include BASE_PATH.'/members/includes/header.php';
                                                value="<?php echo $_POST['note_view_date'] ?>">
                                         <?php } else { ?>
                                         <input type="date" name="note_view_date"
-                                               value="<?php echo date("Y-m-d") ?>">
+                                               placeholder="Choose date">
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -321,7 +321,7 @@ include BASE_PATH.'/members/includes/header.php';
                                                    value="<?php echo $_POST['note_update_date'] ?>">
                                         <?php } else { ?>
                                             <input type="date" name="note_update_date"
-                                                   value="<?php echo date("Y-m-d") ?>">
+                                                   placeholder="Choose date">
                                         <?php } ?>
                                     </div>
                                 </div>
