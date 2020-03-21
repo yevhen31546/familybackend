@@ -40,6 +40,53 @@ function genFamReqNotMsg($params) {
     return $message;
 }
 
+// Generate friend invite notification message
+function genFriInvNotMsg($params) {
+    $db = getDbInstance();
+    $message = "";
+
+    foreach ($params as $param):
+        $friend_name = $param['last_name']." ".$param['first_name'];
+        if ($param['stat'] != 0) {
+            if ($param['stat'] == 1) { // Friend approve your request
+                $message .= "You have successfully sent a friend request to " . $friend_name . "<hr>";
+            }
+            if ($param['stat'] == -1) { // Friend delete your request
+                $message .= "Your friend request to " . $friend_name . " has been declined" . "<hr>";
+            }
+            $db->where('id', $param['friend_id']);
+            $db->update('tbl_friend', array('not_flag' => 1)); // update notification flag
+        }
+
+    endforeach;
+
+    return $message;
+}
+
+// Generate family invite notification message
+function genFamInvNotMsg($params) {
+    $db = getDbInstance();
+    $message = "";
+
+    foreach ($params as $param):
+        $family_name = $param['last_name']." ".$param['first_name'];
+        if ($param['stat'] != 0) {
+            if ($param['stat'] == 1) { // Friend approve your request
+                $message .= "You have successfully sent a family request to ".$family_name."<hr>";
+            }
+            if ($param['stat'] == -1) { // Friend delete your request
+                $message .= "Your family request to ".$family_name." has been declined"."<hr>";
+            }
+            $db->where('id', $param['family_id']);
+            $db->update('tbl_family',array('not_flag' => 1)); // update notification flag
+        }
+
+
+    endforeach;
+
+    return $message;
+}
+
 // Generate family group invitation notification message
 function genFamGroupNotMsg($params) {
 
@@ -214,6 +261,42 @@ function checkFriendRequest($user_id) {
         return count($friend_requests);
     } else {
         $_SESSION['friend_request_msg'] = '';
+        return 0;
+    }
+}
+
+// Check friend invitation is approved or not
+function checkFriInvitationState($user_id) {
+    $db = getDbInstance();
+    $query = 'SELECT users.*, friend.id AS friend_id, friend.who, friend.with_who, friend.stat
+              FROM tbl_users AS users JOIN
+              (SELECT * FROM tbl_friend WHERE who = '.$user_id.' AND not_flag = 0) AS friend
+              ON users.id = friend.with_who';
+    $friend_invitations = $db->rawQuery($query);
+    if(count($friend_invitations) > 0) {
+        $notification_msg = genFriInvNotMsg($friend_invitations);
+        $_SESSION['friend_invite_msg'] = $notification_msg;
+        return count($friend_invitations);
+    } else {
+        $_SESSION['friend_invite_msg'] = '';
+        return 0;
+    }
+}
+
+// Check family invitation is approved or not
+function checkFamInvitationState($user_id) {
+    $db = getDbInstance();
+    $query = 'SELECT users.*, family.id AS family_id, family.who, family.with_who, family.relation, family.stat
+              FROM tbl_users AS users JOIN
+              (SELECT * FROM tbl_family WHERE who = '.$user_id.' AND not_flag = 0) AS family
+              ON users.id = family.with_who';
+    $family_invitations = $db->rawQuery($query);
+    if(count($family_invitations) > 0) {
+        $notification_msg = genFamInvNotMsg($family_invitations);
+        $_SESSION['family_invite_msg'] = $notification_msg;
+        return count($family_invitations);
+    } else {
+        $_SESSION['family_invite_msg'] = '';
         return 0;
     }
 }

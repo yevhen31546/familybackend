@@ -88,3 +88,17 @@ if(isset($_SESSION['fri_note_request_msg']))
     echo $_SESSION['fri_note_request_msg'];
     unset($_SESSION['fri_note_request_msg']);
 }
+
+// Friend invitation status message
+if(isset($_SESSION['friend_invite_msg']))
+{
+    echo $_SESSION['friend_invite_msg'];
+    unset($_SESSION['friend_invite_msg']);
+}
+
+// Family invitation status message
+if(isset($_SESSION['family_invite_msg']))
+{
+    echo $_SESSION['family_invite_msg'];
+    unset($_SESSION['family_invite_msg']);
+}

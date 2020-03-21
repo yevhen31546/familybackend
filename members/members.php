@@ -7,8 +7,11 @@ require_once 'smtp_endpoint.php';
 require_once 'notification.php';
 require_once 'members_endpoint.php';
 
-$bell_count += checkFamilyRequest($logged_id);
-$bell_count += checkFriendRequest($logged_id);
+$bell_count += checkFamilyRequest($logged_id); // check family request
+$bell_count += checkFriendRequest($logged_id); // check friend request
+
+$bell_count += checkFriInvitationState($logged_id); // check family invitation
+$bell_count += checkFamInvitationState($logged_id); // check friend invitation
 
 include BASE_PATH.'/members/includes/header.php';
 

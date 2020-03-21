@@ -10,6 +10,9 @@ require_once 'member_profile_endpoint.php';
 $bell_count += checkFamilyRequest($logged_id);
 $bell_count += checkFriendRequest($logged_id);
 
+$bell_count += checkFriInvitationState($logged_id); // check family invitation
+$bell_count += checkFamInvitationState($logged_id); // check friend invitation
+
 include BASE_PATH.'/members/includes/header.php';
 
 ?>

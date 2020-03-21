@@ -10,6 +10,9 @@ require_once 'member-activity-endpoint.php';
 $bell_count += checkFamilyRequest($logged_id);
 $bell_count += checkFriendRequest($logged_id);
 
+$bell_count += checkFriInvitationState($logged_id); // check family invitation
+$bell_count += checkFamInvitationState($logged_id); // check friend invitation
+
 $db = getDbInstance();
 $db->join('tbl_notes', 'tbl_notes.user_id = tbl_users.id')->join('tbl_categories','tbl_notes.cat_id = tbl_categories.id');
 $db->where('tbl_users.id', $_GET['user']);
