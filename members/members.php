@@ -47,11 +47,17 @@ include BASE_PATH.'/members/includes/header.php';
                                 <div class="filter--options float--right">
                                     <label>
                                         <span class="fs--14 ff--primary fw--500 text-darker">Show By :</span>
-
-                                        <select name="membersfilter" class="form-control form-sm" data-trigger="selectmenu">
-                                            <option value="new-registered">Newly Registered</option>
-                                            <option value="alphabetical">Alphabetical</option>
-                                        </select>
+                                        <form method="post" action="">
+                                            <select name="membersfilter" id="membersfilter" class="form-control form-sm"
+                                                    onchange="this.form.submit();">
+                                                <option value="1" <?php if(isset($_POST['membersfilter']) && $_POST['membersfilter'] == 1) echo 'selected'; ?>>
+                                                    Newly Registered
+                                                </option>
+                                                <option value="2" <?php if(isset($_POST['membersfilter']) && $_POST['membersfilter'] == 2) echo 'selected'; ?>>
+                                                    Alphabetical
+                                                </option>
+                                            </select>
+                                        </form>
                                     </label>
                                 </div>
                             </div>

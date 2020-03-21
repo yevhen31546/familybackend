@@ -353,6 +353,12 @@ foreach($members as $member):
     array_push($users, $member['user_name']);
 endforeach;
 
+// Filter option
+$order_val = 1;
+if (isset($_POST) && isset($_POST['membersfilter'])) {
+    $order_val = $_POST['membersfilter'];
+}
+
 // Get member lists
 $page = 1;
 $page_per_num = 12;
@@ -366,7 +372,15 @@ if (isset($_GET) && isset($_GET['page_num'])) {
         $page = 1;
     }
 }
-$rows = $db->paginate($tbl_name, $page);
+if ($order_val == 1) {
+    $db->orderBy('created_date', 'DESC');
+    $rows = $db->paginate($tbl_name, $page);    // newly registered first
+}
+if ($order_val == 2) {
+    $db->orderBy('first_name', 'ASC');
+    $rows = $db->paginate($tbl_name, $page); // Alphabetical
+}
+
 $total = $db->totalCount;
 $pages = $db->totalPages;
 
