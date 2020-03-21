@@ -15,6 +15,7 @@ $join_field = 'rec_submit_by';
 $filter_letter = 'rec_title';
 $group_filter = 'rec_type';
 $order_field = 'rec_date';
+$order_field2 = 'id';
 
 $db = getDbInstance();
 $db->pageLimit = $page_per_num;
@@ -83,14 +84,14 @@ if (isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
     } elseif(isset($_GET['letter']) && $_GET['letter'] && empty($_GET['groupfilter'])) {
         $db->where($filter_letter, $_GET['letter'].'%', 'LIKE');
     }
-    $db->orderBy($order_field);
+    $db->orderBy($order_field)->orderBy($target_tbl.'.'.$order_field2);
 
     $rows = $db->paginate($tbl_name, $page);
     $total = $db->totalCount;
     $pages = $db->totalPages;
 } else {
     $db->join($target_tbl, $tbl_name.'.id = '.$target_tbl.'.'.$join_field);
-    $db->orderBy($order_field);
+    $db->orderBy($order_field)->orderBy($target_tbl.'.'.$order_field2);
 
     if (isset($_GET['page_num']) && $_GET['page_num']) {
         $page = $_GET['page_num'];

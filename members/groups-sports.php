@@ -15,6 +15,7 @@ $join_field = 'sportsubmitby';
 $filter_letter = 'sportname';
 $group_filter = 'sportname';
 $order_field = 'sportdate';
+$order_field2 = 'id';
 
 $db = getDbInstance();
 $db->pageLimit = $page_per_num;
@@ -90,14 +91,14 @@ if (isset($_GET) && (isset($_GET['groupfilter']) || isset($_GET['letter']))) {
     if (isset($_GET['player_name_filter']) && $_GET['player_name_filter']) {
         $db->where('sportperson', '%'.$_GET['player_name_filter'].'%', 'LIKE');
     }
-    $db->orderBy($order_field);
+    $db->orderBy($order_field)->orderBy($target_tbl.'.'.$order_field2);
 
     $rows = $db->paginate($tbl_name, $page);
     $total = $db->totalCount;
     $pages = $db->totalPages;
 } else {
     $db->join($target_tbl, $tbl_name.'.id = '.$target_tbl.'.'.$join_field);
-    $db->orderBy($order_field);
+    $db->orderBy($order_field)->orderBy($target_tbl.'.'.$order_field2);
 
     if (isset($_GET['page_num']) && $_GET['page_num']) {
         $page = $_GET['page_num'];
