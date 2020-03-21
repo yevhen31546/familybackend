@@ -170,5 +170,21 @@ li-icon {
     background-size: contain;
     background-repeat: no-repeat;
     /*background-position: 85% 50%;*/
-    background-position: right;
+    background-position: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*.box--item .img {*/
+    /*height: 158px;*/
+/*}*/
+
+.custom-background-img {
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    /*background-size: contain;*/
+    background-size: cover;
+
 }

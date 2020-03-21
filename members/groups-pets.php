@@ -201,11 +201,12 @@ if ($page > 1) {
                         <div class="col-md-4 col-xs-6 col-xxs-12">
                             <!-- Box Item Start -->
                             <div class="box--item text-center">
-                                <a href="groups-pets-large.php?userid=<?php echo $row['petsubmitby'];?>&&petid=<?php echo $row['id']?>" class="img" data-overlay="0.1">
+                                <a href="groups-pets-large.php?userid=<?php echo $row['petsubmitby'];?>&&petid=<?php echo $row['id']?>"
+                                   class="img" style="height: 158px;" data-overlay="0.1">
                                     <?php if($row['petphoto'] !='') { 
                                         $img_arr = explode(",", $row['petphoto']);  
                                         ?>
-                                        <img src="<?php echo $img_arr[0]; ?>" alt="">
+                                        <div class="custom-background-img" style="background-image: url(<?php echo $img_arr[0]; ?>)"></div>
                                     <?php } else { ?>
                                         <img src="../members/img/add_photo.png" alt="">
                                     <?php } ?>

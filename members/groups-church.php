@@ -210,11 +210,13 @@ if ($page > 1) {
                                 <!-- Box Item Start -->
                                 <div class="box--item text-center">
 
-                                    <a href="groups-church-large.php?userid=<?php echo $row['churchsubmitby'];?>&&churchid=<?php echo $row['id']?>" class="img" data-overlay="0.1">
+                                    <a href="groups-church-large.php?userid=<?php echo $row['churchsubmitby'];?>&&churchid=<?php echo $row['id']?>"
+                                       class="img" style="height: 158px" data-overlay="0.1">
                                         <?php if($row['churchphoto'] !='') { 
                                             $img_arr = explode(",", $row['churchphoto']);  
                                             ?>
-                                            <img src="<?php echo $img_arr[0]; ?>" alt="">
+                                            <div class="custom-background-img" style="background-image: url(<?php echo $img_arr[0]; ?>)"></div>
+                                            <!-- <img src="<?php echo $img_arr[0]; ?>" style="height: 100%;" alt=""> -->
                                         <?php } else { ?>
                                             <img src="../members/img/add_photo.png" alt="">
                                         <?php } ?>
