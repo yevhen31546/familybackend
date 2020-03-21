@@ -57,8 +57,14 @@ if(isset($_GET) && isset($_GET['type'])) {
             $db = getDbInstance();
             $db->where('id', $family_id);
             $last_id = $db->update('tbl_family', $data_to_db);  // Update tbl_family's status
-            $bell_count++;
-            $_SESSION['success'] = $sender['user_name'].' has disapproved!<hr>';
+
+            $to = $sender['user_email']; // sender's email
+            $body = generateDeleteFamMessageBody($sender, $receiver, $family_relation);
+            $stat = sendEmail($to, $body);
+            if ($stat) {
+                $bell_count++;
+                $_SESSION['success'] = $sender['user_name'].' has disapproved!<hr>';
+            }
         }
     }
     if($_GET['type']=='friend') {
@@ -102,8 +108,13 @@ if(isset($_GET) && isset($_GET['type'])) {
             $db->where('id', $friend_id);
             $last_id = $db->update('tbl_friend', $data_to_db);  // Update tbl_friend's status
 
-            $bell_count++;
-            $_SESSION['success'] = $sender['user_name'].' has disapproved!<hr>';
+            $to = $sender['user_email']; // sender's email
+            $body = generateDeleteFriMessageBody($sender, $receiver);
+            $stat = sendEmail($to, $body);
+            if ($stat) {
+                $bell_count++;
+                $_SESSION['success'] = $sender['user_name'].' has disapproved!<hr>';
+            }
         }
     }
 }
