@@ -11,7 +11,7 @@
                 <form action="" method="POST" onsubmit="return checkForm(this);">
                     <div class="box-body">
                         <div class="form-group">
-                            <input type="text" name="family_name" class="form-control" placeholder="Enter the friend name" required>
+                            <input type="text" name="family_name" class="form-control" placeholder="Enter the Family Member's name" required>
                         </div>
                         <div class="form-group">
                             <input type="email" name="family_email" class="form-control" placeholder="Enter the email" required>

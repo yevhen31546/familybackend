@@ -11,7 +11,7 @@ if(!empty($_GET['hosted_button_id']) && !empty($_GET['tx']) && !empty($_GET['amt
     $currency_code = $_GET['cc'];
     $payment_status = $_GET['st'];
     $custom = $_GET['cm']; // specify each user by time
-    echo 'txt_id: '.$txn_id;
+//    echo 'txt_id: '.$txn_id;
 
 //    // Check if transaction data exists with the same TXN ID.
 //    $prevPaymentResult = $db->query("SELECT * FROM user_subscriptions WHERE txn_id = '".$txn_id."'");
@@ -122,7 +122,7 @@ if(isset($_POST['user_name']) && $_POST['user_name'] != '') {
         <div id="page-" class="col-md-4 col-md-offset-4">
             <form class="form loginform" method="POST" action="">
                 <div class="login-panel panel panel-default">
-                    <div class="panel-heading">Welcome to register</div>
+                    <div class="panel-heading">Welcome to MyNotes4u</div>
                     <div class="panel-body">
                         <div class="form-group">
                             <label class="control-label">Username</label>
