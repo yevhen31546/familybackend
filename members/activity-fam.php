@@ -200,14 +200,14 @@ include BASE_PATH.'/members/includes/header.php';
                 <?php
                 if (count($create_group_lists) < 15) { ?>
                     <div class="filter--link">
-                        <a href="forms/create_family_group.php"><h5>Create a new family group (+)</h5></a>
+                        <a href="forms/create_family_group.php"><h5>Create a new private family group (+)</h5></a>
                     </div>
                 <?php }
                 ?>
                 <?php
                 if (count($create_group_lists) > 0 || count($belongs_group_lists) > 0) { ?>
                     <div class="filter--link">
-                        <a href="forms/view_fam_group.php"><h5>View Groups</h5></a>
+                        <a href="forms/view_fam_group.php"><h5>Go To Groups</h5></a>
                     </div>
                 <?php }
                 ?>

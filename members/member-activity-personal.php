@@ -32,7 +32,7 @@ include BASE_PATH.'/members/includes/header.php';
         <?php if(isset($userrow['cover_photo'])) { ?>
             <div class="cover--header pt--80 text-center" data-bg-img="<?php echo substr($userrow['cover_photo'],2) ?>" data-overlay="0.6" data-overlay-color="white">
         <?php } else { ?>
-            <div class="cover--header pt--80 text-center" data-bg-img="img/cover-header-img/bg-01.jpg" data-overlay="0.6" data-overlay-color="white">
+            <div class="cover--header pt--80 text-center" data-bg-img="img/cover-header-img/rocks.png" data-overlay="0.6" data-overlay-color="white">
         <?php } ?>
             <div class="container">
                 <div class="cover--avatar online" data-overlay="0.3" data-overlay-color="primary">

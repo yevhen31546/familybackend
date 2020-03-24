@@ -115,9 +115,13 @@ include BASE_PATH.'/members/includes/header.php';
                                                                 <?php echo $row['description']; ?>
                                                             </p>
                                                         </div>
+                                                        <a href="../group-fam.php?group_id=<?php echo $row['id'] ?>"
+                                                           class="btn btn-primary">
+                                                            Go To Group
+                                                        </a>
                                                         <a href="edit_family_group.php?group_id=<?php echo $row['id']; ?>"
                                                            class="btn btn-primary">
-                                                            Edit <?php echo $row['group_name']; ?>
+                                                            Edit Group
                                                         </a>
                                                     </div>
                                                 </div>
