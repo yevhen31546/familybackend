@@ -3,10 +3,27 @@ session_start();
 require_once 'config/config.php';
 $token = bin2hex(openssl_random_pseudo_bytes(16));
 // If user is not subscribed, redirect to subscribe page
-if (empty($_GET['on0'])) {
-//    exit;
+if(!empty($_GET['hosted_button_id']) && !empty($_GET['tx']) && !empty($_GET['amt']) && $_GET['st'] == 'Completed'){
+    $db = getDbInstance();
+    // Get transaction information from URL
+    $txn_id = $_GET['tx'];
+    $payment_gross = $_GET['amt'];
+    $currency_code = $_GET['cc'];
+    $payment_status = $_GET['st'];
+    $custom = $_GET['cm']; // specify each user by time
+    echo 'txt_id: '.$txn_id;
+
+//    // Check if transaction data exists with the same TXN ID.
+//    $prevPaymentResult = $db->query("SELECT * FROM user_subscriptions WHERE txn_id = '".$txn_id."'");
+//
+//    if($prevPaymentResult->num_rows > 0){
+//        // Get subscription info from database
+//        $paymentData = $prevPaymentResult->fetch_assoc();
+//    }
+} else {
     header('Location: cart.php');
 }
+
 
 // If User has already logged in, redirect to dashboard page.
 if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === TRUE)
