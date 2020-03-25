@@ -30,7 +30,7 @@ if (isset($_POST) && isset($_POST['user_email'])) {
         $body = generateForgotPassMsgBody($token); //
         $stat = sendEmail($user_email, $body);
 
-        $_SESSION['success'] = 'Reset password email will be arrived.';
+        $_SESSION['success'] = 'The password reset email has been sent!';
         $bell_count++;
     } else {
         $_SESSION['invalid_email'] = 'Sorry, email is not exists in site.';

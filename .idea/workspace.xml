@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0dcfc1bc-f385-4583-b2ea-764e7c8ae5c4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml___jb_tmp___" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.php" afterPath="$PROJECT_DIR$/config/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-church.php" afterPath="$PROJECT_DIR$/members/groups-church.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-events.php" afterPath="$PROJECT_DIR$/members/groups-events.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-homerepair.php" afterPath="$PROJECT_DIR$/members/groups-homerepair.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-pets.php" afterPath="$PROJECT_DIR$/members/groups-pets.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-recipes.php" afterPath="$PROJECT_DIR$/members/groups-recipes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-sports.php" afterPath="$PROJECT_DIR$/members/groups-sports.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-travel.php" afterPath="$PROJECT_DIR$/members/groups-travel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/forgot_password.php" afterPath="$PROJECT_DIR$/forgot_password.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/header.php" afterPath="$PROJECT_DIR$/includes/header.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/activity-fam.php" afterPath="$PROJECT_DIR$/members/activity-fam.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/activity-frd.php" afterPath="$PROJECT_DIR$/members/activity-frd.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/activity-me.php" afterPath="$PROJECT_DIR$/members/activity-me.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/group-fam.php" afterPath="$PROJECT_DIR$/members/group-fam.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/group-frd.php" afterPath="$PROJECT_DIR$/members/group-frd.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,78 +24,38 @@
       <file leaf-file-name="config.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="46" column="32" lean-forward="false" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="32" />
+            <state relative-caret-position="-557">
+              <caret line="5" column="8" lean-forward="false" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="groups-travel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/members/groups-travel.php">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="183" column="128" lean-forward="true" selection-start-line="183" selection-start-column="117" selection-end-line="183" selection-end-column="128" />
+            <state relative-caret-position="242">
+              <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="groups-sports.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/members/groups-sports.php">
+      <file leaf-file-name="header.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="396" column="0" lean-forward="true" selection-start-line="396" selection-start-column="0" selection-end-line="396" selection-end-column="0" />
+            <state relative-caret-position="360">
+              <caret line="138" column="32" lean-forward="true" selection-start-line="138" selection-start-column="32" selection-end-line="138" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="groups-events.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/members/groups-events.php">
+      <file leaf-file-name="activity-me.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/members/activity-me.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="185" column="110" lean-forward="true" selection-start-line="185" selection-start-column="110" selection-end-line="185" selection-end-column="110" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="groups-homerepair.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/members/groups-homerepair.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="177" column="71" lean-forward="false" selection-start-line="177" selection-start-column="71" selection-end-line="177" selection-end-column="71" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="groups-pets.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/members/groups-pets.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="175" column="85" lean-forward="false" selection-start-line="175" selection-start-column="85" selection-end-line="175" selection-end-column="85" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="groups-recipes.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/members/groups-recipes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="174" column="112" lean-forward="true" selection-start-line="174" selection-start-column="112" selection-end-line="174" selection-end-column="112" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="groups-church.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/members/groups-church.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="182" column="71" lean-forward="false" selection-start-line="182" selection-start-column="60" selection-end-line="182" selection-end-column="71" />
+            <state relative-caret-position="596">
+              <caret line="254" column="52" lean-forward="true" selection-start-line="254" selection-start-column="52" selection-end-line="254" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -113,9 +73,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>add</find>
-      <find>activity-content</find>
-      <find>activity--content</find>
       <find>view_note_submit</find>
       <find>view</find>
       <find>update_note_submit</find>
@@ -143,6 +100,9 @@
       <find>modal</find>
       <find>create</find>
       <find>page_num</find>
+      <find>contact</find>
+      <find>add a video link</find>
+      <find>reset password email</find>
     </findStrings>
     <replaceStrings>
       <replace>index.php</replace>
@@ -179,7 +139,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/members/groups-travel-add.php" />
         <option value="$PROJECT_DIR$/members/groups-homerepair-add.php" />
         <option value="$PROJECT_DIR$/members/groups-events-add.php" />
         <option value="$PROJECT_DIR$/members/groups-church-large.php" />
@@ -195,7 +154,6 @@
         <option value="$PROJECT_DIR$/forgot_password.php" />
         <option value="$PROJECT_DIR$/members/includes/header.php" />
         <option value="$PROJECT_DIR$/members/includes/footer.php" />
-        <option value="$PROJECT_DIR$/members/activity-me.php" />
         <option value="$PROJECT_DIR$/members/my_album_endpoint.php" />
         <option value="$PROJECT_DIR$/members/my_family_endpoint.php" />
         <option value="$PROJECT_DIR$/members/js/custom.js" />
@@ -222,7 +180,6 @@
         <option value="$PROJECT_DIR$/members/activity-frd.php" />
         <option value="$PROJECT_DIR$/members/forms/view_fam_group.php" />
         <option value="$PROJECT_DIR$/members/forms/view_fri_group.php" />
-        <option value="$PROJECT_DIR$/config/config.php" />
         <option value="$PROJECT_DIR$/members/groups-church.php" />
         <option value="$PROJECT_DIR$/members/groups-travel.php" />
         <option value="$PROJECT_DIR$/members/groups-sports.php" />
@@ -230,6 +187,9 @@
         <option value="$PROJECT_DIR$/members/groups-homerepair.php" />
         <option value="$PROJECT_DIR$/members/groups-pets.php" />
         <option value="$PROJECT_DIR$/members/groups-recipes.php" />
+        <option value="$PROJECT_DIR$/config/config.php" />
+        <option value="$PROJECT_DIR$/includes/header.php" />
+        <option value="$PROJECT_DIR$/members/activity-me.php" />
       </list>
     </option>
   </component>
@@ -274,25 +234,6 @@
               <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
               <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="forms" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="img" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="familybackend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="familybackend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="members" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="img" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="cover-header-img" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -382,11 +323,12 @@
       <workItem from="1584677234641" duration="63823000" />
       <workItem from="1585031999521" duration="744000" />
       <workItem from="1585134343329" duration="1289000" />
+      <workItem from="1585136600952" duration="1031000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="704533000" />
+    <option name="totallyTimeSpent" value="705564000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -401,14 +343,15 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.108208954" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10927505" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32790446" sideWeight="0.4978678" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24212812" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22060767" sideWeight="0.45393634" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2204126" sideWeight="0.45393634" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -416,7 +359,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32790446" sideWeight="0.4978678" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -481,34 +423,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/members/forms/note_update_modal.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="37" column="68" lean-forward="false" selection-start-line="37" selection-start-column="68" selection-end-line="37" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/members/forms/note_add_modal.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/members/forms/invite_friend_modal.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/members/forms/invite_family_select_modal.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-623">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/members/forms/invite_family_modal.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-726">
@@ -790,17 +704,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="46" column="32" lean-forward="false" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/members/groups-church.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
+        <state relative-caret-position="4004">
           <caret line="182" column="71" lean-forward="false" selection-start-line="182" selection-start-column="60" selection-end-line="182" selection-end-column="71" />
           <folding />
         </state>
@@ -808,15 +714,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/members/groups-travel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="183" column="128" lean-forward="true" selection-start-line="183" selection-start-column="117" selection-end-line="183" selection-end-column="128" />
+        <state relative-caret-position="4026">
+          <caret line="183" column="128" lean-forward="false" selection-start-line="183" selection-start-column="117" selection-end-line="183" selection-end-column="128" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/members/groups-sports.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
+        <state relative-caret-position="8690">
           <caret line="396" column="0" lean-forward="true" selection-start-line="396" selection-start-column="0" selection-end-line="396" selection-end-column="0" />
           <folding />
         </state>
@@ -824,7 +730,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/members/groups-events.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
+        <state relative-caret-position="4070">
           <caret line="185" column="110" lean-forward="true" selection-start-line="185" selection-start-column="110" selection-end-line="185" selection-end-column="110" />
           <folding />
         </state>
@@ -832,7 +738,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/members/groups-homerepair.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
+        <state relative-caret-position="3894">
           <caret line="177" column="71" lean-forward="false" selection-start-line="177" selection-start-column="71" selection-end-line="177" selection-end-column="71" />
           <folding />
         </state>
@@ -840,7 +746,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/members/groups-pets.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
+        <state relative-caret-position="3850">
           <caret line="175" column="85" lean-forward="false" selection-start-line="175" selection-start-column="85" selection-end-line="175" selection-end-column="85" />
           <folding />
         </state>
@@ -848,8 +754,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/members/groups-recipes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="174" column="112" lean-forward="true" selection-start-line="174" selection-start-column="112" selection-end-line="174" selection-end-column="112" />
+        <state relative-caret-position="506">
+          <caret line="182" column="0" lean-forward="true" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/includes/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-557">
+          <caret line="5" column="8" lean-forward="false" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="138" column="32" lean-forward="true" selection-start-line="138" selection-start-column="32" selection-end-line="138" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/members/activity-me.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="596">
+          <caret line="254" column="52" lean-forward="true" selection-start-line="254" selection-start-column="52" selection-end-line="254" selection-end-column="52" />
           <folding />
         </state>
       </provider>

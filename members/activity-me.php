@@ -239,7 +239,7 @@ include BASE_PATH.'/members/includes/header.php';
                                                 <option value="addmedia">Select Note Type</option>
                                                 <option value="text">Add Text</option>
                                                 <option value="photo">Add a Photo</option>
-                                                <option value="video">Add a Video Link</option>
+                                                <option value="video">Add a Video</option>
                                             </select>
                                         </label>
                                     </div>

@@ -145,7 +145,7 @@
                             </ul>
                         </li>
 
-                        <li><a href="mailto:mynotes4u.01@gmail.com"><span>Contact</span></a></li>
+                        <li><a href="mailto:support@mynotes4u.com"><span>Contact</span></a></li>
                     </ul>
                     <!-- Header Nav Links End -->
                 </div>
