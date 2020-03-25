@@ -20,7 +20,7 @@ define('LOGO_URL', '/whitelogosm.png');
 //define('SMTP_ENC', 'ssl');
 //define('SMTP_FROM', 'pandamoney425@gmail.com'); // Should be updated in production mode
 //define('SMTP_PASS', 'self1971'); // Should be updated in production mode
-//define('SMTP_ENDPOINT', 'http://familyback1219.com/members/member-profile.php' );
+//define('SMTP_ENDPOINT', 'http://familyback1219.com/members/members.php' );
 //define('SMTP_APPROVED_URL', 'http://familyback1219.com/members/member-profile.php' );
 //
 //// PayPal configuration
@@ -45,7 +45,7 @@ define('SMTP_PORT', 587);
 define('SMTP_ENC', 'tls');
 define('SMTP_FROM', 'help@mynotes4u.com'); // Should be updated in production mode
 define('SMTP_PASS', 'Axugust151959'); // Should be updated in production mode August151959
-define('SMTP_ENDPOINT', 'https://mynotes4u.com/members/member-profile.php' );
+define('SMTP_ENDPOINT', 'https://mynotes4u.com/members/members.php' );
 define('SMTP_APPROVED_URL', 'https://mynotes4u.com/members/member-profile.php' );
 
 // PayPal configuration
