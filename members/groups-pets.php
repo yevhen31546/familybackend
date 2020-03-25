@@ -173,7 +173,7 @@ if ($page > 1) {
                                             } else {
                                                 echo '<a href='.BASE_URL.'/members/groups-pets.php?groupfilter='.
                                                     $_GET['groupfilter'].'&&letter='
-                                                    .$char.'> '.$char.'</a> |';
+                                                    .$char.'&page_num=1> '.$char.'</a> |';
                                             }
 
                                         } else {
@@ -181,7 +181,7 @@ if ($page > 1) {
                                                 echo '<a href='.BASE_URL.'/members/groups-pets.php?letter='.
                                                     $char.'&page_num='.$_GET['page_num'].'> '.$char.'</a> |';
                                             } else {
-                                                echo '<a href='.BASE_URL.'/members/groups-pets.php?letter='.$char.'> '.$char.'</a> |';
+                                                echo '<a href='.BASE_URL.'/members/groups-pets.php?letter='.$char.'&page_num=1> '.$char.'</a> |';
                                             }
                                         }
                                     }
