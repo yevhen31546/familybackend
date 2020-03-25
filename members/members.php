@@ -10,6 +10,7 @@ require_once 'members_endpoint.php';
 $bell_count += checkFamilyRequest($logged_id); // check family request
 $bell_count += checkFriendRequest($logged_id); // check friend request
 
+
 $bell_count += checkFriInvitationState($logged_id); // check family invitation
 $bell_count += checkFamInvitationState($logged_id); // check friend invitation
 
@@ -86,7 +87,7 @@ include BASE_PATH.'/members/includes/header.php';
                                                 <div class="name">
                                                     <h3 class="h6 fs--12">
                                                         <a href="member-activity-personal.php?user=<?php echo $row['id'];?>" class="btn-link">
-                                                            <?php echo $row['last_name']." ".$row['first_name'];?>
+                                                            <?php echo $row['first_name']." ".$row['last_name'];?>
                                                         </a>
                                                     </h3>
                                                 </div>

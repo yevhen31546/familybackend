@@ -187,6 +187,7 @@ function generateInviteFriMessageBody($user, $receiver_name, $ref_code) {
                         Try it out for free at <a href=".BASE_URL.">MyNotes4U.com</a>.
                         Your first 30 days are on us.
                     </p>
+                    <br>
                     <p>
                         MyNotes4U is a secure, non-intrusive, exclusive meeting place for you and your circle of family
                         and friends. But that's not all. It's also a place where you can build and
@@ -230,6 +231,7 @@ function generateInviteFriMessageBody($user, $receiver_name, $ref_code) {
                         your great, great, great grandchildren can know you intimately. 
                         Discover who you are. That's a game changer.
                     </p>
+                    <br>
                     <p>
                         Try it out for free at <a href=".BASE_URL.">MyNotes4U.com</a>.
                         Your first 30 days are on us.
@@ -269,6 +271,7 @@ function generateInviteFamMessageBody($user, $receiver_name, $ref_code, $relatio
                         Try it out for free at <a href=".BASE_URL.">MyNotes4U.com</a>.
                         Your first 30 days are on us.
                     </p>
+                    <br>
                     <p>
                         MyNotes4U is a secure, non-intrusive, exclusive meeting place for you and your circle of family
                         and friends. But that's not all. It's also a place where you can build and
@@ -312,6 +315,7 @@ function generateInviteFamMessageBody($user, $receiver_name, $ref_code, $relatio
                         your great, great, great grandchildren can know you intimately. 
                         Discover who you are. That's a game changer.
                     </p>
+                    <br>
                     <p>
                         Try it out for free at <a href=".BASE_URL.">MyNotes4U.com</a>.
                         Your first 30 days are on us.

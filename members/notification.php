@@ -270,7 +270,7 @@ function checkFriInvitationState($user_id) {
     $db = getDbInstance();
     $query = 'SELECT users.*, friend.id AS friend_id, friend.who, friend.with_who, friend.stat
               FROM tbl_users AS users JOIN
-              (SELECT * FROM tbl_friend WHERE who = '.$user_id.' AND not_flag = 0) AS friend
+              (SELECT * FROM tbl_friend WHERE who = '.$user_id.' AND not_flag = 0 AND stat != 0) AS friend
               ON users.id = friend.with_who';
     $friend_invitations = $db->rawQuery($query);
     if(count($friend_invitations) > 0) {
@@ -288,7 +288,7 @@ function checkFamInvitationState($user_id) {
     $db = getDbInstance();
     $query = 'SELECT users.*, family.id AS family_id, family.who, family.with_who, family.relation, family.stat
               FROM tbl_users AS users JOIN
-              (SELECT * FROM tbl_family WHERE who = '.$user_id.' AND not_flag = 0) AS family
+              (SELECT * FROM tbl_family WHERE who = '.$user_id.' AND not_flag = 0 AND stat != 0) AS family
               ON users.id = family.with_who';
     $family_invitations = $db->rawQuery($query);
     if(count($family_invitations) > 0) {
