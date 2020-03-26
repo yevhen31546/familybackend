@@ -38,7 +38,7 @@ $members = $db->rawQuery($query);
  * Init pagination variables
  */
 $page = 1;
-$pageLimit = 10;
+$pageLimit = 5;
 $next_page = 1;
 $prev_page = 1;
 $totalPages = 1;

@@ -98,9 +98,10 @@ include BASE_PATH.'/members/includes/header.php';
                                                                class="btn btn-primary note_edit pull-right"
                                                                value="Edit">
                                                     <?php elseif ($row['note_media'] == 'photo'): ?>
-                                                        <img id="note_photo_edit"
-                                                             src="<?php echo $row['note_value']; ?>"
-                                                             style="padding-bottom: 10px; width: 800px; height: 291px;">
+                                                        <div class="note_photo_style">
+                                                            <img id="note_photo_edit"
+                                                                 src="<?php echo $row['note_value']; ?>">
+                                                        </div>
                                                         <?php if (isset($row['note_comment']) &&
                                                             $row['note_comment'] !== '') { ?>
                                                             <div class="comment_content">

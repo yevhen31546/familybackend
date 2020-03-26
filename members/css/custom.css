@@ -175,6 +175,20 @@ li-icon {
     margin-right: auto;
 }
 
+.note_photo_style {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    /*background-size: cover;*/
+    background-size: contain;
+    background-repeat: no-repeat;
+    /*background-position: 85% 50%;*/
+    padding-bottom: 10px;
+    background-position: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /*.box--item .img {*/
     /*height: 158px;*/
 /*}*/
