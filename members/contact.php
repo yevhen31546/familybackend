@@ -10,10 +10,9 @@ if(isset($_POST['email'])) {
     $subject = filter_var($_POST['subject'], FILTER_SANITIZE_STRING);
     $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
     $message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
-    $support_email = 'support@mynotes4u.com';
 
     $body = genContactFormMsgBody($email, $subject, $name, $message);
-    sendEmail($support_email, $body);
+    sendEmail(SUPPORT_MAIL, $body);
 
     $bell_count++;
     $_SESSION['success'] = 'Thank you for contacting us. We will be in touch with you very soon.<hr>';

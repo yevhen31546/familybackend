@@ -30,6 +30,7 @@ define('SMTP_FROM', $_ENV['SMTP_FROM']);
 define('SMTP_PASS', $_ENV['SMTP_PASS']);
 define('SMTP_ENDPOINT', $_ENV['SMTP_ENDPOINT']);
 define('SMTP_APPROVED_URL', $_ENV['SMTP_APPROVED_URL']);
+define('SUPPORT_MAIL', $_ENV['SUPPORT_MAIL']);
 
 // PayPal configuration
 define('PAYPAL_ID', $_ENV['PAYPAL_ID']); // change to make Live
