@@ -388,7 +388,7 @@ if ($order_val == 1) {
     $rows = $db->paginate($tbl_name, $page);    // newly registered first
 }
 if ($order_val == 2) {
-    $db->orderBy('first_name', 'ASC');
+    $db->orderBy('last_name', 'ASC');
     $rows = $db->paginate($tbl_name, $page); // Alphabetical
 }
 

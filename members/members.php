@@ -75,20 +75,20 @@ include BASE_PATH.'/members/includes/header.php';
                                             <!-- Member Item Start -->
                                             <div class="member--item online">
                                                 <div class="img img-circle">
-                                                    <a href="member-activity-personal.php?user=<?php echo $row['id'];?>" class="btn-link">
+<!--                                                    <a href="member-activity-personal.php?user=--><?php //echo $row['id'];?><!--" class="btn-link">-->
                                                         <?php if(isset($row['avatar'])) { ?>
                                                             <img src="<?php echo substr($row['avatar'], 2) ?>" alt="">
                                                         <?php } else { ?>
                                                             <img src="img/members-img/member-01.jpg" alt="">
                                                         <?php } ?>
-                                                    </a>
+<!--                                                    </a>-->
                                                 </div>
 
                                                 <div class="name">
                                                     <h3 class="h6 fs--12">
-                                                        <a href="member-activity-personal.php?user=<?php echo $row['id'];?>" class="btn-link">
+<!--                                                        <a href="member-activity-personal.php?user=--><?php //echo $row['id'];?><!--" class="btn-link">-->
                                                             <?php echo $row['first_name']." ".$row['last_name'];?>
-                                                        </a>
+<!--                                                        </a>-->
                                                     </h3>
                                                 </div>
 
