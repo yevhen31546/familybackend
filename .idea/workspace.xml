@@ -57,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="contact.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="contact.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/members/contact.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+            <state relative-caret-position="66">
+              <caret line="24" column="122" lean-forward="false" selection-start-line="24" selection-start-column="122" selection-end-line="24" selection-end-column="122" />
               <folding />
             </state>
           </provider>
@@ -77,7 +77,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".env.local" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".env.local" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/.env.local">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="176">
@@ -387,12 +387,12 @@
       <workItem from="1585136600952" duration="7862000" />
       <workItem from="1585246594329" duration="6802000" />
       <workItem from="1585253415574" duration="1188000" />
-      <workItem from="1585256060199" duration="3526000" />
+      <workItem from="1585256060199" duration="4377000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="723911000" />
+    <option name="totallyTimeSpent" value="724762000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -858,14 +858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/members/contact.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -878,6 +870,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/members/contact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="24" column="122" lean-forward="false" selection-start-line="24" selection-start-column="122" selection-end-line="24" selection-end-column="122" />
           <folding />
         </state>
       </provider>

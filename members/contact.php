@@ -22,7 +22,7 @@ include BASE_PATH.'/members/includes/header.php';
 
 ?>
     <!-- Page Header Start -->
-    <div class="page--header pt--60 pb--60 text-center" data-bg-img="img/page-header-img/contact(1).png" data-overlay="0.25">
+    <div class="page--header pt--60 pb--60 text-center" data-bg-img="img/page-header-img/contact(1).png" data-overlay="0.45">
         <div class="container">
             <div class="title">
                 <h2 class="h1 text-white"></h2>
