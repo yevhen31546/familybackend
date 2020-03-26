@@ -10,9 +10,10 @@ if(isset($_POST['email'])) {
     $subject = filter_var($_POST['subject'], FILTER_SANITIZE_STRING);
     $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
     $message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
+    $support_email = 'support@mynotes4u.com';
 
     $body = genContactFormMsgBody($email, $subject, $name, $message);
-    sendEmail(SMTP_FROM, $body);
+    sendEmail($support_email, $body);
 
     $bell_count++;
     $_SESSION['success'] = 'Thank you for contacting us. We will be in touch with you very soon.<hr>';
@@ -59,6 +60,16 @@ include BASE_PATH.'/members/includes/header.php';
                         </div>
                         <!-- Contact Info Item End -->
 
+                        <div class="contact-info--Item">
+                            <div class="title">
+                                <h3 class="h4"><i class="mr--10 fa fa-mobile-phone"></i>Phone :</h3>
+                            </div>
+
+                            <div class="content fs--14 text-darker mt--4">
+                                <p>972-863-2453</p>
+                            </div>
+                        </div>
+
                         <!-- Contact Info Item Start -->
                         <div class="contact-info--Item">
                             <div class="title">
@@ -66,7 +77,7 @@ include BASE_PATH.'/members/includes/header.php';
                             </div>
 
                             <div class="content fs--14 text-darker mt--4">
-                                <p><a href="mailto:help@mynotes4u.com" class="btn-link">help@mynotes4u.com</a></p>
+                                <p><a href="mailto:support@mynotes4u.com" class="btn-link">support@mynotes4u.com</a></p>
                             </div>
                         </div>
                         <!-- Contact Info Item End -->
