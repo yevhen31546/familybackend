@@ -22,7 +22,7 @@ include BASE_PATH.'/members/includes/header.php';
 
 ?>
     <!-- Page Header Start -->
-    <div class="page--header pt--60 pb--60 text-center" data-bg-img="img/page-header-img/contact(1).png" data-overlay="0.35">
+    <div class="page--header pt--60 pb--60 text-center" data-bg-img="img/page-header-img/contact(1).png" data-overlay="0.25">
         <div class="container">
             <div class="title">
                 <h2 class="h1 text-white"></h2>
@@ -53,7 +53,8 @@ include BASE_PATH.'/members/includes/header.php';
                             <div class="content fs--14 text-darker mt--4">
                                 <p>MyNotes4u
                                 <br>P.O. Box 50
-                                <br>Harrah, OK 73045-0050</p>
+                                <br>Harrah, OK 73045-0050
+                                <br>972-863-2453</p>
                             </div>
                         </div>
                         <!-- Contact Info Item End -->
@@ -65,7 +66,7 @@ include BASE_PATH.'/members/includes/header.php';
                             </div>
 
                             <div class="content fs--14 text-darker mt--4">
-                                <p><a href="mailto:support@mynotes4u.com" class="btn-link">support@mynotes4u.com</a></p>
+                                <p><a href="mailto:help@mynotes4u.com" class="btn-link">help@mynotes4u.com</a></p>
                             </div>
                         </div>
                         <!-- Contact Info Item End -->
