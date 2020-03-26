@@ -55,6 +55,8 @@ include BASE_PATH.'/members/includes/header.php';
 <!-- Cover Header End -->
 <?php include BASE_PATH . '/members/forms/profile_cover_modal.php';?>
 <?php include BASE_PATH . '/members/forms/avatar_upload_modal.php';?>
+<?php include BASE_PATH . '/members/forms/invite_family_modal.php';?>
+<?php include BASE_PATH . '/members/forms/invite_friend_modal.php';?>
 <!-- Page Wrapper Start -->
 <section class="page--wrapper pt--80 pb--20">
     <div class="container">
@@ -132,92 +134,92 @@ include BASE_PATH.'/members/includes/header.php';
                         <!-- Password Item End -->
                         
                         <!-- Profile Item Start -->
-                        <div class="profile--item">
-                            <div class="profile--heading">
-                                <h3 class="h4 fw--700">
-                                    <span class="mr--4">Biography</span>
-                                    <i class="ml--10 text-primary fa fa-caret-right"></i>
-                                </h3>
-                            </div>
-
-                            <div class="profile--info">
-                                <form action="" method="post">
-                                        <p>Optional - Add a brief personal description, such as hobbies, likes or dislikes, etc. It can be anything about yourself that you want to share with family and friends.</p>
-
-                                    <div class="row">
-                                        <textarea class="col-xs-12" name="biography" required><?php echo $row['biography']; ?></textarea>
-                                    </div>
-                                    <div class="row">
-                                        <button type="submit" class="btn btn-primary" style="float: right; margin: 5px;">Update</button>
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div>
+<!--                        <div class="profile--item">-->
+<!--                            <div class="profile--heading">-->
+<!--                                <h3 class="h4 fw--700">-->
+<!--                                    <span class="mr--4">Biography</span>-->
+<!--                                    <i class="ml--10 text-primary fa fa-caret-right"></i>-->
+<!--                                </h3>-->
+<!--                            </div>-->
+<!---->
+<!--                            <div class="profile--info">-->
+<!--                                <form action="" method="post">-->
+<!--                                        <p>Optional - Add a brief personal description, such as hobbies, likes or dislikes, etc. It can be anything about yourself that you want to share with family and friends.</p>-->
+<!---->
+<!--                                    <div class="row">-->
+<!--                                        <textarea class="col-xs-12" name="biography" required>--><?php //echo $row['biography']; ?><!--</textarea>-->
+<!--                                    </div>-->
+<!--                                    <div class="row">-->
+<!--                                        <button type="submit" class="btn btn-primary" style="float: right; margin: 5px;">Update</button>-->
+<!--                                    </div>-->
+<!---->
+<!--                                </form>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <!-- Profile Item End -->
 
-                        <?php
-                        foreach ($family_lists as $family):?>
-                        <div class="profile--item">
-                            <div class="profile--heading">
-                                <h3 class="h4 fw--700">
-                                    <span class="mr--4">Family member lists</span>
-                                    <i class="ml--10 text-primary fa fa-caret-right"></i>
-                                </h3>
-                            </div>
-                            <div class="profile--info">
-                                <p>Optional - Add up to three family members now, or add family members to your Family Album later.</p>
-                                <table class="table">
-                                        <tr>
-                                            <th class="fw--700 text-darkest">Relationship</th>
-                                            <td>
-                                                <?php echo $family['relation']; ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="fw--700 text-darkest">First Name</th>
-                                            <td><?php echo $family['first_name']; ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th class="fw--700 text-darkest">Last Name</th>
-                                            <td><?php echo $family['last_name']; ?></td>
-                                        </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <?php
-                        endforeach;
-                        ?>
-                        <!-- Profile Item End -->
-
-                        <!-- Profile Item Start -->
-                        <?php
-                        foreach ($friend_lists as $friend):?>
-                            <div class="profile--item">
-                                <div class="profile--heading">
-                                    <h3 class="h4 fw--700">
-                                        <span class="mr--4">Friend lists</span>
-                                        <i class="ml--10 text-primary fa fa-caret-right"></i>
-                                    </h3>
-                                </div>
-                                <div class="profile--info">
-                                    <p>Optional - Add up to three friend now, or add friend to your friend Album later.</p>
-                                    <table class="table">
-                                        <tr>
-                                            <th class="fw--700 text-darkest">First Name</th>
-                                            <td><?php echo $friend['first_name']; ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th class="fw--700 text-darkest">Last Name</th>
-                                            <td><?php echo $friend['last_name']; ?></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <?php
-                        endforeach;
-                        ?>
-                        <!-- Profile Item End -->
+<!--                        --><?php
+//                        foreach ($family_lists as $family):?>
+<!--                        <div class="profile--item">-->
+<!--                            <div class="profile--heading">-->
+<!--                                <h3 class="h4 fw--700">-->
+<!--                                    <span class="mr--4">Family member lists</span>-->
+<!--                                    <i class="ml--10 text-primary fa fa-caret-right"></i>-->
+<!--                                </h3>-->
+<!--                            </div>-->
+<!--                            <div class="profile--info">-->
+<!--                                <p>Optional - Add up to three family members now, or add family members to your Family Album later.</p>-->
+<!--                                <table class="table">-->
+<!--                                        <tr>-->
+<!--                                            <th class="fw--700 text-darkest">Relationship</th>-->
+<!--                                            <td>-->
+<!--                                                --><?php //echo $family['relation']; ?>
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+<!--                                            <th class="fw--700 text-darkest">First Name</th>-->
+<!--                                            <td>--><?php //echo $family['first_name']; ?><!--</td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+<!--                                            <th class="fw--700 text-darkest">Last Name</th>-->
+<!--                                            <td>--><?php //echo $family['last_name']; ?><!--</td>-->
+<!--                                        </tr>-->
+<!--                                </table>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        --><?php
+//                        endforeach;
+//                        ?>
+<!--                        <!-- Profile Item End -->
+<!---->
+<!--                        <!-- Profile Item Start -->
+<!--                        --><?php
+//                        foreach ($friend_lists as $friend):?>
+<!--                            <div class="profile--item">-->
+<!--                                <div class="profile--heading">-->
+<!--                                    <h3 class="h4 fw--700">-->
+<!--                                        <span class="mr--4">Friend lists</span>-->
+<!--                                        <i class="ml--10 text-primary fa fa-caret-right"></i>-->
+<!--                                    </h3>-->
+<!--                                </div>-->
+<!--                                <div class="profile--info">-->
+<!--                                    <p>Optional - Add up to three friend now, or add friend to your friend Album later.</p>-->
+<!--                                    <table class="table">-->
+<!--                                        <tr>-->
+<!--                                            <th class="fw--700 text-darkest">First Name</th>-->
+<!--                                            <td>--><?php //echo $friend['first_name']; ?><!--</td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+<!--                                            <th class="fw--700 text-darkest">Last Name</th>-->
+<!--                                            <td>--><?php //echo $friend['last_name']; ?><!--</td>-->
+<!--                                        </tr>-->
+<!--                                    </table>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            --><?php
+//                        endforeach;
+//                        ?>
+<!--                        <!-- Profile Item End -->
 
                     </div>
                     <!-- Profile Details End -->
@@ -267,6 +269,24 @@ include BASE_PATH.'/members/includes/header.php';
                         </div>
                         <button type="submit" class="btn btn-sm btn-google btn btn-primary" style="margin-top: 20px;"><i class="fa mr--8 fa-play"></i>Send</button>
                     </form>
+                </div>
+
+                <div class="widget">
+                    <h2 class="h4 fw--500 widget--title">Invite Family to Join MyNotes4u.com</h2>
+                    <div style="margin-bottom: 0.7em">
+                        <button type="button" class="btn btn-sm btn-google btn btn-primary invite_outside_family">
+                            <i class="fa mr--8 fa-play"></i>
+                            Send Invite
+                        </button>
+                    </div>
+                    <h2 class="h4 fw--500 widget--title">Invite a Friend to Join MyNotes4u.com</h2>
+                    <div>
+                        <button type="button"
+                                class="btn btn-sm btn-google btn btn-primary invite_outside_friend">
+                            <i class="fa mr--8 fa-play"></i>
+                            Send Invite
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Widget End -->
