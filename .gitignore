@@ -1,2 +1,3 @@
 members/uploads/
-.gitignore
+config/.env.local
+config/.env.production
