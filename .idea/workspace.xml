@@ -4,7 +4,6 @@
     <list default="true" id="0dcfc1bc-f385-4583-b2ea-764e7c8ae5c4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/member-profile.php" afterPath="$PROJECT_DIR$/members/member-profile.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/member_profile_endpoint.php" afterPath="$PROJECT_DIR$/members/member_profile_endpoint.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,10 +44,14 @@
       <file leaf-file-name="member-profile.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/members/member-profile.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2">
-              <caret line="194" column="55" lean-forward="false" selection-start-line="194" selection-start-column="55" selection-end-line="194" selection-end-column="55" />
+            <state relative-caret-position="396">
+              <caret line="279" column="26" lean-forward="false" selection-start-line="279" selection-start-column="26" selection-end-line="279" selection-end-column="26" />
               <folding>
-                <marker date="1585257603974" expanded="false" signature="9382:9408" ph="..." />
+                <marker date="1585258658953" expanded="false" signature="9382:9408" ph="..." />
+                <marker date="1585258658953" expanded="false" signature="14282:14294" ph="..." />
+                <marker date="1585258658953" expanded="false" signature="14538:14555" ph="..." />
+                <marker date="1585258658953" expanded="false" signature="16573:16585" ph="..." />
+                <marker date="1585258658953" expanded="false" signature="16866:16883" ph="..." />
               </folding>
             </state>
           </provider>
@@ -349,12 +352,12 @@
       <workItem from="1585136600952" duration="7862000" />
       <workItem from="1585246594329" duration="6802000" />
       <workItem from="1585253415574" duration="1188000" />
-      <workItem from="1585256060199" duration="1543000" />
+      <workItem from="1585256060199" duration="2479000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="721928000" />
+    <option name="totallyTimeSpent" value="722864000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -827,10 +830,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/members/member-profile.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2">
-          <caret line="194" column="55" lean-forward="false" selection-start-line="194" selection-start-column="55" selection-end-line="194" selection-end-column="55" />
+        <state relative-caret-position="396">
+          <caret line="279" column="26" lean-forward="false" selection-start-line="279" selection-start-column="26" selection-end-line="279" selection-end-column="26" />
           <folding>
-            <marker date="1585257603974" expanded="false" signature="9382:9408" ph="..." />
+            <marker date="1585258658953" expanded="false" signature="9382:9408" ph="..." />
+            <marker date="1585258658953" expanded="false" signature="14282:14294" ph="..." />
+            <marker date="1585258658953" expanded="false" signature="14538:14555" ph="..." />
+            <marker date="1585258658953" expanded="false" signature="16573:16585" ph="..." />
+            <marker date="1585258658953" expanded="false" signature="16866:16883" ph="..." />
           </folding>
         </state>
       </provider>

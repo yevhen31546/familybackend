@@ -230,46 +230,45 @@ include BASE_PATH.'/members/includes/header.php';
             <!-- Main Sidebar Start -->
             <div class="main--sidebar col-md-4 pb--60" data-trigger="stickyScroll">
                 <!-- Widget Start -->
-                <div class="widget">
-                    <h2 class="h4 fw--700 widget--title">Invite a Family Member</h2>
-                    <form action="" autocomplete="off" method="post" onsubmit="return checkFamilyForm(this);">
-                        <div class="autocomplete" style="width: 100%;">
-                            <input id="myfamily" type="text" class="form-control" name="myfamily" placeholder="Family member's Name">
-                        </div>
-                        <div class="form-group" style="margin-top: 10px;">
-                            <select name="family_member" class="form-control form-sm">
-                                <option value="family_member">*Select Family Relationship</option>
-                                <option value="Husband">Husband</option>
-                                <option value="Wife">Wife</option>
-                                <option value="Significant Other">Significant Other</option>
-                                <option value="Mother">Mother</option>
-                                <option value="Father">Father</option>
-                                <option value="Sister">Sister</option>
-                                <option value="Brother">Brother</option>
-                                <option value="Aunt">Aunt</option>
-                                <option value="Uncle">Uncle</option>
-                                <option value="Niece">Niece</option>
-                                <option value="Nephew">Nephew</option>
-                                <option value="Cousin">Cousin</option>
-                                <option value="Grandmother">Grandmother</option>
-                                <option value="Grandfather">Grandfather</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-sm btn-google btn btn-primary"><i class="fa mr--8 fa-play"></i>Send</button>
-                    </form>
-                </div>
-
-
-                <div class="widget">
-                    <form action="" method="post" onsubmit="return checkFriendForm(this);">
-                        <h2 class="h4 fw--700 widget--title">Invite a Friend</h2>
-                        <div class="autocomplete" style="width: 100%;">
-                            <input id="myfriend" type="text" class="form-control" name="myfriend" placeholder="Friend's Name">
-                        </div>
-                        <button type="submit" class="btn btn-sm btn-google btn btn-primary" style="margin-top: 20px;"><i class="fa mr--8 fa-play"></i>Send</button>
-                    </form>
-                </div>
+<!--                <div class="widget">-->
+<!--                    <h2 class="h4 fw--700 widget--title">Invite a Family Member</h2>-->
+<!--                    <form action="" autocomplete="off" method="post" onsubmit="return checkFamilyForm(this);">-->
+<!--                        <div class="autocomplete" style="width: 100%;">-->
+<!--                            <input id="myfamily" type="text" class="form-control" name="myfamily" placeholder="Family member's Name">-->
+<!--                        </div>-->
+<!--                        <div class="form-group" style="margin-top: 10px;">-->
+<!--                            <select name="family_member" class="form-control form-sm">-->
+<!--                                <option value="family_member">*Select Family Relationship</option>-->
+<!--                                <option value="Husband">Husband</option>-->
+<!--                                <option value="Wife">Wife</option>-->
+<!--                                <option value="Significant Other">Significant Other</option>-->
+<!--                                <option value="Mother">Mother</option>-->
+<!--                                <option value="Father">Father</option>-->
+<!--                                <option value="Sister">Sister</option>-->
+<!--                                <option value="Brother">Brother</option>-->
+<!--                                <option value="Aunt">Aunt</option>-->
+<!--                                <option value="Uncle">Uncle</option>-->
+<!--                                <option value="Niece">Niece</option>-->
+<!--                                <option value="Nephew">Nephew</option>-->
+<!--                                <option value="Cousin">Cousin</option>-->
+<!--                                <option value="Grandmother">Grandmother</option>-->
+<!--                                <option value="Grandfather">Grandfather</option>-->
+<!--                                <option value="Other">Other</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <button type="submit" class="btn btn-sm btn-google btn btn-primary"><i class="fa mr--8 fa-play"></i>Send</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--                -->
+<!--                <div class="widget">-->
+<!--                    <form action="" method="post" onsubmit="return checkFriendForm(this);">-->
+<!--                        <h2 class="h4 fw--700 widget--title">Invite a Friend</h2>-->
+<!--                        <div class="autocomplete" style="width: 100%;">-->
+<!--                            <input id="myfriend" type="text" class="form-control" name="myfriend" placeholder="Friend's Name">-->
+<!--                        </div>-->
+<!--                        <button type="submit" class="btn btn-sm btn-google btn btn-primary" style="margin-top: 20px;"><i class="fa mr--8 fa-play"></i>Send</button>-->
+<!--                    </form>-->
+<!--                </div>-->
 
                 <div class="widget">
                     <h2 class="h4 fw--500 widget--title">Invite Family to Join MyNotes4u.com</h2>
@@ -279,6 +278,9 @@ include BASE_PATH.'/members/includes/header.php';
                             Send Invite
                         </button>
                     </div>
+                </div>
+
+                <div class="widget">
                     <h2 class="h4 fw--500 widget--title">Invite a Friend to Join MyNotes4u.com</h2>
                     <div>
                         <button type="button"
