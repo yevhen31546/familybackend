@@ -134,8 +134,8 @@ endforeach;
 
 // Invite family member
 if(isset($_POST) && isset($_POST['family_member'])) {
-    $family_id = $_POST['myfamily']; // family user id
-    $myfamily = $members[$family_id]['user_name'];
+    $myfamily = $_POST['myfamily']; // family user id
+//    $myfamily = $members[$family_id]['user_name'];
     $db = getDbInstance();
     $db->where('user_name', $myfamily);
     $family_user = $db->getOne('tbl_users');
@@ -179,8 +179,8 @@ if(isset($_POST) && isset($_POST['family_member'])) {
 // Invite friend
 if(isset($_POST) && isset($_POST['myfriend'])) {
 
-    $friend_id = $_POST['myfriend']; // friend user id
-    $myfriend = $members[$friend_id]['user_name'];
+    $myfriend = $_POST['myfriend']; // friend user id
+//    $myfriend = $members[$friend_id]['user_name'];
     $db = getDbInstance();
     $db->where('user_name', $myfriend);
     $friend_user = $db->getOne('tbl_users');
