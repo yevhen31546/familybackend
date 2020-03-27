@@ -324,12 +324,12 @@ include BASE_PATH.'/members/includes/header.php';
     function checkFamilyForm(form) {
         var families = <?php print_r(json_encode($users)); ?>;
 
-        if(form.myfamily.value === '') {
+        if(form.myfamily1.value === '') {
             alert("Error: Please type family member's name :(");
-            form.myfamily.focus();
+            form.myfamily1.focus();
             return false;
-        } else if (families.indexOf(form.myfamily.value) === -1) {
-            form.myfamily.focus();
+        } else if (families.indexOf(form.myfamily1.value) === -1) {
+            form.myfamily1.focus();
             alert("Error: Selected profile is invalid!");
             return false;
         }
@@ -340,22 +340,23 @@ include BASE_PATH.'/members/includes/header.php';
             return false;
         }
 
+        form.myfamily.value = families.indexOf(form.myfamily1.value);
         return true;
     }
 
     function checkFriendForm(form) {
         var friends = <?php print_r(json_encode($users)); ?>;
 
-        if(form.myfriend.value === "") {
+        if(form.myfriend1.value === "") {
             alert("Error: Please type friend's name :(");
-            form.myfriend.focus();
+            form.myfriend1.focus();
             return false;
-        } else if (friends.indexOf(form.myfriend.value) === -1) {
-            form.myfriend.focus();
+        } else if (friends.indexOf(form.myfriend1.value) === -1) {
+            form.myfriend1.focus();
             alert("Error: Selected profile is invalid!");
             return false;
         }
-
+        form.myfriend.value = friends.indexOf(form.myfriend1.value);
         return true;
     }
 
@@ -461,8 +462,8 @@ include BASE_PATH.'/members/includes/header.php';
     console.log("user lists: ", families);
     console.log("user lists: ", friends);
 
-    autocomplete(document.getElementById("myfamily"), families);
-    autocomplete(document.getElementById("myfriend"), friends);
+    autocomplete(document.getElementById("myfamily1"), families);
+    autocomplete(document.getElementById("myfriend1"), friends);
 
 </script>
 

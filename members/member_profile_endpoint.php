@@ -119,6 +119,17 @@ if(isset($_GET) && isset($_GET['type'])) {
     }
 }
 
+// Get all users for auto fill box
+$db = getDbInstance();
+$get_family_query = 'SELECT user_name, first_name, last_name from tbl_users ORDER  BY id';
+$members = $db->rawQuery($get_family_query);
+//echo $members[0]['user_name']; exit;
+$users = [];
+foreach($members as $member):
+    $username = $member['first_name']." ".$member['last_name'];
+    array_push($users, $username);
+endforeach;
+
 // Cover photo
 if(isset($_POST) && isset($_POST['cover_photo_fg']) && isset($_FILES["cover_photo"]["name"])) {
     $db = getDbInstance();
@@ -325,7 +336,8 @@ if(isset($_POST) && isset($_POST['biography'])) {
 
 // Invite family member
 if(isset($_POST) && isset($_POST['family_member'])) {
-    $myfamily = $_POST['myfamily']; // family user id
+    $family_id = $_POST['myfamily']; // family user id
+    $myfamily = $members[$family_id]['user_name'];
     $db = getDbInstance();
     $db->where('user_name', $myfamily);
     $family_user = $db->getOne('tbl_users');
@@ -368,7 +380,8 @@ if(isset($_POST) && isset($_POST['family_member'])) {
 
 // Invite friend
 if(isset($_POST) && isset($_POST['myfriend'])) {
-    $myfriend = $_POST['myfriend']; // friend id
+    $friend_id = $_POST['myfriend']; // friend user id
+    $myfriend = $members[$friend_id]['user_name'];
     $db = getDbInstance();
     $db->where('user_name', $myfriend);
     $friend_user = $db->getOne('tbl_users');
@@ -577,12 +590,3 @@ if(isset($_POST) && isset($_POST['family_name'])) {
                          ON us.id=fa.with_who OR us.id=fa.who WHERE us.id!='.$logged_id;
     $friend_lists = $db->rawQuery($get_friend_query);
 
-// Get all users for auto fill box
-    $db = getDbInstance();
-    //$get_family_query = 'SELECT DISTINCT us.user_name,us.id FROM tbl_users us JOIN (SELECT DISTINCT with_who, who  FROM tbl_family WHERE (who='.$logged_id.' OR with_who='.$logged_id.') AND stat=1) fa ON us.id=fa.with_who OR us.id=fa.who WHERE us.id != '.$logged_id;
-    $get_family_query = 'SELECT user_name from tbl_users';
-    $members = $db->rawQuery($get_family_query);
-    $users = [];
-    foreach($members as $member):
-        array_push($users, $member['user_name']);
-    endforeach;

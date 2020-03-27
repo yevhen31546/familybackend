@@ -159,8 +159,9 @@ include BASE_PATH.'/members/includes/header.php';
                             <h2 class="h4 fw--500 widget--title">Connect Members to Your Family Albums</h2>
                             <form action="" autocomplete="off" method="post" onsubmit="return checkFamilyForm(this);">
                                 <div class="autocomplete" style="width: 100%;">
-                                    <input id="myfamily" type="text" class="form-control" name="myfamily" placeholder="Family Member's Name">
+                                    <input id="myfamily1" type="text" class="form-control" name="myfamily1" placeholder="Family Member's Name">
                                 </div>
+                                <input id="myfamily" type="hidden" class="form-control" name="myfamily" placeholder="Family Member's Name">
                                 <div class="form-group" style="margin-top: 10px;">
                                     <select name="family_member" class="form-control form-sm">
                                         <option value="family_member">*Select Family Relationship</option>
@@ -190,8 +191,9 @@ include BASE_PATH.'/members/includes/header.php';
                             <form action="" method="post" onsubmit="return checkFriendForm(this);">
                                 <h2 class="h4 fw--500 widget--title">Connect Members to Your Friend Albums</h2>
                                 <div class="autocomplete" style="width: 100%;">
-                                    <input id="myfriend" type="text" class="form-control" name="myfriend" placeholder="Friend's Name">
+                                    <input id="myfriend1" type="text" class="form-control" name="myfriend1" placeholder="Friend's Name">
                                 </div>
+                                <input id="myfriend" type="hidden" class="form-control" name="myfriend" placeholder="Friend's Name">
                                 <button type="submit" class="btn btn-sm btn-google btn btn-primary" style="margin-top: 20px;"><i class="fa mr--8 fa-play"></i>Send</button>
                             </form>
                         </div>
@@ -228,17 +230,17 @@ include BASE_PATH.'/members/includes/header.php';
     function checkFamilyForm(form) {
         var families = <?php print_r(json_encode($users)); ?>;
 
-        if(form.myfamily.value === '') {
+        if(form.myfamily1.value === '') {
             alert("Error: Please type family member's name :(");
-            form.myfamily.focus();
+            form.myfamily1.focus();
             return false;
-        } else if (families.indexOf(form.myfamily.value) === -1) {
-            form.myfamily.focus();
+        } else if (families.username.indexOf(form.myfamily1.value) === -1) {
+            form.myfamily1.focus();
             alert("Error: Selected profile is invalid!");
             return false;
         }
 
-        if(form.family_member.value === "family_member") {
+        if(form.family_member.username.value === "family_member") {
             alert("Error: Please select family relationship!");
             form.family_member.focus();
             return false;
@@ -250,16 +252,15 @@ include BASE_PATH.'/members/includes/header.php';
     function checkFriendForm(form) {
         var friends = <?php print_r(json_encode($users)); ?>;
 
-        if(form.myfriend.value === "") {
+        if(form.myfriend1.value === "") {
             alert("Error: Please type friend's name :(");
-            form.myfriend.focus();
+            form.myfriend1.focus();
             return false;
-        } else if (friends.indexOf(form.myfriend.value) === -1) {
-            form.myfriend.focus();
+        } else if (friends.username.indexOf(form.myfriend1.value) === -1) {
+            form.myfriend1.focus();
             alert("Error: Selected profile is invalid!");
             return false;
         }
-
         return true;
     }
 
@@ -283,18 +284,26 @@ include BASE_PATH.'/members/includes/header.php';
             /*for each item in the array...*/
             for (i = 0; i < arr.length; i++) {
                 /*check if the item starts with the same letters as the text field value:*/
-                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                if (arr[i].username.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
                     /*create a DIV element for each matching element:*/
                     b = document.createElement("DIV");
                     /*make the matching letters bold:*/
-                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                    b.innerHTML += arr[i].substr(val.length);
+                    b.innerHTML = "<strong>" + arr[i].username.substr(0, val.length) + "</strong>";
+                    b.innerHTML += arr[i].username.substr(val.length);
                     /*insert a input field that will hold the current array item's value:*/
-                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                    b.innerHTML += "<input type='hidden' value='" + arr[i].username + "'>";
+                    b.innerHTML += "<input type='hidden' value='" + arr[i].key + "'>";
                     /*execute a function when someone clicks on the item value (DIV element):*/
                     b.addEventListener("click", function(e) {
                         /*insert the value for the autocomplete text field:*/
                         inp.value = this.getElementsByTagName("input")[0].value;
+                        var dd = this.getElementsByTagName("input")[1].value;
+                        if (inp.id === 'myfriend1') {
+                            document.getElementById('myfriend').value = dd;
+                        }
+                        if (inp.id === 'myfamily1') {
+                            document.getElementById('myfamily').value = dd;
+                        }
                         /*close the list of autocompleted values,
                         (or any other open lists of autocompleted values:*/
                         closeAllLists();
@@ -362,11 +371,12 @@ include BASE_PATH.'/members/includes/header.php';
 
     var families = <?php print_r(json_encode($users)); ?>;
     var friends = <?php print_r(json_encode($users)); ?>;
+
     console.log("user lists: ", families);
     console.log("user lists: ", friends);
 
-    autocomplete(document.getElementById("myfamily"), families);
-    autocomplete(document.getElementById("myfriend"), friends);
+    autocomplete(document.getElementById("myfamily1"), families);
+    autocomplete(document.getElementById("myfriend1"), friends);
 </script>
 
 <?php include BASE_PATH.'/members/includes/footer.php'?>

@@ -152,6 +152,8 @@ if(isset($_POST['user_name']) && $_POST['user_name'] != '') {
                             <label class="control-label">Phone number</label>
                             <input type="text" name="phone_no" class="form-control" required>
                         </div>
+                        <p>Optional: To help MyNotes4u with future marketing efforts,
+                            please provide your demographic information.</p>
                         <div class="form-group">
                             <label class="control-label">Age (Optional)</label>
                             <label class="control-label">
