@@ -152,6 +152,36 @@ if(isset($_POST['user_name']) && $_POST['user_name'] != '') {
                             <label class="control-label">Phone number</label>
                             <input type="text" name="phone_no" class="form-control" required>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label">Age (Optional)</label>
+                            <label class="control-label">
+                                <input type="radio" name="age" value="1"> Under 18
+                            </label>
+                            <label class="control-label">
+                                <input type="radio" name="age" value="19"> 19 - 25
+                            </label>
+                            <label class="control-label">
+                                <input type="radio" name="age" value="26"> 26 - 35
+                            </label>
+                            <label class="control-label">
+                                <input type="radio" name="age" value="36"> 36 - 50
+                            </label>
+                            <label class="control-label">
+                                <input type="radio" name="age" value="51"> 51 - 65
+                            </label>
+                            <label class="control-label">
+                                <input type="radio" name="age" value="65"> Over 65
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Gender (Optional)</label>
+                            <label class="control-label">
+                                <input type="radio" name="gender" value="m"> Male
+                            </label>
+                            <label class="control-label">
+                                <input type="radio" name="gender" value="f"> Female
+                            </label>
+                        </div>
                         <div class="form-group" style="display: flex">
                             <input type="checkbox" class="form-control" style="width: 3.25rem; height: 1.25rem" required>
                             &nbsp;&nbsp;I agree to be legally bound by these Terms and Conditions,
