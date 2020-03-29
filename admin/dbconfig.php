@@ -4,17 +4,21 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 define('BASE_PATH', dirname(__FILE__));
 
-// define('BASE_URL', 'http://dev.myfamilybackccc.com:8081/admin/');
-// define('DB_HOST', "localhost");
-// define('DB_USER', "root");
-// define('DB_PASSWORD', "");
-// define('DB_NAME', "familymember");
+require_once __DIR__.'/../vendor/autoload.php';
+if ($_SERVER['SERVER_NAME'] === 'familyback1219.com') {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '.env.local');
+    $dotenv->load();
+} else {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '.env.production');
+    $dotenv->load();
+}
 
-define('BASE_URL', 'https://mynotes4u.com/admin/');
-define('DB_HOST', "mysql.gip.superb.net");
-define('DB_USER', "u_family_db");
-define('DB_PASSWORD', "Norman@12345");
-define('DB_NAME', "family_db");
+define('BASE_URL', $_ENV['BASE_URL']);
+define('DB_HOST', $_ENV['DB_HOST']);
+define('DB_USER', $_ENV['DB_USER']);
+define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
+define('DB_NAME', $_ENV['DB_NAME']);
+
 
 define('APP_FOLDER', 'simpleadmin');
 define('CURRENT_PAGE', basename($_SERVER['REQUEST_URI']));
@@ -28,9 +32,6 @@ require_once BASE_PATH . '/apps/users/helpers/helpers.php';
 |--------------------------------------------------------------------------
  */
 
-/**
- * Get instance of DB object
- */
 function getDbInstance() {
     return new MysqliDb(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 }

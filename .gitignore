@@ -1,3 +1,6 @@
 members/uploads/
 config/.env.local
 config/.env.production
+
+admin/.env.local
+admin/.env.production
