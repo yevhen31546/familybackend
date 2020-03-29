@@ -24,16 +24,16 @@ if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === TRUE)
     <title>Fab Admin - Log in </title>
 
     <!-- Bootstrap 4.0-->
-    <link rel="stylesheet" href="<?php echo BASE_URL;?>/assets/vendor_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL;?>assets/vendor_components/bootstrap/dist/css/bootstrap.min.css">
 
     <!-- Bootstrap extend-->
-    <link rel="stylesheet" href="<?php echo BASE_URL;?>/css/bootstrap-extend.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL;?>css/bootstrap-extend.css">
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo BASE_URL;?>/css/master_style.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL;?>css/master_style.css">
 
     <!-- Fab Admin skins -->
-    <link rel="stylesheet" href="<?php echo BASE_URL;?>/css/skins/_all-skins.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL;?>css/skins/_all-skins.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

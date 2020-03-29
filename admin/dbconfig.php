@@ -5,6 +5,7 @@ ini_set('display_errors', 'On');
 define('BASE_PATH', dirname(__FILE__));
 
 require_once __DIR__.'/../vendor/autoload.php';
+
 if ($_SERVER['SERVER_NAME'] === 'familyback1219.com') {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '.env.local');
     $dotenv->load();

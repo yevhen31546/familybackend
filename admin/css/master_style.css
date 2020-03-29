@@ -40,14 +40,14 @@ Project:	Fab Admin - Responsive Admin Template
 /******************* 
 import icon and fonts Styles 
 *******************/
-@import url(../../assets/vendor_components/font-awesome/css/font-awesome.css);
-@import url(../../assets/vendor_components/Ionicons/css/ionicons.css);
-@import url(../../assets/vendor_components/themify-icons/themify-icons.css);
-@import url(../../assets/vendor_components/linea-icons/linea.css);
-@import url(../../assets/vendor_components/glyphicons/glyphicon.css);
-@import url(../../assets/vendor_components/flag-icon/css/flag-icon.css);
-@import url(../../assets/vendor_components/material-design-iconic-font/css/materialdesignicons.css);
-@import url(../../assets/vendor_components/simple-line-icons-master/css/simple-line-icons.css);
+@import url(../assets/vendor_components/font-awesome/css/font-awesome.css);
+@import url(../assets/vendor_components/Ionicons/css/ionicons.css);
+@import url(../assets/vendor_components/themify-icons/themify-icons.css);
+@import url(../assets/vendor_components/linea-icons/linea.css);
+@import url(../assets/vendor_components/glyphicons/glyphicon.css);
+@import url(../assets/vendor_components/flag-icon/css/flag-icon.css);
+@import url(../assets/vendor_components/material-design-iconic-font/css/materialdesignicons.css);
+@import url(../assets/vendor_components/simple-line-icons-master/css/simple-line-icons.css);
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
 
 /*------------------------------------------------------------------
@@ -532,7 +532,7 @@ a:active, a:focus, a:hover {
     position: relative;
     width: 100%;
     padding: 10px 0 10px;
-    background-image: url(../../images//user-info.jpg);
+    background-image: url(../images/user-info.jpg);
 }
 .user-panel:after, .user-panel:before {
     content: " ";
@@ -611,7 +611,7 @@ a:active, a:focus, a:hover {
     margin: 15px 0;
 }
 .user-profile {
-    background-image:url(../../images//user-info.jpg);
+    background-image:url(../images/user-info.jpg);
 }
 .sidebar-menu .user-profile > a img {
     width: 30px;
@@ -4108,8 +4108,8 @@ ul.panel-actions > li:first-child {
 .panel > .table caption,
 .panel > .table-responsive > .table caption,
 .panel > .panel-collapse > .table caption {
-  padding-left: 30px 30px;
-  padding-right: 30px 30px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .panel > .table:first-child,
@@ -12364,7 +12364,7 @@ tfoot input {
 	border-radius: 5px;
 }
 .login-page, .register-page {
-    background: url(../../images//login-register.jpg) center center no-repeat #d2d6de;
+    background: url(../images/login-register.jpg) center center no-repeat #d2d6de;
     background-size: cover;
     height: 100%;
     width: 100%;

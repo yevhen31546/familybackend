@@ -25,13 +25,13 @@
     <link rel="stylesheet" href="<?php echo BASE_URL;?>assets/vendor_components/fullcalendar/fullcalendar.print.min.css" media="print">
 
     <!-- Bootstrap extend-->
-    <link rel="stylesheet" href="<?php echo BASE_URL;?>/css/bootstrap-extend.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL;?>css/bootstrap-extend.css">
 
     <!-- theme style -->
-    <link rel="stylesheet" href="<?php echo BASE_URL;?>/css/master_style.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL;?>css/master_style.css">
 
     <!-- Fab Admin skins -->
-    <link rel="stylesheet" href="<?php echo BASE_URL;?>/css/skins/_all-skins.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL;?>css/skins/_all-skins.css">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -53,12 +53,10 @@
             <!-- mini logo -->
             <b class="logo-mini">
                <img src="<?php echo BASE_URL;?>images/blacklogosm.png" alt="logo">
-               <img src="<?php echo BASE_URL;?>images/whitelogosm.png" alt="logo">
             </b>
             <!-- logo-->
             <span class="logo-lg">
           <img src="<?php echo BASE_URL;?>images/blacklogosm.png" alt="logo" class="light-logo">
-          <img src="<?php echo BASE_URL;?>images/whitelogosm.png" alt="logo" class="dark-logo">
         </span>
         </a>
         <!-- Header Navbar -->
@@ -80,7 +78,7 @@
             <!-- sidebar menu-->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="user-profile treeview">
-                    <a href="href="<?php echo BASE_URL;?>index.php"">
+                    <a href="<?php echo BASE_URL;?>index.php">
                         <img src="<?php echo BASE_URL;?>images/user5-128x128.jpg" alt="user">
                         <span>Juliya Brus</span>
                         <span class="pull-right-container">
