@@ -132,45 +132,52 @@ if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === TRUE)
                                         <!--Paypal Test-->
                                         <form action="<?php echo PAYPAL_URL; ?>" method="post" target="_top">
                                             <!-- Identify your business so that you can collect the payments -->
-                                            <input type="hidden" name="business" value="<?php echo PAYPAL_ID; ?>">
+<!--                                            <input type="hidden" name="business" value="--><?php //echo PAYPAL_ID; ?><!--">-->
                                             <!-- Specify a subscriptions button. -->
                                             <input type="hidden" name="cmd" value="_s-xclick">
                                             <!-- Specify details about the subscription that buyers will purchase -->
-                                            <input type="hidden" name="hosted_button_id" value="U325BK9NAH9NU">
+                                            <input type="hidden" name="hosted_button_id" value="NZ9APHTVP6WSL">
                                             <table>
                                                 <tr>
                                                     <td>
                                                         <input type="hidden" name="on0" value="Subscriptions Options">
-                                                        <h4>Choose your subscription option using the drop-down arrow,
-                                                            then click the "Subscribe" button.</h4>
+                                                        Subscription Options
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <select name="os0" onchange="updateForm(this)">
-                                                            <option value="Adult (over 18)">
-                                                                Adult (over 18) : $6.99 USD - monthly
+                                                        <select name="os0">
+<!--                                                        <select name="os0" onchange="updateForm(this)">-->
+                                                            <option value="Adult (18+)">
+                                                                Adult (18+) : $6.99 USD - monthly
                                                             </option>
-                                                            <option value="Family (max 5)">
-                                                                Family (max 5) : $24.99 USD - monthly
+
+                                                            <option value="Family (Max. 5)">
+                                                                Family (Max. 5) : $24.99 USD - monthly
                                                             </option>
-                                                            <option value="Young Adult/Child(m)">
-                                                                Young Adult/Child : $4.99 USD - monthly
+
+                                                            <option value="Young Adult/Child (under 18)">
+                                                                Young Adult/Child (under 18) : $4.99 USD - monthly
                                                             </option>
+
                                                             <option value="Senior (60+)">
                                                                 Senior (60+) : $3.99 USD - monthly
                                                             </option>
+
                                                             <option value="Adult (18+)">
                                                                 Adult (18+) : $74.99 USD - yearly
                                                             </option>
-                                                            <option value="Family (5+)">
-                                                                Family (max 5) : $239.99 USD - yearly
+
+                                                            <option value="Family (Max 5)">
+                                                                Family (Max 5) : $239.99 USD - yearly
                                                             </option>
-                                                            <option value="Young Adult/Child(y)">
-                                                                Young Adult/Child : $53.00 USD - yearly
+
+                                                            <option value="Young Adult (under 18)">
+                                                                Young Adult (under 18) : $53.00 USD - yearly
                                                             </option>
-                                                            <option value="Senior">
-                                                                Senior : $43.00 USD - yearly
+
+                                                            <option value="Senior (60+)">
+                                                                Senior (60+) : $43.00 USD - yearly
                                                             </option>
                                                         </select>
                                                         <br>
@@ -178,15 +185,16 @@ if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === TRUE)
                                                 </tr>
                                             </table>
                                             <br>
-                                            <input type="hidden" name="currency_code" value="<?php echo PAYPAL_CURRENCY; ?>">
-                                            <input type="hidden" name="a3" id="paypalAmt" value="6.99">
-                                            <input type="hidden" name="p3" id="paypalValid" value="1">
-                                            <input type="hidden" name="t3" value="M">
-                                            <!-- Custom variable user ID -->
-                                            <input type="hidden" name="custom" value="<?php echo time(); ?>">
-                                            <!-- Specify urls -->
-                                            <input type="hidden" name="cancel_return" value="<?php echo PAYPAL_CANCEL_URL; ?>">
-                                            <input type="hidden" name="return" value="<?php echo PAYPAL_RETURN_URL; ?>">
+                                            <input type="hidden" name="currency_code" value="USD">
+<!--                                            <input type="hidden" name="currency_code" value="--><?php //echo PAYPAL_CURRENCY; ?><!--">-->
+<!--                                            <input type="hidden" name="a3" id="paypalAmt" value="6.99">-->
+<!--                                            <input type="hidden" name="p3" id="paypalValid" value="1">-->
+<!--                                            <input type="hidden" name="t3" value="M">-->
+<!--                                            <!-- Custom variable user ID -->
+<!--                                            <input type="hidden" name="custom" value="--><?php //echo time(); ?><!--">-->
+<!--                                            <!-- Specify urls -->
+<!--                                            <input type="hidden" name="cancel_return" value="--><?php //echo PAYPAL_CANCEL_URL; ?><!--">-->
+<!--                                            <input type="hidden" name="return" value="--><?php //echo PAYPAL_RETURN_URL; ?><!--">-->
                                             <!-- <input type="hidden" name="notify_url" value="<?php echo PAYPAL_NOTIFY_URL; ?>"> -->
                                             <input type="image"
                                                    src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif"
