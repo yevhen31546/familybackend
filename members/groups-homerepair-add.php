@@ -227,7 +227,7 @@ if(isset($_POST) && isset($_POST['homerepairdate']) && $_POST['homerepairdate'] 
 
                                         <div class="box--item text-left textareaw">
                                             <div><label>
-                                                    <h6>Add a link such as, YouTube, Facebook, Twitter, etc.&nbsp;&nbsp;&nbsp;</h6>
+                                                    <h6>Add a YouTube link.&nbsp;&nbsp;&nbsp;</h6>
                                                 </label>
                                                 <input type="text" class="form-control" name="utubelink" placeholder="Enter the link here">
                                             </div>
