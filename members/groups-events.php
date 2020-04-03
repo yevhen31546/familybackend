@@ -250,7 +250,7 @@ if ($page > 1) {
                                             <p>Date Submited: <?php echo $row['eventdate'];?></p>
                                             <p><?php echo $row['eventcomment'];?></p>
                                             <?php if ($row['utubelink'] != '') {?>
-                                                <p><a href="<?php echo $row['utubelink'] ?>" target="_blank"> See More </a></p>
+                                                <p><a href="<?php echo $row['utubelink'] ?>" target="_blank"> Video </a></p>
                                             <?php }?>
                                         </div>
                                     </div>

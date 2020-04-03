@@ -3,12 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="0dcfc1bc-f385-4583-b2ea-764e7c8ae5c4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-church-add.php" afterPath="$PROJECT_DIR$/members/groups-church-add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-events-add.php" afterPath="$PROJECT_DIR$/members/groups-events-add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-homerepair-add.php" afterPath="$PROJECT_DIR$/members/groups-homerepair-add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-pets-add.php" afterPath="$PROJECT_DIR$/members/groups-pets-add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-sports-add.php" afterPath="$PROJECT_DIR$/members/groups-sports-add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-travel-add.php" afterPath="$PROJECT_DIR$/members/groups-travel-add.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-church.php" afterPath="$PROJECT_DIR$/members/groups-church.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-events.php" afterPath="$PROJECT_DIR$/members/groups-events.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-homerepair.php" afterPath="$PROJECT_DIR$/members/groups-homerepair.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-pets.php" afterPath="$PROJECT_DIR$/members/groups-pets.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-sports.php" afterPath="$PROJECT_DIR$/members/groups-sports.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-travel.php" afterPath="$PROJECT_DIR$/members/groups-travel.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,7 +30,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>from</find>
       <find>view</find>
       <find>$pageLimit</find>
       <find>pageLimit =</find>
@@ -60,6 +59,7 @@
       <find>main-sidebar</find>
       <find>edit_id</find>
       <find>Add a link such as, YouTube, Facebook, Twitter, etc</find>
+      <find>see more</find>
     </findStrings>
     <replaceStrings>
       <replace>index.php</replace>
@@ -180,7 +180,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -193,6 +192,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -299,12 +299,13 @@
       <workItem from="1585466185390" duration="12573000" />
       <workItem from="1585537513075" duration="627000" />
       <workItem from="1585589797350" duration="1463000" />
-      <workItem from="1585705104535" duration="710000" />
+      <workItem from="1585705104535" duration="1264000" />
+      <workItem from="1585942570095" duration="910000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="757822000" />
+    <option name="totallyTimeSpent" value="759286000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -318,7 +319,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17217484" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17377399" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />

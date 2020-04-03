@@ -245,7 +245,7 @@ if ($page > 1) {
                                         <p>Date Submited: <?php echo $row['homerepairdate'];?></p>
                                         <p><?php echo $row['homerepaircomment'];?></p>
                                         <?php if ($row['utubelink'] != '') {?>
-                                            <p><a href="<?php echo $row['utubelink'] ?>" target="_blank"> See More </a></p>
+                                            <p><a href="<?php echo $row['utubelink'] ?>" target="_blank"> Video </a></p>
                                         <?php }?>
                                     </div>
                                 </div>
