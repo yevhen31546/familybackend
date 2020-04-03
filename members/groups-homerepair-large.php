@@ -73,7 +73,7 @@ $user = $db->get('tbl_users');
                                                 </div>
 
                                                 <div class="title">
-                                                    <h2 class="h2"><a href="group-home.php">Remodel &amp; Repair Group</a></h2>
+                                                    <h2 class="h2"><a href="groups-homerepair.php">Remodel &amp; Repair Group</a></h2>
                                                     <?php if($homerepairs[0]['homerepairgroup'] !='') { ?>
                                                         <p><h4>Group Name: <?php echo $homerepairs[0]['homerepairgroup'] ?></h4></p>
                                                     <?php }?>

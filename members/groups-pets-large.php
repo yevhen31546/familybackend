@@ -73,7 +73,7 @@ $user = $db->get('tbl_users');
                                                 </div>
 
                                                 <div class="title">
-                                                    <h2 class="h2"><a href="group-home.php">Special Events</a></h2>
+                                                    <h2 class="h2"><a href="groups-pets.php">Pet Group</a></h2>
                                                     <?php if($pets[0]['petgroup'] !='') { ?>
                                                         <p><h4>Pet Name: <?php echo $pets[0]['petname'] ?></h4></p>
                                                     <?php }?>
