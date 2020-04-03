@@ -377,7 +377,12 @@ if ($page > 1) {
                                                echo $_GET['player_name_filter']; ?>">
                                     <button type="submit" class="btn btn-primary" style="padding-left: 10px;
                                         margin-left: 10px;padding-top: 1px; padding-bottom: 1px; padding-right: 10px;">
-                                        Filter
+                                        Go
+                                    </button>
+                                    <button type="button" onclick="clear_all();"
+                                            class="btn btn-primary" style="padding-left: 10px;
+                                        margin-left: 10px;padding-top: 1px; padding-bottom: 1px; padding-right: 10px;">
+                                        Clear All
                                     </button>
                                 </label>
 
@@ -535,5 +540,10 @@ if ($page > 1) {
     </div>
 </section>
 <!-- Page Wrapper End -->
-
+<script>
+    function clear_all() {
+        window.location = window.location.href.split("?")[0];
+        reload();
+    }
+</script>
 <?php include BASE_PATH.'/members/includes/footer.php'?>

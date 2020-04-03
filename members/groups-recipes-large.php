@@ -76,7 +76,7 @@ $user = $db->get('tbl_users');
                                                 </div>
 
                                                 <div class="title">
-                                                    <h2 class="h2"><a href="group-home.html">
+                                                    <h2 class="h2"><a href="groups-recipes.php">
                                                         <?php if (isset($recipes[0]['rec_title'])) { ?> 
                                                             <?php echo $recipes[0]['rec_title'];?>
                                                         <?php } ?>

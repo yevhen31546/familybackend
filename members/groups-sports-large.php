@@ -72,7 +72,7 @@ $user = $db->get('tbl_users');
                                                 </div>
 
                                                 <div class="title">
-                                                    <h2 class="h2"><a href="group-home.php">Sport Group</a></h2>
+                                                    <h2 class="h2"><a href="groups-sports.php">Sport Group</a></h2>
                                                     <?php if($sports[0]['sportname'] !='') { ?>
                                                         <p><h4>Sport Name: <?php echo $sports[0]['sportname'] ?></h4></p>
                                                     <?php }?>

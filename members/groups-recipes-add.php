@@ -142,6 +142,7 @@ if(isset($_POST) && isset($_POST['rec_date']) && $_POST['rec_date'] != '') {
                                                     <option value="Breakfast">Breakfast</option>
                                                     <option value="Lunch">Lunch</option>
                                                     <option value="Dinner">Dinner</option>
+                                                    <option value="Dessert">Dessert</option>
                                                     <option value="Family Favorite">Family Favorite</option>
                                                     <option value="Gluten Free">Gluten Free</option>
                                                     <option value="Vegetarian">Vegetarian</option>
