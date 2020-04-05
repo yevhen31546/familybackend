@@ -1,6 +1,9 @@
 <?php
 session_start();
 require_once '../../dbconfig.php';
+if (!isset($_SESSION['user_logged_in'])) {
+    header('Location:'.BASE_URL.'login.php');
+}
 // Costumers class
 $db = getDbInstance();
 
