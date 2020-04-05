@@ -54,37 +54,24 @@ if(isset($_POST) && isset($_POST['sportdate']) && $_POST['sportdate'] != '') {
         if (!file_exists($target_path)) {
             mkdir($target_path, 0777, true);  //create directory if not exist
         }
-        
-        $allowedExts = array("jpg", "jpeg", "gif", "png", "mp3", "mp4", "wma");
+
+        $allowedExts = array("mp4", "avi", "mov");
         $extension = pathinfo($_FILES['videourl']['name'], PATHINFO_EXTENSION);
+        $file_limit_size = 25000000;
         $target_path = $target_path . md5(uniqid()).".".$extension;
 
-        if ((($_FILES["videourl"]["type"] == "video/mp4")
-        || ($_FILES["videourl"]["type"] == "audio/mp3")
-        || ($_FILES["videourl"]["type"] == "audio/wma")
-        || ($_FILES["videourl"]["type"] == "image/pjpeg")
-        || ($_FILES["videourl"]["type"] == "image/gif")
-        || ($_FILES["videourl"]["type"] == "image/jpeg")
-        || ($_FILES["videourl"]["type"] == "image/png"))
-
-        && ($_FILES["videourl"]["size"] < 2000000)
-        && in_array($extension, $allowedExts))
+        if (($_FILES["videourl"]["size"] < $file_limit_size)
+            && in_array($extension, $allowedExts))
         {
             if ($_FILES["videourl"]["error"] > 0)
             {
-                echo "Return Code: " . $_FILES["videourl"]["error"] . "<br />";
+                $_SESSION['failure'] = "Return Code: " . $_FILES["videourl"]["error"] . "<br />";
             }
             else
             {
-                // echo "Upload: " . $_FILES["videourl"]["name"] . "<br />";
-                // echo "Type: " . $_FILES["videourl"]["type"] . "<br />";
-                // echo "Size: " . ($_FILES["videourl"]["size"] / 1024) . " Kb<br />";
-                // echo "Temp file: " . $_FILES["videourl"]["tmp_name"] . "<br />";
-
                 if (move_uploaded_file($_FILES['videourl']['tmp_name'], $target_path)) {
                     $data_to_db['videourl'] = $target_path;
-                    // $_SESSION['success'] = "Image uploaded successfully!.";
-
+                    $_SESSION['success'] = "Image uploaded successfully!.";
                 }
             }
         }

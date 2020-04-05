@@ -51,24 +51,16 @@ if(isset($_POST) && isset($_POST['churchname']) && $_POST['churchname'] != '') {
     
     if(isset($_POST) && $_FILES["videourl"]["name"] != '') {
         $target_path = "./uploads/".$_SESSION['user_id']."/church/video/";
-        echo $_FILES["videourl"]["name"]; exit;
         if (!file_exists($target_path)) {
             mkdir($target_path, 0777, true);  //create directory if not exist
         }
-        
-        $allowedExts = array("jpg", "jpeg", "gif", "png", "mp3", "mp4", "wma");
+
+        $allowedExts = array("mp4", "avi", "mov");
         $extension = pathinfo($_FILES['videourl']['name'], PATHINFO_EXTENSION);
+        $file_limit_size = 25000000;
         $target_path = $target_path . md5(uniqid()).".".$extension;
 
-        if ((($_FILES["videourl"]["type"] == "video/mp4")
-        || ($_FILES["videourl"]["type"] == "audio/mp3")
-        || ($_FILES["videourl"]["type"] == "audio/wma")
-        || ($_FILES["videourl"]["type"] == "image/pjpeg")
-        || ($_FILES["videourl"]["type"] == "image/gif")
-        || ($_FILES["videourl"]["type"] == "image/jpeg")
-        || ($_FILES["videourl"]["type"] == "image/png"))
-
-        && ($_FILES["videourl"]["size"] < 2000000)
+        if (($_FILES["videourl"]["size"] < $file_limit_size)
         && in_array($extension, $allowedExts))
         {
             if ($_FILES["videourl"]["error"] > 0)
