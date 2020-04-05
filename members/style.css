@@ -1541,6 +1541,7 @@ label > span {
 .link--video {
     position: relative;
     z-index: 0;
+    color: #7398aa;
 }
 
 /*.link--video:before {*/

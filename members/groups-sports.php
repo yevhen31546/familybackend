@@ -469,7 +469,15 @@ if ($page > 1) {
                                         <p>Date Submited: <?php echo $row['sportdate'];?></p>
                                         <p><?php echo $row['sportcomment'];?></p>
                                         <?php if ($row['utubelink'] != '') {?>
-                                            <p><a href="<?php echo $row['utubelink'] ?>" target="_blank"> Video </a></p>
+                                            <div class="link--embed">
+                                                <a class="link--url"
+                                                   href="<?php echo $row['utubelink'] ?>"
+                                                   data-trigger="video_popup"></a>
+
+                                                <div class="link--video">
+                                                    VIdeo
+                                                </div>
+                                            </div>
                                         <?php }?>
                                     </div>
                                 </div>
