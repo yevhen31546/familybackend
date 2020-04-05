@@ -107,7 +107,7 @@ $user = $db->get('tbl_users');
                                                 <?php }?>
                                                 <?php if ($homerepairs[0]['videourl'] != '') {?>
                                                     <p style="margin-top: 30px;">
-                                                        <?php $videourl = BASE_URL.'/members'.$homerepairs[0]['videourl']; ?>
+                                                        <?php $videourl = BASE_URL.'/members'.substr($homerepairs[0]['videourl'],1); ?>
                                                         <?php if (strpos($homerepairs[0]['videourl'], ".avi") !== false){ ?>
                                                             <object data="<?php echo $videourl; ?>"
                                                                     type="video/x-msvideo" width="800" height="291">

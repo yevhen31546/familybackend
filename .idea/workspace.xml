@@ -3,19 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="0dcfc1bc-f385-4583-b2ea-764e7c8ae5c4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/authenticate.php" afterPath="$PROJECT_DIR$/admin/authenticate.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-church-large.php" afterPath="$PROJECT_DIR$/members/groups-church-large.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-church.php" afterPath="$PROJECT_DIR$/members/groups-church.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-events-large.php" afterPath="$PROJECT_DIR$/members/groups-events-large.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-events.php" afterPath="$PROJECT_DIR$/members/groups-events.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-homerepair-large.php" afterPath="$PROJECT_DIR$/members/groups-homerepair-large.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-homerepair.php" afterPath="$PROJECT_DIR$/members/groups-homerepair.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-pets-large.php" afterPath="$PROJECT_DIR$/members/groups-pets-large.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-pets.php" afterPath="$PROJECT_DIR$/members/groups-pets.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-sports-large.php" afterPath="$PROJECT_DIR$/members/groups-sports-large.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-sports.php" afterPath="$PROJECT_DIR$/members/groups-sports.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-travel-large.php" afterPath="$PROJECT_DIR$/members/groups-travel-large.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/groups-travel.php" afterPath="$PROJECT_DIR$/members/groups-travel.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,21 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="groups-events.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/members/groups-events.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="236" column="57" lean-forward="true" selection-start-line="236" selection-start-column="57" selection-end-line="236" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="groups-events-large.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/members/groups-events-large.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="95" column="65" lean-forward="false" selection-start-line="95" selection-start-column="65" selection-end-line="95" selection-end-column="65" />
+            <state relative-caret-position="146">
+              <caret line="114" column="126" lean-forward="false" selection-start-line="114" selection-start-column="94" selection-end-line="114" selection-end-column="126" />
               <folding>
                 <element signature="e#5212#5236#0#HTML" expanded="true" />
                 <element signature="e#6180#6216#0#HTML" expanded="true" />
@@ -53,18 +36,18 @@
       <file leaf-file-name="groups-church-large.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/members/groups-church-large.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="108" column="102" lean-forward="true" selection-start-line="108" selection-start-column="102" selection-end-line="108" selection-end-column="102" />
+            <state relative-caret-position="329">
+              <caret line="125" column="128" lean-forward="true" selection-start-line="125" selection-start-column="94" selection-end-line="125" selection-end-column="128" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="groups-travel-large.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="groups-travel-large.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/members/groups-travel-large.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="637">
-              <caret line="141" column="57" lean-forward="true" selection-start-line="94" selection-start-column="48" selection-end-line="141" selection-end-column="57" />
+            <state relative-caret-position="153">
+              <caret line="113" column="127" lean-forward="true" selection-start-line="113" selection-start-column="94" selection-end-line="113" selection-end-column="127" />
               <folding>
                 <element signature="e#5023#5047#0#HTML" expanded="true" />
                 <element signature="e#5991#6027#0#HTML" expanded="true" />
@@ -77,8 +60,8 @@
       <file leaf-file-name="groups-sports-large.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/members/groups-sports-large.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="127" column="87" lean-forward="false" selection-start-line="127" selection-start-column="80" selection-end-line="127" selection-end-column="87" />
+            <state relative-caret-position="162">
+              <caret line="116" column="94" lean-forward="false" selection-start-line="116" selection-start-column="94" selection-end-line="116" selection-end-column="126" />
               <folding>
                 <element signature="e#5290#5314#0#HTML" expanded="true" />
                 <element signature="e#6258#6294#0#HTML" expanded="true" />
@@ -91,8 +74,8 @@
       <file leaf-file-name="groups-pets-large.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/members/groups-pets-large.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="132" column="85" lean-forward="false" selection-start-line="132" selection-start-column="85" selection-end-line="132" selection-end-column="85" />
+            <state relative-caret-position="294">
+              <caret line="121" column="94" lean-forward="true" selection-start-line="121" selection-start-column="94" selection-end-line="121" selection-end-column="124" />
               <folding>
                 <element signature="e#5583#5607#0#HTML" expanded="true" />
                 <element signature="e#6551#6587#0#HTML" expanded="true" />
@@ -105,43 +88,13 @@
       <file leaf-file-name="groups-homerepair-large.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/members/groups-homerepair-large.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="120" column="92" lean-forward="false" selection-start-line="120" selection-start-column="92" selection-end-line="120" selection-end-column="92" />
+            <state relative-caret-position="285">
+              <caret line="109" column="128" lean-forward="false" selection-start-line="109" selection-start-column="128" selection-end-line="109" selection-end-column="128" />
               <folding>
                 <element signature="e#4953#4977#0#HTML" expanded="true" />
                 <element signature="e#5921#5957#0#HTML" expanded="true" />
                 <element signature="e#6285#6310#0#HTML" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="groups-pets.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/members/groups-pets.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="246" column="0" lean-forward="false" selection-start-line="246" selection-start-column="0" selection-end-line="246" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="groups-sports.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/members/groups-sports.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="470" column="0" lean-forward="false" selection-start-line="470" selection-start-column="0" selection-end-line="470" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="groups-travel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/members/groups-travel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="238" column="42" lean-forward="true" selection-start-line="238" selection-start-column="42" selection-end-line="238" selection-end-column="42" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -158,7 +111,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Add a link such as, YouTube, Facebook, Twitter, etc</find>
       <find>see more</find>
       <find>img/group-img/01.jpg</find>
       <find>group-home</find>
@@ -187,6 +139,7 @@
       <find>link--video</find>
       <find>\&lt;div class\=\&quot;link\-\-video\&quot;\&gt;\n                                                            VIdeo\n                                                        \&lt;\/div\&gt;</find>
       <find>$events</find>
+      <find>videoU</find>
       <find>$travels</find>
     </findStrings>
     <replaceStrings>
@@ -215,9 +168,9 @@
       <replace>, tmp.note_id DESC</replace>
       <replace>=</replace>
       <replace>$travels</replace>
+      <replace>$homerepairs</replace>
       <replace>$sports</replace>
       <replace>$pets</replace>
-      <replace>$homerepairs</replace>
     </replaceStrings>
     <dirStrings>
       <dir>D:\projects\yevhen\corephp\familybackend\members\forms</dir>
@@ -269,13 +222,13 @@
         <option value="$PROJECT_DIR$/members/activity-fam.html" />
         <option value="$PROJECT_DIR$/members/style.css" />
         <option value="$PROJECT_DIR$/members/groups-church.php" />
-        <option value="$PROJECT_DIR$/members/groups-church-large.php" />
         <option value="$PROJECT_DIR$/admin/authenticate.php" />
         <option value="$PROJECT_DIR$/members/groups-events.php" />
         <option value="$PROJECT_DIR$/members/groups-homerepair.php" />
         <option value="$PROJECT_DIR$/members/groups-pets.php" />
         <option value="$PROJECT_DIR$/members/groups-sports.php" />
         <option value="$PROJECT_DIR$/members/groups-travel.php" />
+        <option value="$PROJECT_DIR$/members/groups-church-large.php" />
         <option value="$PROJECT_DIR$/members/groups-events-large.php" />
         <option value="$PROJECT_DIR$/members/groups-travel-large.php" />
         <option value="$PROJECT_DIR$/members/groups-sports-large.php" />
@@ -445,12 +398,12 @@
       <workItem from="1585942570095" duration="5462000" />
       <workItem from="1586091652620" duration="3476000" />
       <workItem from="1586101798251" duration="5324000" />
-      <workItem from="1586108201711" duration="10098000" />
+      <workItem from="1586108201711" duration="11546000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="782736000" />
+    <option name="totallyTimeSpent" value="784184000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -463,6 +416,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1641791" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -472,7 +426,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32790446" sideWeight="0.6114072" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29750273" sideWeight="0.38859275" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29750273" sideWeight="0.38859275" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -881,22 +835,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/members/groups-travel-large.php">
+    <entry file="file://$PROJECT_DIR$/members/groups-events.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="637">
-          <caret line="141" column="57" lean-forward="true" selection-start-line="94" selection-start-column="48" selection-end-line="141" selection-end-column="57" />
+        <state relative-caret-position="379">
+          <caret line="234" column="0" lean-forward="true" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/members/groups-church-large.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="125" column="128" lean-forward="true" selection-start-line="125" selection-start-column="94" selection-end-line="125" selection-end-column="128" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/members/groups-events-large.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="114" column="126" lean-forward="false" selection-start-line="114" selection-start-column="94" selection-end-line="114" selection-end-column="126" />
           <folding>
-            <element signature="e#5023#5047#0#HTML" expanded="true" />
-            <element signature="e#5991#6027#0#HTML" expanded="true" />
-            <element signature="e#6351#6376#0#HTML" expanded="true" />
+            <element signature="e#5212#5236#0#HTML" expanded="true" />
+            <element signature="e#6180#6216#0#HTML" expanded="true" />
+            <element signature="e#6539#6564#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/members/groups-sports-large.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="127" column="87" lean-forward="false" selection-start-line="127" selection-start-column="80" selection-end-line="127" selection-end-column="87" />
+        <state relative-caret-position="162">
+          <caret line="116" column="94" lean-forward="false" selection-start-line="116" selection-start-column="94" selection-end-line="116" selection-end-column="126" />
           <folding>
             <element signature="e#5290#5314#0#HTML" expanded="true" />
             <element signature="e#6258#6294#0#HTML" expanded="true" />
@@ -907,8 +877,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/members/groups-pets-large.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="132" column="85" lean-forward="false" selection-start-line="132" selection-start-column="85" selection-end-line="132" selection-end-column="85" />
+        <state relative-caret-position="294">
+          <caret line="121" column="94" lean-forward="true" selection-start-line="121" selection-start-column="94" selection-end-line="121" selection-end-column="124" />
           <folding>
             <element signature="e#5583#5607#0#HTML" expanded="true" />
             <element signature="e#6551#6587#0#HTML" expanded="true" />
@@ -919,8 +889,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/members/groups-homerepair-large.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="120" column="92" lean-forward="false" selection-start-line="120" selection-start-column="92" selection-end-line="120" selection-end-column="92" />
+        <state relative-caret-position="285">
+          <caret line="109" column="128" lean-forward="false" selection-start-line="109" selection-start-column="128" selection-end-line="109" selection-end-column="128" />
           <folding>
             <element signature="e#4953#4977#0#HTML" expanded="true" />
             <element signature="e#5921#5957#0#HTML" expanded="true" />
@@ -929,31 +899,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/members/groups-events-large.php">
+    <entry file="file://$PROJECT_DIR$/members/groups-travel-large.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="95" column="65" lean-forward="false" selection-start-line="95" selection-start-column="65" selection-end-line="95" selection-end-column="65" />
+        <state relative-caret-position="153">
+          <caret line="113" column="127" lean-forward="true" selection-start-line="113" selection-start-column="94" selection-end-line="113" selection-end-column="127" />
           <folding>
-            <element signature="e#5212#5236#0#HTML" expanded="true" />
-            <element signature="e#6180#6216#0#HTML" expanded="true" />
-            <element signature="e#6539#6564#0#HTML" expanded="true" />
+            <element signature="e#5023#5047#0#HTML" expanded="true" />
+            <element signature="e#5991#6027#0#HTML" expanded="true" />
+            <element signature="e#6351#6376#0#HTML" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/members/groups-church-large.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="108" column="102" lean-forward="true" selection-start-line="108" selection-start-column="102" selection-end-line="108" selection-end-column="102" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/members/groups-events.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="236" column="57" lean-forward="true" selection-start-line="236" selection-start-column="57" selection-end-line="236" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
