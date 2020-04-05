@@ -468,17 +468,6 @@ if ($page > 1) {
                                         <p>Submitted by: <?php echo $row['first_name'].$row['last_name'];?></p>
                                         <p>Date Submited: <?php echo $row['sportdate'];?></p>
                                         <p><?php echo $row['sportcomment'];?></p>
-                                        <?php if ($row['utubelink'] != '') {?>
-                                            <div class="link--embed">
-                                                <a class="link--url"
-                                                   href="<?php echo $row['utubelink'] ?>"
-                                                   data-trigger="video_popup"></a>
-
-                                                <div class="link--video">
-                                                    VIdeo
-                                                </div>
-                                            </div>
-                                        <?php }?>
                                     </div>
                                 </div>
                             </div>

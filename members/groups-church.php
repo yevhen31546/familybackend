@@ -253,17 +253,6 @@ if ($page > 1) {
                                             <p>Submitted by: <?php echo $row['first_name'].$row['last_name'];?></p>
                                             <p>Date Submited: <?php echo $row['churchdate'];?></p>
                                             <p>Church Comment: <?php echo $row['churchcomment'];?></p>
-                                            <?php if ($row['utubelink'] != '') {?>
-                                                <div class="link--embed">
-                                                    <a class="link--url"
-                                                       href="<?php echo $row['utubelink'] ?>"
-                                                       data-trigger="video_popup"></a>
-
-                                                    <div class="link--video">
-                                                        VIdeo
-                                                    </div>
-                                                </div>
-                                            <?php }?>
                                         </div>
                                     </div>
                                 </div>

@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 	$db->where('user_email', $username);
 	$row = $db->getOne('tbl_users');
 
-	if ($db->count >= 1)
+	if (($db->count >= 1) && ($row['user_role'] == '1'))
     {
 		$db_password = $row['password'];
 		$user_id = $row['id'];

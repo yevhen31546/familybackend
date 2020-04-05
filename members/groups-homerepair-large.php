@@ -88,7 +88,54 @@ $user = $db->get('tbl_users');
                                         
                                             
                                                 <p><h4><?php echo $homerepairs[0]['homerepaircomment'] ?></h4></p>
-                                                
+                                                <?php if ($homerepairs[0]['utubelink'] != '') {?>
+                                                    <?php $youtubeUrl = BASE_URL.'/members'.$events[0]['utubelink']; ?>
+                                                    <div class="link--video" style="margin-top: 30px">
+                                                        <a class="link--url"
+                                                           href="<?php echo $youtubeUrl; ?>"
+                                                           data-trigger="video_popup"></a>
+                                                        <?php
+                                                        $find = "=";
+                                                        $pos = strpos($youtubeUrl, $find) + 1;
+                                                        $video_img = substr($youtubeUrl, $pos);
+                                                        $thumb_video_img = "http://img.youtube.com/vi/".$video_img."/mqdefault.jpg";
+                                                        ?>
+                                                        <img src="<?php echo $thumb_video_img; ?>" alt=""
+                                                             style="width: 800px; height: 291px;">
+                                                    </div>
+                                                    <hr>
+                                                <?php }?>
+                                                <?php if ($homerepairs[0]['videourl'] != '') {?>
+                                                    <p style="margin-top: 30px;">
+                                                        <?php $videourl = BASE_URL.'/members'.$homerepairs[0]['videourl']; ?>
+                                                        <?php if (strpos($homerepairs[0]['videourl'], ".avi") !== false){ ?>
+                                                            <object data="<?php echo $videourl; ?>"
+                                                                    type="video/x-msvideo" width="800" height="291">
+                                                                <!--                                                                <param name="src" value="--><?php //echo $videourl ?><!--">-->
+                                                                <!--                                                                <param name="autoStart" value="0">-->
+                                                                <param name="autoplay" value="true">
+                                                                <a href="<?php echo $videourl; ?>">
+                                                                    Video
+                                                                </a>
+                                                            </object>
+                                                        <?php } else if (strpos($homerepairs[0]['videourl'], ".mp4") !== false) { ?>
+                                                            <video width="800" height="291" controls>
+                                                                <source src="<?php echo $videourl; ?>" type="video/mp4">
+                                                                Your browser does not support the video tag.
+                                                            </video>
+                                                        <?php } else { ?>
+                                                            <object data="<?php echo $videourl; ?>"
+                                                                    width="800" height="291" type="video/quicktime">
+                                                                <param name="controller" value="true" >
+                                                                <param name="autoplay" value="false">
+                                                                <param name="src" value="<?php echo $videourl; ?>" >
+                                                                <a href="<?php echo $videourl; ?>">
+                                                                    Video
+                                                                </a>
+                                                            </object>
+                                                        <?php } ?>
+                                                    </p>
+                                                <?php }?>
                                             </div>
                                         </div>
                                         <!-- Box Item End -->
