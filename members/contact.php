@@ -51,10 +51,9 @@ include BASE_PATH.'/members/includes/header.php';
                             </div>
 
                             <div class="content fs--14 text-darker mt--4">
-                                <p>MyNotes4u
+                                <p>MyNotes4U, LLC
                                 <br>P.O. Box 50
                                 <br>Harrah, OK 73045-0050
-                                <br>972-863-2453</p>
                             </div>
                         </div>
                         <!-- Contact Info Item End -->
@@ -80,6 +79,15 @@ include BASE_PATH.'/members/includes/header.php';
                             </div>
                         </div>
                         <!-- Contact Info Item End -->
+
+                        <!-- Unsubscribe Paypal Start -->
+                        <div class="contact-info--Item">
+                            <div class="content fs--14 text-darker mt--4">
+                                <p><a href="#" class="btn-link">Paypal Unsubscribe</a></p>
+                            </div>
+                        </div>
+                        <!-- Unsubscribe Paypal End -->
+
                     </div>
                     <!-- Contact Info Items End -->
                 </div>

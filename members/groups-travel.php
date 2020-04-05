@@ -145,7 +145,7 @@ if ($page > 1) {
                     <!-- Filter Nav Start -->
                     <div class="filter--nav pb--30 clearfix">
                         <div class="filter--link float--left">
-                            <h2 class="h4"><a href="groups-travel-add.php">Add a travels Memory (+)</a></h2>
+                            <h2 class="h4"><a href="groups-travel-add.php">Add a Travel Memory (+)</a></h2>
                         </div>
 
                         <div class="filter--options float--right">
@@ -154,10 +154,10 @@ if ($page > 1) {
                                 <span class="h4 fs--14 ff--primary fw--500 text-darker">Find a Group :</span>
                                 <select name="groupfilter" id="groupfilter" class="form-control form-sm" onchange="this.form.submit();" data-trigger="selectmenu">
                                     <option value="all" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'all') echo 'selected'; ?> >Most Current Added</option>
-                                    <option value="Family" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Family') echo 'selected'; ?> >Family Vacation</option>
+                                    <option value="Family Vacation" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Family Vacation') echo 'selected'; ?> >Family Vacation</option>
                                     <option value="Just-4-Fun" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Just-4-Fun') echo 'selected'; ?> >Just-4-Fun</option>
-                                    <option value="Special" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Special') echo 'selected'; ?> >Special Occasion</option>
-                                    <option value="Weekend" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Weekend') echo 'selected'; ?> >Weekend Getaway</option>
+                                    <option value="Special Occasion" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Special Occasion') echo 'selected'; ?> >Special Occasion</option>
+                                    <option value="Weekend Getaway" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Weekend Getaway') echo 'selected'; ?> >Weekend Getaway</option>
                                     <option value="Other" <?php if(isset($_GET['groupfilter']) && $_GET['groupfilter'] == 'Other') echo 'selected'; ?> >Other</option>
                                 </select>
                             </label>
@@ -241,7 +241,7 @@ if ($page > 1) {
                                     <div class="desc text-darker">
                                         <!-- <p>Date of Travel: xxxxxxxxxxxxxxxxxxxx</p> -->
                                         <p>Name of Travelers: <?php echo $row['travelernames'] ?></p>
-                                        <p>Submitted by: <?php echo $row['first_name'].$row['last_name'];?></p>
+                                        <p>Submitted by: <?php echo $row['first_name']." ".$row['last_name'];?></p>
                                         <p>Date Submited: <?php echo $row['traveldate'];?></p>
                                         <p><?php echo $row['travelcomment'];?></p>
                                         <?php if ($row['utubelink'] != '') {?>

@@ -170,7 +170,7 @@ if(isset($_POST) && isset($_POST['traveldate']) && $_POST['traveldate'] != '') {
                                             <input type="text" name="travelgroup">&nbsp;&nbsp;&nbsp;</h6></label></div></div>
 
                                         <div class="box--item text-left">
-                                            <div><label><h6>Enter traveler names:&nbsp;&nbsp;&nbsp;
+                                            <div><label><h6>Enter Traveler's Names:&nbsp;&nbsp;&nbsp;
                                                 <input type="text" name="travelernames">&nbsp;&nbsp;&nbsp;</h6></label></div></div>
 
                                         <div class="box--item text-left">

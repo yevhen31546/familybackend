@@ -72,7 +72,7 @@ $user = $db->get('tbl_users');
                                                 </div>
 
                                                 <div class="title">
-                                                    <h2 class="h2"><a href="group-home.php">Travel Group</a></h2>
+                                                    <h2 class="h2"><a href="groups-travel.php">Travel Group</a></h2>
 													<p><h4>Travel Group Name: <?php echo $travels[0]['travelgroup'] ?></h4></p>
                                                 </div>
 

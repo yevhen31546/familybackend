@@ -47,9 +47,9 @@ include BASE_PATH.'/members/includes/header.php';
             <h2 class="h3 fw--600"><?php echo $row['first_name'];?> <?php echo $row['last_name'] ?></h2>
         </div>
 
-        <div class="cover--user-activity">
-            <p><i class="fa mr--8 fa-clock-o"></i>Active 1 year 9 monts ago</p>
-        </div>
+<!--        <div class="cover--user-activity">-->
+<!--            <p><i class="fa mr--8 fa-clock-o"></i>Active 1 year 9 months ago</p>-->
+<!--        </div>-->
     </div>
 </div>
 <!-- Cover Header End -->

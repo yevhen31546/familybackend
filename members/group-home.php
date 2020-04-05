@@ -19,7 +19,7 @@ include BASE_PATH.'/members/includes/header.php'
                 </div>
 
                 <div class="cover--user-activity">
-                    <p><i class="fa mr--8 fa-clock-o"></i>Active 1 year 9 monts ago</p>
+                    <p><i class="fa mr--8 fa-clock-o"></i>Active 1 year 9 months ago</p>
                 </div>
 
                 <div class="cover--avatars">

@@ -3,6 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="myLargeModalLabel">Choose Cover Photo</h4>
+                <span style="color: #7398aa">Add line – Note: For best results, the image should be 1920 x 200 pixels</span>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">

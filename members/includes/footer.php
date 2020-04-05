@@ -1,5 +1,6 @@
 <?php
     $db = getDbInstance();
+    $db->orderBy('id');
     $rows = $db->get('tbl_users');
 ?>
 <!-- Footer Section Start -->
