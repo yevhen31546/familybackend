@@ -249,6 +249,11 @@ if ($page > 1) {
                                             <p>Submitted by: <?php echo $row['first_name'].$row['last_name'];?></p>
                                             <p>Date Submited: <?php echo $row['eventdate'];?></p>
                                             <p><?php echo $row['eventcomment'];?></p>
+                                            <p>
+                                                <a href="groups-events-large.php?userid=<?php echo $row['eventsubmitby'];?>&&eventid=<?php echo $row['id']?>">
+                                                    See more
+                                                </a>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

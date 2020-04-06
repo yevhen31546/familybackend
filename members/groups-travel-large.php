@@ -93,7 +93,7 @@ $user = $db->get('tbl_users');
                                             
                                                 <p><h4><?php echo $travels[0]['travelcomment'] ?></h4></p>
                                                 <?php if ($travels[0]['utubelink'] != '') {?>
-                                                    <?php $youtubeUrl = BASE_URL.'/members'.$events[0]['utubelink']; ?>
+                                                    <?php $youtubeUrl = BASE_URL.'/members'.$travels[0]['utubelink']; ?>
                                                     <div class="link--video" style="margin-top: 30px">
                                                         <a class="link--url"
                                                            href="<?php echo $youtubeUrl; ?>"

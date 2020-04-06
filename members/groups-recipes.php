@@ -248,6 +248,11 @@ if ($page > 1) {
                                                 <p>Date: <?php echo $row['rec_date'];?></p>
                                                 <p>Recipe Ingredients: <?php echo $row['rec_ingredient'];?></p>
                                                 <p>Recipe Instructions: <?php echo $row['rec_instruction'];?></p>
+                                                <p>
+                                                    <a href="groups-recipes-large.php?userid=<?php echo $row['rec_submit_by'];?>&&receipeid=<?php echo $row['id']?>">
+                                                        See more
+                                                    </a>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>

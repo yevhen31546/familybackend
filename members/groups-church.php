@@ -253,6 +253,13 @@ if ($page > 1) {
                                             <p>Submitted by: <?php echo $row['first_name'].$row['last_name'];?></p>
                                             <p>Date Submited: <?php echo $row['churchdate'];?></p>
                                             <p>Church Comment: <?php echo $row['churchcomment'];?></p>
+                                            <p><?php echo $row['churchcomment'];?></p>
+                                            <p>
+                                                <a href="groups-church-large.php?userid=<?php echo $row['churchsubmitby'];?>&&churchid=<?php echo $row['id']?>">
+                                                    See more
+                                                </a>
+                                            </p>
+
                                         </div>
                                     </div>
                                 </div>

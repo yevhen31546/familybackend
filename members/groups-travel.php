@@ -244,6 +244,11 @@ if ($page > 1) {
                                         <p>Submitted by: <?php echo $row['first_name']." ".$row['last_name'];?></p>
                                         <p>Date Submited: <?php echo $row['traveldate'];?></p>
                                         <p><?php echo $row['travelcomment'];?></p>
+                                        <p>
+                                            <a href="groups-travel-large.php?userid=<?php echo $row['travelsubmitby'];?>&&travelid=<?php echo $row['id']?>">
+                                                See more
+                                            </a>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
